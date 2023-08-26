@@ -19,7 +19,7 @@ class Order(db.Model):
 
     customer = db.relationship('User', back_populates='orders')
     restaurant = db.relationship('Restaurant', back_populates='orders')
-    menu_items = db.relationship('MenuItem', back_populates='orders', secondary=order_menu_items)
+    menu_items = db.relationship('MenuItem', secondary=order_menu_items, back_populates='orders')
 
     def to_dict(self):
         return {

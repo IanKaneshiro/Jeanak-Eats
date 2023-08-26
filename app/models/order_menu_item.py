@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .order import Order
 
 
 order_menu_items = db.Table(
