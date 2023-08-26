@@ -1,5 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
+from .order_menu_item import order_menu_items
+
 
 class MenuItem(db.Model):
     __tablename__ = 'menu_items'
@@ -8,7 +10,7 @@ class MenuItem(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    restaurant_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    restaurant_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('restaurants.id')), nullable=False)
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500))
     price = db.Column(db.Float(), nullable=False)
@@ -17,6 +19,9 @@ class MenuItem(db.Model):
     image_url = db.Column(db.String())
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
+
+    restaurant = db.relationship('Restaurant', back_populates='menu_items')
+    orders = db.relationship('Order', back_populates='menu_items', secondary=order_menu_items)
 
     def to_dict(self):
         return {

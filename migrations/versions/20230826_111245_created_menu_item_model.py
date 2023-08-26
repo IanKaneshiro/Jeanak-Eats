@@ -30,7 +30,7 @@ def upgrade():
     sa.Column('category', sa.String(length=25), nullable=False),
     sa.Column('dietary', sa.String(length=50), nullable=True),
     sa.Column('image_url', sa.String(), nullable=True),
-    sa.ForeignKeyConstraint(['restaurant_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
 

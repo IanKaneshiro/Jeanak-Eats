@@ -4,6 +4,7 @@ from flask_login import UserMixin
 from datetime import datetime
 
 
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -22,6 +23,10 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
+
+    reviews = db.relationship('Review', back_populates='user')
+    owned_restaurant = db.relationship('Restaurant', back_populates='owner')
+    orders = db.relationship('Order', back_populates='customer')
 
     @property
     def password(self):

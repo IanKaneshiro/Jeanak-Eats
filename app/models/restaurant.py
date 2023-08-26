@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
+
 class Restaurant(db.Model):
     __tablename__ = 'restaurants'
 
@@ -24,6 +25,10 @@ class Restaurant(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
+    reviews = db.relationship('Review', back_populates='restaurant')
+    owner = db.relationship('User', back_populates='owned_restaurant')
+    orders = db.relationship('Order', back_populates='restaurant')
+    menu_items = db.relationship('MenuItem', back_populates='restaurant')
 
     def to_dict(self):
         return {
