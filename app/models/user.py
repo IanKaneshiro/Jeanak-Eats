@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
 
 
 class User(db.Model, UserMixin):
@@ -10,9 +11,17 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    phone_number = db.Column(db.Integer, nullable=False, unique=True)
+    address = db.Column(db.String(100))
+    city = db.Column(db.String(50))
+    state = db.Column(db.String(25))
+    country = db.Column(db.String(50))
     hashed_password = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.now())
+    updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
     @property
     def password(self):
@@ -28,6 +37,14 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.username,
-            'email': self.email
+            'firstName': self.first_name,
+            'lastName': self.last_name,
+            'email': self.email,
+            'phoneNumber': self.phone_number,
+            'address': self.address,
+            'city': self.city,
+            'state': self.state,
+            'country': self.country,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at
         }
