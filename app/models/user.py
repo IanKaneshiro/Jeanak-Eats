@@ -4,7 +4,6 @@ from flask_login import UserMixin
 from datetime import datetime
 
 
-
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -15,14 +14,15 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
-    phone_number = db.Column(db.Integer, nullable=False, unique=True)
+    phone_number = db.Column(db.String(30), nullable=False, unique=True)
     address = db.Column(db.String(100))
     city = db.Column(db.String(50))
     state = db.Column(db.String(25))
     country = db.Column(db.String(50))
     hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
-    updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
+    updated_at = db.Column(
+        db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
     reviews = db.relationship('Review', back_populates='user')
     owned_restaurant = db.relationship('Restaurant', back_populates='owner')
