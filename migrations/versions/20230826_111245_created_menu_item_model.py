@@ -24,13 +24,12 @@ def upgrade():
     op.create_table('menu_items',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('restaurant_id', sa.Integer(), nullable=False),
-                    sa.Column('name', sa.String(length=50), nullable=False),
-                    sa.Column('description', sa.String(
-                        length=500), nullable=True),
+                    sa.Column('name', sa.String(length=100), nullable=False),
+                    sa.Column('description', sa.String(), nullable=True),
                     sa.Column('price', sa.Float(), nullable=False),
                     sa.Column('category', sa.String(
-                        length=50), nullable=False),
-                    sa.Column('dietary', sa.String(length=50), nullable=True),
+                        length=100), nullable=False),
+                    sa.Column('dietary', sa.String(length=100), nullable=True),
                     sa.Column('image_url', sa.String(), nullable=True),
                     sa.ForeignKeyConstraint(
                         ['restaurant_id'], ['restaurants.id'], ),
