@@ -7,6 +7,7 @@ from flask_login import LoginManager
 from .models import db, User, Restaurant, Review, MenuItem, Order, order_menu_items
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.restaurant_routes import restaurant_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -29,6 +30,7 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(restaurant_routes, url_prefix='/api/restaurants')
 db.init_app(app)
 Migrate(app, db)
 
@@ -62,29 +64,15 @@ def inject_csrf_token(response):
     return response
 
 
-@app.route('/testing')
-def test():
-    """
-    Test route to help us determine whether our associations are correct
-    """
-    # test_user = User.query.first()
-    test_review = Review.query.first()
-
-
-    return test_review.restaurant.to_dict()
-
-
-
-
 @app.route("/api/docs")
 def api_help():
     """
     Returns all API routes and their doc strings
     """
     acceptable_methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
-    route_list = { rule.rule: [[ method for method in rule.methods if method in acceptable_methods ],
-                    app.view_functions[rule.endpoint].__doc__ ]
-                    for rule in app.url_map.iter_rules() if rule.endpoint != 'static' }
+    route_list = {rule.rule: [[method for method in rule.methods if method in acceptable_methods],
+                              app.view_functions[rule.endpoint].__doc__]
+                  for rule in app.url_map.iter_rules() if rule.endpoint != 'static'}
     return route_list
 
 

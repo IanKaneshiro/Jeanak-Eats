@@ -51,3 +51,12 @@ class Restaurant(db.Model):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }
+
+    def to_dict_by_id(self):
+        restaurant = self.to_dict()
+        avg_rating = sum(
+            review.rating for review in self.reviews) / len(self.reviews)
+        restaurant["avgRating"] = avg_rating
+        restaurant["numRatings"] = len(self.reviews)
+        restaurant["MenuItems"] = [item.to_dict() for item in self.menu_items]
+        return restaurant
