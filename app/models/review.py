@@ -32,3 +32,8 @@ class Review(db.Model):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }
+
+    def to_dict_restaurant_reviews(self):
+        review = self.to_dict()
+        review["User"] = self.user.to_dict_review()
+        return review

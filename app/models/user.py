@@ -53,3 +53,10 @@ class User(db.Model, UserMixin):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }
+
+    def to_dict_review(self):
+        return {
+            "id": self.id,
+            "firstName": self.first_name,
+            "lastName": self.last_name
+        }

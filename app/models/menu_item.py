@@ -36,6 +36,6 @@ class MenuItem(db.Model):
             'category': self.category,
             'dietary': self.dietary,
             'imageUrl': self.image_url,
-            'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            # 'createdAt': self.created_at,
+            # 'updatedAt': self.updated_at
         }
