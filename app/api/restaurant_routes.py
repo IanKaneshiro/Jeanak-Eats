@@ -104,6 +104,7 @@ def update_restaurant(id):
 
 
 @restaurant_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
 def delete_restaurant(id):
     """
     Deletes a restaurant by id
@@ -115,8 +116,11 @@ def delete_restaurant(id):
     db.session.commit()
     return {"message": "Successfully deleted"}
 
+# --------------------------------------- REVIEWS BY RESTAURANT ID ----------------------------------------------
+
 
 @restaurant_routes.route('/<int:id>/reviews', methods=["POST"])
+@login_required
 def create_restaurant_review(id):
     """
     Create a review for a restaurant by id
@@ -125,11 +129,21 @@ def create_restaurant_review(id):
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
+
     restaurant = Restaurant.query.get(id)
+
     if not restaurant:
         return {"message": "Restaurant couldn't be found"}, 404
+
     if current_user.id == restaurant.owner_id:
         return {"message": "Cannot review your own restaurant"}, 403
+
+    has_review = Review.query.filter(
+        Review.user_id == current_user.id and Review.restaurant_id == id)
+
+    if has_review:
+        return {'message': "User already has a review for this restaurant"}
+
     if form.validate_on_submit():
         review = Review(
             user_id=current_user.id,
