@@ -54,9 +54,22 @@ class Restaurant(db.Model):
 
     def to_dict_by_id(self):
         restaurant = self.to_dict()
-        avg_rating = sum(
-            review.rating for review in self.reviews) / len(self.reviews)
-        restaurant["avgRating"] = avg_rating
+        if self.reviews:
+            avg_rating = sum(
+                review.rating for review in self.reviews) / len(self.reviews)
+            restaurant["avgRating"] = avg_rating
+        else:
+            restaurant['avgRating'] = None
         restaurant["numRatings"] = len(self.reviews)
         restaurant["MenuItems"] = [item.to_dict() for item in self.menu_items]
+        return restaurant
+
+    def to_dict_by_user(self):
+        restaurant = self.to_dict()
+        if self.reviews:
+            avg_rating = sum(
+                review.rating for review in self.reviews) / len(self.reviews)
+            restaurant["avgRating"] = avg_rating
+        else:
+            restaurant['avgRating'] = None
         return restaurant
