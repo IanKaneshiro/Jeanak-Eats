@@ -41,3 +41,20 @@ def update_review(id):
         return review.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@review_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_review(id):
+    """
+    Delete a review by id
+    """
+    review = Review.query.get(id)
+    if review.user_id != id:
+        return {"message": "Review must belong to current user"}, 403
+    if not review:
+        return {'message': "Review couldn't be found"}, 404
+
+    db.session.delete(review)
+    db.session.commit()
+    return {"message": "Successfully deleted"}

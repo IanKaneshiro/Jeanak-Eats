@@ -1,8 +1,8 @@
 from flask import Blueprint, request
 from app.models import Restaurant
 from flask_login import login_required, current_user
-from app.forms import RestaurantForm, ReviewForm
-from app.models import Restaurant, Review, db
+from app.forms import RestaurantForm, ReviewForm, MenuItemForm
+from app.models import Restaurant, Review, MenuItem, db
 
 
 restaurant_routes = Blueprint('restaurants', __name__)
@@ -166,3 +166,51 @@ def restaurant_reviews(id):
     if not restaurant:
         return {'message': "Restaurant couldn't be found"}, 404
     return {"Reviews": [review.to_dict_restaurant_reviews() for review in restaurant.reviews]}
+
+
+# ------------------------- Menu Items ---------------------------------
+
+@restaurant_routes.route('/<int:id>/menuItems')
+def menu_items_by_restaurant(id):
+    """
+    Get all items for a restaurant
+    """
+    restaurant = Restaurant.query.get(id)
+
+    if not restaurant:
+        return {"message": "Restaurant couldn't be found"}, 404
+
+    menu_items = MenuItem.query.filter(MenuItem.restaurant_id == id)
+
+    return {"MenuItems": [item.to_dict() for item in menu_items]}
+
+
+@restaurant_routes.route('/<int:id>/menuItems', methods=['POST'])
+@login_required
+def create_menu_item(id):
+    """
+    Create menu items by restaurant id
+    """
+    restaurant = Restaurant.query.get(id)
+
+    if not restaurant:
+        return {"message": "Restaurant couldn't be found"}, 404
+
+    form = MenuItemForm()
+    # Get the csrf_token from the request cookie and put it into the
+    # form manually to validate_on_submit can be used
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        menu_item = MenuItem(
+            restaurant_id=id,
+            name=form.data['name'],
+            description=form.data['description'],
+            price=form.data['price'],
+            category=form.data['category'],
+            dietary=form.data['dietary'],
+            image_url=form.data['image_url']
+        )
+        db.session.add(menu_item)
+        db.session.commit()
+        return menu_item.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
