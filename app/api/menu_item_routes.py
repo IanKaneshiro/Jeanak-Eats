@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import MenuItem, db
+from app.models import MenuItem, Restaurant, db
 from app.forms import MenuItemForm
 
 menu_item_routes = Blueprint('menu_items', __name__)
@@ -42,6 +42,9 @@ def update_menu_item(id):
     menu_item = MenuItem.query.get(id)
     if not menu_item:
         return {"message": "Menu Item couldnt't be found"}, 404
+    restaurant = Restaurant.query.get(menu_item.restaurant_id)
+    if restaurant.owner_id != current_user.id:
+        return {'message': "Cannot edit items you did not create"}, 403
 
     if form.validate_on_submit():
         menu_item.name = form.data['name']
@@ -66,6 +69,10 @@ def delete_menu_item(id):
 
     if not menu_item:
         return {'message': "Menu Item couldn't be found"}, 404
+
+    restaurant = Restaurant.query.get(menu_item.restaurant_id)
+    if restaurant.owner_id != current_user.id:
+        return {'message': "Cannot delete items you did not create"}, 403
 
     db.session.delete(menu_item)
     db.session.commit()

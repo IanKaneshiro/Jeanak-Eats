@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from sqlalchemy import and_
 from app.models import Restaurant
 from flask_login import login_required, current_user
 from app.forms import RestaurantForm, ReviewForm, MenuItemForm
@@ -25,7 +26,7 @@ def restaurants():
     Returns all restaurants
     """
     restaurants = Restaurant.query.all()
-    return {"Restaurants": [restaurant.to_dict() for restaurant in restaurants]}
+    return {"Restaurants": [restaurant.to_dict_by_avg_rating() for restaurant in restaurants]}
 
 
 @restaurant_routes.route('/<int:id>')
@@ -68,8 +69,8 @@ def create_restaurant():
         )
         db.session.add(restaurant)
         db.session.commit()
-        return restaurant.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        return restaurant.to_dict(), 201
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @restaurant_routes.route('/<int:id>', methods=['PUT'])
@@ -85,6 +86,8 @@ def update_restaurant(id):
     restaurant = Restaurant.query.get(id)
     if not restaurant:
         return {"message": "Restaurant couldn't be found"}, 404
+    if restaurant.owner_id != current_user.id:
+        return {"message": "Can only edit restaurants you own"}, 403
     if form.validate_on_submit():
         restaurant.name = form.data['name']
         restaurant.address = form.data['address']
@@ -100,7 +103,7 @@ def update_restaurant(id):
         restaurant.image_url = form.data['image_url']
         db.session.commit()
         return restaurant.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @restaurant_routes.route('/<int:id>', methods=["DELETE"])
@@ -112,6 +115,8 @@ def delete_restaurant(id):
     restaurant = Restaurant.query.get(int(id))
     if not restaurant:
         return {'message': "Restaurant couldn't be found"}, 404
+    if restaurant.owner_id != current_user.id:
+        return {"message": "Can only delete restaurants you own"}, 403
     db.session.delete(restaurant)
     db.session.commit()
     return {"message": "Successfully deleted"}
@@ -138,11 +143,11 @@ def create_restaurant_review(id):
     if current_user.id == restaurant.owner_id:
         return {"message": "Cannot review your own restaurant"}, 403
 
-    has_review = Review.query.filter(
-        Review.user_id == current_user.id and Review.restaurant_id == id)
+    has_review = Review.query.filter(and_(
+        Review.user_id == current_user.id, Review.restaurant_id == id)).all()
 
     if has_review:
-        return {'message': "User already has a review for this restaurant"}
+        return {'message': "User already has a review for this restaurant"}, 403
 
     if form.validate_on_submit():
         review = Review(
@@ -196,6 +201,9 @@ def create_menu_item(id):
     if not restaurant:
         return {"message": "Restaurant couldn't be found"}, 404
 
+    if restaurant.owner_id != current_user.id:
+        return {"message": "Cannot add menu items to restaurant you do not own"}, 403
+
     form = MenuItemForm()
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
@@ -212,5 +220,5 @@ def create_menu_item(id):
         )
         db.session.add(menu_item)
         db.session.commit()
-        return menu_item.to_dict()
+        return menu_item.to_dict(), 201
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400

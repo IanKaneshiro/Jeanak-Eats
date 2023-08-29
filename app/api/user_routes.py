@@ -33,4 +33,4 @@ def get_all_users_restaurants():
     """
     restaurants = Restaurant.query.filter(
         Restaurant.owner_id == current_user.id).all()
-    return {"Restaurants": [restaurant.to_dict_by_user() for restaurant in restaurants]}
+    return {"Restaurants": [restaurant.to_dict_by_avg_rating() for restaurant in restaurants]}

@@ -48,8 +48,6 @@ class Restaurant(db.Model):
             'opensAt': self.opens_at,
             'closesAt': self.closes_at,
             'imageUrl': self.image_url,
-            'createdAt': self.created_at,
-            'updatedAt': self.updated_at
         }
 
     def to_dict_by_id(self):
@@ -64,7 +62,7 @@ class Restaurant(db.Model):
         restaurant["MenuItems"] = [item.to_dict() for item in self.menu_items]
         return restaurant
 
-    def to_dict_by_user(self):
+    def to_dict_by_avg_rating(self):
         restaurant = self.to_dict()
         if self.reviews:
             avg_rating = sum(
