@@ -1,6 +1,7 @@
 // constants
 const LOAD_RESTAURANTS = "restaurants/LOAD_RESTAURANTS";
 const LOAD_USERS_RESTAURANTS = "restaurants/LOAD_USERS_RESTAURANTS";
+const LOAD_RESTAURANT = "restaurants/LOAD_RESTAURANT";
 
 // -------------------- Action Creators --------------------------
 
@@ -12,6 +13,11 @@ const loadRestaurants = (restaurants) => ({
 const loadUsersRestaurants = (restaurants) => ({
   type: LOAD_USERS_RESTAURANTS,
   payload: restaurants,
+});
+
+const loadRestaurant = (restaurant) => ({
+  type: LOAD_RESTAURANT,
+  payload: restaurant,
 });
 
 // ------------------- Thunk Action Creators -------------------
@@ -35,6 +41,19 @@ export const getUsersRestaurants = () => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(loadUsersRestaurants(data));
+    return data;
+  } else {
+    return response;
+  }
+};
+
+// Get restaurant by id
+export const getRestaurantById = (id) => async (dispatch) => {
+  const response = await fetch(`/api/restaurants/${id}`);
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(loadRestaurant(data));
     return data;
   } else {
     return response;
@@ -67,6 +86,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...newState,
         usersRestaurants,
+      };
+    case LOAD_RESTAURANT:
+      return {
+        ...newState,
+        currentRestaurant: action.payload,
       };
     default:
       return state;
