@@ -50,8 +50,6 @@ class User(db.Model, UserMixin):
             'city': self.city,
             'state': self.state,
             'country': self.country,
-            'createdAt': self.created_at,
-            'updatedAt': self.updated_at
         }
 
     def to_dict_review(self):
