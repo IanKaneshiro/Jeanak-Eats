@@ -7,25 +7,33 @@ const REMOVE_MENU_ITEM = "menuItems/REMOVE_MENU_ITEMS";
 //---------------------------------------------------------------
 //action creators
 
-const getRestaurantItems = (restaurantId) => ({
-  type: GET_RESTAURANT_ITEMS,
-  payload: restaurantId,
-});
+const getRestaurantItems = (restaurantId) => {
+  return {
+    type: GET_RESTAURANT_ITEMS,
+    payload: restaurantId,
+  };
+};
 
-const getOneMenuItem = (id) => ({
-  type: GET_ONE_ITEM,
-  payload: id,
-});
+const getOneMenuItem = (id) => {
+  return {
+    type: GET_ONE_ITEM,
+    payload: id,
+  };
+};
 
-const createMenuItem = (restaurantId, menuItem) => ({
-  type: CREATE_MENU_ITEM,
-  payload: { restaurantId, menuItem },
-});
+const createMenuItem = (restaurantId, menuItem) => {
+  return {
+    type: CREATE_MENU_ITEM,
+    payload: { restaurantId, menuItem },
+  };
+};
 
-const removeMenuItem = (menuItemId, itemUpdates) => ({
-  type: REMOVE_MENU_ITEM,
-  payload: { menuItemId, itemUpdates },
-});
+const removeMenuItem = (menuItemId) => {
+  return {
+    type: REMOVE_MENU_ITEM,
+    payload: menuItemId,
+  };
+};
 //---------------------------------------------------------------
 //thunk action creators
 
@@ -46,7 +54,7 @@ export const getOneItem = (id) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json();
-    dispatch(getOneMenuItem(data));
+    dispatch(getOneMenuItem(id));
     return data;
   }
 };

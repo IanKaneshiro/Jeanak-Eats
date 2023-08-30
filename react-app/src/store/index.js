@@ -5,7 +5,7 @@ import menuItemsReducer from "./menuItems";
 
 const rootReducer = combineReducers({
   session,
-  menuItemsReducer,
+  menu: menuItemsReducer,
 });
 
 let enhancer;

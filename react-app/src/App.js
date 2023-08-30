@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import MenuItems from "./components/MenuItems";
+import MenuItemDetail from "./components/MenuItems/MenuItemDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/newMenuItem">
             <MenuItems />
+          </Route>
+          <Route path="/menuItems/:id">
+            <MenuItemDetail />
           </Route>
         </Switch>
       )}

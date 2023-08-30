@@ -1,14 +1,15 @@
-import React, { useEffect, useSelector } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllItems } from "../../store/menuItems";
 
 const MenuItems = () => {
   const dispatch = useDispatch();
-  const menu = useSelector((state) => state.menuitems);
+  const menu = useSelector((state) => Object.values(state.menu));
+  console.log("INDEX MENU", menu);
 
   useEffect(() => {
     dispatch(getAllItems());
-  });
+  }, [dispatch]);
 
   return (
     <div>
