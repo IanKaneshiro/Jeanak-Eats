@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // constants
 const LOAD_RESTAURANTS = "restaurants/LOAD_RESTAURANTS";
 const LOAD_USERS_RESTAURANTS = "restaurants/LOAD_USERS_RESTAURANTS";
@@ -147,12 +149,24 @@ export const deleteRestaurant = (id) => async (dispatch) => {
   }
 };
 
+// ---------------------- State Selectors ---------------------------------
+
+export const allRestaurants = (state) =>
+  Object.values(state.restaurants.allRestaurants);
+export const currentRestaurant = (state) =>
+  Object.values(state.restaurants.currentRestaurant);
+export const usersRestaurants = (state) =>
+  Object.values(state.restaurants.usersRestaurants);
+
+// ---------------------- Initial State --------------------------------
+
 const initialState = {
   allRestaurants: {},
   usersRestaurants: {},
   currentRestaurant: {},
 };
 
+// ----------------------- Reducer -------------------------------------
 export default function reducer(state = initialState, action) {
   let newState = { ...state };
   switch (action.type) {
