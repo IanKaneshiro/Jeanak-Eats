@@ -47,6 +47,8 @@ const AllReviews = () => {
             let currentDay = currentDate.getDate()
 
             let difference = currentDate - createdAtDate
+            let differenceDays = Math.floor(difference / (24 *60 * 60 * 1000))
+            let differenceMonths = Math.floor(difference / (1000 * 60 * 60 * 24 * 30))
 
             let created = `${month} / ${day} / ${year}`
             let currently = `${currentMonth} / ${currentDay} / ${currentYear}`
@@ -70,7 +72,8 @@ const AllReviews = () => {
                     <div className='name'>{element.User.firstName} {element.User.lastName[0]}</div>
                     <div className='posted'> Posted: {created} </div>
                     <div className='review'>{element.review}</div>
-                    <div> {difference} </div>
+                    <div> {differenceDays <30 && differenceDays !== 1 ? (`${differenceDays} days ago`) : (`${differenceDays} day ago`) } </div>
+                    <div> {differenceDays >=30 && differenceMonths !== 1 ?  (`${differenceMonths} months ago`) : null } </div>
                     </>
                     )}
             </div>
