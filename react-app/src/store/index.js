@@ -1,19 +1,15 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import session from './session'
-import reviews from './reviews'
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import session from "./session";
+import reviews from "./reviews";
+import menuItemsReducer from "./menuItems";
+import singleMenuItemReducer from "./singleMenuItem";
+import restaurants from "./restaurant";
 
 const rootReducer = combineReducers({
   session,
   reviews,
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
-import session from "./session";
-import menuItemsReducer from "./menuItems";
-import singleMenuItemReducer from "./singleMenuItem";
-
-const rootReducer = combineReducers({
-  session,
+  restaurants,
   menu: menuItemsReducer,
   singleItem: singleMenuItemReducer,
 });

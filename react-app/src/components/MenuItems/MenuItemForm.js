@@ -4,10 +4,9 @@ import { createNewItem } from "../../store/menuItems";
 import { useParams } from "react-router-dom";
 
 const MenuItemForm = () => {
-
-  const handleSubmit((e) => {
-    e.preventDefault()
-  })  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="itemFormContainer">
       <h1>Menu Item Form Component</h1>
