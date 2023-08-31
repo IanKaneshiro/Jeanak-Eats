@@ -34,6 +34,7 @@ function App() {
           </Route>
           <Route path="/restaurants/create">
             <CreateRestaurantForm />
+          </Route>
           <Route path="/restaurants/:restaurantId/menuItems">
             <MenuItems />
           </Route>
