@@ -6,6 +6,8 @@ import LoginFormPage from "./components/LoginFormPage";
 import Reviews from "./components/Reviews";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import LandingPage from "./components/LandingPage";
+import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm";
 import MenuItems from "./components/MenuItems";
 import MenuItemDetail from "./components/MenuItems/MenuItemDetail";
 import MenuItemForm from "./components/MenuItems/MenuItemForm";
@@ -22,6 +24,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <LandingPage />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
@@ -30,6 +35,9 @@ function App() {
           </Route>
           <Route path="/restaurants/:restaurantId/reviews">
             <Reviews/>
+          <Route path="/restaurants/create">
+            <CreateRestaurantForm />
+          </Route>
           <Route path="/restaurants/:restaurantId/menuItems">
             <MenuItems />
           </Route>
