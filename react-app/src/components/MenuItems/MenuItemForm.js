@@ -5,8 +5,9 @@ import { useParams } from "react-router-dom";
 
 const MenuItemForm = () => {
   return (
-    <div>
+    <div className="itemFormContainer">
       <h1>Menu Item Form Component</h1>
+      <form className="menu-item-form" onSubmit={handleSubmit}></form>
     </div>
   );
 };
