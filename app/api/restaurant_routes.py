@@ -41,7 +41,7 @@ def restaurant_by_id(id):
         return {"message": "Restaurant couldn't be found"}, 404
 
 
-@restaurant_routes.route('/', methods=['POST'])
+@restaurant_routes.route('/create', methods=['POST'])
 @login_required
 def create_restaurant():
     """

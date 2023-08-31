@@ -84,23 +84,29 @@ export const getRestaurantById = (id) => async (dispatch) => {
 
 // Create new restaurant
 export const createRestaurant = (restaurant) => async (dispatch) => {
-  const response = await fetch("/api/restaurants", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(restaurant),
-  });
-
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(addRestaurant(data));
-    return data;
-  } else if (response.status < 500) {
-    const data = await response.json();
-    if (data.errors) {
-      return data.errors;
+  try {
+    const response = await fetch("/api/restaurants/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(restaurant),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(addRestaurant(data));
+      return data;
+    } else if (response.status < 500) {
+      const data = await response.json();
+      if (data.errors) {
+        return data.errors;
+      }
+    } else {
+      return ["An error occurred. Please try again."];
     }
-  } else {
-    return ["An error occurred. Please try again."];
+  } catch (error) {
+    console.log(error);
+    return error;
   }
 };
 
@@ -196,7 +202,7 @@ export default function reducer(state = initialState, action) {
         ...newState,
         allRestaurants: {
           ...newState.allRestaurants,
-          [action.restaurant.id]: action.restaurant,
+          [action.payload.id]: action.payload,
         },
       };
     case DELETE_RESTAURANT:

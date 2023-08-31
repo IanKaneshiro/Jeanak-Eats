@@ -31,7 +31,7 @@ function LoginFormModal() {
           ))}
         </ul>
         <label>
-          Email or Phone Number
+          Email or phone number
           <input
             type="text"
             value={credential}

@@ -15,14 +15,18 @@ const CreateRestaurantForm = () => {
   const [description, setDescription] = useState("");
   const [cuisine, setCuisine] = useState("");
   const [dietary, setDietary] = useState("");
-  const [price_range, setPriceRange] = useState("");
+  const [price_range, setPriceRange] = useState("$");
+  const [opens_at, setOpensAt] = useState("");
+  const [closes_at, setClosesAt] = useState("");
+  const [image_url, setImageUrl] = useState("");
+
   const [errors, setErrors] = useState([]);
 
   if (!sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const restaurant = {
+    console.log(
       name,
       address,
       city,
@@ -31,9 +35,23 @@ const CreateRestaurantForm = () => {
       description,
       cuisine,
       dietary,
-      price_range,
-    };
-    const data = await dispatch(createRestaurant(restaurant));
+      price_range
+    );
+    const data = await dispatch(
+      createRestaurant({
+        name,
+        address,
+        city,
+        state,
+        country,
+        description,
+        cuisine,
+        dietary,
+        price_range,
+        opens_at,
+        closes_at,
+      })
+    );
     if (data.errors) {
       setErrors(data);
     }
@@ -97,7 +115,6 @@ const CreateRestaurantForm = () => {
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required
           />
         </label>
         <label>
@@ -125,7 +142,31 @@ const CreateRestaurantForm = () => {
             <option value="$$$$">$$$$</option>
           </select>
         </label>
-        <button type="submit">Sign Up</button>
+        <label>
+          Image Url
+          <input
+            type="text"
+            value={image_url}
+            onChange={(e) => setImageUrl(e.target.value)}
+          />
+        </label>
+        <label>
+          Opens At
+          <input
+            type="text"
+            value={opens_at}
+            onChange={(e) => setOpensAt(e.target.value)}
+          />
+        </label>
+        <label>
+          Closes At
+          <input
+            type="text"
+            value={closes_at}
+            onChange={(e) => setClosesAt(e.target.value)}
+          />
+        </label>
+        <button type="submit">Create Restaurant</button>
       </form>
     </>
   );
