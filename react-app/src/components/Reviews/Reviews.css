@@ -1,0 +1,17 @@
+
+
+.name {
+    font-weight: 510;
+}
+
+.posted {
+    color: gray;
+}
+
+.review {
+    color: gray;
+}
+
+.line{
+    border-bottom: 1px solid lightgrey;
+}

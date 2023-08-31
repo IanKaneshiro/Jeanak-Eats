@@ -1,0 +1,24 @@
+.menuItemDetail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "detail-img   detail-name"
+    "detail-img   detail-price"
+    "detail-img   detail-description";
+}
+
+.itemDetailImg {
+  grid-area: detail-img;
+}
+
+.itemDetailName {
+  grid-area: detail-name;
+}
+
+.itemDetailPrice {
+  grid-area: detail-price;
+}
+
+.itemDetailDescription {
+  grid-area: detail-description;
+}
