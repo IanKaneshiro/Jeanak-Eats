@@ -7,6 +7,9 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm";
+import MenuItems from "./components/MenuItems";
+import MenuItemDetail from "./components/MenuItems/MenuItemDetail";
+import MenuItemForm from "./components/MenuItems/MenuItemForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +34,14 @@ function App() {
           </Route>
           <Route path="/restaurants/create">
             <CreateRestaurantForm />
+          <Route path="/restaurants/:restaurantId/menuItems">
+            <MenuItems />
+          </Route>
+          <Route path="/menuItems/:id">
+            <MenuItemDetail />
+          </Route>
+          <Route path="/restaurants/:restaurantId/menuItems/new">
+            <MenuItemForm />
           </Route>
         </Switch>
       )}
