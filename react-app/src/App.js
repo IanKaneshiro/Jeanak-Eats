@@ -34,7 +34,8 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/restaurants/:restaurantId/reviews">
-            <Reviews/>
+            <Reviews />
+          </Route>
           <Route path="/restaurants/create">
             <CreateRestaurantForm />
           </Route>
