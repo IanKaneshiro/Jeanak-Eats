@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 // constants
 const LOAD_RESTAURANTS = "restaurants/LOAD_RESTAURANTS";
 const LOAD_USERS_RESTAURANTS = "restaurants/LOAD_USERS_RESTAURANTS";

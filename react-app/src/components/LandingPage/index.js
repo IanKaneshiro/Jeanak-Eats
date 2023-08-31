@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allRestaurants, getAllRestaurants } from "../../store/restaurant";
+import RestaurantTile from "../Restaurants/RestaurantTile";
+import CreateRestaurantForm from "../Restaurants/CreateRestaurantForm";
+import "./LandingPage.css";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
@@ -9,7 +12,19 @@ const LandingPage = () => {
     dispatch(getAllRestaurants());
   }, [dispatch]);
 
-  return <div>LandingPage I AM BEAUTIFUL!</div>;
+  return (
+    <>
+      <CreateRestaurantForm />
+      <main className="landing--main">
+        <section className="landing--filters">This will be filter page</section>
+        <section className="landing--restaurants">
+          {restaurants.map((restaurant) => (
+            <RestaurantTile restaurant={restaurant} key={restaurant.id} />
+          ))}
+        </section>
+      </main>
+    </>
+  );
 };
 
 export default LandingPage;
