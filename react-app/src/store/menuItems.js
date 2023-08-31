@@ -1,6 +1,5 @@
 //constants
 const GET_RESTAURANT_ITEMS = "menuItems/GET_RESTAURANT_ITEMS";
-const GET_ONE_ITEM = "menuItems/GET_ONE_ITEM";
 const CREATE_MENU_ITEM = "menuItems/CREATE_MENU_ITEMS";
 const REMOVE_MENU_ITEM = "menuItems/REMOVE_MENU_ITEMS";
 
@@ -11,13 +10,6 @@ const getRestaurantItems = (restaurantId) => {
   return {
     type: GET_RESTAURANT_ITEMS,
     payload: restaurantId,
-  };
-};
-
-const getOneMenuItem = (id) => {
-  return {
-    type: GET_ONE_ITEM,
-    payload: id,
   };
 };
 
@@ -39,24 +31,14 @@ const removeMenuItem = (menuItemId) => {
 
 //get all of a restaurant's items
 export const getAllItems = (restaurantId) => async (dispatch) => {
-  const res = await fetch(`/api/restaurants/${restaurantId}`);
+  const res = await fetch(`/api/restaurants/${restaurantId}/menuItems`);
 
   if (res.ok) {
     const data = await res.json();
-    dispatch(getRestaurantItems(restaurantId));
+    dispatch(getRestaurantItems(data));
     return data;
   }
   return res;
-};
-
-export const getOneItem = (id) => async (dispatch) => {
-  const res = await fetch(`/api/menu_items/${id}`);
-
-  if (res.ok) {
-    const data = await res.json();
-    dispatch(getOneMenuItem(id));
-    return data;
-  }
 };
 
 //create new menu item by restaurant id
@@ -116,7 +98,7 @@ export const deleteItem = (menuItemId) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json();
-    dispatch(removeMenuItem(menuItemId));
+    dispatch(removeMenuItem(data));
     return data;
   }
   return res;
@@ -135,9 +117,6 @@ const menuItemsReducer = (state = initialState, action) => {
         (menuItem) => (menu[menuItem.id] = menuItem)
       );
       return menu;
-    case GET_ONE_ITEM:
-      newState[action.payload.id] = action.payload;
-      return newState;
     case CREATE_MENU_ITEM:
       newState[action.payload.id] = action.payload;
       return newState;
