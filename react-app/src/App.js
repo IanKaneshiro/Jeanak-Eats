@@ -39,14 +39,14 @@ function App() {
           <Route path="/restaurants/create">
             <CreateRestaurantForm />
           </Route>
+          <Route path="/restaurants/:restaurantId/menuItems/new">
+            <MenuItemForm />
+          </Route>
           <Route path="/restaurants/:restaurantId/menuItems">
             <MenuItems />
           </Route>
           <Route path="/menuItems/:id">
             <MenuItemDetail />
-          </Route>
-          <Route path="/restaurants/:restaurantId/menuItems/new">
-            <MenuItemForm />
           </Route>
         </Switch>
       )}

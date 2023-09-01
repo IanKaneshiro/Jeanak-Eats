@@ -13,10 +13,10 @@ const getRestaurantItems = (restaurantId) => {
   };
 };
 
-const createMenuItem = (restaurantId, menuItem) => {
+const createMenuItem = (menuItem) => {
   return {
     type: CREATE_MENU_ITEM,
-    payload: { restaurantId, menuItem },
+    payload: menuItem,
   };
 };
 
@@ -118,8 +118,9 @@ const menuItemsReducer = (state = initialState, action) => {
       );
       return menu;
     case CREATE_MENU_ITEM:
-      newState[action.payload.id] = action.payload;
-      return newState;
+      console.log("Payload:", action.payload);
+      console.log("MenuItem Name:", action.payload.name);
+      return (newState[action.payload.id] = action.payload);
     case REMOVE_MENU_ITEM:
       delete newState[action.payload];
       return newState;
