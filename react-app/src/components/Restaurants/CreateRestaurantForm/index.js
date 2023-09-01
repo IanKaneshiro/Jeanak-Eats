@@ -40,6 +40,7 @@ const CreateRestaurantForm = () => {
         price_range,
         opens_at,
         closes_at,
+        image_url,
       })
     );
     if (data.errors) {
@@ -143,7 +144,7 @@ const CreateRestaurantForm = () => {
         <label>
           Opens At
           <input
-            type="text"
+            type="time"
             value={opens_at}
             onChange={(e) => setOpensAt(e.target.value)}
           />
@@ -151,7 +152,7 @@ const CreateRestaurantForm = () => {
         <label>
           Closes At
           <input
-            type="text"
+            type="time"
             value={closes_at}
             onChange={(e) => setClosesAt(e.target.value)}
           />

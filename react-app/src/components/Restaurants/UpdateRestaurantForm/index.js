@@ -9,7 +9,7 @@ import {
 } from "../../../store/restaurant";
 import "./UpdateRestaurantForm.css";
 
-const UpdateRestaurantForm = () => {
+const UpdateRestaurantForm = ({ closeModal, resId }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const restaurant = useSelector(currentRestaurant);
@@ -30,9 +30,9 @@ const UpdateRestaurantForm = () => {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    dispatch(getRestaurantById(Number(id)));
+    dispatch(getRestaurantById(Number(resId)));
     return () => dispatch(clearCurrentSpot());
-  }, [dispatch, id]);
+  }, [dispatch, resId]);
 
   useEffect(() => {
     if (restaurant) {
@@ -57,6 +57,7 @@ const UpdateRestaurantForm = () => {
     e.preventDefault();
     const data = await dispatch(
       updateRestaurant({
+        id: resId,
         name,
         address,
         city,
@@ -68,10 +69,13 @@ const UpdateRestaurantForm = () => {
         price_range,
         opens_at,
         closes_at,
+        image_url,
       })
     );
     if (data.errors) {
       setErrors(data);
+    } else {
+      closeModal();
     }
   };
   return (
@@ -185,7 +189,7 @@ const UpdateRestaurantForm = () => {
             onChange={(e) => setClosesAt(e.target.value)}
           />
         </label>
-        <button type="submit">Create Restaurant</button>
+        <button type="submit">Update Restaurant</button>
       </form>
     </>
   );
