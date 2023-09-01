@@ -157,8 +157,7 @@ export const deleteRestaurant = (id) => async (dispatch) => {
 
 export const allRestaurants = (state) =>
   Object.values(state.restaurants.allRestaurants);
-export const currentRestaurant = (state) =>
-  Object.values(state.restaurants.currentRestaurant);
+export const currentRestaurant = (state) => state.restaurants.currentRestaurant;
 export const usersRestaurants = (state) =>
   Object.values(state.restaurants.usersRestaurants);
 

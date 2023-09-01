@@ -11,6 +11,7 @@ import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm"
 import MenuItems from "./components/MenuItems";
 import MenuItemDetail from "./components/MenuItems/MenuItemDetail";
 import MenuItemForm from "./components/MenuItems/MenuItemForm";
+import ManagerPortal from "./components/ManagerPortal";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ function App() {
           </Route>
           <Route path="/restaurants/create">
             <CreateRestaurantForm />
+          </Route>
+          <Route path="/manage">
+            <ManagerPortal />
           </Route>
           <Route path="/restaurants/:restaurantId/menuItems">
             <MenuItems />

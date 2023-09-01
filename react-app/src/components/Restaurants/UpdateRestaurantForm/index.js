@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { updateRestaurant } from "../../../store/restaurant";
+import { Redirect, useParams } from "react-router-dom";
+import {
+  updateRestaurant,
+  getRestaurantById,
+  currentRestaurant,
+  clearCurrentSpot,
+} from "../../../store/restaurant";
 import "./UpdateRestaurantForm.css";
 
 const UpdateRestaurantForm = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const restaurant = useSelector(currentRestaurant);
+  const { id } = useParams();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -21,6 +28,28 @@ const UpdateRestaurantForm = () => {
   const [image_url, setImageUrl] = useState("");
 
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    dispatch(getRestaurantById(Number(id)));
+    return () => dispatch(clearCurrentSpot());
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (restaurant) {
+      setName(restaurant.name);
+      setAddress(restaurant.address);
+      setCity(restaurant.city);
+      setState(restaurant.state);
+      setCountry(restaurant.country);
+      setDescription(restaurant.description);
+      setCuisine(restaurant.cuisine);
+      setDietary(restaurant.dietary);
+      setPriceRange(restaurant.priceRange);
+      setOpensAt(restaurant.opensAt);
+      setClosesAt(restaurant.closesAt);
+      setImageUrl(restaurant.imageUrl);
+    }
+  }, [restaurant]);
 
   if (!sessionUser) return <Redirect to="/" />;
 
@@ -109,7 +138,7 @@ const UpdateRestaurantForm = () => {
         <label>
           Cuisine
           <select required onChange={(e) => setCuisine(e.target.value)}>
-            <option value=""></option>
+            <option value={cuisine}>{cuisine}</option>
             <option value="American">American</option>
             <option value="Chinese">Chinese</option>
           </select>
@@ -117,7 +146,7 @@ const UpdateRestaurantForm = () => {
         <label>
           Dietary
           <select onChange={(e) => setDietary(e.target.value)}>
-            <option value=""></option>
+            <option value={dietary}>{dietary}</option>
             <option value="Vegan">Vegan</option>
             <option value="Vegitarian">Vegitarian</option>
           </select>
@@ -125,6 +154,7 @@ const UpdateRestaurantForm = () => {
         <label>
           Price Range
           <select required onChange={(e) => setPriceRange(e.target.value)}>
+            <option value={price_range}>{price_range}</option>
             <option value="$">$</option>
             <option value="$$">$$</option>
             <option value="$$$">$$$</option>
@@ -142,7 +172,7 @@ const UpdateRestaurantForm = () => {
         <label>
           Opens At
           <input
-            type="text"
+            type="time"
             value={opens_at}
             onChange={(e) => setOpensAt(e.target.value)}
           />
@@ -150,7 +180,7 @@ const UpdateRestaurantForm = () => {
         <label>
           Closes At
           <input
-            type="text"
+            type="time"
             value={closes_at}
             onChange={(e) => setClosesAt(e.target.value)}
           />

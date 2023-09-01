@@ -26,17 +26,7 @@ const CreateRestaurantForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(
-      name,
-      address,
-      city,
-      state,
-      country,
-      description,
-      cuisine,
-      dietary,
-      price_range
-    );
+
     const data = await dispatch(
       createRestaurant({
         name,
