@@ -1,34 +1,40 @@
 import React from "react";
-import { Switch, Route, useRouteMatch, Link } from "react-router-dom";
+import { Switch, Route, useRouteMatch, NavLink } from "react-router-dom";
 import ManageRestaurants from "./ManageRestaurants";
-import UpdateRestaurantForm from "../Restaurants/UpdateRestaurantForm";
+import CreateRestaurantForm from "../Restaurants/CreateRestaurantForm";
+import ManageRestaurantUpdatePage from "./ManageRestaurantUpdatePage";
 
 import "./ManagerPortal.css";
 
 const ManagerPortal = () => {
   let { path, url } = useRouteMatch();
   return (
-    <div>
-      <h1>Manager Portal</h1>
-      <ul>
-        <li>
-          <Link to={`${url}/restuarants`}>Manage restaurants</Link>
-        </li>
-        <li>
-          <Link to={`${url}/reviews`}>Manage reviews</Link>
-        </li>
-      </ul>
-
-      <Switch>
-        <Route exact path={`${path}/restuarants`}>
-          <ManageRestaurants />
-        </Route>
-        <Route path={`${path}/restuarants/:id`}>
-          <UpdateRestaurantForm />
-        </Route>
-        <Route path={`${path}/reviews`}>Manage Reviews</Route>
-      </Switch>
-    </div>
+    <>
+      <div className="manager--main">
+        <h1>Manager Portal</h1>
+        <ul className="manager--navbar">
+          <li>
+            <NavLink to={`${url}/restaurants`}>Manage restaurants</NavLink>
+          </li>
+          <li>
+            <NavLink to={`${url}/restaurants/create`}>Add a restaurant</NavLink>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <Switch>
+          <Route exact path={`${path}/restaurants`}>
+            <ManageRestaurants />
+          </Route>
+          <Route path={`${path}/restaurants/:id`}>
+            <ManageRestaurantUpdatePage />
+          </Route>
+          <Route path={`${path}/restaurants/create`}>
+            <CreateRestaurantForm />
+          </Route>
+        </Switch>
+      </div>
+    </>
   );
 };
 

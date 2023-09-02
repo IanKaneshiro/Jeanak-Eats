@@ -1,22 +1,17 @@
-.profile-dropdown {
-  position: absolute;
-}
-
-.hidden {
-  display: none;
-}
-
 .navbar--main {
   background-color: #ffffff;
   height: 80px;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+}
+
+.navbar--main-nav {
+  display: flex;
+  justify-content: space-between;
 }
 
 .navbar--menu-bars {
   margin-left: 2rem;
-  font-size: 2rem;
   background: none;
 }
 
@@ -25,23 +20,27 @@
   width: 250px;
   height: 100vh;
   display: flex;
-  justify-content: center;
   position: fixed;
   top: 0;
   left: -100%;
   transition: 850ms;
 }
 
-.navbar--menu.active {
+.navbar--menu.open {
   left: 0;
   transition: 350ms;
   box-shadow: -8px 10px 25px black;
 }
 
-.navbar--dark {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: rgba(81, 81, 81, 0.5);
+/* .navbar--filter-bar {
+  display: flex;
+  gap: 5px;
+  border-bottom: 1px solid #e2e2e2;
+  margin-bottom: 20px;
 }
+
+.navbar--filter-bar button {
+  width: 100px;
+  height: 100px;
+  background-color: beige;
+} */

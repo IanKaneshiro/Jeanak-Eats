@@ -1,48 +1,78 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import ProfileButton from "./ProfileButton";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../store/session";
 import "./Navigation.css";
 
-function Navigation({ isLoaded }) {
+function Navigation() {
+  const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+    showSidebar();
+  };
+
   return (
     <>
       <div className="navbar--main">
-        <Link to="#" onClick={showSidebar}>
-          #
-        </Link>
-        <ul>
+        <div>
+          <Link to="#" onClick={showSidebar}>
+            <i class="fa-solid fa-bars"></i>
+          </Link>
+        </div>
+        <ul className="navbar--main-nav">
           <li>
             <NavLink exact to="/">
-              UBER EATS LOGO
+              Home
             </NavLink>
           </li>
-          {isLoaded && (
+          {!sessionUser && (
             <li>
-              <ProfileButton user={sessionUser} />
+              <button>
+                <Link to="/login">Login</Link>
+              </button>
+              <button>
+                <Link to="/signup">Signup</Link>
+              </button>
             </li>
           )}
         </ul>
       </div>
-      <nav className={sidebar ? "navbar--menu active" : "navbar--menu"}>
+      <nav className={sidebar ? "navbar--menu open" : "navbar--menu"}>
         <Link to="#" onClick={showSidebar}>
-          X
+          ❌
         </Link>
         <ul className="navbar--menu-items">
-          <li className="navbar--toggle" onClick={showSidebar}>
-            <Link to="/restaurants/create" className="navbar--menu-bars">
-              Create a Restauarnt
-            </Link>
-          </li>
-          <li className="navbar--toggle" onClick={showSidebar}>
-            <Link to="/manage" className="navbar--menu-bars">
-              Manager Portal
-            </Link>
-          </li>
+          {sessionUser ? (
+            <>
+              <li>{sessionUser.firstName}</li>
+              <li className="navbar--toggle" onClick={showSidebar}>
+                <Link to="/manage" className="navbar--menu-bars">
+                  Manager Portal
+                </Link>
+              </li>
+              <li>
+                <button onClick={handleLogout}>Sign out</button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="navbar--toggle" onClick={showSidebar}>
+                <button>
+                  <Link to="/login">Login</Link>
+                </button>
+              </li>
+              <li className="navbar--toggle" onClick={showSidebar}>
+                <button>
+                  <Link to="/signup">Signup</Link>
+                </button>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </>
