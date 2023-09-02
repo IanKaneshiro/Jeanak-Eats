@@ -26,11 +26,11 @@ const ManagerPortal = () => {
           <Route exact path={`${path}/restaurants`}>
             <ManageRestaurants />
           </Route>
-          <Route path={`${path}/restaurants/:id`}>
-            <ManageRestaurantUpdatePage />
-          </Route>
           <Route path={`${path}/restaurants/create`}>
             <CreateRestaurantForm />
+          </Route>
+          <Route path={`${path}/restaurants/:id`}>
+            <ManageRestaurantUpdatePage />
           </Route>
         </Switch>
       </div>

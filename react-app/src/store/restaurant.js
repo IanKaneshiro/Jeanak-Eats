@@ -203,6 +203,7 @@ export default function reducer(state = initialState, action) {
           ...newState.allRestaurants,
           [action.payload.id]: action.payload,
         },
+        currentRestaurant: action.payload,
       };
     case DELETE_RESTAURANT:
       const users = newState.usersRestaurants;
