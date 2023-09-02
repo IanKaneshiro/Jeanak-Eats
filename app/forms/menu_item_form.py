@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileAllowed, FileField, FileRequired
 from wtforms import StringField, FloatField
 from wtforms.validators import DataRequired
+from app.api.aws import ALLOWED_EXTENSIONS
 
 
 class MenuItemForm(FlaskForm):
@@ -9,4 +11,5 @@ class MenuItemForm(FlaskForm):
     price = FloatField('price', validators=[DataRequired()])
     category = StringField('category', validators=[DataRequired()])
     dietary = StringField('dietary')
-    image_url = StringField('image_url')
+    image_url = FileField("Image File", validators=[
+                          FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])

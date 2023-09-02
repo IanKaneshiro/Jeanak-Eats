@@ -4,6 +4,7 @@ from app.models import Restaurant
 from flask_login import login_required, current_user
 from app.forms import RestaurantForm, ReviewForm, MenuItemForm
 from app.models import Restaurant, Review, MenuItem, db
+from app.api.aws import upload_file_to_s3, get_unique_filename, remove_file_from_s3
 
 
 restaurant_routes = Blueprint('restaurants', __name__)
@@ -52,6 +53,13 @@ def create_restaurant():
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        image = form.data['image_url']
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        print(upload)
+        if "url" not in upload:
+            return {'errors': validation_errors_to_error_messages(upload)}, 400
+        url = upload["url"]
         restaurant = Restaurant(
             owner_id=current_user.id,
             name=form.data['name'],
@@ -65,7 +73,7 @@ def create_restaurant():
             price_range=form.data['price_range'],
             opens_at=form.data['opens_at'],
             closes_at=form.data['closes_at'],
-            image_url=form.data['image_url'],
+            image_url=url,
         )
         db.session.add(restaurant)
         db.session.commit()

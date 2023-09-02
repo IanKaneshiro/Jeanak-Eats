@@ -18,34 +18,39 @@ const CreateRestaurantForm = () => {
   const [closes_at, setClosesAt] = useState("");
   const [image_url, setImageUrl] = useState("");
 
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("address", address);
+    formData.append("city", city);
+    formData.append("state", state);
+    formData.append("country", country);
+    formData.append("description", description);
+    formData.append("cuisine", cuisine);
+    formData.append("dietary", dietary);
+    formData.append("price_range", price_range);
+    formData.append("opens_at", opens_at);
+    formData.append("closes_at", closes_at);
+    formData.append("image_url", image_url);
+    setLoading(true);
 
-    const data = await dispatch(
-      createRestaurant({
-        name,
-        address,
-        city,
-        state,
-        country,
-        description,
-        cuisine,
-        dietary,
-        price_range,
-        opens_at,
-        closes_at,
-        image_url,
-      })
-    );
+    const data = await dispatch(createRestaurant(formData));
     if (data.errors) {
       setErrors(data);
+    } else {
+      setLoading(false);
     }
   };
+
+  if (loading) return <h1>...loading</h1>;
+
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -130,11 +135,11 @@ const CreateRestaurantForm = () => {
           </select>
         </label>
         <label>
-          Image Url
+          Image
           <input
-            type="text"
-            value={image_url}
-            onChange={(e) => setImageUrl(e.target.value)}
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImageUrl(e.target.files[0])}
           />
         </label>
         <label>

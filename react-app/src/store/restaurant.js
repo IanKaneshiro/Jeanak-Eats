@@ -87,10 +87,10 @@ export const createRestaurant = (restaurant) => async (dispatch) => {
   try {
     const response = await fetch("/api/restaurants/new", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(restaurant),
+      // headers: {
+      //   "Content-Type": "multipart/form-data",
+      // },
+      body: restaurant,
     });
     if (response.ok) {
       const data = await response.json();
