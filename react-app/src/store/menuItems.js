@@ -3,6 +3,7 @@ const GET_RESTAURANT_ITEMS = "menuItems/GET_RESTAURANT_ITEMS";
 const CREATE_MENU_ITEM = "menuItems/CREATE_MENU_ITEMS";
 const REMOVE_MENU_ITEM = "menuItems/REMOVE_MENU_ITEMS";
 const GET_ONE_ITEM = "menuItems/GET_ONE_ITEM";
+const CLEAR_CURRENT_MENU_ITEM = "menuItems/CLEAR_CURRENT_MENU_ITEM";
 
 //------------------------Action Creators---------------------------------------
 
@@ -38,6 +39,12 @@ const removeMenuItem = (menuItemId) => {
   return {
     type: REMOVE_MENU_ITEM,
     payload: menuItemId,
+  };
+};
+
+export const clearCurrentMenuItem = () => {
+  return {
+    type: CLEAR_CURRENT_MENU_ITEM,
   };
 };
 //-------------------------Thunk Action Creators------------------------------------
@@ -138,6 +145,11 @@ const menuItemsReducer = (state = initialState, action) => {
     case REMOVE_MENU_ITEM:
       delete newState[action.payload];
       return newState;
+    case CLEAR_CURRENT_MENU_ITEM:
+      return {
+        ...newState,
+        currentMenuItem: {},
+      };
     default:
       return state;
   }
