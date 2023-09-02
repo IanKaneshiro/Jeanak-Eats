@@ -14,8 +14,8 @@ def seed_restaurants():
         cuisine="American",
         dietary="",
         price_range="$",
-        opens_at="6:00am",
-        closes_at="10pm",
+        opens_at="06:00",
+        closes_at="22:00",
         image_url="https://s.hdnux.com/photos/01/31/12/73/23375552/3/rawImage.jpg"
     )
     burger_king = Restaurant(
@@ -29,8 +29,8 @@ def seed_restaurants():
         cuisine="American",
         dietary="",
         price_range="$",
-        opens_at="6:00am",
-        closes_at="10:40pm",
+        opens_at="06:00",
+        closes_at="20:40",
         image_url="https://lh3.googleusercontent.com/p/AF1QipPfqwSFnQqpb9G6y64HZBKQ0hIMJHlCWbZ-mV6R=s680-w680-h510"
     )
     house_of_dim_sum = Restaurant(
@@ -44,8 +44,8 @@ def seed_restaurants():
         cuisine="Chinese",
         dietary="",
         price_range="$",
-        opens_at="6:30am",
-        closes_at="6:30pm",
+        opens_at="06:30",
+        closes_at="18:30",
         image_url="https://s3-media0.fl.yelpcdn.com/bphoto/Y_EqxJL65QXXBQfUueczJA/o.jpg"
     )
     papalote_mexican_grill = Restaurant(
@@ -59,8 +59,8 @@ def seed_restaurants():
         cuisine="Mexican",
         dietary="vegan",
         price_range="$$",
-        opens_at="11:00am",
-        closes_at="9:00pm",
+        opens_at="11:00",
+        closes_at="21:00",
         image_url="https://s3-media0.fl.yelpcdn.com/bphoto/Y_EqxJL65QXXBQfUueczJA/o.jpg"
     )
     mastros = Restaurant(
@@ -74,8 +74,8 @@ def seed_restaurants():
         cuisine="American",
         dietary="",
         price_range="$$$$",
-        opens_at="5:00pm",
-        closes_at="9:00pm",
+        opens_at="05:00",
+        closes_at="21:00",
         image_url="https://lh3.googleusercontent.com/p/AF1QipPJboC4WHUivnAdybpKbrI4ASv9wiiY-dEYgF0=s680-w680-h510"
     )
     salt_and_straw = Restaurant(
@@ -89,8 +89,8 @@ def seed_restaurants():
         cuisine="Ice Cream",
         dietary="",
         price_range="$$$",
-        opens_at="11:00am",
-        closes_at="10:45pm",
+        opens_at="11:00",
+        closes_at="22:45",
         image_url="https://lh3.googleusercontent.com/p/AF1QipPJboC4WHUivnAdybpKbrI4ASv9wiiY-dEYgF0=s680-w680-h510"
     )
     maxes_opera = Restaurant(
@@ -104,8 +104,8 @@ def seed_restaurants():
         cuisine="American",
         dietary="",
         price_range="$$",
-        opens_at="11:00am",
-        closes_at="8:55pm",
+        opens_at="11:00",
+        closes_at="20:55",
         image_url="https://lh3.googleusercontent.com/p/AF1QipMfhAoBItzZxBAr7qH1E7UTV-juP3jYyL9rhN8h=s680-w680-h510"
     )
     truly_mediterranean = Restaurant(
@@ -119,8 +119,8 @@ def seed_restaurants():
         cuisine="Mediterranean",
         dietary="vegan",
         price_range="$$",
-        opens_at="10:30am",
-        closes_at="9:45pm",
+        opens_at="10:30",
+        closes_at="21:45",
         image_url="https://lh3.googleusercontent.com/p/AF1QipMERoelnB9ed5aiJ7SdsTUJs-3kYUnuXPEriaQW=s680-w680-h510"
     )
 
