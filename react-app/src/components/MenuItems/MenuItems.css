@@ -1,4 +1,5 @@
-.menuItemDetail {
+/* Menu Item Detail Page */
+.menuItemTile {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:

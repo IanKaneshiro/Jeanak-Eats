@@ -1,7 +1,7 @@
 import "./MenuItems.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createNewItem } from "../../store/menuItems";
+import { createMenuItem } from "../../store/menuItems";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
@@ -11,8 +11,8 @@ const MenuItemForm = () => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [dietary, setDietary] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [image_url, setImageUrl] = useState("");
+  // const [isSubmitted, setIsSubmitted] = useState(false);
 
   const history = useHistory();
   const { restaurantId } = useParams();
@@ -20,20 +20,22 @@ const MenuItemForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    // setIsSubmitted(true);
 
     const newItem = {
-      restaurantId: parseInt(restaurantId),
+      restaurant_id: parseInt(restaurantId),
       name,
       description,
       price,
       category,
       dietary,
-      imageUrl,
+      image_url,
     };
-    console.log(newItem);
-    console.log(newItem.name);
-    dispatch(createNewItem(newItem));
+
+    dispatch(createMenuItem(newItem, restaurantId)).then((createdItem) => {
+      console.log("CREATED ITEM", createdItem);
+      history.push(`/menuItems/${createdItem.id}`);
+    });
   };
 
   return (
@@ -82,7 +84,7 @@ const MenuItemForm = () => {
             onChange={(e) => setCategory(e.target.value)}
           >
             <option key="blankKey" hidden value>
-              Select a category option
+              Select a category
             </option>
             <option>Appetizer</option>
             <option>Beverages</option>
@@ -92,6 +94,7 @@ const MenuItemForm = () => {
             <option>Chicken and Fish Sandwiches</option>
             <option>Desserts</option>
             <option>Entrees</option>
+            <option>Kid's Meal</option>
             <option>Pasta</option>
             <option>Plates</option>
             <option>Salads</option>
@@ -134,13 +137,13 @@ const MenuItemForm = () => {
           <input
             className="item-img-url"
             placeholder="Add an image"
-            value={imageUrl}
+            value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
           />
         </label>
 
         <button className="item-submit" type="submit">
-          Submit new item
+          Create Menu Item
         </button>
       </form>
     </div>
