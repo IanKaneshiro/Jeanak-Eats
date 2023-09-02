@@ -10,7 +10,8 @@ import LandingPage from "./components/LandingPage";
 import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm";
 import MenuItems from "./components/MenuItems";
 import MenuItemDetail from "./components/MenuItems/MenuItemDetail";
-import MenuItemForm from "./components/MenuItems/MenuItemForm";
+import NewMenuItemForm from "./components/MenuItems/NewMenuItemForm";
+import UpdateMenuItemForm from "./components/MenuItems/UpdateMenuItemForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,10 +41,13 @@ function App() {
             <CreateRestaurantForm />
           </Route>
           <Route path="/restaurants/:restaurantId/menuItems">
-            <MenuItemForm />
+            <NewMenuItemForm />
           </Route>
-          <Route path="/restaurants/:restaurantId/menuItems">
+          <Route path="/restaurants/:restaurantId">
             <MenuItems />
+          </Route>
+          <Route path="/menuItems/:menuItemId/update">
+            <UpdateMenuItemForm />
           </Route>
           <Route path="/menuItems/:id">
             <MenuItemDetail />

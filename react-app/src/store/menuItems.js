@@ -27,6 +27,13 @@ const createNewItem = (newItem, restaurantId) => {
   };
 };
 
+const updateItem = (itemUpdates, menuItemId) => {
+  return {
+    type: CREATE_MENU_ITEM,
+    payload: { itemUpdates, menuItemId },
+  };
+};
+
 const removeMenuItem = (menuItemId) => {
   return {
     type: REMOVE_MENU_ITEM,
@@ -36,7 +43,7 @@ const removeMenuItem = (menuItemId) => {
 //-------------------------Thunk Action Creators------------------------------------
 
 //Get all of a restaurant's items
-export const getAllItems = (restaurantId) => async (dispatch) => {
+export const getAllMenuItems = (restaurantId) => async (dispatch) => {
   const res = await fetch(`/api/restaurants/${restaurantId}/menuItems`);
 
   if (res.ok) {
@@ -48,8 +55,8 @@ export const getAllItems = (restaurantId) => async (dispatch) => {
 };
 
 //Get one item from a restaurant's menu
-export const getOneMenuItem = (id) => async (dispatch) => {
-  const res = await fetch(`/api/menuItems/${id}`);
+export const getOneMenuItem = (menuItemId) => async (dispatch) => {
+  const res = await fetch(`/api/menuItems/${menuItemId}`);
 
   if (res.ok) {
     const data = await res.json();
@@ -61,20 +68,10 @@ export const getOneMenuItem = (id) => async (dispatch) => {
 
 //Create new menu item by restaurant id
 export const createMenuItem = (newItem, restaurantId) => async (dispatch) => {
-  const { name, description, price, category, dietary, imageUrl } = newItem;
-
   const res = await fetch(`/api/restaurants/${restaurantId}/menuItems`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      restaurantId,
-      name,
-      description,
-      price,
-      category,
-      dietary,
-      imageUrl,
-    }),
+    body: JSON.stringify(newItem),
   });
 
   if (res.ok) {
@@ -86,23 +83,15 @@ export const createMenuItem = (newItem, restaurantId) => async (dispatch) => {
 };
 
 //Edit a menu item by the item's id
-export const updateItem = (menuItemId, itemUpdates) => async (dispatch) => {
-  const { name, description, price, category, dietary, imageUrl } = itemUpdates;
+export const updateMenuItem = (itemUpdates, menuItemId) => async (dispatch) => {
   const res = await fetch(`/api/menuItems/${menuItemId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name,
-      description,
-      price,
-      category,
-      dietary,
-      imageUrl,
-    }),
+    body: JSON.stringify(itemUpdates),
   });
   if (res.ok) {
     const data = await res.json();
-    dispatch(createNewItem(data));
+    dispatch(updateItem(data));
     return data;
   }
   return res;
@@ -138,14 +127,13 @@ const menuItemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_RESTAURANT_ITEMS:
       const allMenuItems = {};
-      action.payload.Restaurants.MenuItems.forEach((menuItem) => {
+      action.payload.MenuItems.forEach((menuItem) => {
         allMenuItems[menuItem.id] = menuItem;
       });
       return { ...newState, allMenuItems };
     case GET_ONE_ITEM:
       return { ...newState, currentMenuItem: action.payload };
     case CREATE_MENU_ITEM:
-      console.log("CREATE REDUCER", action.payload.id);
       return (newState[action.payload.id] = action.payload);
     case REMOVE_MENU_ITEM:
       delete newState[action.payload];

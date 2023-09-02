@@ -1,29 +1,55 @@
 import "./MenuItems.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createMenuItem } from "../../store/menuItems";
-import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  currentMenuItem,
+  getOneMenuItem,
+  updateMenuItem,
+} from "../../store/menuItems";
+import { useParams, useHistory } from "react-router-dom";
 
-const MenuItemForm = () => {
+const UpdateMenuItemForm = () => {
+  const history = useHistory();
+  const { menuItemId } = useParams();
+  const item = useSelector(currentMenuItem);
+  const dispatch = useDispatch();
+  console.log("CURRENT ITEM", item);
+  console.log("UPDATE ITEM ID:", menuItemId);
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [dietary, setDietary] = useState("");
   const [image_url, setImageUrl] = useState("");
-  // const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const history = useHistory();
-  const { restaurantId } = useParams();
-  const dispatch = useDispatch();
+  //Gets the currentMenuItem to render the form's present data
+  useEffect(() => {
+    dispatch(getOneMenuItem(menuItemId)).then(() => {
+      setIsLoading(false);
+    });
+  }, [dispatch, menuItemId]);
+
+  //If there is a currentMenuItem, populate fields with its data or "" if null
+  useEffect(() => {
+    if (item) {
+      setName(item.name || "");
+      setDescription(item.description || "");
+      setPrice(item.price || "");
+      setCategory(item.category || "");
+      setDietary(item.dietary || "");
+      setImageUrl(item.image_url || "");
+    }
+  }, [item]);
+
+  //Conditionally renders when currentMenuItem data is made available to populate form
+  if (isLoading) return <div>Loading...</div>;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setIsSubmitted(true);
 
-    const newItem = {
-      restaurant_id: parseInt(restaurantId),
+    const itemUpdates = {
       name,
       description,
       price,
@@ -32,9 +58,8 @@ const MenuItemForm = () => {
       image_url,
     };
 
-    dispatch(createMenuItem(newItem, restaurantId)).then((createdItem) => {
-      console.log("CREATED ITEM", createdItem);
-      history.push(`/menuItems/${createdItem.id}`);
+    dispatch(updateMenuItem(itemUpdates, menuItemId)).then((item) => {
+      history.push(`/menuItems/${item.id}`);
     });
   };
 
@@ -47,7 +72,6 @@ const MenuItemForm = () => {
           <input
             className="item-name"
             type="text"
-            placeholder="Menu item name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -58,7 +82,6 @@ const MenuItemForm = () => {
           <input
             className="item-description"
             type="text"
-            placeholder="Give a brief description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -69,7 +92,6 @@ const MenuItemForm = () => {
           <input
             className="item-price"
             type="number"
-            placeholder="Set a price (USD)"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
@@ -79,7 +101,6 @@ const MenuItemForm = () => {
           Category
           <select
             className="item-category"
-            placeholder="Category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
@@ -116,7 +137,6 @@ const MenuItemForm = () => {
           Dietary
           <select
             className="item-dietary"
-            placeholder="Dietary"
             value={dietary}
             onChange={(e) => setDietary(e.target.value)}
           >
@@ -136,18 +156,17 @@ const MenuItemForm = () => {
           Image
           <input
             className="item-img-url"
-            placeholder="Add an image"
             value={image_url}
             onChange={(e) => setImageUrl(e.target.value)}
           />
         </label>
 
         <button className="item-submit" type="submit">
-          Create Menu Item
+          Save Changes
         </button>
       </form>
     </div>
   );
 };
 
-export default MenuItemForm;
+export default UpdateMenuItemForm;
