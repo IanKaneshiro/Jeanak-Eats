@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import {
   updateRestaurant,
@@ -11,7 +10,6 @@ import "./UpdateRestaurantForm.css";
 
 const UpdateRestaurantForm = ({ type, id }) => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const restaurant = useSelector(currentRestaurant);
   const { closeModal } = useModal();
   const [name, setName] = useState("");
@@ -50,27 +48,24 @@ const UpdateRestaurantForm = ({ type, id }) => {
     }
   }, [restaurant]);
 
-  if (!sessionUser) return <Redirect to="/" />;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await dispatch(
-      updateRestaurant({
-        id,
-        name,
-        address,
-        city,
-        state,
-        country,
-        description,
-        cuisine,
-        dietary,
-        price_range,
-        opens_at,
-        closes_at,
-        image_url,
-      })
-    );
+    const formData = new FormData();
+    formData.append("id", id);
+    formData.append("name", name);
+    formData.append("address", address);
+    formData.append("city", city);
+    formData.append("state", state);
+    formData.append("country", country);
+    formData.append("description", description);
+    formData.append("cuisine", cuisine);
+    formData.append("dietary", dietary);
+    formData.append("price_range", price_range);
+    formData.append("opens_at", opens_at);
+    formData.append("closes_at", closes_at);
+    formData.append("image_url", image_url || restaurant.imageUrl);
+    console.log(image_url, formData.get("image_url"));
+    const data = await dispatch(updateRestaurant(formData));
     if (data.errors) {
       setErrors(data);
     } else {
@@ -79,7 +74,7 @@ const UpdateRestaurantForm = ({ type, id }) => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -189,9 +184,9 @@ const UpdateRestaurantForm = ({ type, id }) => {
             <label>
               Image Url
               <input
-                type="text"
-                value={image_url}
-                onChange={(e) => setImageUrl(e.target.value)}
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImageUrl(e.target.files[0])}
               />
             </label>
           </>

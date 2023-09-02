@@ -26,7 +26,6 @@ const ManageRestaurantUpdatePage = () => {
 
   const formatTime = (time) => {
     time = time.split(":");
-    console.log(time);
     if (time[0] <= 12) {
       if (Number(time[0][0]) === 0) time[0] = time[0].slice(1);
       return `${time[0]}:${time[1]} AM`;

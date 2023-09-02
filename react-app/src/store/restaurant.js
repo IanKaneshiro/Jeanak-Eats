@@ -112,12 +112,12 @@ export const createRestaurant = (restaurant) => async (dispatch) => {
 
 // Update a existing restaurant
 export const updateRestaurant = (restaurant) => async (dispatch) => {
-  const id = restaurant.id;
-  delete restaurant.id;
+  const id = restaurant.get("id");
+  restaurant.delete("id");
   const response = await fetch(`/api/restaurants/${id}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(restaurant),
+    // headers: { "Content-Type": "application/json" },
+    body: restaurant,
   });
 
   if (response.ok) {

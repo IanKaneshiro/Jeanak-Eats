@@ -51,3 +51,11 @@ def remove_file_from_s3(image_url):
     except Exception as e:
         return {"errors": str(e)}
     return True
+
+
+def check_if_not_aws_file(image_url):
+    key = image_url.rsplit("/", 1)[0]
+    if key == 'https://iansaabucket.s3.amazonaws.com':
+        return False
+    else:
+        return True

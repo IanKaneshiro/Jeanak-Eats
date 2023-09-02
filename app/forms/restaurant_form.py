@@ -26,4 +26,4 @@ class RestaurantForm(FlaskForm):
     opens_at = StringField('opens_at', validators=[DataRequired()])
     closes_at = StringField('closes_at', validators=[DataRequired()])
     image_url = FileField("Image File", validators=[
-                          FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+                          FileAllowed(list(ALLOWED_EXTENSIONS))])
