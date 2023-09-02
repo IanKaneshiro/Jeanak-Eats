@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { useModal } from "../../../context/Modal";
+import { useModal } from "../../context/Modal";
 import {
   updateRestaurant,
   getRestaurantById,
   currentRestaurant,
-} from "../../../store/restaurant";
+} from "../../store/restaurant";
 import "./UpdateRestaurantForm.css";
 
 const UpdateRestaurantForm = ({ type, id }) => {

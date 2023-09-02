@@ -11,6 +11,7 @@ import MenuItems from "./components/MenuItems";
 import MenuItemDetail from "./components/MenuItems/MenuItemDetail";
 import MenuItemForm from "./components/MenuItems/MenuItemForm";
 import ManagerPortal from "./components/ManagerPortal";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,9 +37,9 @@ function App() {
           <Route path="/restaurants/:restaurantId/reviews">
             <Reviews />
           </Route>
-          <Route path="/manage">
+          <ProtectedRoute path="/manage">
             <ManagerPortal />
-          </Route>
+          </ProtectedRoute>
           <Route path="/restaurants/:restaurantId/menuItems">
             <MenuItems />
           </Route>

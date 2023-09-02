@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { createRestaurant } from "../../../store/restaurant";
+import { useDispatch } from "react-redux";
+import { createRestaurant } from "../../store/restaurant";
 import "./CreateRestaurantForm.css";
 
 const CreateRestaurantForm = () => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -21,8 +19,6 @@ const CreateRestaurantForm = () => {
   const [image_url, setImageUrl] = useState("");
 
   const [errors, setErrors] = useState([]);
-
-  if (!sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

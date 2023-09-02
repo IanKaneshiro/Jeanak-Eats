@@ -6,10 +6,10 @@ import {
   clearCurrentSpot,
   currentRestaurant,
   getRestaurantById,
-} from "../../../store/restaurant";
+} from "../../store/restaurant";
 
-import OpenModalButton from "../../OpenModalButton";
-import UpdateRestaurantForm from "../../Restaurants/UpdateRestaurantForm";
+import OpenModalButton from "../OpenModalButton";
+import UpdateRestaurantForm from "../UpdateRestaurantForm";
 
 const ManageRestaurantUpdatePage = () => {
   const { id } = useParams();
@@ -48,7 +48,11 @@ const ManageRestaurantUpdatePage = () => {
         />
       </div>
       <div className="update--img">
-        <img src={restaurant.imageUrl} alt={restaurant.name} />
+        {restaurant.imageUrl ? (
+          <img src={restaurant.imageUrl} alt={restaurant.name} />
+        ) : (
+          <p>No image</p>
+        )}
         <OpenModalButton
           modalComponent={<UpdateRestaurantForm type={"image"} id={id} />}
           buttonText={"Edit"}

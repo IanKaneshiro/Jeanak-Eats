@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allRestaurants, getAllRestaurants } from "../../store/restaurant";
-import RestaurantTile from "../Restaurants/RestaurantTile";
+import RestaurantTile from "../RestaurantTile";
 import "./LandingPage.css";
 
 const LandingPage = () => {

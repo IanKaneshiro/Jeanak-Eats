@@ -1,8 +1,9 @@
 import React from "react";
-import { Switch, Route, useRouteMatch, NavLink } from "react-router-dom";
-import ManageRestaurants from "./ManageRestaurants";
-import CreateRestaurantForm from "../Restaurants/CreateRestaurantForm";
-import ManageRestaurantUpdatePage from "./ManageRestaurantUpdatePage";
+import { Switch, useRouteMatch, NavLink } from "react-router-dom";
+import ManageRestaurants from "../ManageRestaurants";
+import CreateRestaurantForm from "../CreateRestaurantForm";
+import ManageRestaurantUpdatePage from "../ManageRestaurantUpdatePage";
+import ProtectedRoute from "../auth/ProtectedRoute";
 
 import "./ManagerPortal.css";
 
@@ -17,21 +18,21 @@ const ManagerPortal = () => {
             <NavLink to={`${url}/restaurants`}>Manage restaurants</NavLink>
           </li>
           <li>
-            <NavLink to={`${url}/restaurants/create`}>Add a restaurant</NavLink>
+            <NavLink to={`${url}/restaurants/new`}>Add a restaurant</NavLink>
           </li>
         </ul>
       </div>
       <div>
         <Switch>
-          <Route exact path={`${path}/restaurants`}>
+          <ProtectedRoute exact path={`${path}/restaurants`}>
             <ManageRestaurants />
-          </Route>
-          <Route path={`${path}/restaurants/create`}>
+          </ProtectedRoute>
+          <ProtectedRoute path={`${path}/restaurants/new`}>
             <CreateRestaurantForm />
-          </Route>
-          <Route path={`${path}/restaurants/:id`}>
+          </ProtectedRoute>
+          <ProtectedRoute path={`${path}/restaurants/:id`}>
             <ManageRestaurantUpdatePage />
-          </Route>
+          </ProtectedRoute>
         </Switch>
       </div>
     </>

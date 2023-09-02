@@ -85,7 +85,7 @@ export const getRestaurantById = (id) => async (dispatch) => {
 // Create new restaurant
 export const createRestaurant = (restaurant) => async (dispatch) => {
   try {
-    const response = await fetch("/api/restaurants/create", {
+    const response = await fetch("/api/restaurants/new", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -208,8 +208,8 @@ export default function reducer(state = initialState, action) {
     case DELETE_RESTAURANT:
       const users = newState.usersRestaurants;
       const all = newState.allRestaurants;
-      delete users[action.id];
-      delete all[action.id];
+      delete users[action.payload];
+      delete all[action.payload];
 
       return {
         ...newState,
