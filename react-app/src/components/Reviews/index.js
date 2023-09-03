@@ -1,23 +1,24 @@
 
 import './Reviews.css'
+import UpdateModal from '../UpdateModal'
 import ReviewModal from '../ReviewModal'
-import React, {useState, useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom';
-import {useSelector, useDispatch } from 'react-redux'
-import { getReviews } from '../../store/reviews'
 import OpenModalButton from '../OpenModalButton';
+import { getReviews } from '../../store/reviews'
+
+import React, {useState, useEffect, useRef } from 'react'
+import { useParams, useHistory } from 'react-router-dom';
+import {useSelector, useDispatch } from 'react-redux'
+
+
+
 
 const AllReviews = () => {
 
     const dispatch = useDispatch()
+    const history = useHistory()
     const ulRef = useRef();
 
     const {restaurantId} = useParams()
-
-    console.log('--------------------------------------------------------------------')
-    console.log('-----------------------------', restaurantId)
-
-
 
     useEffect( () => {
         dispatch(getReviews(restaurantId))
@@ -64,7 +65,11 @@ const AllReviews = () => {
                     <div className='name'>{element.User.firstName} {element.User.lastName[0]}</div>
                     <div className='posted'> Posted: {created} </div>
                     <div className='review'>{element.review}</div>
-                    <button> Update </button>
+                    <OpenModalButton
+                        buttonText='Update'
+                        onItemClick={closeMenu}
+                        modalComponent={<UpdateModal/>}
+                    />
                     <button> Delete </button>
                     </>
                     )
@@ -86,14 +91,25 @@ const AllReviews = () => {
     //Checks if the user is logged in and if the user does not have a review
     //returns true if no review false if the user has a review
     function checkUser(){
-        let userNoReview = 'false'
+
+        let userNoReview = 'Null'
+
+        if(userState?.user !== null){
+            userNoReview = 'true'
+        }
+
         reviewState?.Reviews?.forEach(element =>{
-            if(userState?.user !== null && userState?.user?.id !== element?.User?.id){
-                userNoReview = 'true'
+            console.log(element)
+            if(userState?.user !== null && userState?.user?.id === element?.User?.id){
+                console.log('review id', element?.User?.id)
+                userNoReview = 'false'
             }
         })
         return userNoReview
     }
+
+    console.log('user id', userState?.user?.id )
+    console.log('reviews length', reviewState?.Reviews?.length)
 
     console.log('USER',checkUser())
 
@@ -104,7 +120,6 @@ const AllReviews = () => {
             console.log('inside postReview if')
             return (
                 <>
-                    <div>{checkUser()}</div>
                     <OpenModalButton
                         buttonText='Post'
                         onItemClick={closeMenu}
