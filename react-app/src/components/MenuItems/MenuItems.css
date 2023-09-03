@@ -34,6 +34,7 @@
   grid-area: detail-description;
   margin: 0;
   margin-left: 15px;
+  height: fit-content;
 }
 
 .add-to-order-button {
@@ -47,12 +48,34 @@
   cursor: pointer;
 }
 
+.item-quantity-select {
+  background-color: #eeeeee;
+  border-radius: 25px;
+  padding: 5px;
+  border: none;
+  margin-left: 15px;
+}
+
+.item-quantity-select:hover {
+  background-color: #dfdfdf;
+  border: none;
+}
+
+.item-quantity-select:active {
+  background-color: #cccbcb;
+  border: none;
+}
+
+.quantity-option {
+  background-color: #f7f7f7;
+}
+
 .add-to-order-button:hover {
-  background-color: rgb(53, 49, 49);
+  background-color: rgb(59, 59, 59);
 }
 
 .add-to-order-button:active {
-  background-color: rgb(80, 75, 75);
+  background-color: rgb(80, 80, 80);
 }
 
 .back-to-restaurant:hover {
@@ -92,4 +115,17 @@
 
 .menu-tile-name {
   margin: 0;
+}
+
+/*New Menu Item and Update forms*/
+
+.itemFormContainer {
+  display: flex;
+  justify-content: center;
+}
+.menu-item-form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 10px;
 }

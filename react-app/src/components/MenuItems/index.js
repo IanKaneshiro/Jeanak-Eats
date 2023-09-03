@@ -20,7 +20,6 @@ const MenuItems = () => {
       side of screen. On ubereats it underlines the current category you are viewing and clicking
       on the category scrolls the page down to view that set of items
       */}
-      <h1>Menu Items Component</h1>
       <ul className="menu-ul">
         {menu.map((item) => (
           <li

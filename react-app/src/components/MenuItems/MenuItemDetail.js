@@ -1,5 +1,5 @@
 import "./MenuItems.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   currentMenuItem,
@@ -13,6 +13,7 @@ const MenuItemDetail = () => {
   const { id } = useParams();
   const item = useSelector(currentMenuItem);
   const history = useHistory();
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     dispatch(getOneMenuItem(id));
@@ -29,6 +30,12 @@ const MenuItemDetail = () => {
   //Prevents errors for undefined price before dispatch
   const floatPrice = item.price !== undefined ? item.price.toFixed(2) : "";
 
+  //Prices the add to order button based on quantity
+  const floatPriceTotal =
+    item.price !== undefined
+      ? (item.price * parseInt(quantity)).toFixed(2)
+      : "";
+
   return (
     <div className="menuItemDetail">
       <span className="back-to-restaurant" onClick={goBackToRestaurant}>
@@ -39,8 +46,26 @@ const MenuItemDetail = () => {
         <h1 className="itemDetailName">{item.name}</h1>
         <h3 className="itemDetailPrice">${floatPrice}</h3>
         <span className="itemDetailDescription">{item.description}</span>
+        <span>
+          {" "}
+          <select
+            className="item-quantity-select"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          >
+            <option className="quantity-option">1</option>
+            <option className="quantity-option">2</option>
+            <option className="quantity-option">3</option>
+            <option className="quantity-option">4</option>
+            <option className="quantity-option">5</option>
+            <option className="quantity-option">6</option>
+            <option className="quantity-option">7</option>
+            <option className="quantity-option">8</option>
+          </select>
+        </span>
+
         <button className="add-to-order-button">
-          Add to order · ${floatPrice}
+          Add {quantity} to order · ${floatPriceTotal}
         </button>
       </div>
     </div>

@@ -66,7 +66,7 @@ const UpdateMenuItemForm = () => {
   return (
     <div className="itemFormContainer">
       <form className="menu-item-form" onSubmit={handleSubmit}>
-        <h2 className="item-form-header">Add a menu item to your restaurant</h2>
+        <h2 className="item-form-header">Edit your menu item</h2>
         <label>
           Name
           <input
