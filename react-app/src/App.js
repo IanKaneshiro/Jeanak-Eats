@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-      <Navigation />
+      <Navigation loading={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route exact path="/">

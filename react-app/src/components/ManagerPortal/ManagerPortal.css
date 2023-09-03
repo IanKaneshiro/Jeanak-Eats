@@ -1,11 +1,28 @@
+.manager--main {
+  display: flex;
+  flex-direction: row;
+}
+
 .manager--navbar {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  background-color: #f7f7f7;
+  height: 100vh;
 }
 
 .manager--navbar li {
   padding: 10px;
 }
 
-.active {
-  border-bottom: 1px solid black;
+.manager--navbar-restaurants-btn {
+  border: none;
+  background: none;
+  font-size: 16px;
+}
+
+.manager--main button:hover,
+a:hover {
+  background-color: white;
 }

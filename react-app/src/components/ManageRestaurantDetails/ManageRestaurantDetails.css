@@ -1,0 +1,17 @@
+.manager--restaurant-detail-main img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.manager--restaurant-detail-main {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.manager--restaurant-detail-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

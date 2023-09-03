@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import "./Navigation.css";
 
-function Navigation() {
+function Navigation({ loading }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [sidebar, setSidebar] = useState(false);
@@ -15,6 +15,8 @@ function Navigation() {
     dispatch(logout());
     showSidebar();
   };
+
+  if (!loading) return null;
 
   return (
     <>
