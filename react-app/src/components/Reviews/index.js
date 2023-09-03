@@ -85,6 +85,8 @@ const AllReviews = () => {
         })
     }
 
+    //Checks if the user is logged in and if the user does not have a review
+    //returns true if no review false if the user has a review
     function checkUser(){
         let userNoReview = 'false'
         reviewState?.Reviews?.forEach(element =>{
@@ -94,8 +96,11 @@ const AllReviews = () => {
         })
         return userNoReview
     }
+
     console.log('USER',checkUser())
 
+    //creates the post button and review modal if
+    //checkUser returns true
     function postReview(){
         if (checkUser() === 'true'){
             console.log('inside postReview if')
@@ -112,14 +117,10 @@ const AllReviews = () => {
         }
     }
 
-
     return (
         <>
         <div> {postReview() } </div>
         <div> { displayReview() } </div>
-
-
-
         </>
     )
 
