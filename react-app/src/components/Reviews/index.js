@@ -14,8 +14,6 @@ const AllReviews = () => {
 
     const {restaurantId} = useParams()
 
-
-
     console.log('--------------------------------------------------------------------')
     console.log('-----------------------------', restaurantId)
 
