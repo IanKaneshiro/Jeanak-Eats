@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createRestaurant } from "../../store/restaurant";
 import "./CreateRestaurantForm.css";
+import { cuisineOptions } from "../../Resources/selectOptions";
 
 const CreateRestaurantForm = () => {
   const dispatch = useDispatch();
@@ -103,26 +104,27 @@ const CreateRestaurantForm = () => {
         </label>
         <label>
           Description
-          <input
-            type="text"
+          <textarea
             value={description}
+            placeholder="Optional: Provide a short sumary of your restaurant"
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
         <label>
           Cuisine
           <select required onChange={(e) => setCuisine(e.target.value)}>
-            <option value=""></option>
-            <option value="American">American</option>
-            <option value="Chinese">Chinese</option>
+            <option value="">Select...</option>
+            {cuisineOptions.map((type) => (
+              <option value={type}>{type}</option>
+            ))}
           </select>
         </label>
         <label>
           Dietary
           <select onChange={(e) => setDietary(e.target.value)}>
-            <option value=""></option>
+            <option value="">Select...</option>
             <option value="Vegan">Vegan</option>
-            <option value="Vegitarian">Vegitarian</option>
+            <option value="Vegetarian">Vegetarian</option>
           </select>
         </label>
         <label>

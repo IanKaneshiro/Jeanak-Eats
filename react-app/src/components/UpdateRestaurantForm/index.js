@@ -7,6 +7,7 @@ import {
   currentRestaurant,
 } from "../../store/restaurant";
 import "./UpdateRestaurantForm.css";
+import { cuisineOptions } from "../../Resources/selectOptions";
 
 const UpdateRestaurantForm = ({ type, id }) => {
   const dispatch = useDispatch();
@@ -151,8 +152,9 @@ const UpdateRestaurantForm = ({ type, id }) => {
               Cuisine
               <select required onChange={(e) => setCuisine(e.target.value)}>
                 <option value={cuisine}>{cuisine}</option>
-                <option value="American">American</option>
-                <option value="Chinese">Chinese</option>
+                {cuisineOptions.map((val) => (
+                  <option value={val}>{val}</option>
+                ))}
               </select>
             </label>
             <label>
