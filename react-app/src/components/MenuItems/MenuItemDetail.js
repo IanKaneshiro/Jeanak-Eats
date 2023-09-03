@@ -10,18 +10,18 @@ import { useParams, useHistory } from "react-router-dom";
 
 const MenuItemDetail = () => {
   const dispatch = useDispatch();
-  const { menuItemId } = useParams();
+  const { id } = useParams();
   const item = useSelector(currentMenuItem);
   const history = useHistory();
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    dispatch(getOneMenuItem(menuItemId));
-  }, [dispatch, menuItemId]);
-
+    dispatch(getOneMenuItem(id));
+  }, [dispatch, id]);
   if (!item) {
     return "Loading...";
   }
+
   const goBackToRestaurant = () => {
     dispatch(clearCurrentMenuItem());
     history.push(`/restaurants/${item.restaurantId}`);
