@@ -38,15 +38,20 @@ const ManagerPortal = () => {
             >
               Restaurants
             </button>
-            <ul className="manager--navbar-restaurants">
-              {openRestaurants &&
-                restuarants.map((restuarant) => (
-                  <li>
-                    <NavLink to={`${url}/restaurants/${restuarant.id}`}>
-                      {restuarant.name}
-                    </NavLink>
-                  </li>
-                ))}
+            <ul
+              className={
+                openRestaurants
+                  ? "manager--navbar-restaurants manager--open"
+                  : "manager--navbar-restaurants"
+              }
+            >
+              {restuarants.map((restuarant) => (
+                <li>
+                  <NavLink to={`${url}/restaurants/${restuarant.id}`}>
+                    {restuarant.name}
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           </li>
           <li>

@@ -10,6 +10,7 @@ import {
 import { calculateStars, formatTime } from "../../Resources/helperFunctions";
 import OpenModalButton from "../OpenModalButton";
 import UpdateRestaurantForm from "../UpdateRestaurantForm";
+import DeleteModal from "../DeleteModal";
 import LoadingSpinner from "../LoadingSpinner";
 
 const ManageRestaurantDetails = () => {
@@ -25,9 +26,21 @@ const ManageRestaurantDetails = () => {
   if (!restaurant.id) return <LoadingSpinner />;
 
   return (
-    <div>
+    <div className="manager--restaurant-detail-container">
+      <OpenModalButton
+        modalComponent={<UpdateRestaurantForm id={id} />}
+        buttonText={"Edit"}
+      />
+      <OpenModalButton
+        modalComponent={<DeleteModal id={restaurant.id} />}
+        buttonText={"Delete"}
+      />
       <div className="manager--restaurant-detail-main">
-        <img src={restaurant.imageUrl} alt={restaurant.name} />
+        {restaurant.imageUrl ? (
+          <img src={restaurant.imageUrl} alt={restaurant.name} />
+        ) : (
+          <p>No image</p>
+        )}
         <div className="manager--restaurant-detail-info">
           <h1>{restaurant.name}</h1>
           <p>
@@ -40,14 +53,10 @@ const ManageRestaurantDetails = () => {
           </p>
           <p>
             {calculateStars(restaurant.avgRating)}
-            {restaurant.avgRating}
+            {restaurant.avgRating} ({restaurant.numRatings} ratings)
           </p>
         </div>
       </div>
-      <OpenModalButton
-        modalComponent={<UpdateRestaurantForm id={id} />}
-        buttonText={"edit"}
-      />
     </div>
   );
 };

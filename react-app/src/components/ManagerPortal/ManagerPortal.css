@@ -9,6 +9,7 @@
   align-items: center;
   width: 250px;
   background-color: #f7f7f7;
+  border-radius: 10px;
   height: 100vh;
 }
 
@@ -22,7 +23,18 @@
   font-size: 16px;
 }
 
-.manager--main button:hover,
+.manager--main > button:hover,
 a:hover {
   background-color: white;
+}
+
+.manager--navbar-restaurants {
+  display: none;
+  opacity: 0;
+  transition: opacity 200ms, display 200ms;
+}
+
+.manager--open {
+  display: block;
+  opacity: 1;
 }

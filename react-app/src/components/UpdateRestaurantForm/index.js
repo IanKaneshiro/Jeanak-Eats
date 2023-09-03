@@ -13,7 +13,7 @@ import {
   stateOptions,
 } from "../../Resources/selectOptions";
 
-const UpdateRestaurantForm = ({ type, id }) => {
+const UpdateRestaurantForm = ({ id }) => {
   const dispatch = useDispatch();
   const restaurant = useSelector(currentRestaurant);
   const { closeModal } = useModal();
@@ -77,6 +77,7 @@ const UpdateRestaurantForm = ({ type, id }) => {
       closeModal();
     }
   };
+
   return (
     <>
       <form

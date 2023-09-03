@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import "./Navigation.css";
+import NavigationSideBar from "../NavigationSideBar";
 
 function Navigation({ loading }) {
   const dispatch = useDispatch();
@@ -44,39 +45,12 @@ function Navigation({ loading }) {
           )}
         </ul>
       </div>
-      <nav className={sidebar ? "navbar--menu open" : "navbar--menu"}>
-        <Link to="#" onClick={showSidebar}>
-          ❌
-        </Link>
-        <ul className="navbar--menu-items">
-          {sessionUser ? (
-            <>
-              <li>{sessionUser.firstName}</li>
-              <li className="navbar--toggle" onClick={showSidebar}>
-                <Link to="/manage" className="navbar--menu-bars">
-                  Manager Portal
-                </Link>
-              </li>
-              <li>
-                <button onClick={handleLogout}>Sign out</button>
-              </li>
-            </>
-          ) : (
-            <>
-              <li className="navbar--toggle" onClick={showSidebar}>
-                <button>
-                  <Link to="/login">Login</Link>
-                </button>
-              </li>
-              <li className="navbar--toggle" onClick={showSidebar}>
-                <button>
-                  <Link to="/signup">Signup</Link>
-                </button>
-              </li>
-            </>
-          )}
-        </ul>
-      </nav>
+      <NavigationSideBar
+        sidebar={sidebar}
+        showSidebar={showSidebar}
+        sessionUser={sessionUser}
+        handleLogout={handleLogout}
+      />
     </>
   );
 }

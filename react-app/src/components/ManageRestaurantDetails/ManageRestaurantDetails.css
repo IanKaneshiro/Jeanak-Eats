@@ -15,3 +15,17 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.manager--restaurant-detail-container button {
+  border: none;
+  background-color: #000000;
+  color: #ffffff;
+  width: 5rem;
+  margin-right: 10px;
+  height: 2rem;
+  border-radius: 10px;
+}
+
+.manager--restaurant-detail-container > button:hover {
+  background-color: #333333;
+}

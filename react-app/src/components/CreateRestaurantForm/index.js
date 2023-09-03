@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { createRestaurant } from "../../store/restaurant";
 import "./CreateRestaurantForm.css";
 import {
@@ -26,6 +27,8 @@ const CreateRestaurantForm = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
 
+  const history = useHistory();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -48,6 +51,7 @@ const CreateRestaurantForm = () => {
       setErrors(data);
     } else {
       setLoading(false);
+      history.push(`/manage/restaurants/${data.id}`);
     }
   };
 

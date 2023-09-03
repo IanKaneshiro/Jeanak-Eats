@@ -48,104 +48,93 @@ function SignupFormPage() {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="signup--container">
+      <form onSubmit={handleSubmit} className="signup--main">
+        <h1>Sign Up</h1>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          First Name
-          <input
-            type="text"
-            value={first_name}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Last Name
-          <input
-            type="text"
-            value={last_name}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Phone Number
-          <input
-            type="text"
-            value={phone_number}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Address
-          <input
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-        </label>
-        <label>
-          City
-          <input
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-        </label>
-        <label>
-          State
-          <input
-            type="text"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-          />
-        </label>
+        <label>First Name</label>
+        <input
+          type="text"
+          value={first_name}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+        />
 
-        <label>
-          Country
-          <input
-            type="text"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
+        <label>Last Name </label>
+        <input
+          type="text"
+          value={last_name}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+        />
+
+        <label>Email </label>
+        <input
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <label>Phone Number </label>
+        <input
+          type="text"
+          value={phone_number}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          required
+        />
+
+        <label>Address </label>
+        <input
+          type="text"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+
+        <label>City </label>
+        <input
+          type="text"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+
+        <label>State </label>
+        <input
+          type="text"
+          value={state}
+          onChange={(e) => setState(e.target.value)}
+        />
+
+        <label>Country </label>
+        <input
+          type="text"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+        />
+
+        <label>Password </label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+
+        <label>Confirm Password </label>
+        <input
+          type="password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
+
         <button type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 
