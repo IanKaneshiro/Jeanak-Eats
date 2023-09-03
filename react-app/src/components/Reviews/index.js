@@ -1,26 +1,24 @@
 
 import './Reviews.css'
-
-import React, {useState, useEffect } from 'react'
+import ReviewModal from '../ReviewModal'
+import React, {useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom';
 import {useSelector, useDispatch } from 'react-redux'
 import { getReviews } from '../../store/reviews'
-
-// import { getRestaurants } from '../../store/restaurant'
-
-
-
+import OpenModalButton from '../OpenModalButton';
 
 const AllReviews = () => {
 
     const dispatch = useDispatch()
+    const ulRef = useRef();
+
     const {restaurantId} = useParams()
 
 
 
     console.log('--------------------------------------------------------------------')
     console.log('-----------------------------', restaurantId)
-    // console.log('---------------------------------', reviewState)
+
 
 
     useEffect( () => {
@@ -30,7 +28,13 @@ const AllReviews = () => {
     const reviewState = useSelector(state => state.reviews)
     const userState = useSelector(state => state.session)
 
-    // console.log(reviewState?.Reviews[0]?.review)
+    const [showMenu, setShowMenu] = useState(false);
+
+    const closeMenu = (e) => {
+        if (!ulRef.current.contains(e.target)) {
+          setShowMenu(false);
+        }
+      };
 
     //gets all the reviews .... firstName lastName posted on and review
     function displayReview(){
@@ -81,10 +85,41 @@ const AllReviews = () => {
         })
     }
 
+    function checkUser(){
+        let userNoReview = 'false'
+        reviewState?.Reviews?.forEach(element =>{
+            if(userState?.user !== null && userState?.user?.id !== element?.User?.id){
+                userNoReview = 'true'
+            }
+        })
+        return userNoReview
+    }
+    console.log('USER',checkUser())
+
+    function postReview(){
+        if (checkUser() === 'true'){
+            console.log('inside postReview if')
+            return (
+                <>
+                    <div>{checkUser()}</div>
+                    <OpenModalButton
+                        buttonText='Post'
+                        onItemClick={closeMenu}
+                        modalComponent={<ReviewModal/>}
+                    />
+                </>
+            )
+        }
+    }
+
 
     return (
         <>
+        <div> {postReview() } </div>
         <div> { displayReview() } </div>
+
+
+
         </>
     )
 
