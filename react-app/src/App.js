@@ -8,10 +8,12 @@ import Reviews from './components/Reviews'
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
-import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm";
 import MenuItems from "./components/MenuItems";
 import MenuItemDetail from "./components/MenuItems/MenuItemDetail";
-import MenuItemForm from "./components/MenuItems/MenuItemForm";
+import NewMenuItemForm from "./components/MenuItems/NewMenuItemForm";
+import UpdateMenuItemForm from "./components/MenuItems/UpdateMenuItemForm";
+import ManagerPortal from "./components/ManagerPortal";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +24,7 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      <Navigation />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
@@ -38,17 +40,20 @@ function App() {
 
             <Reviews/>
           </Route>
-          <Route path="/restaurants/create">
-            <CreateRestaurantForm />
-          </Route>
+          <ProtectedRoute path="/manage">
+            <ManagerPortal />
+          </ProtectedRoute>
           <Route path="/restaurants/:restaurantId/menuItems">
+            <NewMenuItemForm />
+          </Route>
+          <Route path="/restaurants/:restaurantId">
             <MenuItems />
+          </Route>
+          <Route path="/menuItems/:menuItemId/update">
+            <UpdateMenuItemForm />
           </Route>
           <Route path="/menuItems/:id">
             <MenuItemDetail />
-          </Route>
-          <Route path="/restaurants/:restaurantId/menuItems/new">
-            <MenuItemForm />
           </Route>
         </Switch>
       )}

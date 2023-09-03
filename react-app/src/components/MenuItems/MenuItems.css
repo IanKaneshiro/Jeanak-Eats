@@ -1,24 +1,131 @@
-.menuItemDetail {
+/* Menu Item Detail Page */
+.menuItemTile {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     "detail-img   detail-name"
     "detail-img   detail-price"
-    "detail-img   detail-description";
+    "detail-img   detail-description"
+    "detail-img   ."
+    "detail-img   .";
 }
 
 .itemDetailImg {
   grid-area: detail-img;
+  width: 492px;
+  height: 492px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .itemDetailName {
   grid-area: detail-name;
+  margin: 0;
+  margin-left: 15px;
 }
 
 .itemDetailPrice {
   grid-area: detail-price;
+  margin: 0;
+  margin-left: 15px;
 }
 
 .itemDetailDescription {
   grid-area: detail-description;
+  margin: 0;
+  margin-left: 15px;
+  height: fit-content;
+}
+
+.add-to-order-button {
+  margin: 15px;
+  background-color: black;
+  color: whitesmoke;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.item-quantity-select {
+  background-color: #eeeeee;
+  border-radius: 25px;
+  padding: 5px;
+  border: none;
+  margin-left: 15px;
+}
+
+.item-quantity-select:hover {
+  background-color: #dfdfdf;
+  border: none;
+}
+
+.item-quantity-select:active {
+  background-color: #cccbcb;
+  border: none;
+}
+
+.quantity-option {
+  background-color: #f7f7f7;
+}
+
+.add-to-order-button:hover {
+  background-color: rgb(59, 59, 59);
+}
+
+.add-to-order-button:active {
+  background-color: rgb(80, 80, 80);
+}
+
+.back-to-restaurant:hover {
+  cursor: pointer;
+}
+
+/*All menu items for a restaurant*/
+.all-menu-items-container {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu-ul {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+.menu-li {
+  display: flex;
+  flex-direction: column;
+  padding: 7px;
+}
+
+.menu-li:hover {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: 0.25s ease-in-out 0s;
+}
+
+.menu-tile-img {
+  width: 286px;
+  height: 190px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.menu-tile-name {
+  margin: 0;
+}
+
+/*New Menu Item and Update forms*/
+
+.itemFormContainer {
+  display: flex;
+  justify-content: center;
+}
+.menu-item-form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 10px;
 }

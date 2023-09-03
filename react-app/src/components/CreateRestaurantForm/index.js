@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { createRestaurant } from "../../../store/restaurant";
+import { useDispatch } from "react-redux";
+import { createRestaurant } from "../../store/restaurant";
 import "./CreateRestaurantForm.css";
+import { cuisineOptions } from "../../Resources/selectOptions";
 
 const CreateRestaurantForm = () => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -20,45 +19,39 @@ const CreateRestaurantForm = () => {
   const [closes_at, setClosesAt] = useState("");
   const [image_url, setImageUrl] = useState("");
 
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
-
-  if (!sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(
-      name,
-      address,
-      city,
-      state,
-      country,
-      description,
-      cuisine,
-      dietary,
-      price_range
-    );
-    const data = await dispatch(
-      createRestaurant({
-        name,
-        address,
-        city,
-        state,
-        country,
-        description,
-        cuisine,
-        dietary,
-        price_range,
-        opens_at,
-        closes_at,
-      })
-    );
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("address", address);
+    formData.append("city", city);
+    formData.append("state", state);
+    formData.append("country", country);
+    formData.append("description", description);
+    formData.append("cuisine", cuisine);
+    formData.append("dietary", dietary);
+    formData.append("price_range", price_range);
+    formData.append("opens_at", opens_at);
+    formData.append("closes_at", closes_at);
+    formData.append("image_url", image_url);
+    setLoading(true);
+
+    const data = await dispatch(createRestaurant(formData));
     if (data.errors) {
       setErrors(data);
+    } else {
+      setLoading(false);
     }
   };
+
+  if (loading) return <h1>...loading</h1>;
+
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -111,26 +104,27 @@ const CreateRestaurantForm = () => {
         </label>
         <label>
           Description
-          <input
-            type="text"
+          <textarea
             value={description}
+            placeholder="Optional: Provide a short sumary of your restaurant"
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
         <label>
           Cuisine
           <select required onChange={(e) => setCuisine(e.target.value)}>
-            <option value=""></option>
-            <option value="American">American</option>
-            <option value="Chinese">Chinese</option>
+            <option value="">Select...</option>
+            {cuisineOptions.map((type) => (
+              <option value={type}>{type}</option>
+            ))}
           </select>
         </label>
         <label>
           Dietary
           <select onChange={(e) => setDietary(e.target.value)}>
-            <option value=""></option>
+            <option value="">Select...</option>
             <option value="Vegan">Vegan</option>
-            <option value="Vegitarian">Vegitarian</option>
+            <option value="Vegetarian">Vegetarian</option>
           </select>
         </label>
         <label>
@@ -143,17 +137,17 @@ const CreateRestaurantForm = () => {
           </select>
         </label>
         <label>
-          Image Url
+          Image
           <input
-            type="text"
-            value={image_url}
-            onChange={(e) => setImageUrl(e.target.value)}
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImageUrl(e.target.files[0])}
           />
         </label>
         <label>
           Opens At
           <input
-            type="text"
+            type="time"
             value={opens_at}
             onChange={(e) => setOpensAt(e.target.value)}
           />
@@ -161,7 +155,7 @@ const CreateRestaurantForm = () => {
         <label>
           Closes At
           <input
-            type="text"
+            type="time"
             value={closes_at}
             onChange={(e) => setClosesAt(e.target.value)}
           />

@@ -1,29 +1,49 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
-import './SignupForm.css';
+import { Redirect } from "react-router-dom";
+import "./SignupForm.css";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [phone_number, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
-
   const handleSubmit = async (e) => {
+    setErrors([]);
     e.preventDefault();
     if (password === confirmPassword) {
-        const data = await dispatch(signUp(username, email, password));
-        if (data) {
-          setErrors(data)
-        }
+      const data = await dispatch(
+        signUp(
+          first_name,
+          last_name,
+          email,
+          phone_number,
+          address,
+          city,
+          state,
+          country,
+          password
+        )
+      );
+      if (data) {
+        setErrors(data);
+      } else {
+        return <Redirect to="/" />;
+      }
     } else {
-        setErrors(['Confirm Password field must be the same as the Password field']);
+      setErrors([
+        "Confirm Password field must be the same as the Password field",
+      ]);
     }
   };
 
@@ -32,8 +52,28 @@ function SignupFormPage() {
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
         </ul>
+        <label>
+          First Name
+          <input
+            type="text"
+            value={first_name}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Last Name
+          <input
+            type="text"
+            value={last_name}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </label>
         <label>
           Email
           <input
@@ -44,12 +84,45 @@ function SignupFormPage() {
           />
         </label>
         <label>
-          Username
+          Phone Number
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={phone_number}
+            onChange={(e) => setPhoneNumber(e.target.value)}
             required
+          />
+        </label>
+        <label>
+          Address
+          <input
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </label>
+        <label>
+          City
+          <input
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+        </label>
+        <label>
+          State
+          <input
+            type="text"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+          />
+        </label>
+
+        <label>
+          Country
+          <input
+            type="text"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
           />
         </label>
         <label>
