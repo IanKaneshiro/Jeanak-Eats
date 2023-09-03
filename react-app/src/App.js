@@ -7,11 +7,12 @@ import Reviews from "./components/Reviews";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
-import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm";
 import MenuItems from "./components/MenuItems";
 import MenuItemDetail from "./components/MenuItems/MenuItemDetail";
 import NewMenuItemForm from "./components/MenuItems/NewMenuItemForm";
 import UpdateMenuItemForm from "./components/MenuItems/UpdateMenuItemForm";
+import ManagerPortal from "./components/ManagerPortal";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      <Navigation />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
@@ -37,9 +38,9 @@ function App() {
           <Route path="/restaurants/:restaurantId/reviews">
             <Reviews />
           </Route>
-          <Route path="/restaurants/create">
-            <CreateRestaurantForm />
-          </Route>
+          <ProtectedRoute path="/manage">
+            <ManagerPortal />
+          </ProtectedRoute>
           <Route path="/restaurants/:restaurantId/menuItems">
             <NewMenuItemForm />
           </Route>

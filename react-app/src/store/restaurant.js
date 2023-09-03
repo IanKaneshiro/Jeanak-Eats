@@ -85,12 +85,12 @@ export const getRestaurantById = (id) => async (dispatch) => {
 // Create new restaurant
 export const createRestaurant = (restaurant) => async (dispatch) => {
   try {
-    const response = await fetch("/api/restaurants/create", {
+    const response = await fetch("/api/restaurants/new", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(restaurant),
+      // headers: {
+      //   "Content-Type": "multipart/form-data",
+      // },
+      body: restaurant,
     });
     if (response.ok) {
       const data = await response.json();
@@ -112,12 +112,12 @@ export const createRestaurant = (restaurant) => async (dispatch) => {
 
 // Update a existing restaurant
 export const updateRestaurant = (restaurant) => async (dispatch) => {
-  const id = restaurant.id;
-  delete restaurant.id;
+  const id = restaurant.get("id");
+  restaurant.delete("id");
   const response = await fetch(`/api/restaurants/${id}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(restaurant),
+    // headers: { "Content-Type": "application/json" },
+    body: restaurant,
   });
 
   if (response.ok) {
@@ -157,8 +157,7 @@ export const deleteRestaurant = (id) => async (dispatch) => {
 
 export const allRestaurants = (state) =>
   Object.values(state.restaurants.allRestaurants);
-export const currentRestaurant = (state) =>
-  Object.values(state.restaurants.currentRestaurant);
+export const currentRestaurant = (state) => state.restaurants.currentRestaurant;
 export const usersRestaurants = (state) =>
   Object.values(state.restaurants.usersRestaurants);
 
@@ -204,12 +203,13 @@ export default function reducer(state = initialState, action) {
           ...newState.allRestaurants,
           [action.payload.id]: action.payload,
         },
+        currentRestaurant: action.payload,
       };
     case DELETE_RESTAURANT:
       const users = newState.usersRestaurants;
       const all = newState.allRestaurants;
-      delete users[action.id];
-      delete all[action.id];
+      delete users[action.payload];
+      delete all[action.payload];
 
       return {
         ...newState,

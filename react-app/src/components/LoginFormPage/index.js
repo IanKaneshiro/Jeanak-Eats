@@ -21,6 +21,11 @@ function LoginFormPage() {
     }
   };
 
+  const loginDemo = () => {
+    dispatch(login("demo@aa.io", "password"));
+    return <Redirect to="/" />;
+  };
+
   return (
     <>
       <h1>Log In</h1>
@@ -50,6 +55,7 @@ function LoginFormPage() {
         </label>
         <button type="submit">Log In</button>
       </form>
+      <button onClick={loginDemo}>Login Demo</button>
     </>
   );
 }

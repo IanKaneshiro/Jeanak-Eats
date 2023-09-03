@@ -4,6 +4,7 @@ from app.models import Restaurant
 from flask_login import login_required, current_user
 from app.forms import RestaurantForm, ReviewForm, MenuItemForm
 from app.models import Restaurant, Review, MenuItem, db
+from app.api.aws import upload_file_to_s3, get_unique_filename, remove_file_from_s3, check_if_not_aws_file
 
 
 restaurant_routes = Blueprint('restaurants', __name__)
@@ -41,7 +42,7 @@ def restaurant_by_id(id):
         return {"message": "Restaurant couldn't be found"}, 404
 
 
-@restaurant_routes.route('/create', methods=['POST'])
+@restaurant_routes.route('/new', methods=['POST'])
 @login_required
 def create_restaurant():
     """
@@ -52,6 +53,16 @@ def create_restaurant():
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        if form.data['image_url']:
+            image = form.data['image_url']
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            print(upload)
+            if "url" not in upload:
+                return {'errors': validation_errors_to_error_messages(upload)}, 400
+            url = upload["url"]
+        else:
+            url = form.data['image_url']
         restaurant = Restaurant(
             owner_id=current_user.id,
             name=form.data['name'],
@@ -65,7 +76,7 @@ def create_restaurant():
             price_range=form.data['price_range'],
             opens_at=form.data['opens_at'],
             closes_at=form.data['closes_at'],
-            image_url=form.data['image_url'],
+            image_url=url,
         )
         db.session.add(restaurant)
         db.session.commit()
@@ -89,6 +100,15 @@ def update_restaurant(id):
     if restaurant.owner_id != current_user.id:
         return {"message": "Can only edit restaurants you own"}, 403
     if form.validate_on_submit():
+        if form.data['image_url']:
+            image = form.data['image_url']
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            print(upload)
+            if "url" not in upload:
+                return {'errors': validation_errors_to_error_messages(upload)}, 400
+            url = upload["url"]
+            restaurant.image_url = url
         restaurant.name = form.data['name']
         restaurant.address = form.data['address']
         restaurant.city = form.data['city']
@@ -100,7 +120,7 @@ def update_restaurant(id):
         restaurant.price_range = form.data['price_range']
         restaurant.opens_at = form.data['opens_at']
         restaurant.closes_at = form.data['closes_at']
-        restaurant.image_url = form.data['image_url']
+
         db.session.commit()
         return restaurant.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
@@ -117,6 +137,8 @@ def delete_restaurant(id):
         return {'message': "Restaurant couldn't be found"}, 404
     if restaurant.owner_id != current_user.id:
         return {"message": "Can only delete restaurants you own"}, 403
+    if restaurant.image_url:
+        remove_file_from_s3(restaurant.image_url)
     db.session.delete(restaurant)
     db.session.commit()
     return {"message": "Successfully deleted"}
