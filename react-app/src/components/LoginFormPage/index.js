@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import './LoginForm.css';
+import "./LoginForm.css";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const [email, setEmail] = useState("");
+  const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -15,10 +15,15 @@ function LoginFormPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(login(credential, password));
     if (data) {
       setErrors(data);
     }
+  };
+
+  const loginDemo = () => {
+    dispatch(login("demo@aa.io", "password"));
+    return <Redirect to="/" />;
   };
 
   return (
@@ -31,11 +36,11 @@ function LoginFormPage() {
           ))}
         </ul>
         <label>
-          Email
+          Email or phone number
           <input
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
             required
           />
         </label>
@@ -50,6 +55,7 @@ function LoginFormPage() {
         </label>
         <button type="submit">Log In</button>
       </form>
+      <button onClick={loginDemo}>Login Demo</button>
     </>
   );
 }

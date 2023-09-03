@@ -1,6 +1,9 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileAllowed, FileField, FileRequired
 from wtforms import StringField
 from wtforms.validators import DataRequired, ValidationError
+from wtforms.validators import DataRequired
+from app.api.aws import ALLOWED_EXTENSIONS
 
 
 def price_range(form, field):
@@ -22,4 +25,5 @@ class RestaurantForm(FlaskForm):
                               DataRequired(), price_range])
     opens_at = StringField('opens_at', validators=[DataRequired()])
     closes_at = StringField('closes_at', validators=[DataRequired()])
-    image_url = StringField('image_url')
+    image_url = FileField("Image File", validators=[
+                          FileAllowed(list(ALLOWED_EXTENSIONS))])

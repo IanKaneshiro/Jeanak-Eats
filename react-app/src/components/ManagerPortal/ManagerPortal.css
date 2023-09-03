@@ -1,0 +1,11 @@
+.manager--navbar {
+  display: flex;
+}
+
+.manager--navbar li {
+  padding: 10px;
+}
+
+.active {
+  border-bottom: 1px solid black;
+}
