@@ -14,10 +14,10 @@ const getRestaurantItems = (restaurantId) => {
   };
 };
 
-const getOneItem = (id) => {
+const getOneItem = (menuItemId) => {
   return {
     type: GET_ONE_ITEM,
-    payload: id,
+    payload: menuItemId,
   };
 };
 

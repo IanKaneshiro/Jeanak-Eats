@@ -7,6 +7,7 @@ import "./LandingPage.css";
 const LandingPage = () => {
   const dispatch = useDispatch();
   const restaurants = useSelector(allRestaurants);
+
   useEffect(() => {
     dispatch(getAllRestaurants());
   }, [dispatch]);
