@@ -1,9 +1,10 @@
 
 import './Reviews.css'
 import UpdateModal from '../UpdateModal'
+import DeleteModal from '../DeleteModal'
 import ReviewModal from '../ReviewModal'
-import OpenModalButton from '../OpenModalButton';
-import { getReviews } from '../../store/reviews'
+import { getReviews } from "../../../store/reviews"
+import OpenModalButton from "../../OpenModalButton"
 
 import React, {useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom';
@@ -69,7 +70,14 @@ const AllReviews = () => {
                         onItemClick={closeMenu}
                         modalComponent={<UpdateModal/>}
                     />
-                    <button> Delete </button>
+
+                    <OpenModalButton
+                        buttonText='Delete'
+                        onItemClick={closeMenu}
+                        modalComponent={<DeleteModal/>}
+                    />
+
+
                     </>
                     )
                 :

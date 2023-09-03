@@ -1,7 +1,7 @@
 
 import "./UpdateModal.css";
-import { useModal } from "../../context/Modal";
-import { getReviews } from "../../store/reviews";
+import { useModal } from "../../../context/Modal";
+import { getReviews } from "../../../store/reviews"
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

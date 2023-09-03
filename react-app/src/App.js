@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 
-import Reviews from './components/Reviews'
+import AllReviews from './components/Reviews/AllReviews'
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
@@ -38,7 +38,7 @@ function App() {
           </Route>
           <Route path="/restaurants/:restaurantId/reviews">
 
-            <Reviews/>
+            <AllReviews/>
           </Route>
           <ProtectedRoute path="/manage">
             <ManagerPortal />

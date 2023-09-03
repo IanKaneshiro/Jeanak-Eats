@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import { addReview, reviews } from "../../store/reviews";
-import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
-import { useParams } from "react-router-dom";
+
 import "./ReviewModal.css";
+
+import { addReview } from "../../../store/reviews"
+import { useModal } from "../../../context/Modal"
+
+
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 function ReviewModal() {
