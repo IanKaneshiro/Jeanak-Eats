@@ -1,0 +1,103 @@
+
+import "./UpdateModal.css";
+import { useModal } from "../../../context/Modal";
+import * as reviewActions from "../../../store/reviews"
+
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+
+function UpdateModal() {
+
+  const dispatch = useDispatch();
+  const { closeModal } = useModal();
+
+  const reviewState = useSelector(state=>state.reviews)
+  const userState = useSelector(state=>state.session)
+
+
+  const [errors, setErrors] = useState([]);
+
+
+  function findReview(){
+    let foundReview
+    reviewState?.Reviews?.forEach(element=>{
+      console.log(element)
+      console.log(element?.User?.id)
+      console.log(userState?.id)
+      if(element?.User?.id === userState?.user?.id ){
+        foundReview = element?.review
+      }
+    })
+    return foundReview
+  }
+
+  function findRating(){
+    let foundRating
+    reviewState?.Reviews?.forEach(element=>{
+      console.log(element)
+      console.log(element?.User?.id)
+      console.log(userState?.id)
+      console.log('element',element?.rating)
+      if(element?.User?.id === userState?.user?.id ){
+        foundRating = element?.rating
+      }
+    })
+    return foundRating
+  }
+
+  function reviewId(){
+    let reviewId
+    reviewState?.Reviews?.forEach(element=>{
+      if(element?.User?.id === userState?.user?.id ){
+        reviewId = element?.id
+      }
+    })
+    return reviewId
+  }
+
+  const [review, setReview] = useState(findReview());
+  const [rating, setRating] = useState(findRating());
+
+  const payload = {
+    review:review,
+    rating:rating
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const allReviews = await dispatch(reviewActions.changeReview(payload, reviewId()));
+    if (allReviews) {
+      setErrors(allReviews);
+    } else {
+      closeModal();
+    }
+  };
+
+  return (
+    <>
+      <h1>Post Your Review</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Review
+          <input
+            value={review}
+            onChange={(e) => setReview(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Rating
+          <input
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+            required
+          />
+        </label>
+        <button type="Updated">Update</button>
+      </form>
+    </>
+  );
+}
+
+export default UpdateModal;

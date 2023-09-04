@@ -1,18 +1,22 @@
 
-import "./UpdateModal.css";
-import { useModal } from "../../context/Modal";
-import { addReview, reviews } from "../../store/reviews";
+import "./AddModal.css";
+
+import { addReview, getReviews } from "../../../store/reviews"
+import { useModal } from "../../../context/Modal"
+
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-
-function UpdateModal() {
+function AddModal() {
 
   const dispatch = useDispatch();
 
   const {restaurantId} = useParams()
+
+  console.log(restaurantId, 'here')
+
   const [review, setReview] = useState();
   const [rating, setRating] = useState();
   const [errors, setErrors] = useState([]);
@@ -25,7 +29,8 @@ function UpdateModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const createReview = await dispatch(addReview(payload, restaurantId));
+    const createReview = await dispatch(addReview(restaurantId, payload));
+    console.log(createReview)
     if (createReview) {
       setErrors(createReview);
     } else {
@@ -53,10 +58,10 @@ function UpdateModal() {
             required
           />
         </label>
-        <button type="Update">Update</button>
+        <button type="Post">Post</button>
       </form>
     </>
   );
 }
 
-export default UpdateModal;
+export default AddModal;

@@ -1,12 +1,13 @@
 
 import './Reviews.css'
 import UpdateModal from '../UpdateModal'
-import ReviewModal from '../ReviewModal'
-import OpenModalButton from '../OpenModalButton';
-import { getReviews } from '../../store/reviews'
+import DeleteModal from '../DeleteModal'
+import AddModal from '../AddModal'
+import { getReviews } from "../../../store/reviews"
+import OpenModalButton from "../../OpenModalButton"
 
 import React, {useState, useEffect, useRef } from 'react'
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {useSelector, useDispatch } from 'react-redux'
 
 
@@ -15,7 +16,6 @@ import {useSelector, useDispatch } from 'react-redux'
 const AllReviews = () => {
 
     const dispatch = useDispatch()
-    const history = useHistory()
     const ulRef = useRef();
 
     const {restaurantId} = useParams()
@@ -65,12 +65,20 @@ const AllReviews = () => {
                     <div className='name'>{element.User.firstName} {element.User.lastName[0]}</div>
                     <div className='posted'> Posted: {created} </div>
                     <div className='review'>{element.review}</div>
+
                     <OpenModalButton
                         buttonText='Update'
                         onItemClick={closeMenu}
                         modalComponent={<UpdateModal/>}
                     />
-                    <button> Delete </button>
+
+                    <OpenModalButton
+                        buttonText='Delete'
+                        onItemClick={closeMenu}
+                        modalComponent={<DeleteModal/>}
+                    />
+
+
                     </>
                     )
                 :
@@ -123,7 +131,7 @@ const AllReviews = () => {
                     <OpenModalButton
                         buttonText='Post'
                         onItemClick={closeMenu}
-                        modalComponent={<ReviewModal/>}
+                        modalComponent={<AddModal/>}
                     />
                 </>
             )
