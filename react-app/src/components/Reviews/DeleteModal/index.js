@@ -4,12 +4,11 @@ import * as ReviewActions from "../../../store/reviews"
 
 import React, { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux"
-import { useParams } from "react-router-dom";
+
 
 function DeleteModal() {
 
   const dispatch = useDispatch()
-  const {restaurantId} = useParams()
 
   const reviewState = useSelector(state => state.reviews)
   const userState = useSelector(state=>state.session)

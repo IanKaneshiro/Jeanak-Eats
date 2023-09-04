@@ -5,7 +5,6 @@ import * as reviewActions from "../../../store/reviews"
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 
 
 function UpdateModal() {
@@ -16,7 +15,7 @@ function UpdateModal() {
   const reviewState = useSelector(state=>state.reviews)
   const userState = useSelector(state=>state.session)
 
-  const {restaurantId} = useParams()
+
   const [errors, setErrors] = useState([]);
 
 
