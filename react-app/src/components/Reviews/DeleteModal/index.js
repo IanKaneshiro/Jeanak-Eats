@@ -39,7 +39,7 @@ function DeleteModal() {
         <h1 className="deleteReview">Delete Your Review</h1>
         <div className="modalDeleteButtons">
         <button className="keepModalButton">No, Keep Review</button>
-        <button className="deleteModalButton">Confirm Delete</button>
+        <button className="deleteModalButton" onClick={click}>Confirm Delete</button>
         </div>
         </div>
     </>
