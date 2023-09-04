@@ -53,7 +53,7 @@ export const addReview = (payload, restaurantId) => async dispatch => {
     }
 }
 
-export const changeReview = (payload, reviewId) => async dispatch => {
+export const changeReview = (reviewId, payload) => async dispatch => {
     const response = await fetch(`api/reviews/${reviewId}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},

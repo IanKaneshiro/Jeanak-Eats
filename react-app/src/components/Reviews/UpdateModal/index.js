@@ -1,7 +1,7 @@
 
 import "./UpdateModal.css";
 import { useModal } from "../../../context/Modal";
-import { getReviews } from "../../../store/reviews"
+import * as reviewActions from "../../../store/reviews"
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,12 +47,27 @@ function UpdateModal() {
     return foundRating
   }
 
+  function reviewId(){
+    let reviewId
+    reviewState?.Reviews?.forEach(element=>{
+      if(element?.User?.id === userState?.user?.id ){
+        reviewId = element?.id
+      }
+    })
+    return reviewId
+  }
+
   const [review, setReview] = useState(findReview());
   const [rating, setRating] = useState(findRating());
 
+  const payload = {
+    review:review,
+    rating:rating
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const allReviews = await dispatch(getReviews(restaurantId));
+    const allReviews = await dispatch(reviewActions.changeReview(payload, reviewId()));
     if (allReviews) {
       setErrors(allReviews);
     } else {

@@ -65,6 +65,7 @@ const AllReviews = () => {
                     <div className='name'>{element.User.firstName} {element.User.lastName[0]}</div>
                     <div className='posted'> Posted: {created} </div>
                     <div className='review'>{element.review}</div>
+                    
                     <OpenModalButton
                         buttonText='Update'
                         onItemClick={closeMenu}
