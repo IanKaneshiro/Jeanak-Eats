@@ -17,7 +17,7 @@ const MenuItems = () => {
 
   return (
     <div className="all-menu-items-container">
-      {/*A challenge I forsee happening is dealing with the filtering menu on the left 
+      {/*A challenge I forsee happening is dealing with the filtering menu on the left
       side of screen. On ubereats it underlines the current category you are viewing and clicking
       on the category scrolls the page down to view that set of items
       */}
