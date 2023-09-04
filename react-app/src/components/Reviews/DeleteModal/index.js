@@ -26,6 +26,8 @@ function DeleteModal() {
     return reviewId
   }
 
+  console.log(findReview(), 'find review please by id')
+
   function click(){
       dispatch(ReviewActions.deleteReview(findReview()))
       return
@@ -35,7 +37,7 @@ function DeleteModal() {
     <>
         <h1>Delete Your Review</h1>
         <button>No</button>
-        <button onClick={click()}>Yes</button>
+        <button onClick={click()}>Confirm Delete</button>
     </>
   );
 }

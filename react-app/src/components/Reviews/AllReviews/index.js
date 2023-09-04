@@ -20,9 +20,7 @@ const AllReviews = () => {
 
     const {restaurantId} = useParams()
 
-    useEffect( () => {
-        dispatch(getReviews(restaurantId))
-    }, [dispatch])
+
 
     const reviewState = useSelector(state => state.reviews)
     const userState = useSelector(state => state.session)
@@ -34,6 +32,11 @@ const AllReviews = () => {
           setShowMenu(false);
         }
       };
+
+
+      useEffect( () => {
+        dispatch(getReviews(restaurantId))
+    }, [dispatch])
 
     //gets all the reviews .... firstName lastName posted on and review
     function displayReview(){
@@ -116,22 +119,16 @@ const AllReviews = () => {
         return userNoReview
     }
 
-    console.log('user id', userState?.user?.id )
-    console.log('reviews length', reviewState?.Reviews?.length)
-
-    console.log('USER',checkUser())
-
-    //creates the post button and review modal if
+    //creates the post button and add modal if
     //checkUser returns true
     function postReview(){
         if (checkUser() === 'true'){
-            console.log('inside postReview if')
             return (
                 <>
                     <OpenModalButton
-                        buttonText='Post'
+                        buttonText='Post' //button on the page not the pop up button
                         onItemClick={closeMenu}
-                        modalComponent={<AddModal/>}
+                        modalComponent={<AddModal data={restaurantId}/>}
                     />
                 </>
             )

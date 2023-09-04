@@ -3,7 +3,7 @@ import "./UpdateModal.css";
 import { useModal } from "../../../context/Modal";
 import * as reviewActions from "../../../store/reviews"
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -18,7 +18,7 @@ function UpdateModal() {
 
   const [errors, setErrors] = useState([]);
 
-
+//returns the review
   function findReview(){
     let foundReview
     reviewState?.Reviews?.forEach(element=>{
@@ -32,6 +32,7 @@ function UpdateModal() {
     return foundReview
   }
 
+//returns the rating of the review
   function findRating(){
     let foundRating
     reviewState?.Reviews?.forEach(element=>{
@@ -46,6 +47,7 @@ function UpdateModal() {
     return foundRating
   }
 
+//returns the id of the review
   function reviewId(){
     let reviewId
     reviewState?.Reviews?.forEach(element=>{
@@ -66,13 +68,15 @@ function UpdateModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const allReviews = await dispatch(reviewActions.changeReview(payload, reviewId()));
+    const allReviews = await dispatch(reviewActions.changeReview(reviewId(), payload));
     if (allReviews) {
       setErrors(allReviews);
     } else {
       closeModal();
     }
   };
+
+  console.log(reviewId(), 'reviewId update')
 
   return (
     <>
