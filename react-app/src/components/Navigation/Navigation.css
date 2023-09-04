@@ -29,14 +29,14 @@
   background-color: #e2e2e2;
   width: 80%;
   padding: 0;
-  justify-content: space-around;
+  justify-content: space-between;
   cursor: pointer;
 }
 
 .del-pick-highlight {
   border-radius: 20px;
   background-color: #ffffff;
-  padding: 8px;
+  padding: 8px 15px;
 }
 
 .navbar--location {
