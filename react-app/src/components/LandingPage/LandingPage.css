@@ -1,13 +1,16 @@
 .landing--main {
   display: flex;
+  padding: 0 40px;
 }
 
 .landing--filters {
   font-weight: bold;
+  width: 15%;
 }
 
 .landing--restaurants {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
+  width: 85%;
 }
