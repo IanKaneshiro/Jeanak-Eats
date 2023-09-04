@@ -1,10 +1,14 @@
 
 import './Reviews.css'
+
+import AddModal from '../AddModal'
 import UpdateModal from '../UpdateModal'
 import DeleteModal from '../DeleteModal'
-import AddModal from '../AddModal'
-import { getReviews } from "../../../store/reviews"
+import { useModal } from "../../../context/Modal";
 import OpenModalButton from "../../OpenModalButton"
+
+import { getReviews } from "../../../store/reviews"
+
 
 import React, {useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom';
