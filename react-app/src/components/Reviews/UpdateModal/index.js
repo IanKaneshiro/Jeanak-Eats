@@ -80,11 +80,14 @@ function UpdateModal() {
 
   return (
     <>
+    <div className="entireUpdateModal">
       <h1>Post Your Review</h1>
       <form onSubmit={handleSubmit}>
+        <div className="excludingTitle">
         <label>
           Review
-          <input
+          <textarea
+          placeholder="Leave a review..."
             value={review}
             onChange={(e) => setReview(e.target.value)}
             required
@@ -98,8 +101,10 @@ function UpdateModal() {
             required
           />
         </label>
-        <button type="Updated">Update</button>
+        <button className="updateModalButton">Update</button>
+        </div>
       </form>
+      </div>
     </>
   );
 }

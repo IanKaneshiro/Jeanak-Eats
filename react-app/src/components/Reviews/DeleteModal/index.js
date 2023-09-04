@@ -35,9 +35,13 @@ function DeleteModal() {
 
   return (
     <>
-        <h1>Delete Your Review</h1>
-        <button>No</button>
-        <button onClick={click()}>Confirm Delete</button>
+        <div className="entireDeleteModal">
+        <h1 className="deleteReview">Delete Your Review</h1>
+        <div className="modalDeleteButtons">
+        <button className="keepModalButton">No, Keep Review</button>
+        <button className="deleteModalButton">Confirm Delete</button>
+        </div>
+        </div>
     </>
   );
 }
