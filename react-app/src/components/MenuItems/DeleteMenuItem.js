@@ -12,12 +12,18 @@ const DeleteMenuItemModal = ({ menuItem }) => {
     dispatch(deleteMenuItem(menuItem.id));
   };
 
+  const rejectDelete = (e) => {
+    e.preventDefault();
+
+    closeModal();
+  };
+
   return (
     <div className="delete-menu-item-container">
       <h1>Delete Menu Item Modal Component</h1>
       <span>Delete this menu item?</span>
-      <button>Delete</button>
-      <button>Keep</button>
+      <button onClick={confirmDelete}>Delete</button>
+      <button onClick={rejectDelete}>Keep</button>
     </div>
   );
 };
