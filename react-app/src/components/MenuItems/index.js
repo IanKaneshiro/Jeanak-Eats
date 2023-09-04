@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMenuItems, allMenuItems } from "../../store/menuItems";
 import { useParams, useHistory } from "react-router-dom";
+import MenuItemDetailSidebar from "../MenuItemDetailSidebar";
 
 const MenuItems = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,9 @@ const MenuItems = () => {
       side of screen. On ubereats it underlines the current category you are viewing and clicking
       on the category scrolls the page down to view that set of items
       */}
+      {/* <div className="menu-item-detail-sidebar">
+        <MenuItemDetailSidebar restaurantId={restaurantId} />
+      </div> */}
       <ul className="menu-ul">
         {menu.map((item) => (
           <li

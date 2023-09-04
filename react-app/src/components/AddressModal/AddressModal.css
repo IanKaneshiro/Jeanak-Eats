@@ -1,0 +1,26 @@
+.address--modal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.address--modal > button {
+  border: none;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #000000;
+  color: white;
+}
+
+.address--modal > button:hover {
+  background-color: #333333;
+}
+
+.address--modal > input,
+select {
+  border: none;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #eeeeee;
+  color: black;
+}

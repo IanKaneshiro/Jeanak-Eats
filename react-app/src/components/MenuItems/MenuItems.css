@@ -85,6 +85,7 @@
 /*All menu items for a restaurant*/
 .all-menu-items-container {
   font-family: Arial, Helvetica, sans-serif;
+  width: fit-content;
 }
 
 .menu-ul {
@@ -111,10 +112,12 @@
   height: 190px;
   object-fit: cover;
   object-position: center;
+  padding-bottom: 3px;
 }
 
 .menu-tile-name {
   margin: 0;
+  padding-bottom: 3px;
 }
 
 /*New Menu Item and Update forms*/

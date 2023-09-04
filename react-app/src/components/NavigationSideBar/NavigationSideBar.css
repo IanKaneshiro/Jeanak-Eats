@@ -1,0 +1,41 @@
+.sidebar--menu.open {
+  transform: translate(0);
+  box-shadow: -8px 10px 25px black;
+  z-index: 2;
+}
+
+.sidebar--menu {
+  background-color: #ffffff;
+  width: 200px;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  top: 0;
+  transform: translateX(-200px);
+  transition: 0.5s ease;
+}
+
+.sidebar--menu-bars {
+  margin-left: 2rem;
+  background: none;
+}
+
+.sidebar--menu-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar--background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: 0.5s ease;
+}

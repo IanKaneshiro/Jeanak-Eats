@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { createRestaurant } from "../../store/restaurant";
 import "./CreateRestaurantForm.css";
-import { cuisineOptions } from "../../Resources/selectOptions";
+import {
+  cuisineOptions,
+  countryOptions,
+  stateOptions,
+} from "../../Resources/selectOptions";
 
 const CreateRestaurantForm = () => {
   const dispatch = useDispatch();
@@ -21,6 +26,8 @@ const CreateRestaurantForm = () => {
 
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
+
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,6 +51,7 @@ const CreateRestaurantForm = () => {
       setErrors(data);
     } else {
       setLoading(false);
+      history.push(`/manage/restaurants/${data.id}`);
     }
   };
 
@@ -51,7 +59,11 @@ const CreateRestaurantForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className="create--main"
+      >
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -86,21 +98,21 @@ const CreateRestaurantForm = () => {
         </label>
         <label>
           State
-          <input
-            type="text"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-            required
-          />
+          <select onChange={(e) => setState(e.target.value)}>
+            <option value="">Select...</option>
+            {stateOptions.map((type) => (
+              <option value={type}>{type}</option>
+            ))}
+          </select>
         </label>
         <label>
           Country
-          <input
-            type="text"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            required
-          />
+          <select onChange={(e) => setCountry(e.target.value)}>
+            <option value="">Select...</option>
+            {countryOptions.map((type) => (
+              <option value={type}>{type}</option>
+            ))}
+          </select>
         </label>
         <label>
           Description

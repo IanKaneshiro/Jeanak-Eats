@@ -113,6 +113,35 @@ export const signUp =
     }
   };
 
+export const updateUserAddress =
+  (address, city, state, country) => async (dispatch) => {
+    const response = await fetch("/api/auth/update", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        address,
+        city,
+        state,
+        country,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(setUser(data));
+      return null;
+    } else if (response.status < 500) {
+      const data = await response.json();
+      if (data.errors) {
+        return data.errors;
+      }
+    } else {
+      return ["An error occurred. Please try again."];
+    }
+  };
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
