@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ProtectedRoute from "../auth/ProtectedRoute";
 import ManageRestaurantsTile from "../ManageRestaurantsTile";
 import "./ManageRestaurants.css";
+import ManageMenuItems from "../ManageMenuItems";
 
 const ManageRestaurants = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,10 @@ const ManageRestaurants = () => {
     <ProtectedRoute>
       <div>
         {restuarants.map((restuarant) => (
-          <ManageRestaurantsTile restaurant={restuarant} key={restuarant.id} />
+          <div key={restuarant.id}>
+            <ManageRestaurantsTile restaurant={restuarant} />
+            <ManageMenuItems restaurant={restuarant} />
+          </div>
         ))}
       </div>
     </ProtectedRoute>

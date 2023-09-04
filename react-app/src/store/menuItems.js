@@ -105,7 +105,7 @@ export const updateMenuItem = (itemUpdates, menuItemId) => async (dispatch) => {
 };
 
 //Delete a menu item by the item's id
-export const deleteItem = (menuItemId) => async (dispatch) => {
+export const deleteMenuItem = (menuItemId) => async (dispatch) => {
   const res = await fetch(`/api/menuItems/${menuItemId}`, {
     method: "DELETE",
   });
