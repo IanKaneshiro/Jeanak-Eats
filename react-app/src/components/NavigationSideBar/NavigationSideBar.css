@@ -6,12 +6,12 @@
 
 .sidebar--menu {
   background-color: #ffffff;
-  width: 250px;
+  width: 200px;
   height: 100%;
   display: flex;
   position: absolute;
   top: 0;
-  transform: translateX(-250px);
+  transform: translateX(-200px);
   transition: 0.5s ease;
 }
 
