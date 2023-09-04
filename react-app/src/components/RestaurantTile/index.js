@@ -1,9 +1,14 @@
 import React from "react";
 import "./RestaurantTile.css";
+import { useHistory } from "react-router-dom";
 
 const RestaurantTile = ({ restaurant }) => {
+  const history = useHistory();
   return (
-    <div className="restaurant-tile--main">
+    <div
+      className="restaurant-tile--main"
+      onClick={() => history.push(`/restaurants/${restaurant.id}`)}
+    >
       <img
         src={restaurant.imageUrl}
         alt={restaurant.name}
