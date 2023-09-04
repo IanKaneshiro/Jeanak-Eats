@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 
-import AllReviews from './components/Reviews/AllReviews'
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
@@ -14,6 +13,10 @@ import NewMenuItemForm from "./components/MenuItems/NewMenuItemForm";
 import UpdateMenuItemForm from "./components/MenuItems/UpdateMenuItemForm";
 import ManagerPortal from "./components/ManagerPortal";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import AllReviews from './components/Reviews/AllReviews'
+import UpdateModal from "./components/Reviews/UpdateModal";
+import DeleteModal from "./components/DeleteModal";
+import AddModal from "./components/Reviews/AddModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,8 +40,8 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/restaurants/:restaurantId/reviews">
-
             <AllReviews/>
+            <AddModal/>
           </Route>
           <ProtectedRoute path="/manage">
             <ManagerPortal />
