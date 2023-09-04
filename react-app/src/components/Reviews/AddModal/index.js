@@ -1,5 +1,5 @@
 
-import "./ReviewModal.css";
+import "./AddModal.css";
 
 import { addReview, getReviews } from "../../../store/reviews"
 import { useModal } from "../../../context/Modal"
@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-function ReviewModal() {
+function AddModal() {
 
   const dispatch = useDispatch();
 
@@ -64,4 +64,4 @@ function ReviewModal() {
   );
 }
 
-export default ReviewModal;
+export default AddModal;

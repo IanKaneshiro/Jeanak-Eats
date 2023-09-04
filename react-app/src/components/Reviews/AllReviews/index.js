@@ -2,7 +2,7 @@
 import './Reviews.css'
 import UpdateModal from '../UpdateModal'
 import DeleteModal from '../DeleteModal'
-import ReviewModal from '../ReviewModal'
+import AddModal from '../AddModal'
 import { getReviews } from "../../../store/reviews"
 import OpenModalButton from "../../OpenModalButton"
 
@@ -65,7 +65,7 @@ const AllReviews = () => {
                     <div className='name'>{element.User.firstName} {element.User.lastName[0]}</div>
                     <div className='posted'> Posted: {created} </div>
                     <div className='review'>{element.review}</div>
-                    
+
                     <OpenModalButton
                         buttonText='Update'
                         onItemClick={closeMenu}
@@ -131,7 +131,7 @@ const AllReviews = () => {
                     <OpenModalButton
                         buttonText='Post'
                         onItemClick={closeMenu}
-                        modalComponent={<ReviewModal/>}
+                        modalComponent={<AddModal/>}
                     />
                 </>
             )
