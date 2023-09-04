@@ -24,7 +24,7 @@ const DeleteOneReview = remove => ({
 
 //THUNKS
 export const getReviews = (restaurantId) => async dispatch => {
-    const response = await fetch(`/api/restaurants/${restaurantId}`)
+    const response = await fetch(`/api/restaurants/${restaurantId}/reviews`)
 
     if(response.ok){
         const totalReviews = await response.json()
@@ -37,7 +37,7 @@ export const getReviews = (restaurantId) => async dispatch => {
 }
 
 export const addReview = (restaurantId, payload) => async dispatch => {
-    const response = await fetch(`/api/restaurants/${restaurantId}`, {
+    const response = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(payload)
