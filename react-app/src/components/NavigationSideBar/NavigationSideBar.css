@@ -6,25 +6,45 @@
 
 .sidebar--menu {
   background-color: #ffffff;
-  width: 200px;
+  width: 250px;
   height: 100%;
   display: flex;
+  flex-direction: column;
   position: absolute;
   top: 0;
-  transform: translateX(-200px);
+  transform: translateX(-250px);
   transition: 0.5s ease;
+  padding: 20px 10px;
 }
 
-.sidebar--menu-bars {
-  margin-left: 2rem;
-  background: none;
+.sidebar--menu-items-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+  width: 200px;
+  padding: 0 10px;
 }
 
 .sidebar--menu-items {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border: none;
+  background-color: #ffffff;
+  font-size: 16px;
+}
+
+.sidebar--profile {
+  display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.sidebar--signout-btn {
+  border: none;
+  background-color: #ffffff;
+  color: #8d8d8d;
 }
 
 .sidebar--background {
@@ -38,4 +58,29 @@
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.6);
   transition: 0.5s ease;
+}
+
+.sidebar--sign-out-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar--sign-out-main button {
+  border-radius: 10px;
+  background-color: #000000;
+  color: #ffffff;
+  width: 200px;
+  height: 60px;
+}
+
+.sidebar--sign-out-main button:hover {
+  background-color: #333333;
+}
+.sidebar--sign-out-main button:active {
+  background-color: #505050;
+}
+.sidebar--sign-out-main a:hover {
+  color: #ffffff;
+  background-color: #000000;
 }

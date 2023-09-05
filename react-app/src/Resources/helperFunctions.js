@@ -71,3 +71,7 @@ export const formatTime = (time) => {
     return `${time[0] - 12}:${time[1]} PM`;
   }
 };
+
+export const notImplemented = () => {
+  alert("Feature coming soon...");
+};
