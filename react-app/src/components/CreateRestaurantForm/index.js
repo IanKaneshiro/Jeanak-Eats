@@ -47,8 +47,9 @@ const CreateRestaurantForm = () => {
     setLoading(true);
 
     const data = await dispatch(createRestaurant(formData));
-    if (data.errors) {
+    if (data) {
       setErrors(data);
+      setLoading(false);
     } else {
       setLoading(false);
       setName("");
@@ -77,7 +78,7 @@ const CreateRestaurantForm = () => {
       >
         <h1>Create Restaurant</h1>
         <ul>
-          {errors.map((error, idx) => (
+          {Object.values(errors).map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
@@ -153,6 +154,7 @@ const CreateRestaurantForm = () => {
         />
         <label htmlFor="close">Closes At</label>
         <input
+          required
           id="close"
           type="time"
           value={closes_at}

@@ -45,7 +45,6 @@ const RestaurantDetails = () => {
         <p className="details--est-delivery-time">Est. delivery time here</p>
       </div>
       <MenuItem />
-      <AllReviews />
     </div>
   );
 };

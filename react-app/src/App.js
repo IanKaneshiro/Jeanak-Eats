@@ -39,7 +39,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-         
+
 
           <ProtectedRoute path="/manage">
             <ManagerPortal />
