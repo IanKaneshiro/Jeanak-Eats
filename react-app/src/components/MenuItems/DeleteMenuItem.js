@@ -1,15 +1,18 @@
 import { useModal } from "../../context/Modal";
-import { deleteMenuItem } from "../../store/menuItems";
+import { deleteMenuItem, getAllMenuItems } from "../../store/menuItems";
 import { useDispatch } from "react-redux";
 
-const DeleteMenuItemModal = ({ menuItem }) => {
+const DeleteMenuItemModal = ({ item }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
   const confirmDelete = (e) => {
     e.preventDefault();
 
-    dispatch(deleteMenuItem(menuItem.id));
+    dispatch(deleteMenuItem(item.id)).then(
+      dispatch(getAllMenuItems(item.restaurantId))
+    );
+    closeModal();
   };
 
   const rejectDelete = (e) => {

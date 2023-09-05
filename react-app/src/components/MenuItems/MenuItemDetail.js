@@ -7,18 +7,26 @@ import {
   clearCurrentMenuItem,
 } from "../../store/menuItems";
 import { useParams, useHistory } from "react-router-dom";
+import { allRestaurants, getAllRestaurants } from "../../store/restaurant";
 
 const MenuItemDetail = () => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { menuItemId } = useParams();
   const item = useSelector(currentMenuItem);
+  const restaurants = useSelector(allRestaurants).reduce((acc, obj) => {
+    acc[obj.id] = obj;
+    return acc;
+  }, {});
+  const restaurant = restaurants[item.restaurantId];
   const history = useHistory();
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    dispatch(getOneMenuItem(id));
-  }, [dispatch, id]);
-  if (!item) {
+    dispatch(getOneMenuItem(menuItemId));
+    dispatch(getAllRestaurants());
+  }, [dispatch, menuItemId]);
+
+  if (!item || !restaurant) {
     return "Loading...";
   }
 
@@ -39,7 +47,7 @@ const MenuItemDetail = () => {
   return (
     <div className="menuItemDetail">
       <span className="back-to-restaurant" onClick={goBackToRestaurant}>
-        ← Back to PLACEHOLDER RESTAURANT NAME
+        ← Back to {restaurant.name}
       </span>
       <div className="menuItemTile">
         <img className="itemDetailImg" src={item.imageUrl} alt={item.id} />
@@ -61,6 +69,8 @@ const MenuItemDetail = () => {
             <option className="quantity-option">6</option>
             <option className="quantity-option">7</option>
             <option className="quantity-option">8</option>
+            <option className="quantity-option">9</option>
+            <option className="quantity-option">10</option>
           </select>
         </span>
 

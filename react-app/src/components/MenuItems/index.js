@@ -1,18 +1,27 @@
 import "./MenuItems.css";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllMenuItems, allMenuItems } from "../../store/menuItems";
+import {
+  getAllMenuItems,
+  allMenuItems,
+  clearAllMenuItems,
+} from "../../store/menuItems";
 import { useParams, useHistory } from "react-router-dom";
 import MenuItemDetailSidebar from "../MenuItemDetailSidebar";
+import { currentRestaurant, getRestaurantById } from "../../store/restaurant";
 
 const MenuItems = () => {
   const dispatch = useDispatch();
   const { restaurantId } = useParams();
   const menu = useSelector(allMenuItems);
+  const restaurant = useSelector(currentRestaurant);
   const history = useHistory();
 
   useEffect(() => {
     dispatch(getAllMenuItems(restaurantId));
+    dispatch(getRestaurantById(restaurantId));
+
+    return () => dispatch(clearAllMenuItems());
   }, [dispatch, restaurantId]);
 
   return (
@@ -22,7 +31,7 @@ const MenuItems = () => {
       on the category scrolls the page down to view that set of items
       */}
       {/* <div className="menu-item-detail-sidebar">
-        <MenuItemDetailSidebar restaurantId={restaurantId} />
+        <MenuItemDetailSidebar restaurant={restaurant} />
       </div> */}
       <ul className="menu-ul">
         {menu.map((item) => (
