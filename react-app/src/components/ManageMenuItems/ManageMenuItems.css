@@ -1,0 +1,13 @@
+.manage-menu-item-table {
+  border: 0.5px solid black;
+  margin: 5px;
+}
+
+.manage-menu-item-row {
+  border: 0.5px solid black;
+}
+
+.menu-item-table-data {
+  border: 0.5px solid black;
+  padding: 2px;
+}

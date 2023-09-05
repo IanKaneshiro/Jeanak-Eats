@@ -21,9 +21,6 @@ const MenuItemDetail = () => {
   const history = useHistory();
   const [quantity, setQuantity] = useState(1);
 
-  console.log("DETAIL RESTAURANT", restaurant);
-  console.log("DETAIL ITEM", item);
-
   useEffect(() => {
     dispatch(getOneMenuItem(menuItemId));
     dispatch(getAllRestaurants());

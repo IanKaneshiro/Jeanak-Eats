@@ -4,6 +4,7 @@ import ManageRestaurants from "../ManageRestaurants";
 import CreateRestaurantForm from "../CreateRestaurantForm";
 import ManageRestaurantUpdatePage from "../ManageRestaurantUpdatePage";
 import ProtectedRoute from "../auth/ProtectedRoute";
+import ManageMenuItems from "../ManageMenuItems";
 
 import "./ManagerPortal.css";
 
@@ -32,6 +33,9 @@ const ManagerPortal = () => {
           </ProtectedRoute>
           <ProtectedRoute path={`${path}/restaurants/:id`}>
             <ManageRestaurantUpdatePage />
+          </ProtectedRoute>
+          <ProtectedRoute path={`${path}/restaurants/:id/menuItems`}>
+            <ManageMenuItems />
           </ProtectedRoute>
         </Switch>
       </div>

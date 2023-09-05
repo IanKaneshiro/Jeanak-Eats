@@ -10,6 +10,7 @@ import {
 
 import OpenModalButton from "../OpenModalButton";
 import UpdateRestaurantForm from "../UpdateRestaurantForm";
+import ManageMenuItems from "../ManageMenuItems";
 
 const ManageRestaurantUpdatePage = () => {
   const { id } = useParams();
@@ -100,6 +101,9 @@ const ManageRestaurantUpdatePage = () => {
           modalComponent={<UpdateRestaurantForm type={"options"} id={id} />}
           buttonText={"Edit"}
         />
+      </div>
+      <div className="manage-menu-items-container">
+        <ManageMenuItems restaurant={restaurant} />
       </div>
     </div>
   );

@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { allMenuItems, getAllMenuItems } from "../../store/menuItems";
 import { useEffect } from "react";
 
-const MenuItemDetailSidebar = ({ restaurantId }) => {
+const MenuItemDetailSidebar = ({ restaurant }) => {
   const menuItemCategories = useSelector(allMenuItems);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllMenuItems(restaurantId));
-  }, [dispatch, restaurantId]);
+    dispatch(getAllMenuItems(restaurant.id));
+  }, [dispatch, restaurant.id]);
   return (
     <div>
       <h1>Menu Item Detail Sidebar Component</h1>
