@@ -27,14 +27,16 @@ const ManageRestaurantDetails = () => {
 
   return (
     <div className="manager--restaurant-detail-container">
-      <OpenModalButton
-        modalComponent={<UpdateRestaurantForm id={id} />}
-        buttonText={"Edit"}
-      />
-      <OpenModalButton
-        modalComponent={<DeleteModal id={restaurant.id} />}
-        buttonText={"Delete"}
-      />
+      <div>
+        <OpenModalButton
+          modalComponent={<UpdateRestaurantForm id={id} />}
+          buttonText={"Edit"}
+        />
+        <OpenModalButton
+          modalComponent={<DeleteModal id={restaurant.id} />}
+          buttonText={"Delete"}
+        />
+      </div>
       <div className="manager--restaurant-detail-main">
         {restaurant.imageUrl ? (
           <img src={restaurant.imageUrl} alt={restaurant.name} />

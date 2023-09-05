@@ -15,6 +15,9 @@
 .address--modal > button:hover {
   background-color: #333333;
 }
+.address--modal > button:active {
+  background-color: #505050;
+}
 
 .address--modal > input,
 select {
@@ -23,4 +26,5 @@ select {
   border-radius: 10px;
   background-color: #eeeeee;
   color: black;
+  padding: 10px;
 }

@@ -6,6 +6,7 @@ import CreateRestaurantForm from "../CreateRestaurantForm";
 import ManageRestaurantDetails from "../ManageRestaurantDetails";
 import ManagerPortalHome from "../ManagerPortalHome";
 import ProtectedRoute from "../auth/ProtectedRoute";
+import ManageMenuItems from "../ManageMenuItems";
 
 import "./ManagerPortal.css";
 
@@ -29,14 +30,21 @@ const ManagerPortal = () => {
         <h1>Manager Portal</h1>
         <ul className="manager--navbar-links">
           <li>
-            <NavLink to="/manage">Home</NavLink>
+            <NavLink to="/manage">
+              <i className="fa-solid fa-house fa-sm"></i> Home
+            </NavLink>
           </li>
+
           <li>
-            <button
-              className="manager--navbar-restaurants-btn"
-              onClick={handleOpenRestaurants}
-            >
-              Restaurants
+            <button onClick={handleOpenRestaurants}>
+              <i className="fa-solid fa-utensils fa-sm"></i> Restaurants{" "}
+              <i
+                className={
+                  openRestaurants
+                    ? "fa-solid fa-caret-down fa-sm caret-open"
+                    : "fa-solid fa-caret-down fa-sm caret-closed"
+                }
+              ></i>
             </button>
             <ul
               className={
@@ -55,7 +63,9 @@ const ManagerPortal = () => {
             </ul>
           </li>
           <li>
-            <NavLink to={`${url}/restaurants/new`}>Add a restaurant</NavLink>
+            <NavLink to={`${url}/restaurants/new`}>
+              <i className="fa-solid fa-hammer fa-sm"></i> Add a restaurant
+            </NavLink>
           </li>
         </ul>
       </nav>
@@ -69,6 +79,9 @@ const ManagerPortal = () => {
           </ProtectedRoute>
           <ProtectedRoute path={`${path}/restaurants/:id`}>
             <ManageRestaurantDetails />
+          </ProtectedRoute>
+          <ProtectedRoute path={`${path}/restaurants/:id/menuItems`}>
+            <ManageMenuItems />
           </ProtectedRoute>
         </Switch>
       </div>

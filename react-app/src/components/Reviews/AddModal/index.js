@@ -6,11 +6,13 @@ import { addReview } from "../../../store/reviews"
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function AddModal(data) {
 
   const dispatch = useDispatch();
+  const history = useHistory()
   const { closeModal } = useModal();
 
   const [review, setReview] = useState();
@@ -37,21 +39,22 @@ function AddModal(data) {
 
   };
 
+
+
   return (
     <>
     <div className="entireUpdateModal">
       <h1>Post Your Review</h1>
       <form onSubmit={handleSubmit}>
       <div className="excludingTitle">
-        <label>
-          Review
+        
           <textarea
             placeholder="Leave a Review"
             value={review}
             onChange={(e) => setReview(e.target.value)}
             required
           />
-        </label>
+
         <label>
           Rating
           <input

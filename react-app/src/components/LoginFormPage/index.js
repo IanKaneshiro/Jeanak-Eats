@@ -35,25 +35,25 @@ function LoginFormPage() {
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>Email or phone number </label>
         <input
+          placeholder="Enter phone number or email"
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
         />
-
-        <label>Password </label>
         <input
+          placeholder="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-
         <button type="submit">Log In</button>
       </form>
-      <button onClick={loginDemo}>Login Demo</button>
+      <button className="login-demo-btn" onClick={loginDemo}>
+        Login Demo
+      </button>
     </div>
   );
 }

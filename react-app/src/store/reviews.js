@@ -46,11 +46,8 @@ export const addReview = (restaurantId, payload) => async dispatch => {
     if(response.ok){
         const newReview = await response.json()
         dispatch(AddOneReview(newReview))
-        return newReview
     }
-    else {
-        return await response.json()
-    }
+
 }
 
 export const changeReview = (reviewId,payload) => async dispatch => {

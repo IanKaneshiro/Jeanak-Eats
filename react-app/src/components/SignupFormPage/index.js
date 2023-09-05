@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
 import { Redirect } from "react-router-dom";
+import { stateOptions, countryOptions } from "../../Resources/selectOptions";
 import "./SignupForm.css";
 
 function SignupFormPage() {
@@ -56,76 +57,67 @@ function SignupFormPage() {
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>First Name</label>
         <input
+          placeholder="First Name"
           type="text"
           value={first_name}
           onChange={(e) => setFirstName(e.target.value)}
           required
         />
-
-        <label>Last Name </label>
         <input
+          placeholder="Last Name"
           type="text"
           value={last_name}
           onChange={(e) => setLastName(e.target.value)}
           required
         />
-
-        <label>Email </label>
         <input
+          placeholder="Email"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-
-        <label>Phone Number </label>
         <input
+          placeholder="Phone Number"
           type="text"
           value={phone_number}
           onChange={(e) => setPhoneNumber(e.target.value)}
           required
         />
-
-        <label>Address </label>
         <input
+          placeholder="Address (Optional)"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
-
-        <label>City </label>
         <input
+          placeholder="City (Optional)"
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-
-        <label>State </label>
+        <select onChange={(e) => setState(e.target.value)}>
+          <option value="">State (Optional)</option>
+          {stateOptions.map((type) => (
+            <option value={type}>{type}</option>
+          ))}
+        </select>
+        <select onChange={(e) => setCountry(e.target.value)}>
+          <option value="">Country (Optional)</option>
+          {countryOptions.map((type) => (
+            <option value={type}>{type}</option>
+          ))}
+        </select>
         <input
-          type="text"
-          value={state}
-          onChange={(e) => setState(e.target.value)}
-        />
-
-        <label>Country </label>
-        <input
-          type="text"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-        />
-
-        <label>Password </label>
-        <input
+          placeholder="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-
-        <label>Confirm Password </label>
         <input
+          placeholder="Confirm Password"
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}

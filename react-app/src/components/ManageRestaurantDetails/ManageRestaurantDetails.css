@@ -1,3 +1,11 @@
+.manager--restaurant-detail-container {
+  width: 85vw;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .manager--restaurant-detail-main img {
   width: 150px;
   height: 150px;
@@ -7,7 +15,6 @@
 .manager--restaurant-detail-main {
   display: flex;
   gap: 20px;
-  padding: 20px;
 }
 
 .manager--restaurant-detail-info {
@@ -28,4 +35,8 @@
 
 .manager--restaurant-detail-container > button:hover {
   background-color: #333333;
+}
+
+.manager--restaurant-detail-container > button:active {
+  background-color: #505050;
 }

@@ -34,34 +34,31 @@ const AddressModal = () => {
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label htmlFor="address">Address</label>
+
         <input
-          id="address"
+          placeholder="Address"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           required
         />
-        <label htmlFor="city">City</label>
         <input
-          id="city"
+          placeholder="City"
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           required
         />
-        <label htmlFor="state">State</label>
-        <select id="state" onChange={(e) => setState(e.target.value)}>
-          <option value="">Select...</option>
+        <select onChange={(e) => setState(e.target.value)}>
+          <option value="">State</option>
           {stateOptions.map((type) => (
             <option key={type} value={type}>
               {type}
             </option>
           ))}
         </select>
-        <label htmlFor="country">Country</label>
-        <select id="country" onChange={(e) => setCountry(e.target.value)}>
-          <option value="">Select...</option>
+        <select onChange={(e) => setCountry(e.target.value)}>
+          <option value="">Country</option>
           {countryOptions.map((type) => (
             <option key={type} value={type}>
               {type}
