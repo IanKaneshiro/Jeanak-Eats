@@ -68,6 +68,8 @@
   background-color: #e2e2e2;
   width: 100%;
   padding-left: 10px;
+  border-radius: 20px;
+  height: 40px;
 }
 
 .navbar--shopping-btn {

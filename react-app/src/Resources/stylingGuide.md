@@ -1,5 +1,7 @@
 ## General
 
+- light gray #8b8b8b
+
 ## Button
 
 - hover #333333

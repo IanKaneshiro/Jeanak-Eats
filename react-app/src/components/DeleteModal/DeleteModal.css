@@ -23,3 +23,7 @@
 .delete--modal-btn > button:hover {
   background-color: #333333;
 }
+
+.delete--modal-btn > button:active {
+  background-color: #505050;
+}
