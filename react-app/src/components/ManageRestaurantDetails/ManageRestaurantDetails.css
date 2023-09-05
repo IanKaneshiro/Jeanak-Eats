@@ -29,3 +29,7 @@
 .manager--restaurant-detail-container > button:hover {
   background-color: #333333;
 }
+
+.manager--restaurant-detail-container > button:active {
+  background-color: rgb(80, 80, 80);
+}

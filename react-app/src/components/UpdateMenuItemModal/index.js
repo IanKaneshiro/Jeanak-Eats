@@ -1,18 +1,14 @@
-import "./MenuItems.css";
+import "./UpdateMenuItemModal.css";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  currentMenuItem,
-  getOneMenuItem,
-  updateMenuItem,
-} from "../../store/menuItems";
-import { useParams, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getOneMenuItem, updateMenuItem } from "../../store/menuItems";
 
-const UpdateMenuItemForm = () => {
-  const history = useHistory();
-  const { menuItemId } = useParams();
-  const item = useSelector(currentMenuItem);
+import { useModal } from "../../context/Modal";
+
+const UpdateMenuItemModal = ({ item }) => {
+  //   const item = useSelector(currentMenuItem);
   const dispatch = useDispatch();
+  const { closeModal } = useModal();
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -24,10 +20,10 @@ const UpdateMenuItemForm = () => {
 
   //Gets the currentMenuItem to render the form's present data
   useEffect(() => {
-    dispatch(getOneMenuItem(menuItemId)).then(() => {
+    dispatch(getOneMenuItem(item.id)).then(() => {
       setIsLoading(false);
     });
-  }, [dispatch, menuItemId]);
+  }, [dispatch, item.id]);
 
   //If there is a currentMenuItem, populate fields with its data or "" if null
   useEffect(() => {
@@ -56,9 +52,8 @@ const UpdateMenuItemForm = () => {
       image_url,
     };
 
-    dispatch(updateMenuItem(itemUpdates, menuItemId)).then((item) => {
-      history.push(`/menuItems/${item.id}`);
-    });
+    dispatch(updateMenuItem(itemUpdates, item.id));
+    closeModal();
   };
 
   return (
@@ -167,4 +162,4 @@ const UpdateMenuItemForm = () => {
   );
 };
 
-export default UpdateMenuItemForm;
+export default UpdateMenuItemModal;

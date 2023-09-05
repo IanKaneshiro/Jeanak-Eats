@@ -13,9 +13,6 @@ import UpdateMenuItemForm from "./components/MenuItems/UpdateMenuItemForm";
 import ManagerPortal from "./components/ManagerPortal";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import AllReviews from "./components/Reviews/AllReviews";
-import UpdateModal from "./components/Reviews/UpdateModal";
-import DeleteModal from "./components/DeleteModal";
-import AddModal from "./components/Reviews/AddModal";
 import RestaurantDetails from "./components/RestaurantDetails";
 
 function App() {

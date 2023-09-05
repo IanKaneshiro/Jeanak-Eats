@@ -105,6 +105,7 @@ export const updateMenuItem = (itemUpdates, menuItemId) => async (dispatch) => {
   });
   if (res.ok) {
     const data = await res.json();
+    console.log("UPDATE THUNK", data);
     dispatch(updateItem(data));
     return data;
   }
