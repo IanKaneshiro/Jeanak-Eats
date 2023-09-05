@@ -78,6 +78,10 @@
   background-color: rgb(80, 80, 80);
 }
 
+.add-to-order-button:focus {
+  border: none;
+}
+
 .back-to-restaurant:hover {
   cursor: pointer;
 }

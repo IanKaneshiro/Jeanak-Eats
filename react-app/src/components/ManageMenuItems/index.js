@@ -1,9 +1,11 @@
+import "./ManageMenuItems.css";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allMenuItems, getAllMenuItems } from "../../store/menuItems";
 import DeleteMenuItemModal from "../MenuItems/DeleteMenuItem";
 import OpenModalButton from "../OpenModalButton";
-import { useHistory } from "react-redux-dom";
+import { useHistory } from "react-router-dom";
+import ProtectedRoute from "../auth/ProtectedRoute";
 
 //I need to figure out where to put this component. It wasn't showing
 //up where I was expecting it to.
@@ -18,30 +20,53 @@ const ManageMenuItems = ({ restaurant }) => {
   }, [dispatch]);
 
   return (
-    <div className="manage-menu-item-container">
-      <ul className="manage-menu-item-ul">
-        {menuItems.map((item) => (
-          <li key={item.id} className="manage-menu-item-li">
-            <span>{item.name}</span>
-            <span>{item.description}</span>
-            <span>{item.price}</span>
-            <span>{item.category}</span>
-            <span>{item.dietary}</span>
-            <span>{item.imageUrl}</span>
-            <button
-              onClick={() => history.push(`/menuItems/${item.id}/update`)}
-            >
-              Edit
-            </button>
-            <OpenModalButton
-              className="delete-button"
-              buttonText="Delete"
-              modalComponent={<DeleteMenuItemModal item={item} />}
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ProtectedRoute>
+      <div className="manage-menu-item-container">
+        <table className="manage-menu-item-table">
+          <thead>
+            <tr>
+              <th className="menu-item-table-header">Name</th>
+              <th className="menu-item-table-header">Description</th>
+              <th className="menu-item-table-header">Price</th>
+              <th className="menu-item-table-header">Category</th>
+              <th className="menu-item-table-header">Dietary</th>
+              <th className="menu-item-table-header">Image</th>
+              <th className="menu-item-table-header">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {menuItems.map((item) => (
+              <tr key={item.id} className="manage-menu-item-row">
+                <td className="menu-item-table-data">{item.name}</td>
+                <td className="menu-item-table-data">{item.description}</td>
+                <td className="menu-item-table-data">${item.price}</td>
+                <td className="menu-item-table-data">{item.category}</td>
+                <td className="menu-item-table-data">{item.dietary}</td>
+                <td className="menu-item-table-data">
+                  <img
+                    src={item.imageUrl}
+                    alt={item.name}
+                    className="menu-item-image"
+                  />
+                </td>
+                <td className="menu-item-table-data">
+                  <button
+                    onClick={() => history.push(`/menuItems/${item.id}/update`)}
+                  >
+                    Edit
+                  </button>
+                  <OpenModalButton
+                    className="delete-button"
+                    buttonText="Delete"
+                    modalComponent={<DeleteMenuItemModal item={item} />}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </ProtectedRoute>
   );
 };
 

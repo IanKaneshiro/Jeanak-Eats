@@ -54,7 +54,7 @@ function App() {
           <Route path="/menuItems/:menuItemId/update">
             <UpdateMenuItemForm />
           </Route>
-          <Route path="/menuItems/:id">
+          <Route path="/menuItems/:menuItemId">
             <MenuItemDetail />
           </Route>
         </Switch>

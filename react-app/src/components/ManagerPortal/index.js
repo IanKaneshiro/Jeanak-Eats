@@ -6,6 +6,7 @@ import CreateRestaurantForm from "../CreateRestaurantForm";
 import ManageRestaurantDetails from "../ManageRestaurantDetails";
 import ManagerPortalHome from "../ManagerPortalHome";
 import ProtectedRoute from "../auth/ProtectedRoute";
+import ManageMenuItems from "../ManageMenuItems";
 
 import "./ManagerPortal.css";
 
@@ -78,6 +79,9 @@ const ManagerPortal = () => {
           </ProtectedRoute>
           <ProtectedRoute path={`${path}/restaurants/:id`}>
             <ManageRestaurantDetails />
+          </ProtectedRoute>
+          <ProtectedRoute path={`${path}/restaurants/:id/menuItems`}>
+            <ManageMenuItems />
           </ProtectedRoute>
         </Switch>
       </div>
