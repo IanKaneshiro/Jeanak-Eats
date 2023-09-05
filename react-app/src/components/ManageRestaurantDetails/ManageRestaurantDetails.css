@@ -33,10 +33,10 @@
   border-radius: 10px;
 }
 
-.manager--restaurant-detail-container > button:hover {
+.manager--restaurant-detail-container button:hover {
   background-color: #333333;
 }
 
-.manager--restaurant-detail-container > button:active {
+.manager--restaurant-detail-container button:active {
   background-color: #505050;
 }

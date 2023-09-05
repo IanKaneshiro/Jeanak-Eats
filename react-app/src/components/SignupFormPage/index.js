@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { stateOptions, countryOptions } from "../../Resources/selectOptions";
 import "./SignupForm.css";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -39,7 +40,7 @@ function SignupFormPage() {
       if (data) {
         setErrors(data);
       } else {
-        return <Redirect to="/" />;
+        return history.push("/");
       }
     } else {
       setErrors([
