@@ -23,6 +23,7 @@ const AllReviews = () => {
     const ulRef = useRef();
 
     const {restaurantId} = useParams()
+    const { closeModal } = useModal();
 
 
 
@@ -40,7 +41,7 @@ const AllReviews = () => {
 
       useEffect( () => {
         dispatch(getReviews(restaurantId))
-    }, [dispatch])
+    }, [dispatch, closeModal])
 
     //gets all the reviews .... firstName lastName posted on and review
     function displayReview(){
@@ -84,8 +85,6 @@ const AllReviews = () => {
                         onItemClick={closeMenu}
                         modalComponent={<DeleteModal/>}
                     />
-
-
                     </>
                     )
                 :
