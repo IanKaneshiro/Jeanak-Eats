@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { createRestaurant } from "../../store/restaurant";
 import "./CreateRestaurantForm.css";
-import { cuisineOptions } from "../../Resources/selectOptions";
+import {
+  cuisineOptions,
+  countryOptions,
+  stateOptions,
+} from "../../Resources/selectOptions";
 
 const CreateRestaurantForm = () => {
   const dispatch = useDispatch();
@@ -21,6 +26,8 @@ const CreateRestaurantForm = () => {
 
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
+
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,125 +51,117 @@ const CreateRestaurantForm = () => {
       setErrors(data);
     } else {
       setLoading(false);
+      setName("");
+      setAddress("");
+      setState("");
+      setCountry("");
+      setDescription("");
+      setCuisine("");
+      setDietary("");
+      setPriceRange("");
+      setOpensAt("");
+      setClosesAt("");
+      setImageUrl("");
+      history.push(`/manage/restaurants/${data.id}`);
     }
   };
 
   if (loading) return <h1>...loading</h1>;
 
   return (
-    <>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <div className="create--container">
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className="create--main"
+      >
+        <h1>Create Restaurant</h1>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Name
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Address
-          <input
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          City
-          <input
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          State
-          <input
-            type="text"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Country
-          <input
-            type="text"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Description
-          <textarea
-            value={description}
-            placeholder="Optional: Provide a short sumary of your restaurant"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </label>
-        <label>
-          Cuisine
-          <select required onChange={(e) => setCuisine(e.target.value)}>
-            <option value="">Select...</option>
-            {cuisineOptions.map((type) => (
-              <option value={type}>{type}</option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Dietary
-          <select onChange={(e) => setDietary(e.target.value)}>
-            <option value="">Select...</option>
-            <option value="Vegan">Vegan</option>
-            <option value="Vegetarian">Vegetarian</option>
-          </select>
-        </label>
-        <label>
-          Price Range
-          <select required onChange={(e) => setPriceRange(e.target.value)}>
-            <option value="$">$</option>
-            <option value="$$">$$</option>
-            <option value="$$$">$$$</option>
-            <option value="$$$$">$$$$</option>
-          </select>
-        </label>
-        <label>
-          Image
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImageUrl(e.target.files[0])}
-          />
-        </label>
-        <label>
-          Opens At
-          <input
-            type="time"
-            value={opens_at}
-            onChange={(e) => setOpensAt(e.target.value)}
-          />
-        </label>
-        <label>
-          Closes At
-          <input
-            type="time"
-            value={closes_at}
-            onChange={(e) => setClosesAt(e.target.value)}
-          />
-        </label>
+        <input
+          placeholder="Name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <input
+          placeholder="Address"
+          type="text"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          required
+        />
+        <input
+          placeholder="City"
+          type="text"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          required
+        />
+        <select required onChange={(e) => setState(e.target.value)}>
+          <option value="">State</option>
+          {stateOptions.map((type) => (
+            <option value={type}>{type}</option>
+          ))}
+        </select>
+        <select required onChange={(e) => setCountry(e.target.value)}>
+          <option value="">Country</option>
+          {countryOptions.map((type) => (
+            <option value={type}>{type}</option>
+          ))}
+        </select>
+        <textarea
+          value={description}
+          placeholder="Optional: Provide a short sumary of your restaurant"
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <select required onChange={(e) => setCuisine(e.target.value)}>
+          <option value="">Cuisine</option>
+          {cuisineOptions.map((type) => (
+            <option value={type}>{type}</option>
+          ))}
+        </select>
+        <select onChange={(e) => setDietary(e.target.value)}>
+          <option value="">Dietary (Optional)</option>
+          <option value="Vegan">Vegan</option>
+          <option value="Vegetarian">Vegetarian</option>
+        </select>
+        <select required onChange={(e) => setPriceRange(e.target.value)}>
+          <option value="">Price Range</option>
+          <option value="$">$</option>
+          <option value="$$">$$</option>
+          <option value="$$$">$$$</option>
+          <option value="$$$$">$$$$</option>
+        </select>
+        <label htmlFor="image">Image (Optional)</label>
+        <input
+          id="image"
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImageUrl(e.target.files[0])}
+        />
+        <label htmlFor="open">Opens At</label>
+        <input
+          id="open"
+          type="time"
+          value={opens_at}
+          onChange={(e) => setOpensAt(e.target.value)}
+        />
+        <label htmlFor="close">Closes At</label>
+        <input
+          id="close"
+          type="time"
+          value={closes_at}
+          onChange={(e) => setClosesAt(e.target.value)}
+        />
+
         <button type="submit">Create Restaurant</button>
       </form>
-    </>
+    </div>
   );
 };
 

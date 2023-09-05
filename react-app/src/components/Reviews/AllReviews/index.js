@@ -1,12 +1,14 @@
 
 import './Reviews.css'
+import UpdateModal from '../UpdateModal'
+import DeleteModal from '../DeleteModal'
+import AddModal from '../AddModal'
+import { getReviews } from "../../../store/reviews"
+import OpenModalButton from "../../OpenModalButton"
 
-import React, {useState, useEffect } from 'react'
+import React, {useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom';
 import {useSelector, useDispatch } from 'react-redux'
-import { getReviews } from '../../store/reviews'
-
-// import { getRestaurants } from '../../store/restaurant'
 
 
 
@@ -14,23 +16,27 @@ import { getReviews } from '../../store/reviews'
 const AllReviews = () => {
 
     const dispatch = useDispatch()
+    const ulRef = useRef();
+
     const {restaurantId} = useParams()
 
 
 
-    console.log('--------------------------------------------------------------------')
-    console.log('-----------------------------', restaurantId)
-    // console.log('---------------------------------', reviewState)
-
-
-    useEffect( () => {
-        dispatch(getReviews(restaurantId))
-    }, [dispatch])
-
     const reviewState = useSelector(state => state.reviews)
     const userState = useSelector(state => state.session)
 
-    // console.log(reviewState?.Reviews[0]?.review)
+    const [showMenu, setShowMenu] = useState(false);
+
+    const closeMenu = (e) => {
+        if (!ulRef.current.contains(e.target)) {
+          setShowMenu(false);
+        }
+      };
+
+
+      useEffect( () => {
+        dispatch(getReviews(restaurantId))
+    }, [dispatch])
 
     //gets all the reviews .... firstName lastName posted on and review
     function displayReview(){
@@ -62,8 +68,20 @@ const AllReviews = () => {
                     <div className='name'>{element.User.firstName} {element.User.lastName[0]}</div>
                     <div className='posted'> Posted: {created} </div>
                     <div className='review'>{element.review}</div>
-                    <button> Update </button>
-                    <button> Delete </button>
+
+                    <OpenModalButton
+                        buttonText='Update'
+                        onItemClick={closeMenu}
+                        modalComponent={<UpdateModal/>}
+                    />
+
+                    <OpenModalButton
+                        buttonText='Delete'
+                        onItemClick={closeMenu}
+                        modalComponent={<DeleteModal/>}
+                    />
+
+
                     </>
                     )
                 :
@@ -81,9 +99,45 @@ const AllReviews = () => {
         })
     }
 
+    //Checks if the user is logged in and if the user does not have a review
+    //returns true if no review false if the user has a review
+    function checkUser(){
+
+        let userNoReview = 'Null'
+
+        if(userState?.user !== null){
+            userNoReview = 'true'
+        }
+
+        reviewState?.Reviews?.forEach(element =>{
+            console.log(element)
+            if(userState?.user !== null && userState?.user?.id === element?.User?.id){
+                console.log('review id', element?.User?.id)
+                userNoReview = 'false'
+            }
+        })
+        return userNoReview
+    }
+
+    //creates the post button and add modal if
+    //checkUser returns true
+    function postReview(){
+        if (checkUser() === 'true'){
+            return (
+                <>
+                    <OpenModalButton
+                        buttonText='Post' //button on the page not the pop up button
+                        onItemClick={closeMenu}
+                        modalComponent={<AddModal data={restaurantId}/>}
+                    />
+                </>
+            )
+        }
+    }
 
     return (
         <>
+        <div> {postReview() } </div>
         <div> { displayReview() } </div>
         </>
     )

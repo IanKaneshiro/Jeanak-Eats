@@ -1,0 +1,47 @@
+.login--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login--main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+  width: 400px;
+}
+
+.login--main > input,
+select {
+  border-radius: 10px;
+  border: none;
+  height: 50px;
+  padding: 10px;
+  background-color: #eeeeee;
+}
+
+.login--main button {
+  border-radius: 10px;
+  border: none;
+  height: 50px;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.login--main button:hover {
+  background-color: #333333;
+}
+
+.login--main button:active {
+  background-color: #505050;
+}
+
+.login-demo-btn {
+  color: #8b8b8b;
+  background-color: #ffffff;
+
+  text-decoration: underline;
+}

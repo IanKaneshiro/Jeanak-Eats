@@ -1,0 +1,46 @@
+.create--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85vw;
+}
+
+.create--main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+  width: 400px;
+}
+
+.create--main > input,
+select,
+textarea {
+  border-radius: 10px;
+  border: none;
+  height: 50px;
+  padding: 10px;
+  background-color: #eeeeee;
+}
+
+.create--main > textarea {
+  height: 100px;
+  width: 400px;
+}
+
+.create--main button {
+  border-radius: 10px;
+  border: none;
+  height: 50px;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.create--main button:hover {
+  background-color: #333333;
+}
+
+.create--main button:active {
+  background-color: #505050;
+}

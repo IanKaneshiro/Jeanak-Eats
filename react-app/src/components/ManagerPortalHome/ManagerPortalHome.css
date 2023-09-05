@@ -1,0 +1,6 @@
+.manager-home--container {
+  width: 85vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

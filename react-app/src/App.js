@@ -3,16 +3,20 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
-import Reviews from "./components/Reviews";
+
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
-import MenuItems from "./components/MenuItems";
 import MenuItemDetail from "./components/MenuItems/MenuItemDetail";
 import NewMenuItemForm from "./components/MenuItems/NewMenuItemForm";
 import UpdateMenuItemForm from "./components/MenuItems/UpdateMenuItemForm";
 import ManagerPortal from "./components/ManagerPortal";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import AllReviews from "./components/Reviews/AllReviews";
+import UpdateModal from "./components/Reviews/UpdateModal";
+import DeleteModal from "./components/DeleteModal";
+import AddModal from "./components/Reviews/AddModal";
+import RestaurantDetails from "./components/RestaurantDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,7 +27,7 @@ function App() {
 
   return (
     <>
-      <Navigation />
+      <Navigation loading={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
@@ -36,7 +40,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/restaurants/:restaurantId/reviews">
-            <Reviews />
+            <AllReviews />
           </Route>
           <ProtectedRoute path="/manage">
             <ManagerPortal />
@@ -45,12 +49,12 @@ function App() {
             <NewMenuItemForm />
           </Route>
           <Route path="/restaurants/:restaurantId">
-            <MenuItems />
+            <RestaurantDetails />
           </Route>
           <Route path="/menuItems/:menuItemId/update">
             <UpdateMenuItemForm />
           </Route>
-          <Route path="/menuItems/:id">
+          <Route path="/menuItems/:menuItemId">
             <MenuItemDetail />
           </Route>
         </Switch>

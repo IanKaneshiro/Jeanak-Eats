@@ -1,46 +1,83 @@
 .navbar--main {
-  background-color: #ffffff;
-  height: 80px;
+  display: grid;
+  height: 96px;
+  padding: 0 40px;
+  grid-template-columns: 24px 1fr 150px 1fr 200px 1fr 200px 1fr 800px 48px;
+  align-items: center;
+  justify-items: center;
+}
+
+.navbar--main > div {
+  height: 40px;
   display: flex;
   align-items: center;
+  padding: 0 10px;
 }
 
-.navbar--main-nav {
-  display: flex;
+.navbar--menuicon {
+  grid-column: 1;
+}
+
+.navbar--home {
+  grid-column: 3 / 4;
+  width: 80%;
+}
+
+.navbar--deliver-pickup {
+  grid-column: 5 / 6;
+  border-radius: 20px;
+  background-color: #e2e2e2;
+  width: 80%;
+  padding: 0;
   justify-content: space-between;
+  cursor: pointer;
 }
 
-.navbar--menu-bars {
-  margin-left: 2rem;
-  background: none;
-}
-
-.navbar--menu {
+.del-pick-highlight {
+  border-radius: 20px;
   background-color: #ffffff;
-  width: 250px;
-  height: 100vh;
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: -100%;
-  transition: 850ms;
+  padding: 8px 15px;
 }
 
-.navbar--menu.open {
-  left: 0;
-  transition: 350ms;
-  box-shadow: -8px 10px 25px black;
+.navbar--location {
+  grid-column: 7 / 8;
+  border-radius: 20px;
+  background-color: #e2e2e2;
+  width: 100%;
+  justify-content: center;
+  cursor: pointer;
 }
 
-/* .navbar--filter-bar {
-  display: flex;
-  gap: 5px;
-  border-bottom: 1px solid #e2e2e2;
-  margin-bottom: 20px;
+.navbar--location > button {
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: #e2e2e2;
+  border-radius: 20px;
 }
 
-.navbar--filter-bar button {
-  width: 100px;
-  height: 100px;
-  background-color: beige;
-} */
+.navbar--searchbar {
+  grid-column: 9 / 10;
+  border-radius: 20px;
+  background-color: #e2e2e2;
+  width: 100%;
+}
+
+.navbar--searchbar > input {
+  border: none;
+  background-color: #e2e2e2;
+  width: 100%;
+  padding-left: 10px;
+  border-radius: 20px;
+  height: 40px;
+}
+
+.navbar--shopping-btn {
+  border: none;
+  background-color: #000000;
+  color: white;
+  height: 40px;
+  width: 96px;
+  border-radius: 20px;
+  grid-column: 11 / 12;
+}

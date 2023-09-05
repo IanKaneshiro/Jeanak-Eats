@@ -4,6 +4,7 @@ const CREATE_MENU_ITEM = "menuItems/CREATE_MENU_ITEMS";
 const REMOVE_MENU_ITEM = "menuItems/REMOVE_MENU_ITEMS";
 const GET_ONE_ITEM = "menuItems/GET_ONE_ITEM";
 const CLEAR_CURRENT_MENU_ITEM = "menuItems/CLEAR_CURRENT_MENU_ITEM";
+const CLEAR_ALL_MENU_ITEMS = "menuItems/CLEAR_ALL_MENU_ITEMS";
 
 //------------------------Action Creators---------------------------------------
 
@@ -14,10 +15,10 @@ const getRestaurantItems = (restaurantId) => {
   };
 };
 
-const getOneItem = (id) => {
+const getOneItem = (menuItemId) => {
   return {
     type: GET_ONE_ITEM,
-    payload: id,
+    payload: menuItemId,
   };
 };
 
@@ -45,6 +46,12 @@ const removeMenuItem = (menuItemId) => {
 export const clearCurrentMenuItem = () => {
   return {
     type: CLEAR_CURRENT_MENU_ITEM,
+  };
+};
+
+export const clearAllMenuItems = () => {
+  return {
+    type: CLEAR_ALL_MENU_ITEMS,
   };
 };
 //-------------------------Thunk Action Creators------------------------------------
@@ -105,7 +112,7 @@ export const updateMenuItem = (itemUpdates, menuItemId) => async (dispatch) => {
 };
 
 //Delete a menu item by the item's id
-export const deleteItem = (menuItemId) => async (dispatch) => {
+export const deleteMenuItem = (menuItemId) => async (dispatch) => {
   const res = await fetch(`/api/menuItems/${menuItemId}`, {
     method: "DELETE",
   });
@@ -149,6 +156,11 @@ const menuItemsReducer = (state = initialState, action) => {
       return {
         ...newState,
         currentMenuItem: {},
+      };
+    case CLEAR_ALL_MENU_ITEMS:
+      return {
+        ...newState,
+        allMenuItems: {},
       };
     default:
       return state;

@@ -1,0 +1,42 @@
+.manager--restaurant-detail-container {
+  width: 85vw;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.manager--restaurant-detail-main img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.manager--restaurant-detail-main {
+  display: flex;
+  gap: 20px;
+}
+
+.manager--restaurant-detail-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.manager--restaurant-detail-container button {
+  border: none;
+  background-color: #000000;
+  color: #ffffff;
+  width: 5rem;
+  margin-right: 10px;
+  height: 2rem;
+  border-radius: 10px;
+}
+
+.manager--restaurant-detail-container > button:hover {
+  background-color: #333333;
+}
+
+.manager--restaurant-detail-container > button:active {
+  background-color: #505050;
+}

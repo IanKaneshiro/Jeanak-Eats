@@ -1,30 +1,30 @@
 
 
-//defined for getting adding and deleting reviews
-const GET = '/reviews'
-const ADD = '/reviews/ADD'
-const DELETE = '/reviewId'
+//CONSTANTS
+const GET_ALL = '/reviews/ALL'
+const ADD_REVIEW = '/reviews/ADD'
+const DELETE_REVIEW= '/reviews/DELETE'
 
-//actions for each defintion above
+//ACTIONS
 const GetAllReviews = all => ({
-    type: GET,
+    type: GET_ALL,
     all
 })
 
 const AddOneReview = one => ({
-    type: ADD,
+    type: ADD_REVIEW,
     one
 })
 
-// const DeleteOneReview = remove => ({
-//     type: DELETE,
-//     remove
-// })
+const DeleteOneReview = remove => ({
+    type: DELETE_REVIEW,
+    remove
+})
 
 
-//thunk get all reviews
+//THUNKS
 export const getReviews = (restaurantId) => async dispatch => {
-    const response = await fetch(`/api/restaurants/${restaurantId}/reviews`)
+    const response = await fetch(`/api/restaurants/${restaurantId}`)
 
     if(response.ok){
         const totalReviews = await response.json()
@@ -36,9 +36,8 @@ export const getReviews = (restaurantId) => async dispatch => {
     }
 }
 
-//thunk add a review
-export const addReview = (payload, restaurantId) => async dispatch => {
-    const response = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
+export const addReview = (restaurantId, payload) => async dispatch => {
+    const response = await fetch(`/api/restaurants/${restaurantId}`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(payload)
@@ -54,9 +53,8 @@ export const addReview = (payload, restaurantId) => async dispatch => {
     }
 }
 
-//thunk edit a review
-export const changeReview = (payload, reviewId) => async dispatch => {
-    const response = await fetch(`api/reviews/${reviewId}`, {
+export const changeReview = (reviewId,payload) => async dispatch => {
+    const response = await fetch(`/api/reviews/${reviewId}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(payload)
@@ -68,21 +66,41 @@ export const changeReview = (payload, reviewId) => async dispatch => {
     }
 }
 
-//thunk delete a review
-// export const deleteReview = (reviewId) => async dispatch => {
+export const deleteReview = (reviewId) => async dispatch => {
 
-//     const response = await fetch(`api/reviews/${reviewId}`, {
-//         method:'DELETE'
-//     })
-// }
+    const response = await fetch(`/api/reviews/${reviewId}`, {
+        method:'DELETE'
+    })
+
+    if(response.ok){
+        const deleteReview = await response.json()
+        dispatch(DeleteOneReview(reviewId))
+        return deleteReview
+    }
+    else {
+        return await response.json()
+    }
+}
 
 //reducer
 const reviewReducer = (state={}, action) => {
     switch (action.type) {
-        case GET:
+        case GET_ALL:
             return {
                 ...state,
                 ...action.all
+            }
+
+        case ADD_REVIEW:
+            return {
+                ...state,
+                ...action.one
+            }
+
+        case DELETE_REVIEW:
+            return {
+                ...state,
+                ...action.remove
             }
 
         default:

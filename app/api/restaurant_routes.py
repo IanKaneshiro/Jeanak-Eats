@@ -122,7 +122,7 @@ def update_restaurant(id):
         restaurant.closes_at = form.data['closes_at']
 
         db.session.commit()
-        return restaurant.to_dict()
+        return restaurant.to_dict_by_avg_rating()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
