@@ -1,21 +1,16 @@
 
 import "./AddModal.css";
 
-import { addReview, getReviews } from "../../../store/reviews"
+import { addReview } from "../../../store/reviews"
 import { useModal } from "../../../context/Modal"
-
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 
-function AddModal() {
+
+function AddModal(data) {
 
   const dispatch = useDispatch();
-
-  const {restaurantId} = useParams()
-
-  console.log(restaurantId, 'here')
 
   const [review, setReview] = useState();
   const [rating, setRating] = useState();
@@ -29,12 +24,12 @@ function AddModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const createReview = await dispatch(addReview(restaurantId, payload));
-    console.log(createReview)
-    if (createReview) {
-      setErrors(createReview);
-    } else {
-      closeModal();
+
+    try{
+      const createReview = await dispatch(addReview(data.data, payload));
+    }
+    catch(createReview){
+      console.log(createReview)
     }
   };
 

@@ -41,7 +41,6 @@ function App() {
           </Route>
           <Route path="/restaurants/:restaurantId/reviews">
             <AllReviews />
-            <AddModal />
           </Route>
           <ProtectedRoute path="/manage">
             <ManagerPortal />
