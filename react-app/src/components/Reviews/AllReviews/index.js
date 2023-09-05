@@ -1,10 +1,14 @@
 
-import './Reviews.css'
+import './AllReviews.css'
+
+import AddModal from '../AddModal'
 import UpdateModal from '../UpdateModal'
 import DeleteModal from '../DeleteModal'
-import AddModal from '../AddModal'
-import { getReviews } from "../../../store/reviews"
+import { useModal } from "../../../context/Modal";
 import OpenModalButton from "../../OpenModalButton"
+
+import { getReviews } from "../../../store/reviews"
+
 
 import React, {useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom';
@@ -19,6 +23,7 @@ const AllReviews = () => {
     const ulRef = useRef();
 
     const {restaurantId} = useParams()
+    const { closeModal } = useModal();
 
 
 
@@ -36,28 +41,37 @@ const AllReviews = () => {
 
       useEffect( () => {
         dispatch(getReviews(restaurantId))
-    }, [dispatch])
+    }, [dispatch, closeModal])
 
     //gets all the reviews .... firstName lastName posted on and review
     function displayReview(){
         return reviewState?.Reviews?.map(element=>{
 
             let createdAtDate = new Date(element.createdAt)
-            let year = createdAtDate.getFullYear()
-            let month = createdAtDate.getMonth()+1
-            let day = createdAtDate.getDate()
-
             let currentDate = new Date()
-            let currentYear = currentDate.getFullYear()
-            let currentMonth = currentDate.getMonth()+1
-            let currentDay = currentDate.getDate()
 
             let difference = currentDate - createdAtDate
             let differenceDays = Math.floor(difference / (24 *60 * 60 * 1000))
             let differenceMonths = Math.floor(difference / (1000 * 60 * 60 * 24 * 30))
+            let differenceHours = Math.floor(difference / (1000*60*60))
 
-            let created = `${month} / ${day} / ${year}`
-            let currently = `${currentMonth} / ${currentDay} / ${currentYear}`
+            function clock(){
+                if(differenceHours<24){
+                    return `${differenceHours} hours ago`
+                }
+                else if(differenceDays <30 && differenceDays !== 1){
+                    return `${differenceDays} days ago`
+                }
+                else if(differenceDays >=30 && differenceMonths !== 1) {
+                    return `${differenceMonths} months ago`
+                }
+                else if(differenceDays <30 && differenceDays === 1){
+                    return `${differenceDays} day ago`
+                }
+                else if(differenceDays >=30 && differenceMonths === 1){
+                    return `${differenceMonths} month ago`
+                }
+            }
 
 
             return (
@@ -66,7 +80,7 @@ const AllReviews = () => {
                     (
                     <>
                     <div className='name'>{element.User.firstName} {element.User.lastName[0]}</div>
-                    <div className='posted'> Posted: {created} </div>
+                    <div className='posted'> {clock()} </div>
                     <div className='review'>{element.review}</div>
 
                     <OpenModalButton
@@ -80,18 +94,14 @@ const AllReviews = () => {
                         onItemClick={closeMenu}
                         modalComponent={<DeleteModal/>}
                     />
-
-
                     </>
                     )
                 :
                     (
                     <>
                     <div className='name'>{element.User.firstName} {element.User.lastName[0]}</div>
-                    <div className='posted'> Posted: {created} </div>
+                    <div className='posted'> {clock()} </div>
                     <div className='review'>{element.review}</div>
-                    <div> {differenceDays <30 && differenceDays !== 1 ? (`${differenceDays} days ago`) : (`${differenceDays} day ago`) } </div>
-                    <div> {differenceDays >=30 && differenceMonths !== 1 ?  (`${differenceMonths} months ago`) : null } </div>
                     </>
                     )}
             </div>

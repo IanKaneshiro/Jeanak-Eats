@@ -1,21 +1,25 @@
 
 import "./AddModal.css";
 
-import { addReview } from "../../../store/reviews"
 import { useModal } from "../../../context/Modal"
+import { addReview } from "../../../store/reviews"
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function AddModal(data) {
 
   const dispatch = useDispatch();
+  const history = useHistory()
+  const { closeModal } = useModal();
 
   const [review, setReview] = useState();
   const [rating, setRating] = useState();
   const [errors, setErrors] = useState([]);
-  const { closeModal } = useModal();
+
+
 
   const payload = {
     review,
@@ -24,27 +28,33 @@ function AddModal(data) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const createReview = await dispatch(addReview(data.data, payload));
 
-    try{
-      const createReview = await dispatch(addReview(data.data, payload));
+    if(createReview){
+      setErrors(createReview)
     }
-    catch(createReview){
-      console.log(createReview)
+    else{
+      closeModal()
     }
+
   };
+
+
 
   return (
     <>
+    <div className="entireUpdateModal">
       <h1>Post Your Review</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Review
-          <input
+      <div className="excludingTitle">
+        
+          <textarea
+            placeholder="Leave a Review"
             value={review}
             onChange={(e) => setReview(e.target.value)}
             required
           />
-        </label>
+
         <label>
           Rating
           <input
@@ -53,8 +63,10 @@ function AddModal(data) {
             required
           />
         </label>
-        <button type="Post">Post</button>
+        <button className="updateModalButton">Post</button>
+        </div>
       </form>
+      </div>
     </>
   );
 }

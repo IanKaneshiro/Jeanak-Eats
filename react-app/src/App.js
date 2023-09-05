@@ -39,18 +39,24 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/restaurants/:restaurantId/reviews">
-            <AllReviews />
-          </Route>
+
+
           <ProtectedRoute path="/manage">
             <ManagerPortal />
           </ProtectedRoute>
+
           <Route path="/restaurants/:restaurantId/menuItems">
             <NewMenuItemForm />
           </Route>
+
+
+
           <Route path="/restaurants/:restaurantId">
             <RestaurantDetails />
           </Route>
+
+
+
           <Route path="/menuItems/:menuItemId/update">
             <UpdateMenuItemForm />
           </Route>

@@ -95,7 +95,6 @@ export const createRestaurant = (restaurant) => async (dispatch) => {
     if (response.ok) {
       const data = await response.json();
       dispatch(addRestaurant(data));
-      return data;
     } else if (response.status < 500) {
       const data = await response.json();
       if (data.errors) {

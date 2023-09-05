@@ -1,9 +1,6 @@
 ## General
 
 - light gray #8b8b8b
-- black #000000
-- accent grey #eeeeee
-- white #ffffff
 
 ## Button
 
