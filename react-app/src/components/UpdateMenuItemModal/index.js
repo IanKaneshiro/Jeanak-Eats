@@ -19,11 +19,11 @@ const UpdateMenuItemModal = ({ item }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   //Gets the currentMenuItem to render the form's present data
-  useEffect(() => {
-    dispatch(getOneMenuItem(item.id)).then(() => {
-      setIsLoading(false);
-    });
-  }, [dispatch, item.id]);
+  // useEffect(() => {
+  //   dispatch(getOneMenuItem(item.id)).then(() => {
+  //     setIsLoading(false);
+  //   });
+  // }, [dispatch, item.id]);
 
   //If there is a currentMenuItem, populate fields with its data or "" if null
   useEffect(() => {
@@ -33,32 +33,37 @@ const UpdateMenuItemModal = ({ item }) => {
       setPrice(item.price || "");
       setCategory(item.category || "");
       setDietary(item.dietary || "");
-      setImageUrl(item.image_url || "");
+      setImageUrl(item.imageUrl || "");
     }
   }, [item]);
 
   //Conditionally renders when currentMenuItem data is made available to populate form
   if (isLoading) return <div>Loading...</div>;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    // formData.append("id", item.id);
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("category", category);
+    formData.append("dietary", dietary);
+    formData.append("image_url", image_url);
 
-    const itemUpdates = {
-      name,
-      description,
-      price,
-      category,
-      dietary,
-      image_url,
-    };
+    console.log("FORM DATA IMAGEURL", image_url, formData.get("image_url"));
+    console.log("UPDATE ITEM", item);
 
-    dispatch(updateMenuItem(itemUpdates, item.id));
+    await dispatch(updateMenuItem(formData, item.id));
     closeModal();
   };
 
   return (
     <div className="itemFormContainer">
-      <form className="menu-item-form" onSubmit={handleSubmit}>
+      <form
+        className="menu-item-form"
+        encType="multipart/form-data"
+        onSubmit={handleSubmit}
+      >
         <h2 className="item-form-header">Edit your menu item</h2>
         <label>
           Name
@@ -148,9 +153,11 @@ const UpdateMenuItemModal = ({ item }) => {
         <label>
           Image
           <input
+            type="file"
+            accept="image/*"
             className="item-img-url"
-            value={image_url}
-            onChange={(e) => setImageUrl(e.target.value)}
+            // value={image_url}
+            onChange={(e) => setImageUrl(e.target.files[0])}
           />
         </label>
 

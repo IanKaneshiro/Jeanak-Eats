@@ -97,19 +97,34 @@ export const createMenuItem = (newItem, restaurantId) => async (dispatch) => {
 };
 
 //Edit a menu item by the item's id
-export const updateMenuItem = (itemUpdates, menuItemId) => async (dispatch) => {
+// export const updateMenuItem = (itemUpdates, menuItemId) => async (dispatch) => {
+//   const res = await fetch(`/api/menuItems/${menuItemId}`, {
+//     method: "PUT",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(itemUpdates),
+//   });
+//   if (res.ok) {
+//     const data = await res.json();
+//     console.log("UPDATE THUNK", data);
+//     dispatch(updateItem(data));
+//     return data;
+//   }
+//   return res;
+// };
+export const updateMenuItem = (menuItem, menuItemId) => async (dispatch) => {
+  menuItem.delete("id");
   const res = await fetch(`/api/menuItems/${menuItemId}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(itemUpdates),
+    body: menuItem,
   });
+
   if (res.ok) {
-    const data = await res.json();
-    console.log("UPDATE THUNK", data);
+    const data = await Response.json();
     dispatch(updateItem(data));
     return data;
+  } else if (Response.status < 500) {
+    return ["An error occurred. Please try again."];
   }
-  return res;
 };
 
 //Delete a menu item by the item's id
