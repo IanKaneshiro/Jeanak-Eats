@@ -69,7 +69,6 @@ const UpdateRestaurantForm = ({ id }) => {
     formData.append("opens_at", opens_at);
     formData.append("closes_at", closes_at);
     formData.append("image_url", image_url || restaurant.imageUrl);
-    console.log(image_url, formData.get("image_url"));
     const data = await dispatch(updateRestaurant(formData));
     if (data.errors) {
       setErrors(data);
