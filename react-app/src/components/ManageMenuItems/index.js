@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { allMenuItems, getAllMenuItems } from "../../store/menuItems";
 import DeleteMenuItemModal from "../MenuItems/DeleteMenuItem";
 import OpenModalButton from "../OpenModalButton";
-
+import { useModal } from "../../context/Modal";
 import ProtectedRoute from "../auth/ProtectedRoute";
 import UpdateMenuItemModal from "../UpdateMenuItemModal";
 
@@ -56,11 +56,6 @@ const ManageMenuItems = ({ restaurant }) => {
                   />
                 </td>
                 <td className={"menu-item-table-data mit-buttons"}>
-                  {/* <button
-                    onClick={() => history.push(`/menuItems/${item.id}/update`)}
-                  >
-                    Edit
-                  </button> */}
                   <OpenModalButton
                     className="mit-bttn"
                     buttonText="Edit"

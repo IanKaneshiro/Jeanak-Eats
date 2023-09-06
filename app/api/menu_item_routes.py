@@ -2,6 +2,10 @@ from flask import Blueprint, request
 from flask_login import current_user, login_required
 from app.models import MenuItem, Restaurant, db
 from app.forms import MenuItemForm
+from app.forms import RestaurantForm, ReviewForm, MenuItemForm
+from app.models import Restaurant, Review, MenuItem, db
+from app.api.aws import upload_file_to_s3, get_unique_filename, remove_file_from_s3, check_if_not_aws_file
+
 
 menu_item_routes = Blueprint('menu_items', __name__)
 
@@ -55,7 +59,7 @@ def update_menu_item(id):
             if "url" not in upload:
                 return {'errors': validation_errors_to_error_messages(upload)}, 400
             url = upload["url"]
-            menuItem.image_url = url
+            menu_item.image_url = url
         menu_item.name = form.data['name']
         menu_item.description = form.data['description']
         menu_item.price = form.data['price']

@@ -10,7 +10,7 @@ const NewMenuItemForm = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-  const [dietary, setDietary] = useState("");
+  const [dietary, setDietary] = useState("None");
   const [image_url, setImageUrl] = useState("");
   // const [isSubmitted, setIsSubmitted] = useState(false);
 

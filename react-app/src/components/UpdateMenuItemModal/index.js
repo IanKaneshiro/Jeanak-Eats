@@ -19,11 +19,11 @@ const UpdateMenuItemModal = ({ item }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   //Gets the currentMenuItem to render the form's present data
-  // useEffect(() => {
-  //   dispatch(getOneMenuItem(item.id)).then(() => {
-  //     setIsLoading(false);
-  //   });
-  // }, [dispatch, item.id]);
+  useEffect(() => {
+    dispatch(getOneMenuItem(item.id)).then(() => {
+      setIsLoading(false);
+    });
+  }, [dispatch, item.id]);
 
   //If there is a currentMenuItem, populate fields with its data or "" if null
   useEffect(() => {
@@ -49,6 +49,7 @@ const UpdateMenuItemModal = ({ item }) => {
     formData.append("category", category);
     formData.append("dietary", dietary);
     formData.append("image_url", image_url);
+    formData.append("price", price);
 
     console.log("FORM DATA IMAGEURL", image_url, formData.get("image_url"));
     console.log("UPDATE ITEM", item);

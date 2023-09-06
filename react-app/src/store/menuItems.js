@@ -119,10 +119,10 @@ export const updateMenuItem = (menuItem, menuItemId) => async (dispatch) => {
   });
 
   if (res.ok) {
-    const data = await Response.json();
+    const data = await res.json();
     dispatch(updateItem(data));
     return data;
-  } else if (Response.status < 500) {
+  } else if (res.status < 500) {
     return ["An error occurred. Please try again."];
   }
 };

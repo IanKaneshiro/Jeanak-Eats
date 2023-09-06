@@ -4,6 +4,7 @@
 }
 
 .manage-menu-item-row {
+  box-sizing: border-box;
   height: 100px;
 }
 
@@ -15,13 +16,14 @@
 }
 
 .menu-item-image {
-  width: 100px;
-  overflow: hidden;
-  text-overflow: auto;
+  max-width: 100px;
+  max-height: 90px;
 }
 
 .mit-desc {
   height: 100px;
+  overflow: hidden;
+  text-overflow: auto;
 }
 
 .mit-buttons {
