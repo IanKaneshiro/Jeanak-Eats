@@ -16,7 +16,7 @@ function UpdateModal() {
   const userState = useSelector(state=>state.session)
 
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
 //returns the review
   function findReview(){
@@ -58,19 +58,27 @@ function UpdateModal() {
   const [review, setReview] = useState(findReview());
   const [rating, setRating] = useState(findRating());
 
-  const payload = {
-    review:review,
-    rating:rating
-  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const payload = {
+      review:review,
+      rating:rating
+    }
+    console.log(payload,'payload')
     const allReviews = await dispatch(reviewActions.changeReview(reviewId(), payload));
     if (allReviews) {
-      setErrors(allReviews);
+      console.log(allReviews.errors)
+      setErrors(errors)
+      console.log(errors)
+      console.log(errors.rating)
     } else {
       closeModal();
     }
+
+    console.log(errors, 'outside if')
   };
 
   console.log(reviewId(), 'reviewId update')
@@ -97,6 +105,7 @@ function UpdateModal() {
             onChange={(e) => setRating(e.target.value)}
             required
           />
+
         </label>
         <button className="updateModalButton">Update</button>
         </div>

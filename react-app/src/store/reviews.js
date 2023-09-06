@@ -60,6 +60,8 @@ export const changeReview = (reviewId,payload) => async dispatch => {
     if(response.ok){
         const changedReview = await response.json()
         dispatch(AddOneReview(changedReview))
+    } else {
+        return await response.json()
     }
 }
 
