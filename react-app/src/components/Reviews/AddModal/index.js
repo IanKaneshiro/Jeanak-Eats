@@ -17,7 +17,8 @@ function AddModal(data) {
 
   const [review, setReview] = useState();
   const [rating, setRating] = useState();
-  const [errors, setErrors] = useState([]);
+
+  let [back, setBack] = useState();
 
 
 
@@ -31,7 +32,8 @@ function AddModal(data) {
     const createReview = await dispatch(addReview(data.data, payload));
 
     if(createReview){
-      setErrors(createReview)
+      back = createReview.errors
+      setBack(back.errors)
     }
     else{
       closeModal()
@@ -47,7 +49,7 @@ function AddModal(data) {
       <h1>Post Your Review</h1>
       <form onSubmit={handleSubmit}>
       <div className="excludingTitle">
-        
+
           <textarea
             placeholder="Leave a Review"
             value={review}
@@ -63,6 +65,9 @@ function AddModal(data) {
             required
           />
         </label>
+
+        <div className="Error"> {back?.rating} </div>
+
         <button className="updateModalButton">Post</button>
         </div>
       </form>
