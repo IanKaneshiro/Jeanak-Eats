@@ -26,8 +26,8 @@ const ManageMenuItems = ({ restaurant }) => {
     <ProtectedRoute>
       <div className="manage-menu-item-container">
         <OpenModalButton
-          className="mit-bttn"
-          buttonText="Add a Menu Item"
+          className="mit-bttn add-menu-item-bttn"
+          buttonText="Add Menu Item"
           modalComponent={<CreateMenuItemModal restaurantId={restaurant.id} />}
         />
 

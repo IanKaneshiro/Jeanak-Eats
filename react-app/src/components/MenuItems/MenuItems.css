@@ -126,17 +126,6 @@
 
 /*New Menu Item and Update forms*/
 
-.itemFormContainer {
-  display: flex;
-  justify-content: center;
-}
-.menu-item-form {
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  gap: 10px;
-}
-
 /* Delete Menu Item Modal */
 .delete-menu-item-container > span > h2 {
   margin-bottom: 10px;
