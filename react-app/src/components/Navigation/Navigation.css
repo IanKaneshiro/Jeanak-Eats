@@ -64,9 +64,6 @@ a:visited {
   background-color: transparent;
   border-radius: 20px;
 }
-.navbar--location > button:hover {
-  color: red;
-}
 
 .navbar--searchbar {
   min-width: 200px;
