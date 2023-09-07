@@ -1,14 +1,25 @@
+#logo {
+  color: #ffd900;
+  letter-spacing: 2px;
+}
+
 .navbar--main {
-  display: grid;
-  height: 96px;
-  padding: 0 40px;
-  grid-template-columns: 24px 1fr 150px 1fr 200px 1fr 200px 1fr 800px 48px;
+  display: flex;
   align-items: center;
-  justify-items: center;
+  justify-content: space-between;
+  max-width: 1920px;
+  gap: 2rem;
+  height: 100px;
+  padding: 0 40px;
+}
+
+.navbar--main a,
+a:visited {
+  color: #000000;
 }
 
 .navbar--main > div {
-  height: 40px;
+  height: 50px;
   display: flex;
   align-items: center;
   padding: 0 10px;
@@ -20,64 +31,70 @@
 
 .navbar--home {
   grid-column: 3 / 4;
-  width: 80%;
 }
 
 .navbar--deliver-pickup {
-  grid-column: 5 / 6;
-  border-radius: 20px;
-  background-color: #e2e2e2;
-  width: 80%;
+  border-radius: 30px;
+  background-color: #eeeeee;
+  width: 300px;
   padding: 0;
   justify-content: space-between;
   cursor: pointer;
 }
 
 .del-pick-highlight {
-  border-radius: 20px;
+  border-radius: 30px;
   background-color: #ffffff;
-  padding: 8px 15px;
+  padding: 10px 15px;
 }
 
 .navbar--location {
-  grid-column: 7 / 8;
-  border-radius: 20px;
-  background-color: #e2e2e2;
-  width: 100%;
+  min-width: 200px;
+  width: 250px;
+  border-radius: 30px;
+  background-color: #eeeeee;
   justify-content: center;
   cursor: pointer;
 }
 
 .navbar--location > button {
-  width: 100%;
+  width: 200px;
   height: 40px;
   border: none;
-  background-color: #e2e2e2;
+  background-color: transparent;
   border-radius: 20px;
 }
 
 .navbar--searchbar {
-  grid-column: 9 / 10;
-  border-radius: 20px;
-  background-color: #e2e2e2;
+  min-width: 200px;
+  border-radius: 30px;
+  background-color: #eeeeee;
   width: 100%;
 }
 
 .navbar--searchbar > input {
   border: none;
-  background-color: #e2e2e2;
+  background-color: #eeeeee;
   width: 100%;
   padding-left: 10px;
-  border-radius: 20px;
-  height: 40px;
+  border-radius: 30px;
+  height: 50px;
 }
 
 .navbar--shopping-btn {
   border: none;
   background-color: #000000;
   color: white;
-  height: 40px;
-  width: 96px;
-  border-radius: 20px;
-  grid-column: 11 / 12;
+  height: 50px;
+  border-radius: 30px;
+  width: 12rem;
+  min-width: 100px;
+}
+
+.navbar--shopping-btn:hover {
+  background-color: #333333;
+}
+
+.navbar--shopping-btn:active {
+  background-color: #505050;
 }

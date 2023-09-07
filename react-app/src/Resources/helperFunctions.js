@@ -75,3 +75,7 @@ export const formatTime = (time) => {
 export const notImplemented = () => {
   alert("Feature coming soon...");
 };
+
+export const filterOptionsArr = (arr, val) => {
+  return arr.filter((item) => item !== val);
+};

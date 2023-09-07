@@ -5,20 +5,10 @@ from flask_login import login_required, current_user
 from app.forms import RestaurantForm, ReviewForm, MenuItemForm
 from app.models import Restaurant, Review, MenuItem, db
 from app.api.aws import upload_file_to_s3, get_unique_filename, remove_file_from_s3, check_if_not_aws_file
+from app.api.auth_routes import validation_errors_to_error_messages
 
 
 restaurant_routes = Blueprint('restaurants', __name__)
-
-
-def validation_errors_to_error_messages(validation_errors):
-    """
-    Simple function that turns the WTForms validation errors into a simple list
-    """
-    errorMessages = []
-    for field in validation_errors:
-        for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
-    return errorMessages
 
 
 @restaurant_routes.route('/')
@@ -49,6 +39,7 @@ def create_restaurant():
     Creates a new restaurant
     """
     form = RestaurantForm()
+
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -62,7 +53,7 @@ def create_restaurant():
                 return {'errors': validation_errors_to_error_messages(upload)}, 400
             url = upload["url"]
         else:
-            url = form.data['image_url']
+            url = None
         restaurant = Restaurant(
             owner_id=current_user.id,
             name=form.data['name'],
@@ -99,6 +90,8 @@ def update_restaurant(id):
         return {"message": "Restaurant couldn't be found"}, 404
     if restaurant.owner_id != current_user.id:
         return {"message": "Can only edit restaurants you own"}, 403
+    # This works because the image_url field is a FileField and not is required, It shows up as none when you try and pass it a string,
+    # therefore not passing the if statement
     if form.validate_on_submit():
         if form.data['image_url']:
             image = form.data['image_url']
@@ -230,7 +223,17 @@ def create_menu_item(id):
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
+        if form.data['image_url']:
+            image = form.data['image_url']
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            print(upload)
+            if "url" not in upload:
+                return {'errors': validation_errors_to_error_messages(upload)}, 400
+            url = upload["url"]
+        
         menu_item = MenuItem(
             restaurant_id=id,
             name=form.data['name'],
@@ -238,7 +241,7 @@ def create_menu_item(id):
             price=form.data['price'],
             category=form.data['category'],
             dietary=form.data['dietary'],
-            image_url=form.data['image_url']
+            image_url=url
         )
         db.session.add(menu_item)
         db.session.commit()

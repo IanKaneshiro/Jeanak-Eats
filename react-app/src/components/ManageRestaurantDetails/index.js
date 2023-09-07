@@ -12,6 +12,7 @@ import OpenModalButton from "../OpenModalButton";
 import UpdateRestaurantForm from "../UpdateRestaurantForm";
 import DeleteModal from "../DeleteModal";
 import LoadingSpinner from "../LoadingSpinner";
+import ManageMenuItems from "../ManageMenuItems";
 
 const ManageRestaurantDetails = () => {
   const { id } = useParams();
@@ -58,6 +59,9 @@ const ManageRestaurantDetails = () => {
             {restaurant.avgRating} ({restaurant.numRatings} ratings)
           </p>
         </div>
+      </div>
+      <div>
+        <ManageMenuItems restaurant={restaurant} />
       </div>
     </div>
   );

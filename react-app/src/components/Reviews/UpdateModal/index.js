@@ -22,9 +22,6 @@ function UpdateModal() {
   function findReview(){
     let foundReview
     reviewState?.Reviews?.forEach(element=>{
-      console.log(element)
-      console.log(element?.User?.id)
-      console.log(userState?.id)
       if(element?.User?.id === userState?.user?.id ){
         foundReview = element?.review
       }

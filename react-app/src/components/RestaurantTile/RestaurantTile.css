@@ -20,3 +20,7 @@
 .restaurant-tile--main p {
   font-size: 14px;
 }
+
+.restaurant-tile--delivery-info {
+  color: #9a9a9a;
+}

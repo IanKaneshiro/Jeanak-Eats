@@ -21,7 +21,7 @@ def password_matches(form, field):
     user = User.query.filter(or_(
         User.email == credential, User.phone_number == credential)).first()
     if not user:
-        raise ValidationError('Invalid credentials')
+        raise ValidationError('Invalid password')
     if not user.check_password(password):
         raise ValidationError('Password was incorrect')
 

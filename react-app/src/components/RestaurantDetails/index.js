@@ -10,6 +10,7 @@ import MenuItem from "../MenuItems";
 import OpenModalButton from "../OpenModalButton";
 import "./RestaurantDetails.css";
 import LoadingSpinner from "../LoadingSpinner";
+import AllReviews from "../Reviews/AllReviews";
 
 const RestaurantDetails = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const RestaurantDetails = () => {
         <p className="details--est-delivery-time">Est. delivery time here</p>
       </div>
       <MenuItem />
+      <AllReviews />
     </div>
   );
 };
