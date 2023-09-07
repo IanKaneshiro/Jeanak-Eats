@@ -37,3 +37,14 @@
 .signup--main button:active {
   background-color: #505050;
 }
+
+.allImages{
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-image{
+  border-radius: 200px;
+  width:100px;
+  height:100px;
+}

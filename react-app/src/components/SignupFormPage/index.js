@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../store/session";
 import { Redirect } from "react-router-dom";
 import { stateOptions, countryOptions } from "../../Resources/selectOptions";
 import "./SignupForm.css";
+
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -16,8 +17,10 @@ function SignupFormPage() {
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [password, setPassword] = useState("");
+  const [image, setImage] = useState('')
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
 
   const handleSubmit = async (e) => {
     setErrors([]);
@@ -33,7 +36,8 @@ function SignupFormPage() {
           city,
           state,
           country,
-          password
+          image,
+          password,
         )
       );
       if (data) {
@@ -47,6 +51,31 @@ function SignupFormPage() {
       ]);
     }
   };
+
+  function displayImage(){
+    const icons = [
+      'https://images.pexels.com/photos/1395958/pexels-photo-1395958.jpeg',
+      'https://images.pexels.com/photos/3429782/pexels-photo-3429782.jpeg',
+      'https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg',
+      'https://images.pexels.com/photos/219794/pexels-photo-219794.jpeg',
+      'https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg'
+  ]
+
+  return icons.map( element => {
+
+    return (
+      <button onClick={()=>setImage(element)} className="allImagess">
+      <img
+      src= {element}
+      alt="Profile Icon"
+      className="icon-image"/>
+    </button>
+    )
+  })
+  }
+
+
+  console.log(image, 'imageeeeeeeeee')
 
   return (
     <div className="signup--container">
@@ -109,6 +138,10 @@ function SignupFormPage() {
             <option value={type}>{type}</option>
           ))}
         </select>
+
+
+        <div className="allImages">{displayImage()}</div>
+
         <input
           placeholder="Password"
           type="password"
@@ -130,4 +163,4 @@ function SignupFormPage() {
   );
 }
 
-export default SignupFormPage;
+export default SignupFormPage
