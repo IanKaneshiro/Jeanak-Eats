@@ -6,8 +6,8 @@
 }
 
 .manager--restaurant-detail-main img {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
 }
 
@@ -19,7 +19,8 @@
 .manager--restaurant-detail-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 20px;
 }
 
 .manager--restaurant-detail-container button {

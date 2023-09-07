@@ -47,9 +47,8 @@ const ManageRestaurantDetails = () => {
         <div className="manager--restaurant-detail-info">
           <h1>{restaurant.name}</h1>
           <p>
-            <i class="fa-solid fa-location-dot"></i>
-            {restaurant.address}, {restaurant.city}, {restaurant.state},
-            {restaurant.country}
+            <i class="fa-solid fa-location-dot"></i> {restaurant.address},{" "}
+            {restaurant.city}, {restaurant.state}, {restaurant.country}
           </p>
           <p>
             {formatTime(restaurant.opensAt)} - {formatTime(restaurant.closesAt)}

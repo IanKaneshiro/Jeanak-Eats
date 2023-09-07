@@ -61,7 +61,7 @@ def seed_restaurants():
         price_range="$$",
         opens_at="11:00",
         closes_at="21:00",
-        image_url="https://s3-media0.fl.yelpcdn.com/bphoto/Y_EqxJL65QXXBQfUueczJA/o.jpg"
+        image_url="https://res.cloudinary.com/dmkyocbqi/image/upload/v1694061492/P1000443_xflqid.jpg"
     )
     mastros = Restaurant(
         owner_id=3,
@@ -76,7 +76,7 @@ def seed_restaurants():
         price_range="$$$$",
         opens_at="05:00",
         closes_at="21:00",
-        image_url="https://lh3.googleusercontent.com/p/AF1QipPJboC4WHUivnAdybpKbrI4ASv9wiiY-dEYgF0=s680-w680-h510"
+        image_url="https://res.cloudinary.com/dmkyocbqi/image/upload/v1694061365/2023-05-30_ebrmui.jpg"
     )
     salt_and_straw = Restaurant(
         owner_id=3,
@@ -91,7 +91,7 @@ def seed_restaurants():
         price_range="$$$",
         opens_at="11:00",
         closes_at="22:45",
-        image_url="https://lh3.googleusercontent.com/p/AF1QipPJboC4WHUivnAdybpKbrI4ASv9wiiY-dEYgF0=s680-w680-h510"
+        image_url="https://res.cloudinary.com/dmkyocbqi/image/upload/v1694061551/PXL_20230507_012046085_2_hfu6ok.jpg"
     )
     maxes_opera = Restaurant(
         owner_id=2,
@@ -106,7 +106,7 @@ def seed_restaurants():
         price_range="$$",
         opens_at="11:00",
         closes_at="20:55",
-        image_url="https://lh3.googleusercontent.com/p/AF1QipMfhAoBItzZxBAr7qH1E7UTV-juP3jYyL9rhN8h=s680-w680-h510"
+        image_url="https://res.cloudinary.com/dmkyocbqi/image/upload/v1694061455/Maxs_Logo_copy_ut1ssy.jpg"
     )
     truly_mediterranean = Restaurant(
         owner_id=2,
@@ -121,7 +121,7 @@ def seed_restaurants():
         price_range="$$",
         opens_at="10:30",
         closes_at="21:45",
-        image_url="https://lh3.googleusercontent.com/p/AF1QipMERoelnB9ed5aiJ7SdsTUJs-3kYUnuXPEriaQW=s680-w680-h510"
+        image_url="https://res.cloudinary.com/dmkyocbqi/image/upload/v1694061365/20210330_181300_06_zbau9j.jpg"
     )
 
     db.session.add(mcdonalds)

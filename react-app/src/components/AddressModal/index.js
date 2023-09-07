@@ -12,14 +12,14 @@ const AddressModal = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = await dispatch(
       updateUserAddress(address, city, state, country)
     );
-    if (data?.errors) {
+    if (data.errors) {
       setErrors(data);
     } else {
       closeModal();
@@ -29,12 +29,6 @@ const AddressModal = () => {
     <div>
       <h1>Delivery details</h1>
       <form onSubmit={handleSubmit} className="address--modal">
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-
         <input
           placeholder="Address"
           type="text"
@@ -42,6 +36,7 @@ const AddressModal = () => {
           onChange={(e) => setAddress(e.target.value)}
           required
         />
+        {errors.address && <p>{errors.address}</p>}
         <input
           placeholder="City"
           type="text"
@@ -49,7 +44,8 @@ const AddressModal = () => {
           onChange={(e) => setCity(e.target.value)}
           required
         />
-        <select onChange={(e) => setState(e.target.value)}>
+        {errors.city && <p>{errors.city}</p>}
+        <select required onChange={(e) => setState(e.target.value)}>
           <option value="">State</option>
           {stateOptions.map((type) => (
             <option key={type} value={type}>
@@ -57,7 +53,8 @@ const AddressModal = () => {
             </option>
           ))}
         </select>
-        <select onChange={(e) => setCountry(e.target.value)}>
+        {errors.state && <p>{errors.state}</p>}
+        <select required onChange={(e) => setCountry(e.target.value)}>
           <option value="">Country</option>
           {countryOptions.map((type) => (
             <option key={type} value={type}>
@@ -65,6 +62,7 @@ const AddressModal = () => {
             </option>
           ))}
         </select>
+        {errors.country && <p>{errors.country}</p>}
         <button type="submit">Done</button>
       </form>
     </div>

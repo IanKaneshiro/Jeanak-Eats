@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useRouteMatch, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import NavigationSideBar from "../NavigationSideBar";
 import NavigationCartBar from "../NavigationCartBar";
 import OpenModalButton from "../OpenModalButton";
 import AddressModal from "../AddressModal";
+import { cuisineUrls } from "../../Resources/imageUrlArrays";
 import "./Navigation.css";
 
 function Navigation({ loading }) {
@@ -16,11 +17,15 @@ function Navigation({ loading }) {
   const [deliveryPickup, setDeliverPickup] = useState(true);
   const showSidebar = () => setSidebar(!sidebar);
   const showCartSidebar = () => setCartSidebar(!cartSidebar);
+  const manageCheck = useRouteMatch({ path: "/", strict: true, exact: true });
+
+  const history = useHistory();
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
     showSidebar();
+    history.push("/");
   };
 
   const handleDeliverPickup = () => {
@@ -81,6 +86,20 @@ function Navigation({ loading }) {
           <i className="fa-solid fa-cart-shopping"></i> 0 carts
         </button>
       </div>
+      {manageCheck && (
+        <div className="navbar--cuisine-container">
+          <ul className="navbar--cuisine-main">
+            {cuisineUrls.map((img) => {
+              return (
+                <button key={img}>
+                  <img src={img.url} alt={img.url} />
+                  <p>{img.name}</p>
+                </button>
+              );
+            })}
+          </ul>
+        </div>
+      )}
       <NavigationSideBar
         sidebar={sidebar}
         showSidebar={showSidebar}

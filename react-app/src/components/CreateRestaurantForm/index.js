@@ -7,7 +7,10 @@ import {
   cuisineOptions,
   countryOptions,
   stateOptions,
+  dietaryOptions,
+  priceOptions,
 } from "../../Resources/selectOptions";
+import { filterOptionsArr } from "../../Resources/helperFunctions";
 import LoadingSpinner from "../LoadingSpinner";
 
 const CreateRestaurantForm = () => {
@@ -51,6 +54,7 @@ const CreateRestaurantForm = () => {
     setLoading(false);
     if (data.errors) {
       setErrors(data.errors);
+      return;
     } else {
       history.push(`/manage/restaurants/${data.id}`);
     }
@@ -67,6 +71,7 @@ const CreateRestaurantForm = () => {
       >
         <h1>Create Restaurant</h1>
         <input
+          required
           placeholder="Name"
           type="text"
           value={name}
@@ -124,16 +129,20 @@ const CreateRestaurantForm = () => {
         {errors.cuisine && <p>{errors.cuisine}</p>}
         <select onChange={(e) => setDietary(e.target.value)}>
           <option value="">Dietary (Optional)</option>
-          <option value="Vegan">Vegan</option>
-          <option value="Vegetarian">Vegetarian</option>
+          {filterOptionsArr(dietaryOptions, "").map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
         </select>
         {errors.dietary && <p>{errors.dietary}</p>}
         <select required onChange={(e) => setPriceRange(e.target.value)}>
           <option value="">Price Range</option>
-          <option value="$">$</option>
-          <option value="$$">$$</option>
-          <option value="$$$">$$$</option>
-          <option value="$$$$">$$$$</option>
+          {priceOptions.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
         </select>
         {errors.price_range && <p>{errors.price_range}</p>}
         <label htmlFor="image">Image (Optional)</label>

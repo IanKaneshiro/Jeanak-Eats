@@ -201,4 +201,4 @@ export const stateOptions = [
 
 export const priceOptions = ["$", "$$", "$$$", "$$$$"];
 
-export const dietaryOptions = ["", "Vegan", "Vegitarian"];
+export const dietaryOptions = ["", "Vegan", "Vegitarian", "Gluten-free"];
