@@ -17,6 +17,7 @@ const UpdateMenuItemModal = ({ item }) => {
   const [dietary, setDietary] = useState("");
   const [image_url, setImageUrl] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [errors, setErrors] = useState([]);
 
   //Gets the currentMenuItem to render the form's present data
   useEffect(() => {
@@ -51,8 +52,12 @@ const UpdateMenuItemModal = ({ item }) => {
     formData.append("image_url", image_url);
     formData.append("price", price);
 
-    await dispatch(updateMenuItem(formData, item.id));
-    closeModal();
+    const data = await dispatch(updateMenuItem(formData, item.id));
+    if (data.errors) {
+      setErrors(data);
+    } else {
+      closeModal();
+    }
   };
 
   return (
@@ -63,6 +68,11 @@ const UpdateMenuItemModal = ({ item }) => {
         onSubmit={handleSubmit}
       >
         <h2 className="item-form-header">Edit your menu item</h2>
+        <ul>
+          {errors.map((error, i) => (
+            <li key={i}>{error}</li>
+          ))}
+        </ul>
         <label htmlFor="name">Name</label>
         <input
           id="name"

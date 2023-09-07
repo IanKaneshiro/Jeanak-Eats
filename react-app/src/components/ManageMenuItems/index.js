@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { allMenuItems, getAllMenuItems } from "../../store/menuItems";
 import DeleteMenuItemModal from "../MenuItems/DeleteMenuItem";
 import OpenModalButton from "../OpenModalButton";
-import { useModal } from "../../context/Modal";
 import ProtectedRoute from "../auth/ProtectedRoute";
 import UpdateMenuItemModal from "../UpdateMenuItemModal";
 import CreateMenuItemModal from "../CreateMenuItemModal";
