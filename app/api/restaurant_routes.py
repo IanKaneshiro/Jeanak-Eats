@@ -39,6 +39,7 @@ def create_restaurant():
     Creates a new restaurant
     """
     form = RestaurantForm()
+
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -52,7 +53,7 @@ def create_restaurant():
                 return {'errors': validation_errors_to_error_messages(upload)}, 400
             url = upload["url"]
         else:
-            url = form.data['image_url']
+            url = None
         restaurant = Restaurant(
             owner_id=current_user.id,
             name=form.data['name'],
@@ -89,6 +90,8 @@ def update_restaurant(id):
         return {"message": "Restaurant couldn't be found"}, 404
     if restaurant.owner_id != current_user.id:
         return {"message": "Can only edit restaurants you own"}, 403
+    # This works because the image_url field is a FileField and not is required, It shows up as none when you try and pass it a string,
+    # therefore not passing the if statement
     if form.validate_on_submit():
         if form.data['image_url']:
             image = form.data['image_url']

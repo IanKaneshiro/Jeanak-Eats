@@ -12,7 +12,9 @@ const RestaurantTile = ({ restaurant }) => {
     >
       <img src={restaurant.imageUrl} alt={restaurant.name} />
       <h3>{restaurant.name}</h3>
-      <p>Information for delivery fee and est. time here</p>
+      <p className="restaurant-tile--delivery-info">
+        Delivery time feature coming soon...
+      </p>
       {restaurant.avgRating && (
         <p>
           {restaurant.avgRating} {calculateStars(restaurant.avgRating)}

@@ -198,3 +198,7 @@ export const stateOptions = [
   "WI",
   "WY",
 ];
+
+export const priceOptions = ["$", "$$", "$$$", "$$$$"];
+
+export const dietaryOptions = ["", "Vegan", "Vegitarian"];

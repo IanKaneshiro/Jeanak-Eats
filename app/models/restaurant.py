@@ -71,6 +71,8 @@ class Restaurant(db.Model):
             avg_rating = sum(
                 review.rating for review in self.reviews) / len(self.reviews)
             restaurant["avgRating"] = avg_rating
+            restaurant["numRatings"] = len(self.reviews)
         else:
             restaurant['avgRating'] = None
+            restaurant["numRatings"] = None
         return restaurant
