@@ -29,6 +29,8 @@ function ReportModal(data) {
             <option value='option5'> Contains inappropriate or offensive language</option>
             <option value='option6'> Other Issue </option>
         </ul>
+
+        <button onClick={closeModal}> Submit Report </button>
     </div>
     </>
   );

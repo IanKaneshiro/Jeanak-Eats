@@ -48,7 +48,7 @@ const AllReviews = () => {
     function displayReview(){
         return reviewState?.Reviews?.map(element=>{
 
-            let createdAtDate = new Date(element.createdAt)
+            let createdAtDate = new Date(element?.createdAt)
             let currentDate = new Date()
 
             let difference = currentDate - createdAtDate
@@ -77,21 +77,21 @@ const AllReviews = () => {
 
             return (
             <div className='line'>
-                {userState?.user?.id === element.User.id ?
+                {userState?.user?.id === element?.User?.id ?
                     (
                     <>
                     <div className='reviewInformation'>
                         <div className='profileIcon'>
                             <img
-                            src= {userState.user.imageUrl}
+                            src= {userState?.user?.imageUrl}
                             alt="Profile Icon"
                             className="icon-image"/>
                         </div>
 
                         <div className='withoutImage'>
-                            <div className='name'>{element.User.firstName} {element.User.lastName[0]}</div>
+                            <div className='name'>{element?.User?.firstName} {element?.User?.lastName[0]}</div>
                             <div className='posted'> {clock()} </div>
-                            <div className='review'>{element.review}</div>
+                            <div className='review'>{element?.review}</div>
 
                             <OpenModalButton
                                 buttonText='Update'
@@ -115,15 +115,15 @@ const AllReviews = () => {
                     <div className='reviewInformation'>
                         <div className='profileIcon'>
                             <img
-                            src= {userState.user.imageUrl}
+                            src= {element.User.imageUrl}
                             alt="Profile Icon"
                             className="icon-image"/>
                         </div>
 
                         <div className='withoutImage'>
-                            <div className='name'>{element.User.firstName} {element.User.lastName[0]}</div>
+                            <div className='name'>{element?.User?.firstName} {element?.User?.lastName[0]}</div>
                             <div className='posted'> {clock()} </div>
-                            <div className='review'>{element.review}</div>
+                            <div className='review'>{element?.review}</div>
                         </div>
                     </div>
                     </>
@@ -154,9 +154,7 @@ const AllReviews = () => {
         }
 
         reviewState?.Reviews?.forEach(element =>{
-            console.log(element)
             if(userState?.user !== null && userState?.user?.id === element?.User?.id){
-                console.log('review id', element?.User?.id)
                 userNoReview = 'false'
             }
         })
@@ -181,6 +179,11 @@ const AllReviews = () => {
 
     return (
         <>
+
+        <div className='reviewsTitle'>
+            <h1>Customer Reviews </h1>
+        </div>
+
         <div> {postReview() } </div>
         <div> { displayReview() }</div>
         </>
