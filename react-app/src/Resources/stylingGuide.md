@@ -6,3 +6,4 @@
 
 - hover #333333
 - active #505050
+- actice light gray #cbcbcb

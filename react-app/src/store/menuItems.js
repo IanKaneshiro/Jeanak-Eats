@@ -22,17 +22,17 @@ const getOneItem = (menuItemId) => {
   };
 };
 
-const createNewItem = (newItem, restaurantId) => {
+const createNewItem = (newItem) => {
   return {
     type: CREATE_MENU_ITEM,
-    payload: { newItem, restaurantId },
+    payload: newItem,
   };
 };
 
-const updateItem = (itemUpdates, menuItemId) => {
+const updateItem = (itemUpdates) => {
   return {
     type: CREATE_MENU_ITEM,
-    payload: { itemUpdates, menuItemId },
+    payload: itemUpdates,
   };
 };
 
@@ -84,31 +84,33 @@ export const getOneMenuItem = (menuItemId) => async (dispatch) => {
 export const createMenuItem = (newItem, restaurantId) => async (dispatch) => {
   const res = await fetch(`/api/restaurants/${restaurantId}/menuItems`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newItem),
+    body: newItem,
   });
 
   if (res.ok) {
     const data = await res.json();
     dispatch(createNewItem(data));
     return data;
+  } else if (res.status < 500) {
+    return ["An error occurred. Please try again."];
   }
-  return res;
 };
 
-//Edit a menu item by the item's id
-export const updateMenuItem = (itemUpdates, menuItemId) => async (dispatch) => {
+//Edit a menu item
+export const updateMenuItem = (menuItem, menuItemId) => async (dispatch) => {
+  menuItem.delete("id");
   const res = await fetch(`/api/menuItems/${menuItemId}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(itemUpdates),
+    body: menuItem,
   });
+
   if (res.ok) {
     const data = await res.json();
     dispatch(updateItem(data));
     return data;
+  } else if (res.status < 500) {
+    return ["An error occurred. Please try again."];
   }
-  return res;
 };
 
 //Delete a menu item by the item's id
@@ -148,7 +150,14 @@ const menuItemsReducer = (state = initialState, action) => {
     case GET_ONE_ITEM:
       return { ...newState, currentMenuItem: action.payload };
     case CREATE_MENU_ITEM:
-      return (newState[action.payload.id] = action.payload);
+      return {
+        ...newState,
+        allMenuItems: {
+          ...newState.allMenuItems,
+          [action.payload.id]: action.payload,
+        },
+      };
+    // return (newState[action.payload.id] = action.payload);
     case REMOVE_MENU_ITEM:
       delete newState[action.payload];
       return newState;

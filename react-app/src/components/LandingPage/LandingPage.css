@@ -1,16 +1,96 @@
 .landing--main {
   display: flex;
   padding: 0 40px;
-}
-
-.landing--filters {
-  font-weight: bold;
-  width: 15%;
+  margin-top: 20px;
+  min-height: 450px;
 }
 
 .landing--restaurants {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
   grid-gap: 20px;
-  width: 85%;
+  width: 100%;
+  min-height: 450px;
+}
+
+.landing--filters {
+  font-weight: bold;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.landing--filters-header {
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+}
+
+.landing--filters-sort {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.landing--sort {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.landing-close {
+  display: none;
+}
+
+.landing--filters-switch-main p {
+  color: #9a9a9a;
+}
+
+.landing--filters-price-btns {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.landing--filters-price-btns > button {
+  width: fit-content;
+  border-radius: 30px;
+  background-color: #eeeeee;
+  padding: 10px;
+}
+
+.landing--filters-price-btns > button:hover {
+  background-color: #e2e2e2;
+}
+
+.landing--filters-price-btns > button:active {
+  background-color: #cbcbcb;
+}
+
+.landing--filters-dietary-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.landing--filters-dietary-btns > button {
+  width: fit-content;
+  border-radius: 30px;
+  background-color: #eeeeee;
+  padding: 10px;
+}
+
+.landing--filters-dietary-btns > button:hover {
+  background-color: #e2e2e2;
+}
+
+.landing--filters-dietary-btns > button:active {
+  background-color: #cbcbcb;
 }

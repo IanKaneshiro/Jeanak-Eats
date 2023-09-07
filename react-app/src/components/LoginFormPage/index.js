@@ -9,15 +9,15 @@ function LoginFormPage() {
   const sessionUser = useSelector((state) => state.session.user);
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
   if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(credential, password));
-    if (data) {
-      setErrors(data);
+    if (data.errors) {
+      setErrors(data.errors);
     }
   };
 
@@ -30,11 +30,6 @@ function LoginFormPage() {
     <div className="login--container">
       <form onSubmit={handleSubmit} className="login--main">
         <h1>Log In</h1>
-        <ul>
-          {Object.values(errors).map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
         <input
           placeholder="Enter phone number or email"
           type="text"
@@ -42,6 +37,7 @@ function LoginFormPage() {
           onChange={(e) => setCredential(e.target.value)}
           required
         />
+        {errors.credential && <p>{errors.credential}</p>}
         <input
           placeholder="Password"
           type="password"
@@ -49,6 +45,7 @@ function LoginFormPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        {errors.password && <p>{errors.password}</p>}
         <button type="submit">Log In</button>
       </form>
       <button className="login-demo-btn" onClick={loginDemo}>

@@ -3,6 +3,10 @@ from flask_login import current_user, login_required
 from app.models import MenuItem, Restaurant, db
 from app.forms import MenuItemForm
 from app.api.auth_routes import validation_errors_to_error_messages
+from app.forms import RestaurantForm, ReviewForm, MenuItemForm
+from app.models import Restaurant, Review, MenuItem, db
+from app.api.aws import upload_file_to_s3, get_unique_filename, remove_file_from_s3, check_if_not_aws_file
+
 
 menu_item_routes = Blueprint('menu_items', __name__)
 
@@ -37,12 +41,22 @@ def update_menu_item(id):
         return {'message': "Cannot edit items you did not create"}, 403
 
     if form.validate_on_submit():
+        if form.data['image_url']:
+            image = form.data['image_url']
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            print(upload)
+            if "url" not in upload:
+                return {'errors': validation_errors_to_error_messages(upload)}, 400
+            url = upload["url"]
+            menu_item.image_url = url
+        # else:
         menu_item.name = form.data['name']
         menu_item.description = form.data['description']
         menu_item.price = form.data['price']
         menu_item.category = form.data['category']
         menu_item.dietary = form.data['dietary']
-        menu_item.image_url = form.data['image_url']
+        # menu_item.image_url = form.data['image_url']
         db.session.commit()
         return menu_item.to_dict()
 

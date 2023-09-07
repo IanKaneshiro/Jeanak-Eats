@@ -12,4 +12,4 @@ class MenuItemForm(FlaskForm):
     category = StringField('category', validators=[DataRequired()])
     dietary = StringField('dietary')
     image_url = FileField("Image File", validators=[
-                          FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+                           FileAllowed(list(ALLOWED_EXTENSIONS))])

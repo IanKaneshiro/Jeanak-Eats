@@ -12,6 +12,7 @@ import OpenModalButton from "../OpenModalButton";
 import UpdateRestaurantForm from "../UpdateRestaurantForm";
 import DeleteModal from "../DeleteModal";
 import LoadingSpinner from "../LoadingSpinner";
+import ManageMenuItems from "../ManageMenuItems";
 
 const ManageRestaurantDetails = () => {
   const { id } = useParams();
@@ -46,9 +47,8 @@ const ManageRestaurantDetails = () => {
         <div className="manager--restaurant-detail-info">
           <h1>{restaurant.name}</h1>
           <p>
-            <i class="fa-solid fa-location-dot"></i>
-            {restaurant.address}, {restaurant.city}, {restaurant.state},
-            {restaurant.country}
+            <i class="fa-solid fa-location-dot"></i> {restaurant.address},{" "}
+            {restaurant.city}, {restaurant.state}, {restaurant.country}
           </p>
           <p>
             {formatTime(restaurant.opensAt)} - {formatTime(restaurant.closesAt)}
@@ -58,6 +58,9 @@ const ManageRestaurantDetails = () => {
             {restaurant.avgRating} ({restaurant.numRatings} ratings)
           </p>
         </div>
+      </div>
+      <div>
+        <ManageMenuItems restaurant={restaurant} />
       </div>
     </div>
   );

@@ -1,13 +1,43 @@
 .manage-menu-item-table {
-  border: 0.5px solid black;
-  margin: 5px;
+  /* border: 0.5px solid black; */
+  margin: 20px;
 }
 
 .manage-menu-item-row {
-  border: 0.5px solid black;
+  box-sizing: border-box;
+  height: 100px;
 }
 
 .menu-item-table-data {
   border: 0.5px solid black;
-  padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 100px;
+}
+
+.menu-item-image {
+  max-width: 100px;
+  max-height: 90px;
+}
+
+.mit-desc {
+  height: 100px;
+  overflow: hidden;
+  text-overflow: auto;
+}
+
+.mit-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.mit-bttn:hover {
+  background-color: #333333;
+}
+
+.mit-bttn:active {
+  background-color: rgb(80, 80, 80);
 }

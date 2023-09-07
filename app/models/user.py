@@ -25,9 +25,12 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(
         db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
-    reviews = db.relationship('Review', back_populates='user')
-    owned_restaurant = db.relationship('Restaurant', back_populates='owner')
-    orders = db.relationship('Order', back_populates='customer')
+    reviews = db.relationship(
+        'Review', back_populates='user', cascade="all, delete-orphan")
+    owned_restaurant = db.relationship(
+        'Restaurant', back_populates='owner', cascade="all, delete-orphan")
+    orders = db.relationship(
+        'Order', back_populates='customer', cascade="all, delete-orphan")
 
     @property
     def password(self):

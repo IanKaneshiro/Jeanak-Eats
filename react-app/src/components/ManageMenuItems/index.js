@@ -4,24 +4,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { allMenuItems, getAllMenuItems } from "../../store/menuItems";
 import DeleteMenuItemModal from "../MenuItems/DeleteMenuItem";
 import OpenModalButton from "../OpenModalButton";
-import { useHistory } from "react-router-dom";
+import { useModal } from "../../context/Modal";
 import ProtectedRoute from "../auth/ProtectedRoute";
-
-//I need to figure out where to put this component. It wasn't showing
-//up where I was expecting it to.
+import UpdateMenuItemModal from "../UpdateMenuItemModal";
+import CreateMenuItemModal from "../CreateMenuItemModal";
 
 const ManageMenuItems = ({ restaurant }) => {
   const dispatch = useDispatch();
   const menuItems = useSelector(allMenuItems);
-  const history = useHistory();
 
   useEffect(() => {
     dispatch(getAllMenuItems(restaurant.id));
-  }, [dispatch]);
+  }, [dispatch, restaurant.id]);
+
+  //Helper function to return price in $X.XX format
+  const floatPrice = (price) => {
+    return price.toFixed(2);
+  };
 
   return (
     <ProtectedRoute>
       <div className="manage-menu-item-container">
+        <OpenModalButton
+          className="mit-bttn"
+          buttonText="Add a Menu Item"
+          modalComponent={<CreateMenuItemModal restaurantId={restaurant.id} />}
+        />
+
         <table className="manage-menu-item-table">
           <thead>
             <tr>
@@ -38,8 +47,12 @@ const ManageMenuItems = ({ restaurant }) => {
             {menuItems.map((item) => (
               <tr key={item.id} className="manage-menu-item-row">
                 <td className="menu-item-table-data">{item.name}</td>
-                <td className="menu-item-table-data">{item.description}</td>
-                <td className="menu-item-table-data">${item.price}</td>
+                <td className="menu-item-table-data mit-desc">
+                  {item.description}
+                </td>
+                <td className="menu-item-table-data">
+                  ${floatPrice(item.price)}
+                </td>
                 <td className="menu-item-table-data">{item.category}</td>
                 <td className="menu-item-table-data">{item.dietary}</td>
                 <td className="menu-item-table-data">
@@ -49,14 +62,14 @@ const ManageMenuItems = ({ restaurant }) => {
                     className="menu-item-image"
                   />
                 </td>
-                <td className="menu-item-table-data">
-                  <button
-                    onClick={() => history.push(`/menuItems/${item.id}/update`)}
-                  >
-                    Edit
-                  </button>
+                <td className={"menu-item-table-data mit-buttons"}>
                   <OpenModalButton
-                    className="delete-button"
+                    className="mit-bttn"
+                    buttonText="Edit"
+                    modalComponent={<UpdateMenuItemModal item={item} />}
+                  />
+                  <OpenModalButton
+                    className="mit-bttn"
                     buttonText="Delete"
                     modalComponent={<DeleteMenuItemModal item={item} />}
                   />

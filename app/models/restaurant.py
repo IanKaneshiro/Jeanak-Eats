@@ -27,10 +27,13 @@ class Restaurant(db.Model):
     updated_at = db.Column(
         db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
-    reviews = db.relationship('Review', back_populates='restaurant')
+    reviews = db.relationship(
+        'Review', back_populates='restaurant', cascade="all, delete-orphan")
     owner = db.relationship('User', back_populates='owned_restaurant')
-    orders = db.relationship('Order', back_populates='restaurant')
-    menu_items = db.relationship('MenuItem', back_populates='restaurant')
+    orders = db.relationship(
+        'Order', back_populates='restaurant', cascade="all, delete-orphan")
+    menu_items = db.relationship(
+        'MenuItem', back_populates='restaurant', cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
@@ -68,6 +71,8 @@ class Restaurant(db.Model):
             avg_rating = sum(
                 review.rating for review in self.reviews) / len(self.reviews)
             restaurant["avgRating"] = avg_rating
+            restaurant["numRatings"] = len(self.reviews)
         else:
             restaurant['avgRating'] = None
+            restaurant["numRatings"] = None
         return restaurant
