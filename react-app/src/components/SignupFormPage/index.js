@@ -18,10 +18,10 @@ function SignupFormPage() {
   const [country, setCountry] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
-    setErrors([]);
+    setErrors({});
     e.preventDefault();
     if (password === confirmPassword) {
       const data = await dispatch(
@@ -37,15 +37,16 @@ function SignupFormPage() {
           password
         )
       );
-      if (data) {
-        setErrors(data);
+      if (data?.errors) {
+        setErrors(data.errors);
       } else {
         return history.push("/");
       }
     } else {
-      setErrors([
-        "Confirm Password field must be the same as the Password field",
-      ]);
+      setErrors({
+        password:
+          "Confirm Password field must be the same as the Password field",
+      });
     }
   };
 
@@ -53,63 +54,67 @@ function SignupFormPage() {
     <div className="signup--container">
       <form onSubmit={handleSubmit} className="signup--main">
         <h1>Sign Up</h1>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
         <input
+          required
           placeholder="First Name"
           type="text"
           value={first_name}
           onChange={(e) => setFirstName(e.target.value)}
-          required
         />
+        {errors.first_name && <p>{errors.first_name}</p>}
         <input
+          required
           placeholder="Last Name"
           type="text"
           value={last_name}
           onChange={(e) => setLastName(e.target.value)}
-          required
         />
+        {errors.last_name && <p>{errors.last_name}</p>}
         <input
+          required
           placeholder="Email"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
+        {errors.email && <p>{errors.email}</p>}
         <input
+          required
           placeholder="Phone Number"
           type="text"
           value={phone_number}
           onChange={(e) => setPhoneNumber(e.target.value)}
-          required
         />
+        {errors.phone_number && <p>{errors.phone_number}</p>}
         <input
+          required
           placeholder="Address (Optional)"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
+        {errors.address && <p>{errors.address}</p>}
         <input
           placeholder="City (Optional)"
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
+        {errors.city && <p>{errors.city}</p>}
         <select onChange={(e) => setState(e.target.value)}>
           <option value="">State (Optional)</option>
           {stateOptions.map((type) => (
             <option value={type}>{type}</option>
           ))}
         </select>
+        {errors.state && <p>{errors.state}</p>}
         <select onChange={(e) => setCountry(e.target.value)}>
           <option value="">Country (Optional)</option>
           {countryOptions.map((type) => (
             <option value={type}>{type}</option>
           ))}
         </select>
+        {errors.country && <p>{errors.country}</p>}
         <input
           placeholder="Password"
           type="password"
@@ -117,6 +122,7 @@ function SignupFormPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        {errors.password && <p>{errors.password}</p>}
         <input
           placeholder="Confirm Password"
           type="password"
@@ -124,7 +130,6 @@ function SignupFormPage() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-
         <button type="submit">Sign Up</button>
       </form>
     </div>
