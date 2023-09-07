@@ -26,8 +26,6 @@ const CreateMenuItemModal = ({ restaurantId }) => {
     formData.append("dietary", dietary);
     formData.append("image_url", image_url);
 
-    console.log("CREATE DATA", formData);
-
     await dispatch(createMenuItem(formData, restaurantId));
     closeModal();
   };
@@ -40,109 +38,95 @@ const CreateMenuItemModal = ({ restaurantId }) => {
         encType="multipart/form-data"
       >
         <h2 className="item-form-header">Add a menu item to your restaurant</h2>
-        <label>
-          Name
-          <input
-            className="item-name"
-            type="text"
-            placeholder="Menu item name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
+        <label htmlFor="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          placeholder="Menu item name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
-        <label>
-          Description
-          <textarea
-            className="item-description"
-            type="text"
-            placeholder="Give a brief description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </label>
+        <label htmlFor="description">Description</label>
+        <textarea
+          id="description"
+          type="text"
+          placeholder="Give a brief description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
 
-        <label>
-          Price
-          <input
-            className="item-price"
-            type="number"
-            placeholder="Set a price (USD)"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-        </label>
+        <label htmlFor="price">Price</label>
+        <input
+          id="price"
+          type="number"
+          placeholder="Set a price (USD)"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+        />
 
-        <label>
-          Category
-          <select
-            className="item-category"
-            placeholder="Category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option key="blankKey" hidden value>
-              Select a category
-            </option>
-            <option>Appetizer</option>
-            <option>Beverages</option>
-            <option>Burgers</option>
-            <option>Burritos</option>
-            <option>Chicken</option>
-            <option>Chicken and Fish Sandwiches</option>
-            <option>Desserts</option>
-            <option>Entrees</option>
-            <option>Kid's Meal</option>
-            <option>Pasta</option>
-            <option>Plates</option>
-            <option>Salads</option>
-            <option>Sandwiches</option>
-            <option>Seafood</option>
-            <option>Seasonal Specials</option>
-            <option>Sides</option>
-            <option>Soups</option>
-            <option>Small Plates</option>
-            <option>Steaks</option>
-            <option>Sushi</option>
-            <option>Tacos</option>
-            <option>Vegetarian</option>
-            <option>Wraps</option>
-          </select>
-        </label>
+        <label htmlFor="category">Category</label>
+        <select
+          id="category"
+          placeholder="Category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option key="blankKey" hidden value>
+            Select a category
+          </option>
+          <option>Appetizer</option>
+          <option>Beverages</option>
+          <option>Burgers</option>
+          <option>Burritos</option>
+          <option>Chicken</option>
+          <option>Chicken and Fish Sandwiches</option>
+          <option>Desserts</option>
+          <option>Entrees</option>
+          <option>Kid's Meal</option>
+          <option>Pasta</option>
+          <option>Plates</option>
+          <option>Salads</option>
+          <option>Sandwiches</option>
+          <option>Seafood</option>
+          <option>Seasonal Specials</option>
+          <option>Sides</option>
+          <option>Soups</option>
+          <option>Small Plates</option>
+          <option>Steaks</option>
+          <option>Sushi</option>
+          <option>Tacos</option>
+          <option>Vegetarian</option>
+          <option>Wraps</option>
+        </select>
 
-        <label>
-          Dietary
-          <select
-            className="item-dietary"
-            placeholder="Dietary"
-            value={dietary}
-            onChange={(e) => setDietary(e.target.value)}
-          >
-            <option key="blankKey" hidden value>
-              Select a dietary option
-            </option>
-            <option>None</option>
-            <option>Vegetarian</option>
-            <option>Vegan</option>
-            <option>Halal</option>
-            <option>Kosher</option>
-            <option>Gluten-Free</option>
-          </select>
-        </label>
+        <label htmlFor="dietary">Dietary</label>
+        <select
+          id="dietary"
+          placeholder="Dietary"
+          value={dietary}
+          onChange={(e) => setDietary(e.target.value)}
+        >
+          <option key="blankKey" hidden value>
+            Select a dietary option
+          </option>
+          <option>None</option>
+          <option>Vegetarian</option>
+          <option>Vegan</option>
+          <option>Halal</option>
+          <option>Kosher</option>
+          <option>Gluten-Free</option>
+        </select>
 
-        <label>
-          Image
-          <input
-            className="item-img-url"
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImageUrl(e.target.files[0])}
-          />
-        </label>
+        <label htmlFor="image">Image</label>
+        <input
+          id="image"
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImageUrl(e.target.files[0])}
+        />
 
-        <button className="item-submit" type="submit">
-          Create Menu Item
-        </button>
+        <button type="submit">Create Menu Item</button>
       </form>
     </div>
   );
