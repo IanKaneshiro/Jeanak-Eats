@@ -87,7 +87,6 @@ function SignupFormPage() {
         />
         {errors.phone_number && <p>{errors.phone_number}</p>}
         <input
-          required
           placeholder="Address (Optional)"
           type="text"
           value={address}
