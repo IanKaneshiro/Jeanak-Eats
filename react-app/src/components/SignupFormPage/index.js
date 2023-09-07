@@ -18,7 +18,7 @@ function SignupFormPage() {
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [password, setPassword] = useState("");
-  const [image, setImage] = useState('')
+  const [image_url, setImage] = useState('')
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
 
@@ -37,7 +37,7 @@ function SignupFormPage() {
           city,
           state,
           country,
-          image,
+          image_url,
           password,
         )
       );
@@ -77,7 +77,7 @@ function SignupFormPage() {
   }
 
 
-  console.log(image, 'imageeeeeeeeee')
+  console.log(image_url, 'imageeeeeeeeee')
 
   return (
     <div className="signup--container">

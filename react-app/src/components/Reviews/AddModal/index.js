@@ -37,12 +37,12 @@ function AddModal(data) {
         back = createReview.errors
         setBack(back.errors)
       }
-      else if(createReview.message){
-        back = createReview.message
-        setBack(back)
-      }
+      // else if(createReview.message){
+      //   back = createReview.message
+      //   setBack(back)
+      // }
 
-      console.log(createReview.message)
+      console.log(createReview.errors)
 
     }
     else{
@@ -76,7 +76,7 @@ function AddModal(data) {
           />
         </label>
 
-        <div className="Error"> {back?.rating ? back.rating : back} </div>
+        <div className="Error"> {back?.rating} </div>
 
         <button className="updateModalButton">Post</button>
         </div>
