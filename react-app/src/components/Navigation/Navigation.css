@@ -63,6 +63,12 @@ a:visited {
   border: none;
   background-color: transparent;
   border-radius: 20px;
+  color: #000000;
+}
+
+.navbar--location > button:hover,
+button:active {
+  background-color: transparent;
 }
 
 .navbar--searchbar {

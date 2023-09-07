@@ -61,7 +61,7 @@ function SignupFormPage() {
           value={first_name}
           onChange={(e) => setFirstName(e.target.value)}
         />
-        {errors.first_name && <p>{errors.first_name}</p>}
+        {errors.first_name && <p className="errors">{errors.first_name}</p>}
         <input
           required
           placeholder="Last Name"
@@ -69,7 +69,7 @@ function SignupFormPage() {
           value={last_name}
           onChange={(e) => setLastName(e.target.value)}
         />
-        {errors.last_name && <p>{errors.last_name}</p>}
+        {errors.last_name && <p className="errors">{errors.last_name}</p>}
         <input
           required
           placeholder="Email"
@@ -77,7 +77,7 @@ function SignupFormPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="errors">{errors.email}</p>}
         <input
           required
           placeholder="Phone Number"
@@ -85,35 +85,35 @@ function SignupFormPage() {
           value={phone_number}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
-        {errors.phone_number && <p>{errors.phone_number}</p>}
+        {errors.phone_number && <p className="errors">{errors.phone_number}</p>}
         <input
           placeholder="Address (Optional)"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
-        {errors.address && <p>{errors.address}</p>}
+        {errors.address && <p className="errors">{errors.address}</p>}
         <input
           placeholder="City (Optional)"
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        {errors.city && <p>{errors.city}</p>}
+        {errors.city && <p className="errors">{errors.city}</p>}
         <select onChange={(e) => setState(e.target.value)}>
           <option value="">State (Optional)</option>
           {stateOptions.map((type) => (
             <option value={type}>{type}</option>
           ))}
         </select>
-        {errors.state && <p>{errors.state}</p>}
+        {errors.state && <p className="errors">{errors.state}</p>}
         <select onChange={(e) => setCountry(e.target.value)}>
           <option value="">Country (Optional)</option>
           {countryOptions.map((type) => (
             <option value={type}>{type}</option>
           ))}
         </select>
-        {errors.country && <p>{errors.country}</p>}
+        {errors.country && <p className="errors">{errors.country}</p>}
         <input
           placeholder="Password"
           type="password"
@@ -121,7 +121,7 @@ function SignupFormPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="errors">{errors.password}</p>}
         <input
           placeholder="Confirm Password"
           type="password"
