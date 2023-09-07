@@ -8,6 +8,7 @@ import {
   countryOptions,
   stateOptions,
 } from "../../Resources/selectOptions";
+import LoadingSpinner from "../LoadingSpinner";
 
 const CreateRestaurantForm = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const CreateRestaurantForm = () => {
   const [image_url, setImageUrl] = useState("");
 
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
   const history = useHistory();
 
@@ -47,27 +48,15 @@ const CreateRestaurantForm = () => {
     setLoading(true);
 
     const data = await dispatch(createRestaurant(formData));
-    if (data) {
-      setErrors(data);
-      setLoading(false);
+    setLoading(false);
+    if (data.errors) {
+      setErrors(data.errors);
     } else {
-      setLoading(false);
-      setName("");
-      setAddress("");
-      setState("");
-      setCountry("");
-      setDescription("");
-      setCuisine("");
-      setDietary("");
-      setPriceRange("");
-      setOpensAt("");
-      setClosesAt("");
-      setImageUrl("");
       history.push(`/manage/restaurants/${data.id}`);
     }
   };
 
-  if (loading) return <h1>...loading</h1>;
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="create--container">
@@ -77,18 +66,13 @@ const CreateRestaurantForm = () => {
         className="create--main"
       >
         <h1>Create Restaurant</h1>
-        <ul>
-          {Object.values(errors).map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
         <input
           placeholder="Name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          required
         />
+        {errors.name && <p>{errors.name}</p>}
         <input
           placeholder="Address"
           type="text"
@@ -96,6 +80,7 @@ const CreateRestaurantForm = () => {
           onChange={(e) => setAddress(e.target.value)}
           required
         />
+        {errors.address && <p>{errors.address}</p>}
         <input
           placeholder="City"
           type="text"
@@ -103,34 +88,46 @@ const CreateRestaurantForm = () => {
           onChange={(e) => setCity(e.target.value)}
           required
         />
+        {errors.city && <p>{errors.city}</p>}
         <select required onChange={(e) => setState(e.target.value)}>
           <option value="">State</option>
           {stateOptions.map((type) => (
-            <option value={type}>{type}</option>
+            <option key={type} value={type}>
+              {type}
+            </option>
           ))}
         </select>
+        {errors.state && <p>{errors.state}</p>}
         <select required onChange={(e) => setCountry(e.target.value)}>
           <option value="">Country</option>
           {countryOptions.map((type) => (
-            <option value={type}>{type}</option>
+            <option key={type} value={type}>
+              {type}
+            </option>
           ))}
         </select>
+        {errors.country && <p>{errors.country}</p>}
         <textarea
           value={description}
           placeholder="Optional: Provide a short sumary of your restaurant"
           onChange={(e) => setDescription(e.target.value)}
         />
+        {errors.description && <p>{errors.description}</p>}
         <select required onChange={(e) => setCuisine(e.target.value)}>
           <option value="">Cuisine</option>
           {cuisineOptions.map((type) => (
-            <option value={type}>{type}</option>
+            <option key={type} value={type}>
+              {type}
+            </option>
           ))}
         </select>
+        {errors.cuisine && <p>{errors.cuisine}</p>}
         <select onChange={(e) => setDietary(e.target.value)}>
           <option value="">Dietary (Optional)</option>
           <option value="Vegan">Vegan</option>
           <option value="Vegetarian">Vegetarian</option>
         </select>
+        {errors.dietary && <p>{errors.dietary}</p>}
         <select required onChange={(e) => setPriceRange(e.target.value)}>
           <option value="">Price Range</option>
           <option value="$">$</option>
@@ -138,6 +135,7 @@ const CreateRestaurantForm = () => {
           <option value="$$$">$$$</option>
           <option value="$$$$">$$$$</option>
         </select>
+        {errors.price_range && <p>{errors.price_range}</p>}
         <label htmlFor="image">Image (Optional)</label>
         <input
           id="image"
@@ -145,6 +143,7 @@ const CreateRestaurantForm = () => {
           accept="image/*"
           onChange={(e) => setImageUrl(e.target.files[0])}
         />
+        {errors.image_url && <p>{errors.image_url}</p>}
         <label htmlFor="open">Opens At</label>
         <input
           id="open"
@@ -152,6 +151,7 @@ const CreateRestaurantForm = () => {
           value={opens_at}
           onChange={(e) => setOpensAt(e.target.value)}
         />
+        {errors.opens_at && <p>{errors.opens_at}</p>}
         <label htmlFor="close">Closes At</label>
         <input
           required
@@ -160,7 +160,7 @@ const CreateRestaurantForm = () => {
           value={closes_at}
           onChange={(e) => setClosesAt(e.target.value)}
         />
-
+        {errors.closes_at && <p>{errors.closes_at}</p>}
         <button type="submit">Create Restaurant</button>
       </form>
     </div>

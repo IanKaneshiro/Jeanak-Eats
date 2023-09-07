@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7840606333585f476bcf0b82bd30b8a94f32b524afcd59f758328c33108b4012"
+            "sha256": "39b2505f1da92eb4aedf5d2002b0c4526819d5e46d5639c0ccda9fd0573c5259"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -34,11 +34,11 @@
         },
         "botocore": {
             "hashes": [
-                "sha256:ce22a82ef8674f49691477d09558992cc87e7331f65c6a5b0da897ab192240ca",
-                "sha256:df766969f0d9ef9eda1a9c9946e0e173c10199f37a9e4c92861f11ddb5c9e702"
+                "sha256:4dad7c5a5e70940de54ebf8de3955450c1f092f43cacff8103819d1e7d5374fa",
+                "sha256:c33a453328d361c089e6a8f9dd671a7b939288e539e6550c7030152e8162e906"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.31.40"
+            "version": "==1.31.41"
         },
         "click": {
             "hashes": [
@@ -47,6 +47,22 @@
             ],
             "index": "pypi",
             "version": "==8.1.3"
+        },
+        "dnspython": {
+            "hashes": [
+                "sha256:57c6fbaaeaaf39c891292012060beb141791735dbb4004798328fc2c467402d8",
+                "sha256:8dcfae8c7460a2f84b4072e26f1c9f4101ca20c071649cb7c34e8b6a93d58984"
+            ],
+            "markers": "python_version >= '3.8' and python_version < '4.0'",
+            "version": "==2.4.2"
+        },
+        "email-validator": {
+            "hashes": [
+                "sha256:1ff6e86044200c56ae23595695c54e9614f4a9551e0e393614f764860b3d7900",
+                "sha256:2466ba57cda361fb7309fd3d5a225723c788ca4bbad32a0ebd5373b99730285c"
+            ],
+            "index": "pypi",
+            "version": "==2.0.0.post2"
         },
         "flask": {
             "hashes": [
@@ -169,6 +185,14 @@
             ],
             "index": "pypi",
             "version": "==20.1.0"
+        },
+        "idna": {
+            "hashes": [
+                "sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4",
+                "sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2"
+            ],
+            "markers": "python_version >= '3.5'",
+            "version": "==3.4"
         },
         "importlib-metadata": {
             "hashes": [

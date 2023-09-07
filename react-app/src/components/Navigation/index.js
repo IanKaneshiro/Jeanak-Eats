@@ -39,7 +39,9 @@ function Navigation({ loading }) {
         </div>
         <div className="navbar--home">
           <NavLink exact to="/">
-            <i className="fa-solid fa-house">Jeanak Eats</i>
+            <i className="fa-solid fa-bowl-rice" id="logo">
+              Jeanak Eats
+            </i>
           </NavLink>
         </div>
         <div className="navbar--deliver-pickup" onClick={handleDeliverPickup}>

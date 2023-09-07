@@ -54,7 +54,7 @@ const ManagerPortal = () => {
               }
             >
               {restuarants.map((restuarant) => (
-                <li>
+                <li key={restuarant.id}>
                   <NavLink to={`${url}/restaurants/${restuarant.id}`}>
                     {restuarant.name}
                   </NavLink>
