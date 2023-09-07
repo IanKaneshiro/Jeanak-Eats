@@ -29,7 +29,7 @@ def restaurant_by_id(id):
     if restaurant:
         return restaurant.to_dict_by_id()
     else:
-        return {"message": "Restaurant couldn't be found"}, 404
+        return {"errors": "Restaurant couldn't be found"}, 404
 
 
 @restaurant_routes.route('/new', methods=['POST'])
@@ -87,9 +87,9 @@ def update_restaurant(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     restaurant = Restaurant.query.get(id)
     if not restaurant:
-        return {"message": "Restaurant couldn't be found"}, 404
+        return {"errors": "Restaurant couldn't be found"}, 404
     if restaurant.owner_id != current_user.id:
-        return {"message": "Can only edit restaurants you own"}, 403
+        return {"errors": "Can only edit restaurants you own"}, 403
     # This works because the image_url field is a FileField and not is required, It shows up as none when you try and pass it a string,
     # therefore not passing the if statement
     if form.validate_on_submit():
@@ -127,9 +127,9 @@ def delete_restaurant(id):
     """
     restaurant = Restaurant.query.get(int(id))
     if not restaurant:
-        return {'message': "Restaurant couldn't be found"}, 404
+        return {'errors': "Restaurant couldn't be found"}, 404
     if restaurant.owner_id != current_user.id:
-        return {"message": "Can only delete restaurants you own"}, 403
+        return {"errors": "Can only delete restaurants you own"}, 403
     if restaurant.image_url:
         remove_file_from_s3(restaurant.image_url)
     db.session.delete(restaurant)
@@ -153,16 +153,16 @@ def create_restaurant_review(id):
     restaurant = Restaurant.query.get(id)
 
     if not restaurant:
-        return {"message": "Restaurant couldn't be found"}, 404
+        return {"errors": "Restaurant couldn't be found"}, 404
 
     if current_user.id == restaurant.owner_id:
-        return {"message": "Cannot review your own restaurant"}, 403
+        return {"errors": "Cannot review your own restaurant"}, 403
 
     has_review = Review.query.filter(and_(
         Review.user_id == current_user.id, Review.restaurant_id == id)).all()
 
     if has_review:
-        return {'message': "User already has a review for this restaurant"}, 403
+        return {'errors': "User already has a review for this restaurant"}, 403
 
     if form.validate_on_submit():
         review = Review(
@@ -184,7 +184,7 @@ def restaurant_reviews(id):
     """
     restaurant = Restaurant.query.get(int(id))
     if not restaurant:
-        return {'message': "Restaurant couldn't be found"}, 404
+        return {'errors': "Restaurant couldn't be found"}, 404
     return {"Reviews": [review.to_dict_restaurant_reviews() for review in restaurant.reviews]}
 
 
@@ -198,7 +198,7 @@ def menu_items_by_restaurant(id):
     restaurant = Restaurant.query.get(id)
 
     if not restaurant:
-        return {"message": "Restaurant couldn't be found"}, 404
+        return {"errors": "Restaurant couldn't be found"}, 404
 
     menu_items = MenuItem.query.filter(MenuItem.restaurant_id == id)
 
@@ -214,10 +214,10 @@ def create_menu_item(id):
     restaurant = Restaurant.query.get(id)
 
     if not restaurant:
-        return {"message": "Restaurant couldn't be found"}, 404
+        return {"errors": "Restaurant couldn't be found"}, 404
 
     if restaurant.owner_id != current_user.id:
-        return {"message": "Cannot add menu items to restaurant you do not own"}, 403
+        return {"errors": "Cannot add menu items to restaurant you do not own"}, 403
 
     form = MenuItemForm()
     # Get the csrf_token from the request cookie and put it into the
@@ -233,7 +233,7 @@ def create_menu_item(id):
             if "url" not in upload:
                 return {'errors': validation_errors_to_error_messages(upload)}, 400
             url = upload["url"]
-        
+
         menu_item = MenuItem(
             restaurant_id=id,
             name=form.data['name'],
