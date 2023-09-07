@@ -42,9 +42,9 @@ function App() {
           <ProtectedRoute path="/manage">
             <ManagerPortal />
           </ProtectedRoute>
-          <Route path="/restaurants/:restaurantId/menuItems">
+          {/* <Route path="/restaurants/:restaurantId/menuItems">
             <NewMenuItemForm />
-          </Route>
+          </Route> */}
           <Route path="/restaurants/:restaurantId">
             <RestaurantDetails />
           </Route>

@@ -7,6 +7,7 @@ import OpenModalButton from "../OpenModalButton";
 import { useModal } from "../../context/Modal";
 import ProtectedRoute from "../auth/ProtectedRoute";
 import UpdateMenuItemModal from "../UpdateMenuItemModal";
+import CreateMenuItemModal from "../CreateMenuItemModal";
 
 const ManageMenuItems = ({ restaurant }) => {
   const dispatch = useDispatch();
@@ -24,6 +25,12 @@ const ManageMenuItems = ({ restaurant }) => {
   return (
     <ProtectedRoute>
       <div className="manage-menu-item-container">
+        <OpenModalButton
+          className="mit-bttn"
+          buttonText="Add a Menu Item"
+          modalComponent={<CreateMenuItemModal restaurantId={restaurant.id} />}
+        />
+
         <table className="manage-menu-item-table">
           <thead>
             <tr>

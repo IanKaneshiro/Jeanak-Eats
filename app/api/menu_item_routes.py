@@ -60,6 +60,7 @@ def update_menu_item(id):
                 return {'errors': validation_errors_to_error_messages(upload)}, 400
             url = upload["url"]
             menu_item.image_url = url
+        # else:
         menu_item.name = form.data['name']
         menu_item.description = form.data['description']
         menu_item.price = form.data['price']
