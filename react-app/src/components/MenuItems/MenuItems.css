@@ -124,32 +124,25 @@
   padding-bottom: 3px;
 }
 
-/*New Menu Item and Update forms*/
-
-.itemFormContainer {
-  display: flex;
-  justify-content: center;
-}
-.menu-item-form {
+/* Delete Menu Item Modal */
+.delete-menu-item-container {
+  height: 5rem;
+  width: 15rem;
   display: flex;
   flex-direction: column;
-  align-items: baseline;
-  gap: 10px;
-}
-
-/* Delete Menu Item Modal */
-.delete-menu-item-container > span > h2 {
-  margin-bottom: 10px;
+  justify-content: space-between;
 }
 .delete-menu-item-buttons {
   display: flex;
   justify-content: space-between;
 }
-.delete-menu-item-button {
-  background-color: black;
-  color: whitesmoke;
-  padding: 10px;
-  width: 115px;
+.delete-menu-item-buttons > button {
+  border: none;
+  background-color: #000000;
+  color: #ffffff;
+  width: 10rem;
+  margin-right: 10px;
+  height: 2rem;
   border-radius: 10px;
 }
 

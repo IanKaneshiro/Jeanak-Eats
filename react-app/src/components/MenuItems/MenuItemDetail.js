@@ -8,6 +8,7 @@ import {
 } from "../../store/menuItems";
 import { useParams, useHistory } from "react-router-dom";
 import { allRestaurants, getAllRestaurants } from "../../store/restaurant";
+import LoadingSpinner from "../LoadingSpinner";
 
 const MenuItemDetail = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const MenuItemDetail = () => {
   }, [dispatch, menuItemId]);
 
   if (!item || !restaurant) {
-    return "Loading...";
+    return <LoadingSpinner />;
   }
 
   const goBackToRestaurant = () => {
