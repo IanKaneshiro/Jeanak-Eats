@@ -19,7 +19,7 @@ const AddressModal = () => {
     const data = await dispatch(
       updateUserAddress(address, city, state, country)
     );
-    if (data.errors) {
+    if (data?.errors) {
       setErrors(data);
     } else {
       closeModal();
@@ -36,7 +36,7 @@ const AddressModal = () => {
           onChange={(e) => setAddress(e.target.value)}
           required
         />
-        {errors.address && <p>{errors.address}</p>}
+        {errors.address && <p className="errors">{errors.address}</p>}
         <input
           placeholder="City"
           type="text"
@@ -44,7 +44,7 @@ const AddressModal = () => {
           onChange={(e) => setCity(e.target.value)}
           required
         />
-        {errors.city && <p>{errors.city}</p>}
+        {errors.city && <p className="errors">{errors.city}</p>}
         <select required onChange={(e) => setState(e.target.value)}>
           <option value="">State</option>
           {stateOptions.map((type) => (
@@ -53,7 +53,7 @@ const AddressModal = () => {
             </option>
           ))}
         </select>
-        {errors.state && <p>{errors.state}</p>}
+        {errors.state && <p className="errors">{errors.state}</p>}
         <select required onChange={(e) => setCountry(e.target.value)}>
           <option value="">Country</option>
           {countryOptions.map((type) => (
@@ -62,7 +62,7 @@ const AddressModal = () => {
             </option>
           ))}
         </select>
-        {errors.country && <p>{errors.country}</p>}
+        {errors.country && <p className="errors">{errors.country}</p>}
         <button type="submit">Done</button>
       </form>
     </div>

@@ -39,3 +39,7 @@ button {
 .modal-button:active {
   background-color: #505050;
 }
+
+.errors {
+  color: red;
+}
