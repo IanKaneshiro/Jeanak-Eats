@@ -32,8 +32,18 @@ function AddModal(data) {
     const createReview = await dispatch(addReview(data.data, payload));
 
     if(createReview){
-      back = createReview.errors
-      setBack(back.errors)
+      console.log(createReview)
+      if(createReview.errors){
+        back = createReview.errors
+        setBack(back.errors)
+      }
+      else if(createReview.message){
+        back = createReview.message
+        setBack(back)
+      }
+
+      console.log(createReview.message)
+
     }
     else{
       closeModal()
@@ -66,7 +76,7 @@ function AddModal(data) {
           />
         </label>
 
-        <div className="Error"> {back?.rating} </div>
+        <div className="Error"> {back?.rating ? back.rating : back} </div>
 
         <button className="updateModalButton">Post</button>
         </div>

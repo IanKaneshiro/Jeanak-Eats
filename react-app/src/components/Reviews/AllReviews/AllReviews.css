@@ -16,3 +16,18 @@
     border-bottom: 1px solid lightgrey;
 }
 
+.reviewInformation{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.withoutImage{
+    padding-left: 20px;
+}
+
+.reportReview{
+    display: flex;
+    justify-content: flex-end;
+}
