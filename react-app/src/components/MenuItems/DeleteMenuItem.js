@@ -23,10 +23,17 @@ const DeleteMenuItemModal = ({ item }) => {
 
   return (
     <div className="delete-menu-item-container">
-      <h1>Delete Menu Item Modal Component</h1>
-      <span>Delete this menu item?</span>
-      <button onClick={confirmDelete}>Delete</button>
-      <button onClick={rejectDelete}>Keep</button>
+      <span>
+        <h2>Delete this menu item?</h2>
+      </span>
+      <span className="delete-menu-item-buttons">
+        <button className="delete-menu-item-button" onClick={confirmDelete}>
+          Delete
+        </button>
+        <button className="delete-menu-item-button" onClick={rejectDelete}>
+          Keep
+        </button>
+      </span>
     </div>
   );
 };

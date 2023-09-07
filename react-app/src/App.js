@@ -13,9 +13,6 @@ import UpdateMenuItemForm from "./components/MenuItems/UpdateMenuItemForm";
 import ManagerPortal from "./components/ManagerPortal";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import AllReviews from "./components/Reviews/AllReviews";
-import UpdateModal from "./components/Reviews/UpdateModal";
-import DeleteModal from "./components/DeleteModal";
-import AddModal from "./components/Reviews/AddModal";
 import RestaurantDetails from "./components/RestaurantDetails";
 
 function App() {
@@ -40,22 +37,15 @@ function App() {
             <SignupFormPage />
           </Route>
 
-
           <ProtectedRoute path="/manage">
             <ManagerPortal />
           </ProtectedRoute>
-
-          <Route path="/restaurants/:restaurantId/menuItems">
+          {/* <Route path="/restaurants/:restaurantId/menuItems">
             <NewMenuItemForm />
-          </Route>
-
-
-
+          </Route> */}
           <Route path="/restaurants/:restaurantId">
             <RestaurantDetails />
           </Route>
-
-
 
           <Route path="/menuItems/:menuItemId/update">
             <UpdateMenuItemForm />
