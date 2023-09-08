@@ -1,0 +1,24 @@
+.search-bar--container {
+  height: 60vh;
+  position: relative;
+  z-index: 6;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 200px;
+  justify-content: flex-start;
+  overflow-x: hidden;
+}
+.search-bar--icon > i {
+  cursor: pointer;
+}
+
+.search-bar--background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}

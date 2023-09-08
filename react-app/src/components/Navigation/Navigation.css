@@ -11,6 +11,9 @@
   gap: 2rem;
   height: 100px;
   padding: 0 40px;
+  position: relative;
+  z-index: 1;
+  background-color: #ffffff;
 }
 
 .navbar--main a,
@@ -85,6 +88,7 @@ button:active {
   padding-left: 10px;
   border-radius: 30px;
   height: 50px;
+  outline: none;
 }
 
 .navbar--shopping-btn {
