@@ -85,3 +85,7 @@
   color: #ffffff;
   background-color: #000000;
 }
+
+.sidebar--manager-portal-btn {
+  font-weight: bold;
+}

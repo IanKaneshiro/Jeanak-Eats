@@ -1,6 +1,23 @@
 .manager-home--container {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  gap: 10px;
   align-items: center;
+}
+
+.manager-home--new {
+  color: #ffffff;
+  background-color: black;
+  border-radius: 30px;
+  padding: 15px;
+}
+
+.manager-home--new:hover {
+  background-color: #333333;
+}
+
+.manager-home--new:active {
+  background-color: #505050;
 }
