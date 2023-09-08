@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { allRestaurants, getAllRestaurants } from "../../store/restaurant";
 import RestaurantTile from "../RestaurantTile";
 import LoadingSpinner from "../LoadingSpinner";
+import { notImplemented } from "../../Resources/helperFunctions";
 import "./LandingPage.css";
 
 const LandingPage = () => {
@@ -58,15 +59,33 @@ const LandingPage = () => {
               <label htmlFor="default">Picked for you (default)</label>
             </div>
             <div className="landing--sort">
-              <input id="popular" type="radio" value="popular" name="sort" />
+              <input
+                onChange={notImplemented}
+                id="popular"
+                type="radio"
+                value="popular"
+                name="sort"
+              />
               <label htmlFor="popular">Most popular</label>
             </div>
             <div className="landing--sort">
-              <input id="rating" type="radio" value="rating" name="sort" />
+              <input
+                onChange={notImplemented}
+                id="rating"
+                type="radio"
+                value="rating"
+                name="sort"
+              />
               <label htmlFor="rating">Rating</label>
             </div>
             <div className="landing--sort">
-              <input id="delivery" type="radio" value="time" name="sort" />
+              <input
+                onChange={notImplemented}
+                id="delivery"
+                type="radio"
+                value="time"
+                name="sort"
+              />
               <label htmlFor="delivery">Delivery time</label>
             </div>
           </div>
@@ -88,10 +107,10 @@ const LandingPage = () => {
             }
           >
             <div className="landing--filters-price-btns">
-              <button>$</button>
-              <button>$$</button>
-              <button>$$$</button>
-              <button>$$$$</button>
+              <button onClick={notImplemented}>$</button>
+              <button onClick={notImplemented}>$$</button>
+              <button onClick={notImplemented}>$$$</button>
+              <button onClick={notImplemented}>$$$$</button>
             </div>
           </div>
         </div>
@@ -112,13 +131,13 @@ const LandingPage = () => {
             }
           >
             <div className="landing--filters-dietary-btns">
-              <button>
+              <button onClick={notImplemented}>
                 <i class="fa-solid fa-leaf fa-xs"></i> Vegetarian
               </button>
-              <button>
+              <button onClick={notImplemented}>
                 <i class="fa-solid fa-heart fa-xs"></i> Vegan
               </button>
-              <button>
+              <button onClick={notImplemented}>
                 <i class="fa-brands fa-pagelines fa-sm"></i> Gluten-free
               </button>
             </div>

@@ -7,6 +7,7 @@ import NavigationCartBar from "../NavigationCartBar";
 import OpenModalButton from "../OpenModalButton";
 import AddressModal from "../AddressModal";
 import { cuisineUrls } from "../../Resources/imageUrlArrays";
+import { notImplemented } from "../../Resources/helperFunctions";
 import "./Navigation.css";
 
 function Navigation({ loading }) {
@@ -91,7 +92,7 @@ function Navigation({ loading }) {
           <ul className="navbar--cuisine-main">
             {cuisineUrls.map((img) => {
               return (
-                <button key={img}>
+                <button onClick={notImplemented} key={img}>
                   <img src={img.url} alt={img.url} />
                   <p>{img.name}</p>
                 </button>
