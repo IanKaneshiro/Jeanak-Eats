@@ -145,10 +145,15 @@ const UpdateRestaurantForm = ({ id }) => {
         </select>
         {errors.cuisine && <p>{errors.cuisine}</p>}
         <select onChange={(e) => setDietary(e.target.value)}>
-          <option value={dietary}>{dietary}</option>
+          {dietary ? (
+            <option value={dietary}>{dietary}</option>
+          ) : (
+            <option value="">Dietary (Optional)</option>
+          )}
+
           {filterOptionsArr(dietaryOptions, restaurant.dietary).map((val) => (
             <option key={val} value={val}>
-              {val}
+              {val ? val : "None"}
             </option>
           ))}
         </select>

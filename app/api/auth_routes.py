@@ -75,6 +75,7 @@ def sign_up():
             state=form.data['state'],
             country=form.data['country'],
             password=form.data['password'],
+            image_url=form.data['image_url']
         )
         db.session.add(user)
         db.session.commit()

@@ -15,8 +15,7 @@ function UpdateModal() {
   const reviewState = useSelector(state=>state.reviews)
   const userState = useSelector(state=>state.session)
 
-
-  const [errors, setErrors] = useState([]);
+  let [back, setBack] = useState();
 
 //returns the review
   function findReview(){
@@ -33,10 +32,6 @@ function UpdateModal() {
   function findRating(){
     let foundRating
     reviewState?.Reviews?.forEach(element=>{
-      console.log(element)
-      console.log(element?.User?.id)
-      console.log(userState?.id)
-      console.log('element',element?.rating)
       if(element?.User?.id === userState?.user?.id ){
         foundRating = element?.rating
       }
@@ -58,22 +53,28 @@ function UpdateModal() {
   const [review, setReview] = useState(findReview());
   const [rating, setRating] = useState(findRating());
 
-  const payload = {
-    review:review,
-    rating:rating
-  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const payload = {
+      review:review,
+      rating:rating
+    }
+    console.log(payload,'payload')
     const allReviews = await dispatch(reviewActions.changeReview(reviewId(), payload));
     if (allReviews) {
-      setErrors(allReviews);
+      back = allReviews.errors
+      setBack(back.errors)
     } else {
       closeModal();
     }
   };
 
   console.log(reviewId(), 'reviewId update')
+
+  console.log(back, 'errorssssssssssss')
 
   return (
     <>
@@ -98,6 +99,9 @@ function UpdateModal() {
             required
           />
         </label>
+
+        <div className="Error"> {back?.rating} </div>
+
         <button className="updateModalButton">Update</button>
         </div>
       </form>

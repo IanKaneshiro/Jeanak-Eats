@@ -17,11 +17,12 @@ function SignupFormPage() {
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [password, setPassword] = useState("");
+  const [image_url, setImage] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
-    setErrors([]);
+    setErrors({});
     e.preventDefault();
     if (password === confirmPassword) {
       const data = await dispatch(
@@ -34,82 +35,108 @@ function SignupFormPage() {
           city,
           state,
           country,
+          image_url,
           password
         )
       );
-      if (data) {
-        setErrors(data);
+      if (data?.errors) {
+        setErrors(data.errors);
       } else {
         return history.push("/");
       }
     } else {
-      setErrors([
-        "Confirm Password field must be the same as the Password field",
-      ]);
+      setErrors({
+        password:
+          "Confirm Password field must be the same as the Password field",
+      });
     }
   };
+
+  function displayImage() {
+    const icons = [
+      "https://images.pexels.com/photos/1395958/pexels-photo-1395958.jpeg",
+      "https://images.pexels.com/photos/3429782/pexels-photo-3429782.jpeg",
+      "https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg",
+      "https://images.pexels.com/photos/219794/pexels-photo-219794.jpeg",
+      "https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg",
+    ];
+
+    return icons.map((element) => {
+      return (
+        <button onClick={() => setImage(element)} className="allImagess">
+          <img src={element} alt="Profile Icon" className="icon-image" />
+        </button>
+      );
+    });
+  }
+
+  console.log(image_url, "imageeeeeeeeee");
 
   return (
     <div className="signup--container">
       <form onSubmit={handleSubmit} className="signup--main">
         <h1>Sign Up</h1>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
         <input
+          required
           placeholder="First Name"
           type="text"
           value={first_name}
           onChange={(e) => setFirstName(e.target.value)}
-          required
         />
+        {errors.first_name && <p className="errors">{errors.first_name}</p>}
         <input
+          required
           placeholder="Last Name"
           type="text"
           value={last_name}
           onChange={(e) => setLastName(e.target.value)}
-          required
         />
+        {errors.last_name && <p className="errors">{errors.last_name}</p>}
         <input
+          required
           placeholder="Email"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
+        {errors.email && <p className="errors">{errors.email}</p>}
         <input
+          required
           placeholder="Phone Number"
           type="text"
           value={phone_number}
           onChange={(e) => setPhoneNumber(e.target.value)}
-          required
         />
+        {errors.phone_number && <p className="errors">{errors.phone_number}</p>}
         <input
           placeholder="Address (Optional)"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
+        {errors.address && <p className="errors">{errors.address}</p>}
         <input
           placeholder="City (Optional)"
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
+        {errors.city && <p className="errors">{errors.city}</p>}
         <select onChange={(e) => setState(e.target.value)}>
           <option value="">State (Optional)</option>
           {stateOptions.map((type) => (
             <option value={type}>{type}</option>
           ))}
         </select>
+        {errors.state && <p className="errors">{errors.state}</p>}
         <select onChange={(e) => setCountry(e.target.value)}>
           <option value="">Country (Optional)</option>
           {countryOptions.map((type) => (
             <option value={type}>{type}</option>
           ))}
         </select>
+        <div className="allImages">{displayImage()}</div>
+        {errors.country && <p className="errors">{errors.country}</p>}
         <input
           placeholder="Password"
           type="password"
@@ -117,6 +144,7 @@ function SignupFormPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        {errors.password && <p className="errors">{errors.password}</p>}
         <input
           placeholder="Confirm Password"
           type="password"
@@ -124,7 +152,6 @@ function SignupFormPage() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-
         <button type="submit">Sign Up</button>
       </form>
     </div>

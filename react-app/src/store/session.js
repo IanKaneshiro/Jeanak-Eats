@@ -78,6 +78,7 @@ export const signUp =
     city,
     state,
     country,
+    image_url,
     password
   ) =>
   async (dispatch) => {
@@ -95,6 +96,7 @@ export const signUp =
         city,
         state,
         country,
+        image_url,
         password,
       }),
     });

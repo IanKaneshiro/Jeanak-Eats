@@ -16,7 +16,7 @@ function LoginFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(credential, password));
-    if (data.errors) {
+    if (data?.errors) {
       setErrors(data.errors);
     }
   };
@@ -37,7 +37,7 @@ function LoginFormPage() {
           onChange={(e) => setCredential(e.target.value)}
           required
         />
-        {errors.credential && <p>{errors.credential}</p>}
+        {errors.credential && <p className="errors">{errors.credential}</p>}
         <input
           placeholder="Password"
           type="password"
@@ -45,7 +45,7 @@ function LoginFormPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="errors">{errors.password}</p>}
         <button type="submit">Log In</button>
       </form>
       <button className="login-demo-btn" onClick={loginDemo}>

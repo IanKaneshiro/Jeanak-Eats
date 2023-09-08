@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
     state = db.Column(db.String(25))
     country = db.Column(db.String(50))
     hashed_password = db.Column(db.String(255), nullable=False)
+    image_url = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(
         db.DateTime, default=datetime.now(), onupdate=datetime.now())
@@ -53,11 +54,13 @@ class User(db.Model, UserMixin):
             'city': self.city,
             'state': self.state,
             'country': self.country,
+            'imageUrl': self.image_url,
         }
 
     def to_dict_review(self):
         return {
             "id": self.id,
             "firstName": self.first_name,
-            "lastName": self.last_name
+            "lastName": self.last_name,
+            "imageUrl": self.image_url
         }

@@ -4,6 +4,7 @@ import './AllReviews.css'
 import AddModal from '../AddModal'
 import UpdateModal from '../UpdateModal'
 import DeleteModal from '../DeleteModal'
+import ReportModal from '../ReportModal'
 import { useModal } from "../../../context/Modal";
 import OpenModalButton from "../../OpenModalButton"
 
@@ -47,7 +48,7 @@ const AllReviews = () => {
     function displayReview(){
         return reviewState?.Reviews?.map(element=>{
 
-            let createdAtDate = new Date(element.createdAt)
+            let createdAtDate = new Date(element?.createdAt)
             let currentDate = new Date()
 
             let difference = currentDate - createdAtDate
@@ -76,38 +77,71 @@ const AllReviews = () => {
 
             return (
             <div className='line'>
-                {userState?.user?.id === element.User.id ?
+                {userState?.user?.id === element?.User?.id ?
                     (
                     <>
-                    <div className='name'>{element.User.firstName} {element.User.lastName[0]}</div>
-                    <div className='posted'> {clock()} </div>
-                    <div className='review'>{element.review}</div>
+                    <div className='reviewInformation'>
+                        <div className='profileIcon'>
+                            <img
+                            src= {userState?.user?.imageUrl}
+                            alt="Profile Icon"
+                            className="icon-image"/>
+                        </div>
 
-                    <OpenModalButton
-                        buttonText='Update'
-                        onItemClick={closeMenu}
-                        modalComponent={<UpdateModal/>}
-                    />
+                        <div className='withoutImage'>
+                            <div className='name'>{element?.User?.firstName} {element?.User?.lastName[0]}</div>
+                            <div className='posted'> {clock()} </div>
+                            <div className='review'>{element?.review}</div>
 
-                    <OpenModalButton
-                        buttonText='Delete'
-                        onItemClick={closeMenu}
-                        modalComponent={<DeleteModal/>}
-                    />
+                            <OpenModalButton
+                                buttonText='Update'
+                                onItemClick={closeMenu}
+                                modalComponent={<UpdateModal/>}
+                            />
+
+                            <OpenModalButton
+                                buttonText='Delete'
+                                onItemClick={closeMenu}
+                                modalComponent={<DeleteModal/>}
+                            />
+                        </div>
+                    </div>
                     </>
                     )
                 :
                     (
                     <>
-                    <div className='name'>{element.User.firstName} {element.User.lastName[0]}</div>
-                    <div className='posted'> {clock()} </div>
-                    <div className='review'>{element.review}</div>
+
+                    <div className='reviewInformation'>
+                        <div className='profileIcon'>
+                            <img
+                            src= {element.User.imageUrl}
+                            alt="Profile Icon"
+                            className="icon-image"/>
+                        </div>
+
+                        <div className='withoutImage'>
+                            <div className='name'>{element?.User?.firstName} {element?.User?.lastName[0]}</div>
+                            <div className='posted'> {clock()} </div>
+                            <div className='review'>{element?.review}</div>
+                        </div>
+                    </div>
                     </>
                     )}
+
+                <div className='reportReview'>
+                    <OpenModalButton
+                        buttonText='Report'
+                        onItemClick={closeMenu}
+                        modalComponent={<ReportModal/>}
+                    />
+                </div>
             </div>
             )
         })
     }
+
+
 
     //Checks if the user is logged in and if the user does not have a review
     //returns true if no review false if the user has a review
@@ -120,9 +154,7 @@ const AllReviews = () => {
         }
 
         reviewState?.Reviews?.forEach(element =>{
-            console.log(element)
             if(userState?.user !== null && userState?.user?.id === element?.User?.id){
-                console.log('review id', element?.User?.id)
                 userNoReview = 'false'
             }
         })
@@ -147,8 +179,13 @@ const AllReviews = () => {
 
     return (
         <>
+
+        <div className='reviewsTitle'>
+            <h1>Customer Reviews </h1>
+        </div>
+
         <div> {postReview() } </div>
-        <div> { displayReview() } </div>
+        <div> { displayReview() }</div>
         </>
     )
 

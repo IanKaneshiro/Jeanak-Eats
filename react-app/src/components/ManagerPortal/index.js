@@ -35,33 +35,35 @@ const ManagerPortal = () => {
             </NavLink>
           </li>
 
-          <li>
-            <button onClick={handleOpenRestaurants}>
-              <i className="fa-solid fa-utensils fa-sm"></i> Restaurants{" "}
-              <i
+          {restuarants[0] && (
+            <li>
+              <button onClick={handleOpenRestaurants}>
+                <i className="fa-solid fa-utensils fa-sm"></i> Restaurants{" "}
+                <i
+                  className={
+                    openRestaurants
+                      ? "fa-solid fa-caret-down fa-sm caret-open"
+                      : "fa-solid fa-caret-down fa-sm caret-closed"
+                  }
+                ></i>
+              </button>
+              <ul
                 className={
                   openRestaurants
-                    ? "fa-solid fa-caret-down fa-sm caret-open"
-                    : "fa-solid fa-caret-down fa-sm caret-closed"
+                    ? "manager--navbar-restaurants manager--open"
+                    : "manager--navbar-restaurants"
                 }
-              ></i>
-            </button>
-            <ul
-              className={
-                openRestaurants
-                  ? "manager--navbar-restaurants manager--open"
-                  : "manager--navbar-restaurants"
-              }
-            >
-              {restuarants.map((restuarant) => (
-                <li key={restuarant.id}>
-                  <NavLink to={`${url}/restaurants/${restuarant.id}`}>
-                    {restuarant.name}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </li>
+              >
+                {restuarants.map((restuarant) => (
+                  <li key={restuarant.id}>
+                    <NavLink to={`${url}/restaurants/${restuarant.id}`}>
+                      {restuarant.name}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          )}
           <li>
             <NavLink to={`${url}/restaurants/new`}>
               <i className="fa-solid fa-hammer fa-sm"></i> Add a restaurant
