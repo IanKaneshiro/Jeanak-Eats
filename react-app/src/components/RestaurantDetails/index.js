@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useParams,
+  useHistory,
+} from "react-router-dom/cjs/react-router-dom.min";
 import {
   getRestaurantById,
   currentRestaurant,
@@ -16,6 +19,7 @@ const RestaurantDetails = () => {
   const dispatch = useDispatch();
   const restaurant = useSelector(currentRestaurant);
   const { restaurantId } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getRestaurantById(restaurantId));
@@ -44,6 +48,9 @@ const RestaurantDetails = () => {
         </p>
         <p className="details--est-delivery-time">Est. delivery time here</p>
       </div>
+      <span className="back-to-main" onClick={() => history.push("/")}>
+        ← Back to main
+      </span>
       <MenuItem />
       <AllReviews />
     </div>

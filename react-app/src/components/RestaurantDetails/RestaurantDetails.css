@@ -32,3 +32,15 @@
   font-size: 12px;
   color: #9a9a9a;
 }
+
+.back-to-main {
+  padding-bottom: 25px;
+}
+
+.back-to-main:hover {
+  cursor: pointer;
+}
+
+MenuItem {
+  margin-top: 25px;
+}

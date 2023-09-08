@@ -167,7 +167,7 @@ const menuItemsReducer = (state = initialState, action) => {
           [action.payload.id]: action.payload,
         },
       };
-    // return (newState[action.payload.id] = action.payload);
+
     case REMOVE_MENU_ITEM:
       delete newState[action.payload];
       return newState;

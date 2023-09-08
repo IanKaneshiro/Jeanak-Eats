@@ -6,7 +6,6 @@ import LoadingSpinner from "../LoadingSpinner";
 import { useModal } from "../../context/Modal";
 
 const UpdateMenuItemModal = ({ item }) => {
-  //   const item = useSelector(currentMenuItem);
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
@@ -18,7 +17,7 @@ const UpdateMenuItemModal = ({ item }) => {
   const [image_url, setImageUrl] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [errors, setErrors] = useState({});
-
+  console.log("UPDATE ERRORS", errors);
   //Gets the currentMenuItem to render the form's present data
   useEffect(() => {
     dispatch(getOneMenuItem(item.id)).then(() => {
@@ -44,7 +43,6 @@ const UpdateMenuItemModal = ({ item }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    // formData.append("id", item.id);
     formData.append("name", name);
     formData.append("description", description);
     formData.append("category", category);

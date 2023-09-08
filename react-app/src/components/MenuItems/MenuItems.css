@@ -90,6 +90,8 @@
 .all-menu-items-container {
   font-family: Arial, Helvetica, sans-serif;
   width: fit-content;
+  display: flex;
+  justify-content: space-between;
 }
 
 .menu-ul {
@@ -122,6 +124,12 @@
 .menu-tile-name {
   margin: 0;
   padding-bottom: 3px;
+}
+
+.menu-item-detail-sidebar {
+  margin-top: 25px;
+  padding-bottom: 50px;
+  font-weight: 540;
 }
 
 /* Delete Menu Item Modal */
