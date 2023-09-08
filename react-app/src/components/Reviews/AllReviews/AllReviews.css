@@ -23,6 +23,19 @@
     align-items: center;
 }
 
+.buttonControl{
+    display: flex;
+    flex-direction: row;
+    padding-top: 5px;
+}
+.buttonControl1{
+ padding-right: 10px;
+}
+
+.buttonControl2{
+
+}
+
 .withoutImage{
     padding-left: 20px;
 }
@@ -32,17 +45,100 @@
     justify-content: flex-end;
 }
 
-.reviewsTitle{
+
+
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+  }
+
+  :root {
+    --card-height: 7vh;
+    --card-width: 100%;
+  }
+
+  .card {
     display: flex;
     justify-content: center;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    background-size: cover;
-    background-image: url('https://images.pexels.com/photos/9802366/pexels-photo-9802366.jpeg');
-    background-color: black;
-}
+    align-items: center;
+    text-align: center;
 
-.reviewsTitle h1{
-    background-color: black;
-    color:white
-}
+
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    border-radius: 6px;
+
+    color: rgb(88 199 250 / 0%);
+    cursor: pointer;
+  }
+
+  .text{
+    font-size: 90px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 100;
+  }
+
+  .card:hover {
+    font-size: larger;
+    color: black;
+    transition: color 1s;
+  }
+  .card:hover:before, .card:hover:after {
+    animation: none;
+    opacity: 0;
+  }
+
+
+  .card::before {
+    content: "";
+    width: 104%;
+    height: 102%;
+    border-radius: 8px;
+    background-image: linear-gradient(
+      var(--rotate)
+      , #240c2e, #228B22 43%, #008080, #C70039 );
+      position: absolute;
+      z-index: -1;
+      top: -1%;
+      left: -2%;
+      animation: spin 2.5s linear infinite;
+  }
+
+  .card::after {
+    position: absolute;
+    content: "";
+    top: calc(var(--card-height) / 6);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(var(--card-height) / 6));
+    background-image: linear-gradient(
+      var(--rotate)
+      , #5ddcff, #3c67e3 43%, #4e00c2);
+      opacity: 1;
+    transition: opacity .5s;
+    animation: spin 2.5s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      --rotate: 0deg;
+    }
+    100% {
+      --rotate: 360deg;
+    }
+  }
+
+  .entireReviewSection{
+    margin-top: 5%;
+  }
+
+  .withoutColor{
+    margin-top: 3%;
+  }

@@ -30,6 +30,9 @@ button {
 .modal-button {
   background-color: black;
   color: white;
+  border-radius: 2px;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 10px;
 }
 
 .modal-button:hover {

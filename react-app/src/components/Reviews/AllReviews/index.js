@@ -93,17 +93,24 @@ const AllReviews = () => {
                             <div className='posted'> {clock()} </div>
                             <div className='review'>{element?.review}</div>
 
-                            <OpenModalButton
-                                buttonText='Update'
-                                onItemClick={closeMenu}
-                                modalComponent={<UpdateModal/>}
-                            />
 
-                            <OpenModalButton
-                                buttonText='Delete'
-                                onItemClick={closeMenu}
-                                modalComponent={<DeleteModal/>}
-                            />
+                        <div className='buttonControl'>
+                                <div className='buttonControl1'>
+                                    <OpenModalButton
+                                        buttonText='Update'
+                                        onItemClick={closeMenu}
+                                        modalComponent={<UpdateModal/>}
+                                    />
+                                </div>
+
+                                <div className='buttonControl2'>
+                                    <OpenModalButton
+                                        buttonText='Delete'
+                                        onItemClick={closeMenu}
+                                        modalComponent={<DeleteModal/>}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                     </>
@@ -180,12 +187,20 @@ const AllReviews = () => {
     return (
         <>
 
-        <div className='reviewsTitle'>
-            <h1>Customer Reviews </h1>
-        </div>
+        <div className='entireReviewSection'>
 
-        <div> {postReview() } </div>
-        <div> { displayReview() }</div>
+            <div className="card">
+                <p className='text'>
+                    Customer Reviews
+                </p>
+            </div>
+
+            <div className='withoutColor'>
+                <div> {postReview() } </div>
+                <div> { displayReview() }</div>
+            </div>
+
+        </div>
         </>
     )
 
