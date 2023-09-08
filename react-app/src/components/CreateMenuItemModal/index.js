@@ -14,6 +14,7 @@ const CreateMenuItemModal = ({ restaurantId }) => {
   const [category, setCategory] = useState("");
   const [dietary, setDietary] = useState("None");
   const [image_url, setImageUrl] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,8 +27,12 @@ const CreateMenuItemModal = ({ restaurantId }) => {
     formData.append("dietary", dietary);
     formData.append("image_url", image_url);
 
-    await dispatch(createMenuItem(formData, restaurantId));
-    closeModal();
+    const data = await dispatch(createMenuItem(formData, restaurantId));
+    if (data?.errors) {
+      setErrors(data.errors);
+    } else {
+      closeModal();
+    }
   };
 
   return (
@@ -46,7 +51,7 @@ const CreateMenuItemModal = ({ restaurantId }) => {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-
+        {errors.name && <p className="errors">{errors.name}</p>}
         <label htmlFor="description">Description</label>
         <textarea
           id="description"
@@ -55,7 +60,7 @@ const CreateMenuItemModal = ({ restaurantId }) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-
+        {errors.description && <p className="errors">{errors.description}</p>}
         <label htmlFor="price">Price</label>
         <input
           id="price"
@@ -64,6 +69,7 @@ const CreateMenuItemModal = ({ restaurantId }) => {
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
+        {errors.price && <p className="errors">{errors.price}</p>}
 
         <label htmlFor="category">Category</label>
         <select
@@ -99,7 +105,7 @@ const CreateMenuItemModal = ({ restaurantId }) => {
           <option>Vegetarian</option>
           <option>Wraps</option>
         </select>
-
+        {errors.category && <p className="errors">{errors.category}</p>}
         <label htmlFor="dietary">Dietary</label>
         <select
           id="dietary"
@@ -117,7 +123,7 @@ const CreateMenuItemModal = ({ restaurantId }) => {
           <option>Kosher</option>
           <option>Gluten-Free</option>
         </select>
-
+        {errors.dietary && <p className="errors">{errors.dietary}</p>}
         <label htmlFor="image">Image</label>
         <input
           id="image"
@@ -125,7 +131,7 @@ const CreateMenuItemModal = ({ restaurantId }) => {
           accept="image/*"
           onChange={(e) => setImageUrl(e.target.files[0])}
         />
-
+        {errors.image_url && <p className="errors">{errors.image_url}</p>}
         <button type="submit">Create Menu Item</button>
       </form>
     </div>
