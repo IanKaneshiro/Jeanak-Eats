@@ -11,6 +11,7 @@ const ManagerPortalHome = () => {
     restaurant.reduce((acc, res) => {
       return (acc += res.avgRating);
     }, 0) / restaurant.length;
+
   return (
     <div className="manager-home--container">
       <h1>Welcome to your manager portal!</h1>
