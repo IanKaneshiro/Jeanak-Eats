@@ -2,7 +2,7 @@ import "./UpdateMenuItemModal.css";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getOneMenuItem, updateMenuItem } from "../../store/menuItems";
-import LoadingSpinner from "../LoadingSpinner";
+
 import { useModal } from "../../context/Modal";
 
 const UpdateMenuItemModal = ({ item }) => {
@@ -15,30 +15,27 @@ const UpdateMenuItemModal = ({ item }) => {
   const [category, setCategory] = useState("");
   const [dietary, setDietary] = useState("");
   const [image_url, setImageUrl] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+
   const [errors, setErrors] = useState({});
   console.log("UPDATE ERRORS", errors);
   //Gets the currentMenuItem to render the form's present data
   useEffect(() => {
-    dispatch(getOneMenuItem(item.id)).then(() => {
-      setIsLoading(false);
-    });
+    dispatch(getOneMenuItem(item.id));
   }, [dispatch, item.id]);
 
   //If there is a currentMenuItem, populate fields with its data or "" if null
   useEffect(() => {
     if (item) {
-      setName(item.name || "");
+      setName(item.name);
       setDescription(item.description || "");
-      setPrice(item.price || "");
-      setCategory(item.category || "");
+      setPrice(item.price);
+      setCategory(item.category);
       setDietary(item.dietary || "");
       setImageUrl(item.imageUrl || "");
     }
   }, [item]);
 
   //Conditionally renders when currentMenuItem data is made available to populate form
-  if (isLoading) return <LoadingSpinner />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +49,7 @@ const UpdateMenuItemModal = ({ item }) => {
 
     const data = await dispatch(updateMenuItem(formData, item.id));
     if (data?.errors) {
-      setErrors(data);
+      setErrors(data?.errors);
     } else {
       closeModal();
     }

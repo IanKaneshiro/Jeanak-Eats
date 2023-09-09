@@ -5,6 +5,7 @@ import {
   currentMenuItem,
   getOneMenuItem,
   clearCurrentMenuItem,
+  clearAllMenuItems,
 } from "../../store/menuItems";
 import { useParams, useHistory } from "react-router-dom";
 import { getAllRestaurants } from "../../store/restaurant";
@@ -23,6 +24,11 @@ const MenuItemDetail = () => {
   useEffect(() => {
     dispatch(getOneMenuItem(menuItemId));
     dispatch(getAllRestaurants());
+
+    return () => {
+      dispatch(clearCurrentMenuItem());
+      dispatch(clearAllMenuItems());
+    };
   }, [dispatch, menuItemId]);
 
   if (!item || !restaurant) {
@@ -30,7 +36,7 @@ const MenuItemDetail = () => {
   }
 
   const goBackToRestaurant = () => {
-    dispatch(clearCurrentMenuItem());
+    // dispatch(clearCurrentMenuItem());
     history.push(`/restaurants/${item.restaurantId}`);
   };
 
@@ -50,7 +56,16 @@ const MenuItemDetail = () => {
       </span>
 
       <div className="menuItemTile">
-        <img className="itemDetailImg" src={item.imageUrl} alt={item.id} />
+        <div className="item-detail-img--container">
+          {item.imageUrl ? (
+            <img className="itemDetailImg" src={item.imageUrl} alt={item.id} />
+          ) : (
+            <i
+              className="fa-solid fa-bowl-rice fa-2xl"
+              id="item-detail--no-image"
+            ></i>
+          )}
+        </div>
         <h1 className="itemDetailName">{item.name}</h1>
         <h3 className="itemDetailPrice">${floatPrice}</h3>
         <span className="itemDetailDescription">{item.description}</span>

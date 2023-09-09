@@ -1,7 +1,11 @@
 import "./ManageMenuItems.css";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allMenuItems, getAllMenuItems } from "../../store/menuItems";
+import {
+  allMenuItems,
+  clearAllMenuItems,
+  getAllMenuItems,
+} from "../../store/menuItems";
 import DeleteMenuItemModal from "../MenuItems/DeleteMenuItem";
 import OpenModalButton from "../OpenModalButton";
 import ProtectedRoute from "../auth/ProtectedRoute";
@@ -14,6 +18,8 @@ const ManageMenuItems = ({ restaurant }) => {
 
   useEffect(() => {
     dispatch(getAllMenuItems(restaurant.id));
+
+    return () => dispatch(clearAllMenuItems());
   }, [dispatch, restaurant.id]);
 
   //Helper function to return price in $X.XX format
@@ -68,11 +74,18 @@ const ManageMenuItems = ({ restaurant }) => {
                 <td className="menu-item-table-data">{item.category}</td>
                 <td className="menu-item-table-data">{item.dietary}</td>
                 <td className="menu-item-table-data">
-                  <img
-                    src={item.imageUrl}
-                    alt={item.name}
-                    className="menu-item-image"
-                  />
+                  {item.imageUrl ? (
+                    <img
+                      src={item.imageUrl}
+                      alt={item.name}
+                      className="menu-item-image"
+                    />
+                  ) : (
+                    <i
+                      className="fa-solid fa-bowl-rice fa-2xl"
+                      id="manage-menu--no-image"
+                    ></i>
+                  )}
                 </td>
                 <td className={"menu-item-table-data mit-buttons"}>
                   <OpenModalButton
