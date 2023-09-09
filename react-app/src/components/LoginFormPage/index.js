@@ -16,8 +16,8 @@ function LoginFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(credential, password));
-    if (data?.errors) {
-      setErrors(data.errors);
+    if (data) {
+      setErrors(data);
     }
   };
 

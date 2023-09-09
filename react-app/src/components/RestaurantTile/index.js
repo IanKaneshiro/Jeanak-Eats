@@ -17,7 +17,8 @@ const RestaurantTile = ({ restaurant }) => {
       </p>
       {restaurant.avgRating && (
         <p>
-          {restaurant.avgRating} {calculateStars(restaurant.avgRating)}
+          {restaurant.avgRating.toFixed(1)}{" "}
+          {calculateStars(restaurant.avgRating)}
         </p>
       )}
     </div>

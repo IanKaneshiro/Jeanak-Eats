@@ -21,6 +21,19 @@ const ManageMenuItems = ({ restaurant }) => {
     return price.toFixed(2);
   };
 
+  if (!menuItems.length) {
+    return (
+      <div className="manage-menu--no-menu">
+        <span>It looks like you don't have any menu items!</span>
+        <OpenModalButton
+          className="mit-bttn add-menu-item-bttn"
+          buttonText="Get cooking, chef!"
+          modalComponent={<CreateMenuItemModal restaurantId={restaurant.id} />}
+        />
+      </div>
+    );
+  }
+
   return (
     <ProtectedRoute>
       <div className="manage-menu-item-container">

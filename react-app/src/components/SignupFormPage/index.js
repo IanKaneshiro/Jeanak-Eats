@@ -39,11 +39,15 @@ function SignupFormPage() {
           password
         )
       );
-      if (data?.errors) {
-        setErrors(data.errors);
+      if (data) {
+        setErrors(data);
       } else {
         return history.push("/");
       }
+    } else if (!image_url) {
+      setErrors({
+        image_url: "Please select a profile image",
+      });
     } else {
       setErrors({
         password:
@@ -54,28 +58,38 @@ function SignupFormPage() {
 
   function displayImage() {
     const icons = [
-      "https://images.pexels.com/photos/1395958/pexels-photo-1395958.jpeg",
-      "https://images.pexels.com/photos/3429782/pexels-photo-3429782.jpeg",
-      "https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg",
-      "https://images.pexels.com/photos/219794/pexels-photo-219794.jpeg",
-      "https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg",
+      "https://res.cloudinary.com/dmkyocbqi/image/upload/v1694225929/pexels-photo-3429782-min_nr8d9w.jpg",
+      "https://res.cloudinary.com/dmkyocbqi/image/upload/v1694225793/pexels-photo-1395958-min_yhqvfm.jpg",
+      "https://res.cloudinary.com/dmkyocbqi/image/upload/v1694225792/pexels-photo-1132047-min_jaigak.jpg",
+      "https://res.cloudinary.com/dmkyocbqi/image/upload/v1694225792/pexels-photo-918327-min_qunh1g.jpg",
+      "https://res.cloudinary.com/dmkyocbqi/image/upload/v1694225792/pexels-photo-219794-min_agizd1.jpg",
     ];
 
     return icons.map((element) => {
       return (
-        <button onClick={() => setImage(element)} className="allImagess">
+        <label>
+          <input
+            type="radio"
+            name="profile-image"
+            value={element}
+            className="allImagess"
+            onChange={(e) => setImage(e.target.value)}
+          />
           <img src={element} alt="Profile Icon" className="icon-image" />
-        </button>
+        </label>
       );
     });
   }
-
-  console.log(image_url, "imageeeeeeeeee");
 
   return (
     <div className="signup--container">
       <form onSubmit={handleSubmit} className="signup--main">
         <h1>Sign Up</h1>
+        <div className="signup--image-container">
+          <h4>Select profile image</h4>
+          {errors.image_url && <p className="errors">{errors.image_url}</p>}
+          <ul className="allImages">{displayImage()}</ul>
+        </div>
         <input
           required
           placeholder="First Name"
@@ -135,7 +149,6 @@ function SignupFormPage() {
             <option value={type}>{type}</option>
           ))}
         </select>
-        <div className="allImages">{displayImage()}</div>
         {errors.country && <p className="errors">{errors.country}</p>}
         <input
           placeholder="Password"

@@ -1,5 +1,11 @@
 /* Menu Item Detail Page */
+.menu-item-detail--container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
 .menuItemTile {
+  margin-top: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
@@ -40,7 +46,7 @@
 .add-to-order-button {
   margin: 15px;
   background-color: black;
-  color: whitesmoke;
+  color: white;
   height: 40px;
   border: none;
   border-radius: 10px;
@@ -82,6 +88,11 @@
   border: none;
 }
 
+.back-to-restaurant {
+  margin-bottom: 30px;
+}
+
 .back-to-restaurant:hover {
   cursor: pointer;
+  text-decoration: underline;
 }

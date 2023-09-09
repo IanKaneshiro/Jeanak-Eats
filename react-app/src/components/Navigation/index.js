@@ -9,6 +9,7 @@ import AddressModal from "../AddressModal";
 import SearchBar from "../SearchBar";
 import { cuisineUrls } from "../../Resources/imageUrlArrays";
 import "./Navigation.css";
+import { notImplemented } from "../../Resources/helperFunctions";
 
 function Navigation({ loading }) {
   const dispatch = useDispatch();
@@ -88,7 +89,7 @@ function Navigation({ loading }) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Foods, groceries, drinks, etc"
+            placeholder="Search for restaurant..."
           />
         </div>
         <button onClick={showCartSidebar} className="navbar--shopping-btn">
@@ -103,7 +104,7 @@ function Navigation({ loading }) {
           <ul className="navbar--cuisine-main">
             {cuisineUrls.map((img) => {
               return (
-                <button key={img}>
+                <button key={img} onClick={notImplemented}>
                   <img src={img.url} alt={img.url} />
                   <p>{img.name}</p>
                 </button>

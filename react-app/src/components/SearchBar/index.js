@@ -19,8 +19,10 @@ const SearchBar = ({ setSearch, query, setQuery }) => {
 
   useEffect(() => {
     if (query) {
-      const res = restaurants.filter((el) =>
-        el.name.toLowerCase().includes(query.toLowerCase())
+      const res = restaurants.filter(
+        (el) =>
+          el.name.toLowerCase().includes(query.toLowerCase()) ||
+          el.cuisine.toLowerCase().includes(query.toLowerCase())
       );
       setRender(res);
     } else {
@@ -35,7 +37,7 @@ const SearchBar = ({ setSearch, query, setQuery }) => {
           <i onClick={handleClose} className="fa-solid fa-xmark fa-lg"></i>
         </div>
         <div>
-          {!query && <h1>Start typing to search for your restaurant</h1>}
+          {!query && <h1>Start typing to search for a restaurant</h1>}
           {!render.length && query ? <h1>No matching restaurants</h1> : ""}
           {render.map((res) => (
             <SearchBarRestaurantTile

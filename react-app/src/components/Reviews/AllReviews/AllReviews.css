@@ -1,17 +1,25 @@
-
+.entireReviewSection button {
+  background-color: black;
+  color: white;
+  border-radius: 2px;
+  font-family: "Times New Roman", Times, serif;
+  padding: 10px;
+  border: 1px solid black;
+}
 
 .name {
-    font-weight: 510;
+  font-weight: 510;
 }
 
 .posted {
-    color: gray;
+  color: gray;
 }
 
 .review {
-    color: gray;
+  color: gray;
 }
 
+<<<<<<< HEAD
 .elementRating{
   color: gray;
 }
@@ -23,33 +31,41 @@
     justify-content: space-between;
     padding-left: 15px;
     padding-right: 15px;
+=======
+.line {
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+>>>>>>> d21d3b2003cb6f93c7522610847ddd9a49086745
 }
 
-.reviewInformation{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+.reviewInformation {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.buttonControl{
-    display: flex;
-    flex-direction: row;
-    padding-top: 5px;
+.buttonControl {
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
 }
-.buttonControl1{
- padding-right: 10px;
-}
-
-.postAction{
-    padding-top: 10px;
-    padding-bottom: 20px;
+.buttonControl1 {
+  padding-right: 10px;
 }
 
-.withoutImage{
-    padding-left: 20px;
+.postAction {
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
+.withoutImage {
+  padding-left: 20px;
+}
+
+<<<<<<< HEAD
 .text{
   font-family: 'Times New Roman', Times, serif;
   font-size: 70px;
@@ -78,6 +94,14 @@
 
 
 /* @property --rotate {
+=======
+.text {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 60px;
+}
+
+@property --rotate {
+>>>>>>> d21d3b2003cb6f93c7522610847ddd9a49086745
   syntax: "<angle>";
   initial-value: 132deg;
   inherits: false;
@@ -101,11 +125,11 @@
   color: rgb(223, 250, 88);
   transition: color 1s;
 }
-.card:hover:before, .card:hover:after {
+.card:hover:before,
+.card:hover:after {
   animation: none;
   opacity: 0;
 }
-
 
 .card::before {
   width: 104%;
@@ -116,7 +140,20 @@
   left: -2%;
 
   border-radius: 8px;
+<<<<<<< HEAD
   background-image: linear-gradient(var(--rotate), rgb(223, 250, 88), #e3cf3c 43%, #c28100);
+=======
+  background-image: linear-gradient(
+    var(--rotate),
+    #5ddcff,
+    #3c67e3 43%,
+    #4e00c2
+  );
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+>>>>>>> d21d3b2003cb6f93c7522610847ddd9a49086745
   animation: spin 2.5s linear infinite;
 }
 
@@ -124,6 +161,7 @@
   height: 100%;
   width: 100%;
   margin: 0 auto;
+<<<<<<< HEAD
 
   left: 0;
   right: 0;
@@ -136,6 +174,18 @@
   background-image: linear-gradient(var(--rotate), rgb(223, 250, 88), #e3cf3c 43%, #c28100);
   opacity: 1;
   transition: opacity .5s;
+=======
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate),
+    #5ddcff,
+    #3c67e3 43%,
+    #4e00c2
+  );
+  opacity: 1;
+  transition: opacity 0.5s;
+>>>>>>> d21d3b2003cb6f93c7522610847ddd9a49086745
   animation: spin 2.5s linear infinite;
 }
 
@@ -146,6 +196,7 @@
   100% {
     --rotate: 360deg;
   }
+<<<<<<< HEAD
 } */
 
   .entireReviewSection{
@@ -155,3 +206,14 @@
   .withoutColor{
     margin-top: 3%;
   }
+=======
+}
+
+.entireReviewSection {
+  margin-top: 5%;
+}
+
+.withoutColor {
+  margin-top: 3%;
+}
+>>>>>>> d21d3b2003cb6f93c7522610847ddd9a49086745

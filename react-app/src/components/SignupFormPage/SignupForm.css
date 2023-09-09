@@ -30,9 +30,9 @@
   background-color: #000000;
 }
 
-.signup--main button:nth-child(-n+5) {
+.signup--main button:nth-child(-n + 5) {
   background-color: white;
-  border:none;
+  border: none;
   padding-bottom: 80px;
 }
 
@@ -44,19 +44,44 @@
   background-color: #505050;
 }
 
-.allImages{
+.allImages {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding-top: 10px;
   padding-bottom: 20px;
-  background-color: white;
-  color: white;
 }
 
-.icon-image{
-  border-radius: 200px;
-  width:100px;
-  height:100px;
+.icon-image {
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+}
+
+.signup--image-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.signup--image-container > h4 {
+  font-weight: 500;
+  color: #757575;
+}
+
+.signup--image-container [type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.signup--image-container [type="radio"] + img {
+  cursor: pointer;
+}
+
+.signup--image-container [type="radio"]:checked + img {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  outline: 2px solid red;
 }
