@@ -25,29 +25,31 @@ const MenuItems = () => {
   }, [dispatch, restaurantId]);
 
   return (
-    <div className="all-menu-items-container">
-      <div className="menu-item-detail-sidebar">
+    <div className="all-menu-items--container">
+      <div className="menu--sidebar">
         <MenuItemDetailSidebar restaurant={restaurant} />
       </div>
-      <ul className="menu-ul">
-        {menu.map((item) => (
-          <li
-            className="menu-li"
-            key={item.id}
-            onClick={() => history.push(`/menuItems/${item.id}`)}
-          >
-            <img
-              className="menu-tile-img"
-              src={item.imageUrl}
-              alt={item.name}
-            />
-            <span>
-              <h3 className="menu-tile-name">{item.name}</h3>
-            </span>
-            <span className="menu-tile-price">${item.price.toFixed(2)}</span>
-          </li>
-        ))}
-      </ul>
+      <div className="menu--tiles">
+        <ul className="menu-ul">
+          {menu.map((item) => (
+            <li
+              className="menu-li"
+              key={item.id}
+              onClick={() => history.push(`/menuItems/${item.id}`)}
+            >
+              <img
+                className="menu-tile-img"
+                src={item.imageUrl}
+                alt={item.name}
+              />
+              <span>
+                <h3 className="menu-tile-name">{item.name}</h3>
+              </span>
+              <span className="menu-tile-price">${item.price.toFixed(2)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

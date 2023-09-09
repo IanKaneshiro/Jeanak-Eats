@@ -1,4 +1,4 @@
-import "./MenuItems.css";
+import "./MenuItemDetail.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -44,7 +44,7 @@ const MenuItemDetail = () => {
       : "";
 
   return (
-    <div className="menuItemDetail">
+    <div className="menu-item-detail--container">
       <span className="back-to-restaurant" onClick={goBackToRestaurant}>
         ← Back to {restaurant.name}
       </span>
