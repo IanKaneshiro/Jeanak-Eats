@@ -2,6 +2,7 @@ import "./MenuItemDetailSidebar.css";
 import { useSelector, useDispatch } from "react-redux";
 import { allMenuItems, getAllMenuItems } from "../../store/menuItems";
 import { useEffect } from "react";
+import { notImplemented } from "../../Resources/helperFunctions";
 
 const MenuItemDetailSidebar = ({ restaurant }) => {
   const categories = useSelector(allMenuItems).map((item) => item.category);
@@ -24,7 +25,7 @@ const MenuItemDetailSidebar = ({ restaurant }) => {
       <ul className="restaurant-detail--ul">
         {catList.map((item, idx) => (
           <li className="restaurant-detail--li" key={idx}>
-            <p>{item}</p>
+            <p onClick={notImplemented}>{item}</p>
           </li>
         ))}
       </ul>

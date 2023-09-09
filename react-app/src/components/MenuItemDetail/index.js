@@ -10,6 +10,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { allRestaurants, getAllRestaurants } from "../../store/restaurant";
 import LoadingSpinner from "../LoadingSpinner";
 import MenuItemDetailSidebar from "../MenuItemDetailSidebar";
+import { notImplemented } from "../../Resources/helperFunctions";
 
 const MenuItemDetail = () => {
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ const MenuItemDetail = () => {
           </select>
         </span>
 
-        <button className="add-to-order-button">
+        <button className="add-to-order-button" onClick={notImplemented}>
           Add {quantity} to order · ${floatPriceTotal}
         </button>
       </div>
