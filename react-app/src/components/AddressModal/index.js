@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { countryOptions, stateOptions } from "../../Resources/selectOptions";
 import { updateUserAddress } from "../../store/session";
 import "./AddressModal.css";
 
 const AddressModal = () => {
+  const session = useSelector((state) => state.session.user);
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const [address, setAddress] = useState("");
@@ -19,22 +20,28 @@ const AddressModal = () => {
     const data = await dispatch(
       updateUserAddress(address, city, state, country)
     );
-    if (data?.errors) {
+    if (data) {
       setErrors(data);
     } else {
       closeModal();
     }
   };
+
+  const notLoggedIn = () => {
+    if (session === null) return true;
+    return false;
+  };
+
   return (
     <div>
       <h1>Delivery details</h1>
       <form onSubmit={handleSubmit} className="address--modal">
         <input
+          required
           placeholder="Address"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          required
         />
         {errors.address && <p className="errors">{errors.address}</p>}
         <input
@@ -63,7 +70,9 @@ const AddressModal = () => {
           ))}
         </select>
         {errors.country && <p className="errors">{errors.country}</p>}
-        <button type="submit">Done</button>
+        <button type="submit" disabled={notLoggedIn()}>
+          {notLoggedIn() ? "Must be signed in" : "Done"}
+        </button>
       </form>
     </div>
   );

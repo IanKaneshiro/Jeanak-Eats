@@ -39,8 +39,8 @@ function SignupFormPage() {
           password
         )
       );
-      if (data?.errors) {
-        setErrors(data.errors);
+      if (data) {
+        setErrors(data);
       } else {
         return history.push("/");
       }

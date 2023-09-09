@@ -27,7 +27,7 @@ def authenticate():
     """
     if current_user.is_authenticated:
         return current_user.to_dict()
-    return {'errors': ['Unauthorized']}
+    return {"errors": {'unauthorized': 'Unauthorized'}}
 
 
 @auth_routes.route('/login', methods=['POST'])
@@ -45,7 +45,7 @@ def login():
             User.email == form.data['credential'],  User.phone_number == form.data['credential'])).first()
         login_user(user)
         return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    return validation_errors_to_error_messages(form.errors), 400
 
 
 @auth_routes.route('/logout')
@@ -81,7 +81,7 @@ def sign_up():
         db.session.commit()
         login_user(user)
         return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    return validation_errors_to_error_messages(form.errors), 400
 
 
 @auth_routes.route("/update", methods=["PUT"])
@@ -100,7 +100,7 @@ def update_user_address():
         user.country = form.data['country']
         db.session.commit()
         return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    return validation_errors_to_error_messages(form.errors), 400
 
 
 @auth_routes.route('/unauthorized')
@@ -108,4 +108,4 @@ def unauthorized():
     """
     Returns unauthorized JSON when flask-login authentication fails
     """
-    return {'errors': ['Unauthorized']}, 401
+    return {"errors": {'unauthorized': 'Unauthorized'}}, 401
