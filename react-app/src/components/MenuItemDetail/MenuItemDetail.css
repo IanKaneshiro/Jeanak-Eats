@@ -28,15 +28,16 @@
   object-position: center;
 }
 
-/* .fa-regular { */
-/* grid-area: detail-img; */
-/* background-color: rgba(221, 221, 221, 0.6);
+#item-detail--no-image {
+  grid-area: detail-img;
+  background-color: rgba(221, 221, 221, 0.6);
+  color: #eeeeee;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 492px;
   height: 492px;
-} */
+}
 
 .itemDetailName {
   grid-area: detail-name;

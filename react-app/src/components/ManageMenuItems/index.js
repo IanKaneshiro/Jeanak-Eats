@@ -1,7 +1,11 @@
 import "./ManageMenuItems.css";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allMenuItems, getAllMenuItems } from "../../store/menuItems";
+import {
+  allMenuItems,
+  clearAllMenuItems,
+  getAllMenuItems,
+} from "../../store/menuItems";
 import DeleteMenuItemModal from "../MenuItems/DeleteMenuItem";
 import OpenModalButton from "../OpenModalButton";
 import ProtectedRoute from "../auth/ProtectedRoute";
@@ -14,6 +18,8 @@ const ManageMenuItems = ({ restaurant }) => {
 
   useEffect(() => {
     dispatch(getAllMenuItems(restaurant.id));
+
+    return () => dispatch(clearAllMenuItems());
   }, [dispatch, restaurant.id]);
 
   //Helper function to return price in $X.XX format
