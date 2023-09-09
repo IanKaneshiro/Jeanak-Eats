@@ -15,7 +15,6 @@ function ReportModal(data) {
   const history = useHistory()
   const { closeModal } = useModal();
 
-
   return (
 
     <div className="entireUpdateModal">

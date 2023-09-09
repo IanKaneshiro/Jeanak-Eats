@@ -13,6 +13,7 @@ import UpdateMenuItemForm from "./components/MenuItems/UpdateMenuItemForm";
 import ManagerPortal from "./components/ManagerPortal";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import RestaurantDetails from "./components/RestaurantDetails";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,13 +26,16 @@ function App() {
     <>
       <Navigation loading={isLoaded} />
       {isLoaded && (
+      <>
         <Switch>
           <Route exact path="/">
             <LandingPage />
           </Route>
+
           <Route path="/login">
             <LoginFormPage />
           </Route>
+
           <Route path="/signup">
             <SignupFormPage />
           </Route>
@@ -61,6 +65,7 @@ function App() {
             <MenuItemDetail />
           </Route>
         </Switch>
+      </>
       )}
     </>
   );

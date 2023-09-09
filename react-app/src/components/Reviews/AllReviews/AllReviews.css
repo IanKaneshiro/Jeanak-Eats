@@ -12,11 +12,17 @@
     color: gray;
 }
 
+.elementRating{
+  color: gray;
+}
+
 .line{
     border-bottom: 1px solid lightgrey;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .reviewInformation{
@@ -46,38 +52,53 @@
 
 .text{
   font-family: 'Times New Roman', Times, serif;
-  font-size: 60px;
+  font-size: 70px;
+}
+
+.card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+
+}
+
+.fa-solid.fa-heart{
+  color:red
+}
+
+.emptyR{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 55px;
+  font-size: 30px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 
-
-
-
-@property --rotate {
+/* @property --rotate {
   syntax: "<angle>";
   initial-value: 132deg;
   inherits: false;
 }
 
-
-
-
 .card {
-  background: #191c29;
-  width: 90%;
-  height: 15vh;
-  padding: 3px;
-  position: relative;
-  border-radius: 6px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
-  color: rgb(88 199 250 / 0%);
+  position: relative;
+
+  width: 100%;
+  height: 15vh;
+
+  background: #191c29;
+  border-radius: 100px;
   cursor: pointer;
 }
 
 .card:hover {
-  color: rgb(88 199 250 / 100%);
+  color: rgb(223, 250, 88);
   transition: color 1s;
 }
 .card:hover:before, .card:hover:after {
@@ -87,36 +108,33 @@
 
 
 .card::before {
-  content: "";
   width: 104%;
   height: 102%;
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+
   border-radius: 8px;
-  background-image: linear-gradient(
-    var(--rotate)
-    , #5ddcff, #3c67e3 43%, #4e00c2);
-    position: absolute;
-    z-index: -1;
-    top: -1%;
-    left: -2%;
-    animation: spin 2.5s linear infinite;
+  background-image: linear-gradient(var(--rotate), rgb(223, 250, 88), #e3cf3c 43%, #c28100);
+  animation: spin 2.5s linear infinite;
 }
 
 .card::after {
-  position: absolute;
-  content: "";
-  top: calc(var(--card-height) / 6);
-  left: 0;
-  right: 0;
-  z-index: -1;
   height: 100%;
   width: 100%;
   margin: 0 auto;
-  transform: scale(0.8);
-  filter: blur(calc(var(--card-height) / 6));
-  background-image: linear-gradient(
-    var(--rotate)
-    , #5ddcff, #3c67e3 43%, #4e00c2);
-    opacity: 1;
+
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+
+  position: absolute;
+  content: "";
+
+  background-image: linear-gradient(var(--rotate), rgb(223, 250, 88), #e3cf3c 43%, #c28100);
+  opacity: 1;
   transition: opacity .5s;
   animation: spin 2.5s linear infinite;
 }
@@ -128,9 +146,7 @@
   100% {
     --rotate: 360deg;
   }
-}
-
-
+} */
 
   .entireReviewSection{
     margin-top: 5%;
