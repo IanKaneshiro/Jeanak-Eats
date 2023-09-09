@@ -35,8 +35,13 @@ const SearchBar = ({ setSearch, query, setQuery }) => {
           <i onClick={handleClose} className="fa-solid fa-xmark fa-lg"></i>
         </div>
         <div>
+          {!query && <h1>Start typing to search for your restaurant</h1>}
+          {!render.length && query ? <h1>No matching restaurants</h1> : ""}
           {render.map((res) => (
-            <SearchBarRestaurantTile setSearch={setSearch} restaurant={res} />
+            <SearchBarRestaurantTile
+              handleClose={handleClose}
+              restaurant={res}
+            />
           ))}
         </div>
       </div>
