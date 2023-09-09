@@ -270,7 +270,7 @@ const AllReviews = () => {
         <div className="withoutColor">
           <div> {postReview()} </div>
           <div> {displayReview()?.reverse()}</div>
-          <div> {noReviews} </div>
+          <div> {noReviews()} </div>
         </div>
       </div>
     </>

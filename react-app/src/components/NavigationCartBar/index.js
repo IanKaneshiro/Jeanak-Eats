@@ -4,6 +4,9 @@ import { notImplemented } from "../../Resources/helperFunctions";
 
 const NavigationCartBar = ({ cartSidebar, setCartSidebar }) => {
   const setCart = () => setCartSidebar(false);
+
+
+  
   return (
     <>
       <div
