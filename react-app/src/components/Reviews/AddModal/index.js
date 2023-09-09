@@ -6,6 +6,7 @@ import { addReview } from "../../../store/reviews";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { getRestaurantById } from "../../../store/restaurant";
 
 function AddModal(data) {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function AddModal(data) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const createReview = await dispatch(addReview(data.data, payload));
-
+    dispatch(getRestaurantById(data.data));
     if (createReview) {
       console.log(createReview);
       if (createReview.errors) {

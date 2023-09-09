@@ -12,6 +12,7 @@ import { getReviews } from "../../../store/reviews";
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { getRestaurantById } from "../../../store/restaurant";
 
 const AllReviews = () => {
   const dispatch = useDispatch();
@@ -87,7 +88,7 @@ const AllReviews = () => {
                       <OpenModalButton
                         buttonText="Update"
                         onItemClick={closeMenu}
-                        modalComponent={<UpdateModal />}
+                        modalComponent={<UpdateModal id={restaurantId} />}
                       />
                     </div>
 
@@ -95,7 +96,7 @@ const AllReviews = () => {
                       <OpenModalButton
                         buttonText="Delete"
                         onItemClick={closeMenu}
-                        modalComponent={<DeleteModal />}
+                        modalComponent={<DeleteModal id={restaurantId} />}
                       />
                     </div>
                   </div>
