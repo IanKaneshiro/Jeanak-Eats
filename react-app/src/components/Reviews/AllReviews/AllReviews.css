@@ -1,66 +1,66 @@
-
+.entireReviewSection button {
+  background-color: black;
+  color: white;
+  border-radius: 2px;
+  font-family: "Times New Roman", Times, serif;
+  padding: 10px;
+  border: 1px solid black;
+}
 
 .name {
-    font-weight: 510;
+  font-weight: 510;
 }
 
 .posted {
-    color: gray;
+  color: gray;
 }
 
 .review {
-    color: gray;
+  color: gray;
 }
 
-.line{
-    border-bottom: 1px solid lightgrey;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.line {
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.reviewInformation{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+.reviewInformation {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.buttonControl{
-    display: flex;
-    flex-direction: row;
-    padding-top: 5px;
+.buttonControl {
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
 }
-.buttonControl1{
- padding-right: 10px;
-}
-
-.postAction{
-    padding-top: 10px;
-    padding-bottom: 20px;
+.buttonControl1 {
+  padding-right: 10px;
 }
 
-.withoutImage{
-    padding-left: 20px;
+.postAction {
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
-.text{
-  font-family: 'Times New Roman', Times, serif;
+.withoutImage {
+  padding-left: 20px;
+}
+
+.text {
+  font-family: "Times New Roman", Times, serif;
   font-size: 60px;
 }
-
-
-
-
 
 @property --rotate {
   syntax: "<angle>";
   initial-value: 132deg;
   inherits: false;
 }
-
-
-
 
 .card {
   background: #191c29;
@@ -80,11 +80,11 @@
   color: rgb(88 199 250 / 100%);
   transition: color 1s;
 }
-.card:hover:before, .card:hover:after {
+.card:hover:before,
+.card:hover:after {
   animation: none;
   opacity: 0;
 }
-
 
 .card::before {
   content: "";
@@ -92,13 +92,16 @@
   height: 102%;
   border-radius: 8px;
   background-image: linear-gradient(
-    var(--rotate)
-    , #5ddcff, #3c67e3 43%, #4e00c2);
-    position: absolute;
-    z-index: -1;
-    top: -1%;
-    left: -2%;
-    animation: spin 2.5s linear infinite;
+    var(--rotate),
+    #5ddcff,
+    #3c67e3 43%,
+    #4e00c2
+  );
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
 }
 
 .card::after {
@@ -114,10 +117,13 @@
   transform: scale(0.8);
   filter: blur(calc(var(--card-height) / 6));
   background-image: linear-gradient(
-    var(--rotate)
-    , #5ddcff, #3c67e3 43%, #4e00c2);
-    opacity: 1;
-  transition: opacity .5s;
+    var(--rotate),
+    #5ddcff,
+    #3c67e3 43%,
+    #4e00c2
+  );
+  opacity: 1;
+  transition: opacity 0.5s;
   animation: spin 2.5s linear infinite;
 }
 
@@ -130,12 +136,10 @@
   }
 }
 
+.entireReviewSection {
+  margin-top: 5%;
+}
 
-
-  .entireReviewSection{
-    margin-top: 5%;
-  }
-
-  .withoutColor{
-    margin-top: 3%;
-  }
+.withoutColor {
+  margin-top: 3%;
+}
