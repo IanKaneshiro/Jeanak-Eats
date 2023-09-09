@@ -21,8 +21,15 @@ const RestaurantDetails = () => {
   const dispatch = useDispatch();
   const restaurant = useSelector(currentRestaurant);
   const sessionUser = useSelector((state) => state.session.user);
+  const reviews = useSelector((state) => state.reviews.Reviews);
   const { restaurantId } = useParams();
   const history = useHistory();
+
+  const calculateAvgRating = (reviews) => {
+    const avg =
+      reviews.reduce((acc, res) => acc + res.rating, 0) / reviews.length;
+    return avg.toFixed(1);
+  };
 
   useEffect(() => {
     dispatch(getRestaurantById(restaurantId));
@@ -55,8 +62,8 @@ const RestaurantDetails = () => {
         </div>
         <p>
           <i className="fa-solid fa-star"></i>{" "}
-          {restaurant.avgRating ? restaurant.avgRating.toFixed(1) : ""} (
-          {restaurant.numRatings} ratings) · {restaurant.cuisine} ·{" "}
+          {reviews?.length ? calculateAvgRating(reviews) : ""} (
+          {reviews?.length} ratings) · {restaurant.cuisine} ·{" "}
           {restaurant.priceRange} ·{" "}
           <span>
             <button onClick={notImplemented}>Read reviews</button>
