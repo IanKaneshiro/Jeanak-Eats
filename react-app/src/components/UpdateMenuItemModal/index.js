@@ -6,7 +6,6 @@ import LoadingSpinner from "../LoadingSpinner";
 import { useModal } from "../../context/Modal";
 
 const UpdateMenuItemModal = ({ item }) => {
-  //   const item = useSelector(currentMenuItem);
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
@@ -17,8 +16,8 @@ const UpdateMenuItemModal = ({ item }) => {
   const [dietary, setDietary] = useState("");
   const [image_url, setImageUrl] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [errors, setErrors] = useState([]);
-
+  const [errors, setErrors] = useState({});
+  console.log("UPDATE ERRORS", errors);
   //Gets the currentMenuItem to render the form's present data
   useEffect(() => {
     dispatch(getOneMenuItem(item.id)).then(() => {
@@ -44,7 +43,6 @@ const UpdateMenuItemModal = ({ item }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    // formData.append("id", item.id);
     formData.append("name", name);
     formData.append("description", description);
     formData.append("category", category);
@@ -53,7 +51,7 @@ const UpdateMenuItemModal = ({ item }) => {
     formData.append("price", price);
 
     const data = await dispatch(updateMenuItem(formData, item.id));
-    if (data.errors) {
+    if (data?.errors) {
       setErrors(data);
     } else {
       closeModal();
@@ -68,11 +66,7 @@ const UpdateMenuItemModal = ({ item }) => {
         onSubmit={handleSubmit}
       >
         <h2 className="item-form-header">Edit your menu item</h2>
-        <ul>
-          {errors.map((error, i) => (
-            <li key={i}>{error}</li>
-          ))}
-        </ul>
+
         <label htmlFor="name">Name</label>
         <input
           id="name"
@@ -80,7 +74,7 @@ const UpdateMenuItemModal = ({ item }) => {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-
+        {errors.name && <p className="errors">{errors.name}</p>}
         <label htmlFor="description">Description</label>
         <textarea
           id="description"
@@ -88,7 +82,7 @@ const UpdateMenuItemModal = ({ item }) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-
+        {errors.description && <p className="errors">{errors.description}</p>}
         <label htmlFor="price">Price</label>
         <input
           id="price"
@@ -96,7 +90,7 @@ const UpdateMenuItemModal = ({ item }) => {
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
-
+        {errors.price && <p className="errors">{errors.price}</p>}
         <label htmlFor="category">Category</label>
         <select
           id="category"
@@ -130,7 +124,7 @@ const UpdateMenuItemModal = ({ item }) => {
           <option>Vegetarian</option>
           <option>Wraps</option>
         </select>
-
+        {errors.category && <p className="errors">{errors.category}</p>}
         <label htmlFor="dietary">Dietary</label>
         <select
           id="dietary"
@@ -147,7 +141,7 @@ const UpdateMenuItemModal = ({ item }) => {
           <option>Kosher</option>
           <option>Gluten-Free</option>
         </select>
-
+        {errors.dietary && <p className="errors">{errors.dietary}</p>}
         <label htmlFor="image">Image</label>
         <input
           id="image"
@@ -157,7 +151,7 @@ const UpdateMenuItemModal = ({ item }) => {
           // value={image_url}
           onChange={(e) => setImageUrl(e.target.files[0])}
         />
-
+        {errors.image_url && <p className="errors">{errors.image_url}</p>}
         <button className="item-submit" type="submit">
           Save Changes
         </button>

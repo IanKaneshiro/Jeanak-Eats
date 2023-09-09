@@ -4,18 +4,28 @@ import { allMenuItems, getAllMenuItems } from "../../store/menuItems";
 import { useEffect } from "react";
 
 const MenuItemDetailSidebar = ({ restaurant }) => {
-  const menuItemCategories = useSelector(allMenuItems);
+  const categories = useSelector(allMenuItems).map((item) => item.category);
   const dispatch = useDispatch();
+
+  // Creates an array of unique categories
+  const catList = [];
+  categories.forEach((item) => {
+    if (!catList.includes(item)) {
+      catList.push(item);
+    }
+    return catList;
+  });
 
   useEffect(() => {
     dispatch(getAllMenuItems(restaurant.id));
   }, [dispatch, restaurant.id]);
   return (
-    <div>
-      <h1>Menu Item Detail Sidebar Component</h1>
-      <ul>
-        {menuItemCategories.map((item) => (
-          <li key={item.id}>{item}</li>
+    <div className="restaurant-detail--sidebar">
+      <ul className="restaurant-detail--ul">
+        {catList.map((item, idx) => (
+          <li className="restaurant-detail--li" key={idx}>
+            <p>{item}</p>
+          </li>
         ))}
       </ul>
     </div>
