@@ -16,8 +16,8 @@
 }
 
 #manage-menu--no-image {
-  background-color: rgb(221, 221, 221);
-  color: #eeeeee;
+  background-color: #eeeeee;
+  color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
