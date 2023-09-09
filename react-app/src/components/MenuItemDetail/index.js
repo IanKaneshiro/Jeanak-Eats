@@ -7,9 +7,8 @@ import {
   clearCurrentMenuItem,
 } from "../../store/menuItems";
 import { useParams, useHistory } from "react-router-dom";
-import { allRestaurants, getAllRestaurants } from "../../store/restaurant";
+import { getAllRestaurants } from "../../store/restaurant";
 import LoadingSpinner from "../LoadingSpinner";
-import MenuItemDetailSidebar from "../MenuItemDetailSidebar";
 import { notImplemented } from "../../Resources/helperFunctions";
 
 const MenuItemDetail = () => {
