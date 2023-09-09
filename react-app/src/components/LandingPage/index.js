@@ -36,9 +36,9 @@ const LandingPage = () => {
           <div onClick={toggleSort} className="landing--filters-header">
             <h3>Sort</h3>
             {openSort ? (
-              <i class="fa-solid fa-caret-up fa-lg"></i>
+              <i className="fa-solid fa-caret-up fa-lg"></i>
             ) : (
-              <i class="fa-solid fa-caret-down fa-lg"></i>
+              <i className="fa-solid fa-caret-down fa-lg"></i>
             )}
           </div>
           <div
@@ -94,9 +94,9 @@ const LandingPage = () => {
           <div onClick={togglePrice} className="landing--filters-header">
             <h3>Price Range</h3>
             {openPrice ? (
-              <i class="fa-solid fa-caret-up fa-lg"></i>
+              <i className="fa-solid fa-caret-up fa-lg"></i>
             ) : (
-              <i class="fa-solid fa-caret-down fa-lg"></i>
+              <i className="fa-solid fa-caret-down fa-lg"></i>
             )}
           </div>
           <div
@@ -118,9 +118,9 @@ const LandingPage = () => {
           <div onClick={toggleDietary} className="landing--filters-header">
             <h3>Dietary</h3>
             {openDietary ? (
-              <i class="fa-solid fa-caret-up fa-lg"></i>
+              <i className="fa-solid fa-caret-up fa-lg"></i>
             ) : (
-              <i class="fa-solid fa-caret-down fa-lg"></i>
+              <i className="fa-solid fa-caret-down fa-lg"></i>
             )}
           </div>
           <div
@@ -132,13 +132,13 @@ const LandingPage = () => {
           >
             <div className="landing--filters-dietary-btns">
               <button onClick={notImplemented}>
-                <i class="fa-solid fa-leaf fa-xs"></i> Vegetarian
+                <i className="fa-solid fa-leaf fa-xs"></i> Vegetarian
               </button>
               <button onClick={notImplemented}>
-                <i class="fa-solid fa-heart fa-xs"></i> Vegan
+                <i id="heart" className="fa-solid fa-heart fa-xs"></i> Vegan
               </button>
               <button onClick={notImplemented}>
-                <i class="fa-brands fa-pagelines fa-sm"></i> Gluten-free
+                <i className="fa-brands fa-pagelines fa-sm"></i> Gluten-free
               </button>
             </div>
           </div>
