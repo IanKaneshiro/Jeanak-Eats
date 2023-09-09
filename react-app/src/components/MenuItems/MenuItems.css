@@ -61,7 +61,7 @@
 }
 
 #menu-tile--no-image {
-  background-color: rgba(221, 221, 221, 0.6);
+  background-color: rgb(221, 221, 221);
   color: #eeeeee;
   display: flex;
   justify-content: center;
