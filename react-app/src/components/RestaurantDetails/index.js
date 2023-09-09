@@ -37,6 +37,9 @@ const RestaurantDetails = () => {
         alt={restaurant.name}
         className="details--img-header"
       />
+      <span className="back-to-main" onClick={() => history.push("/")}>
+        ← Back to main
+      </span>
       <div className="details--restaurant-main">
         <h1>{restaurant.name}</h1>
         <p>
@@ -51,9 +54,7 @@ const RestaurantDetails = () => {
         </p>
         <p className="details--est-delivery-time">Est. delivery time here</p>
       </div>
-      <span className="back-to-main" onClick={() => history.push("/")}>
-        ← Back to main
-      </span>
+
       <MenuItem />
       <AllReviews />
     </div>
