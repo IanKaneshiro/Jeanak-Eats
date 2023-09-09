@@ -29,7 +29,7 @@ def restaurant_by_id(id):
     if restaurant:
         return restaurant.to_dict_by_id()
     else:
-        return {"errors": "Restaurant couldn't be found"}, 404
+        return {"message": "Restaurant couldn't be found"}, 404
 
 
 @restaurant_routes.route('/new', methods=['POST'])
@@ -72,7 +72,7 @@ def create_restaurant():
         db.session.add(restaurant)
         db.session.commit()
         return restaurant.to_dict(), 201
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    return validation_errors_to_error_messages(form.errors), 400
 
 
 @restaurant_routes.route('/<int:id>', methods=['PUT'])
@@ -116,7 +116,7 @@ def update_restaurant(id):
 
         db.session.commit()
         return restaurant.to_dict_by_avg_rating()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    return validation_errors_to_error_messages(form.errors), 400
 
 
 @restaurant_routes.route('/<int:id>', methods=["DELETE"])

@@ -27,11 +27,6 @@ button {
   border: none;
 }
 
-.modal-button {
-  background-color: black;
-  color: white;
-}
-
 .modal-button:hover {
   background-color: #333333;
 }

@@ -6,9 +6,10 @@ import NavigationSideBar from "../NavigationSideBar";
 import NavigationCartBar from "../NavigationCartBar";
 import OpenModalButton from "../OpenModalButton";
 import AddressModal from "../AddressModal";
+import SearchBar from "../SearchBar";
 import { cuisineUrls } from "../../Resources/imageUrlArrays";
-import { notImplemented } from "../../Resources/helperFunctions";
 import "./Navigation.css";
+import { notImplemented } from "../../Resources/helperFunctions";
 
 function Navigation({ loading }) {
   const dispatch = useDispatch();
@@ -16,6 +17,9 @@ function Navigation({ loading }) {
   const [sidebar, setSidebar] = useState(false);
   const [cartSidebar, setCartSidebar] = useState(false);
   const [deliveryPickup, setDeliverPickup] = useState(true);
+  const [search, setSearch] = useState(false);
+  const [query, setQuery] = useState("");
+
   const showSidebar = () => setSidebar(!sidebar);
   const showCartSidebar = () => setCartSidebar(!cartSidebar);
   const manageCheck = useRouteMatch({ path: "/", strict: true, exact: true });
@@ -79,20 +83,28 @@ function Navigation({ loading }) {
             }
           />
         </div>
-        <div className="navbar--searchbar">
+        <div onClick={() => setSearch(true)} className="navbar--searchbar">
           <i className="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Foods, groceries, drinks, etc" />
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search for restaurant..."
+          />
         </div>
         <button onClick={showCartSidebar} className="navbar--shopping-btn">
           <i className="fa-solid fa-cart-shopping"></i> 0 carts
         </button>
       </div>
+      {search && (
+        <SearchBar setSearch={setSearch} query={query} setQuery={setQuery} />
+      )}
       {manageCheck && (
         <div className="navbar--cuisine-container">
           <ul className="navbar--cuisine-main">
             {cuisineUrls.map((img) => {
               return (
-                <button onClick={notImplemented} key={img}>
+                <button key={img} onClick={notImplemented}>
                   <img src={img.url} alt={img.url} />
                   <p>{img.name}</p>
                 </button>

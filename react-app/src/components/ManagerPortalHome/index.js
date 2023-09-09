@@ -20,7 +20,7 @@ const ManagerPortalHome = () => {
             You currently operate {numRestaurants}{" "}
             {numRestaurants === 1 ? "restaurant" : "restaurants"}
           </h3>
-          <h4>with a average rating of {avgRatingScore || 0}</h4>
+          <h4>with an average rating of {avgRatingScore || 0}</h4>
         </>
       ) : (
         <>

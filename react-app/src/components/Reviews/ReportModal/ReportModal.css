@@ -1,0 +1,19 @@
+
+
+.reportTitle{
+    font-family: 'Times New Roman', Times, serif;
+}
+.tellMe{
+    border: 5px, solid, black;
+    background-color: white;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 15px;
+
+}
+
+.reportText{
+    font-family: 'Times New Roman', Times, serif;
+    padding-left: 10px;
+
+}

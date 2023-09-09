@@ -30,6 +30,12 @@
   background-color: #000000;
 }
 
+.signup--main button:nth-child(-n+5) {
+  background-color: white;
+  border:none;
+  padding-bottom: 80px;
+}
+
 .signup--main button:hover {
   background-color: #333333;
 }
@@ -41,6 +47,12 @@
 .allImages{
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  background-color: white;
+  color: white;
 }
 
 .icon-image{

@@ -1,6 +1,7 @@
 .address--modal {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -17,6 +18,11 @@
 }
 .address--modal > button:active {
   background-color: #505050;
+}
+
+.address--modal > button:disabled {
+  background-color: #505050;
+  cursor: not-allowed;
 }
 
 .address--modal > input,
