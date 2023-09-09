@@ -44,6 +44,10 @@ function SignupFormPage() {
       } else {
         return history.push("/");
       }
+    } else if (!image_url) {
+      setErrors({
+        image_url: "Please select a profile image",
+      });
     } else {
       setErrors({
         password:
@@ -63,9 +67,16 @@ function SignupFormPage() {
 
     return icons.map((element) => {
       return (
-        <button onClick={() => setImage(element)} className="allImagess">
+        <label>
+          <input
+            type="radio"
+            name="profile-image"
+            value={element}
+            className="allImagess"
+            onChange={(e) => setImage(e.target.value)}
+          />
           <img src={element} alt="Profile Icon" className="icon-image" />
-        </button>
+        </label>
       );
     });
   }
@@ -74,6 +85,11 @@ function SignupFormPage() {
     <div className="signup--container">
       <form onSubmit={handleSubmit} className="signup--main">
         <h1>Sign Up</h1>
+        <div className="signup--image-container">
+          <h4>Select profile image</h4>
+          {errors.image_url && <p className="errors">{errors.image_url}</p>}
+          <ul className="allImages">{displayImage()}</ul>
+        </div>
         <input
           required
           placeholder="First Name"
@@ -133,7 +149,6 @@ function SignupFormPage() {
             <option value={type}>{type}</option>
           ))}
         </select>
-        <div className="allImages">{displayImage()}</div>
         {errors.country && <p className="errors">{errors.country}</p>}
         <input
           placeholder="Password"

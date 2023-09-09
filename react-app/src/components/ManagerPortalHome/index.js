@@ -9,7 +9,7 @@ const ManagerPortalHome = () => {
   const numRestaurants = restaurant.length;
   const avgRatingScore =
     restaurant.reduce((acc, res) => {
-      return (acc += res.avgRating);
+      return acc + res.avgRating;
     }, 0) / restaurant.length;
 
   return (
@@ -21,7 +21,10 @@ const ManagerPortalHome = () => {
             You currently operate {numRestaurants}{" "}
             {numRestaurants === 1 ? "restaurant" : "restaurants"}
           </h3>
-          <h4>with an average rating of {avgRatingScore || 0}</h4>
+          <h4>
+            with an average rating of{" "}
+            {avgRatingScore ? avgRatingScore.toFixed(1) : 0}
+          </h4>
         </>
       ) : (
         <>
