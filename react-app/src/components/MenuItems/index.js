@@ -9,6 +9,7 @@ import {
 import { useParams, useHistory } from "react-router-dom";
 import MenuItemDetailSidebar from "../MenuItemDetailSidebar";
 import { currentRestaurant, getRestaurantById } from "../../store/restaurant";
+import LoadingSpinner from "../LoadingSpinner";
 
 const MenuItems = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,10 @@ const MenuItems = () => {
 
     return () => dispatch(clearAllMenuItems());
   }, [dispatch, restaurantId]);
+
+  if (!menu) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="all-menu-items--container">

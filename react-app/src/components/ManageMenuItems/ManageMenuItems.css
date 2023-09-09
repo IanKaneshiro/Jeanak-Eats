@@ -41,3 +41,12 @@
 .mit-bttn:active {
   background-color: rgb(80, 80, 80);
 }
+
+.manage-menu--no-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.manage-menu--no-menu > span {
+  margin-bottom: 10px;
+}

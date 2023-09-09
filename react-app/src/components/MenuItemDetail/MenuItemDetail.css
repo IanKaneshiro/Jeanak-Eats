@@ -5,6 +5,7 @@
 }
 
 .menuItemTile {
+  margin-top: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
