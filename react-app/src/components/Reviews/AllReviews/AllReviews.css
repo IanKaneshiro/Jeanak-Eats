@@ -9,6 +9,16 @@
 
 .entireReviewSection{
   padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.noReviews{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
 }
 
 .name {
