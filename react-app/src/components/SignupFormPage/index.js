@@ -54,11 +54,11 @@ function SignupFormPage() {
 
   function displayImage() {
     const icons = [
-      "https://images.pexels.com/photos/1395958/pexels-photo-1395958.jpeg",
-      "https://images.pexels.com/photos/3429782/pexels-photo-3429782.jpeg",
-      "https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg",
-      "https://images.pexels.com/photos/219794/pexels-photo-219794.jpeg",
-      "https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg",
+      "https://res.cloudinary.com/dmkyocbqi/image/upload/v1694225929/pexels-photo-3429782-min_nr8d9w.jpg",
+      "https://res.cloudinary.com/dmkyocbqi/image/upload/v1694225793/pexels-photo-1395958-min_yhqvfm.jpg",
+      "https://res.cloudinary.com/dmkyocbqi/image/upload/v1694225792/pexels-photo-1132047-min_jaigak.jpg",
+      "https://res.cloudinary.com/dmkyocbqi/image/upload/v1694225792/pexels-photo-918327-min_qunh1g.jpg",
+      "https://res.cloudinary.com/dmkyocbqi/image/upload/v1694225792/pexels-photo-219794-min_agizd1.jpg",
     ];
 
     return icons.map((element) => {
@@ -69,8 +69,6 @@ function SignupFormPage() {
       );
     });
   }
-
-  console.log(image_url, "imageeeeeeeeee");
 
   return (
     <div className="signup--container">

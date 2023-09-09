@@ -19,8 +19,10 @@ const SearchBar = ({ setSearch, query, setQuery }) => {
 
   useEffect(() => {
     if (query) {
-      const res = restaurants.filter((el) =>
-        el.name.toLowerCase().includes(query.toLowerCase())
+      const res = restaurants.filter(
+        (el) =>
+          el.name.toLowerCase().includes(query.toLowerCase()) ||
+          el.cuisine.toLowerCase().includes(query.toLowerCase())
       );
       setRender(res);
     } else {
