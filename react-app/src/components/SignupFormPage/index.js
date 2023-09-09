@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
 import { useHistory } from "react-router-dom";
 import { stateOptions, countryOptions } from "../../Resources/selectOptions";
 import "./SignupForm.css";
-
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -18,10 +17,9 @@ function SignupFormPage() {
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [password, setPassword] = useState("");
-  const [image_url, setImage] = useState('')
+  const [image_url, setImage] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
-
 
   const handleSubmit = async (e) => {
     setErrors({});
@@ -38,7 +36,7 @@ function SignupFormPage() {
           state,
           country,
           image_url,
-          password,
+          password
         )
       );
       if (data?.errors) {
@@ -54,30 +52,25 @@ function SignupFormPage() {
     }
   };
 
-  function displayImage(){
+  function displayImage() {
     const icons = [
-      'https://images.pexels.com/photos/1395958/pexels-photo-1395958.jpeg',
-      'https://images.pexels.com/photos/3429782/pexels-photo-3429782.jpeg',
-      'https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg',
-      'https://images.pexels.com/photos/219794/pexels-photo-219794.jpeg',
-      'https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg'
-  ]
+      "https://images.pexels.com/photos/1395958/pexels-photo-1395958.jpeg",
+      "https://images.pexels.com/photos/3429782/pexels-photo-3429782.jpeg",
+      "https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg",
+      "https://images.pexels.com/photos/219794/pexels-photo-219794.jpeg",
+      "https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg",
+    ];
 
-  return icons.map( element => {
-
-    return (
-      <button onClick={()=>setImage(element)} className="allImagess">
-      <img
-      src= {element}
-      alt="Profile Icon"
-      className="icon-image"/>
-    </button>
-    )
-  })
+    return icons.map((element) => {
+      return (
+        <button onClick={() => setImage(element)} className="allImagess">
+          <img src={element} alt="Profile Icon" className="icon-image" />
+        </button>
+      );
+    });
   }
 
-
-  console.log(image_url, 'imageeeeeeeeee')
+  console.log(image_url, "imageeeeeeeeee");
 
   return (
     <div className="signup--container">
@@ -90,7 +83,7 @@ function SignupFormPage() {
           value={first_name}
           onChange={(e) => setFirstName(e.target.value)}
         />
-        {errors.first_name && <p>{errors.first_name}</p>}
+        {errors.first_name && <p className="errors">{errors.first_name}</p>}
         <input
           required
           placeholder="Last Name"
@@ -98,7 +91,7 @@ function SignupFormPage() {
           value={last_name}
           onChange={(e) => setLastName(e.target.value)}
         />
-        {errors.last_name && <p>{errors.last_name}</p>}
+        {errors.last_name && <p className="errors">{errors.last_name}</p>}
         <input
           required
           placeholder="Email"
@@ -106,7 +99,7 @@ function SignupFormPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="errors">{errors.email}</p>}
         <input
           required
           placeholder="Phone Number"
@@ -114,39 +107,36 @@ function SignupFormPage() {
           value={phone_number}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
-        {errors.phone_number && <p>{errors.phone_number}</p>}
+        {errors.phone_number && <p className="errors">{errors.phone_number}</p>}
         <input
           placeholder="Address (Optional)"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
-        {errors.address && <p>{errors.address}</p>}
+        {errors.address && <p className="errors">{errors.address}</p>}
         <input
           placeholder="City (Optional)"
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        {errors.city && <p>{errors.city}</p>}
+        {errors.city && <p className="errors">{errors.city}</p>}
         <select onChange={(e) => setState(e.target.value)}>
           <option value="">State (Optional)</option>
           {stateOptions.map((type) => (
             <option value={type}>{type}</option>
           ))}
         </select>
-        {errors.state && <p>{errors.state}</p>}
+        {errors.state && <p className="errors">{errors.state}</p>}
         <select onChange={(e) => setCountry(e.target.value)}>
           <option value="">Country (Optional)</option>
           {countryOptions.map((type) => (
             <option value={type}>{type}</option>
           ))}
         </select>
-
-
         <div className="allImages">{displayImage()}</div>
-
-        {errors.country && <p>{errors.country}</p>}
+        {errors.country && <p className="errors">{errors.country}</p>}
         <input
           placeholder="Password"
           type="password"
@@ -154,7 +144,7 @@ function SignupFormPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="errors">{errors.password}</p>}
         <input
           placeholder="Confirm Password"
           type="password"
@@ -168,4 +158,4 @@ function SignupFormPage() {
   );
 }
 
-export default SignupFormPage
+export default SignupFormPage;

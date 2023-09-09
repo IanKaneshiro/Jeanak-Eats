@@ -7,7 +7,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
-import MenuItemDetail from "./components/MenuItems/MenuItemDetail";
+import MenuItemDetail from "./components/MenuItemDetail";
 import NewMenuItemForm from "./components/MenuItems/NewMenuItemForm";
 import UpdateMenuItemForm from "./components/MenuItems/UpdateMenuItemForm";
 import ManagerPortal from "./components/ManagerPortal";

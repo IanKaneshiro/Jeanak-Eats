@@ -1,4 +1,4 @@
-import "./MenuItems.css";
+import "./MenuItemDetail.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,15 +9,13 @@ import {
 import { useParams, useHistory } from "react-router-dom";
 import { allRestaurants, getAllRestaurants } from "../../store/restaurant";
 import LoadingSpinner from "../LoadingSpinner";
+import MenuItemDetailSidebar from "../MenuItemDetailSidebar";
 
 const MenuItemDetail = () => {
   const dispatch = useDispatch();
   const { menuItemId } = useParams();
   const item = useSelector(currentMenuItem);
-  const restaurants = useSelector(allRestaurants).reduce((acc, obj) => {
-    acc[obj.id] = obj;
-    return acc;
-  }, {});
+  const restaurants = useSelector((state) => state.restaurants.allRestaurants);
   const restaurant = restaurants[item.restaurantId];
   const history = useHistory();
   const [quantity, setQuantity] = useState(1);
@@ -46,10 +44,11 @@ const MenuItemDetail = () => {
       : "";
 
   return (
-    <div className="menuItemDetail">
+    <div className="menu-item-detail--container">
       <span className="back-to-restaurant" onClick={goBackToRestaurant}>
         ← Back to {restaurant.name}
       </span>
+
       <div className="menuItemTile">
         <img className="itemDetailImg" src={item.imageUrl} alt={item.id} />
         <h1 className="itemDetailName">{item.name}</h1>

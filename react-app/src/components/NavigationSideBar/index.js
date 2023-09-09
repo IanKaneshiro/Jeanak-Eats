@@ -22,7 +22,11 @@ const NavigationSideBar = ({
                   </div>
                   <div>
                     <p>{sessionUser.firstName}</p>
-                    <Link onClick={showSidebar} to="/manage">
+                    <Link
+                      className="sidebar--manager-portal-btn"
+                      onClick={showSidebar}
+                      to="/manage"
+                    >
                       Manager Portal
                     </Link>
                   </div>

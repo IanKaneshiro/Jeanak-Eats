@@ -1,7 +1,6 @@
 .sidebar--menu.open {
   transform: translate(0);
   box-shadow: -8px 10px 25px black;
-  z-index: 2;
 }
 
 .sidebar--menu {
@@ -16,6 +15,7 @@
   transform: translateX(-250px);
   transition: 0.5s ease;
   padding: 20px 10px;
+  z-index: 5;
 }
 
 .sidebar--menu-items-container {
@@ -56,7 +56,7 @@
   bottom: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 3;
   background-color: rgba(0, 0, 0, 0.6);
   transition: 0.5s ease;
 }
@@ -84,4 +84,8 @@
 .sidebar--sign-out-main a:hover {
   color: #ffffff;
   background-color: #000000;
+}
+
+.sidebar--manager-portal-btn {
+  font-weight: bold;
 }

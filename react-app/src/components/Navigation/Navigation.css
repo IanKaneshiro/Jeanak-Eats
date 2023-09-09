@@ -11,6 +11,9 @@
   gap: 2rem;
   height: 100px;
   padding: 0 40px;
+  position: relative;
+  z-index: 1;
+  background-color: #ffffff;
 }
 
 .navbar--main a,
@@ -63,6 +66,12 @@ a:visited {
   border: none;
   background-color: transparent;
   border-radius: 20px;
+  color: #000000;
+}
+
+.navbar--location > button:hover,
+button:active {
+  background-color: transparent;
 }
 
 .navbar--searchbar {
@@ -79,6 +88,7 @@ a:visited {
   padding-left: 10px;
   border-radius: 30px;
   height: 50px;
+  outline: none;
 }
 
 .navbar--shopping-btn {
@@ -120,8 +130,8 @@ a:visited {
   gap: 2px;
 }
 .navbar--cuisine-main img {
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   background-color: #ffffff;
 }
 
