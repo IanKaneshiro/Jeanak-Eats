@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./ManageRestaurantDetails.css";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearCurrentSpot,
@@ -37,6 +37,12 @@ const ManageRestaurantDetails = () => {
           modalComponent={<DeleteModal id={restaurant.id} />}
           buttonText={"Delete"}
         />
+        <Link
+          className="manager--restaurant-go-to-res"
+          to={`/restaurants/${id}`}
+        >
+          Go to <span style={{ fontWeight: "bold" }}>{restaurant.name}</span>
+        </Link>
       </div>
       <div className="manager--restaurant-detail-main">
         {restaurant.imageUrl ? (

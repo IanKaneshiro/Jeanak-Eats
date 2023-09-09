@@ -40,3 +40,7 @@
 .manager--restaurant-detail-container button:active {
   background-color: #505050;
 }
+
+.manager--restaurant-go-to-res:hover {
+  text-decoration: underline;
+}
