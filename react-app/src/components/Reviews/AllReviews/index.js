@@ -1,12 +1,11 @@
+import "./AllReviews.css";
 
-import './AllReviews.css'
-
-import AddModal from '../AddModal'
-import UpdateModal from '../UpdateModal'
-import DeleteModal from '../DeleteModal'
-import ReportModal from '../ReportModal'
+import AddModal from "../AddModal";
+import UpdateModal from "../UpdateModal";
+import DeleteModal from "../DeleteModal";
+import ReportModal from "../ReportModal";
 import { useModal } from "../../../context/Modal";
-import OpenModalButton from "../../OpenModalButton"
+import OpenModalButton from "../../OpenModalButton";
 
 import { getReviews } from "../../../store/reviews"
 
@@ -18,24 +17,53 @@ import {useSelector, useDispatch } from 'react-redux'
 
 
 const AllReviews = () => {
+  const dispatch = useDispatch();
+  const ulRef = useRef();
 
-    const dispatch = useDispatch()
-    const ulRef = useRef();
+  const { restaurantId } = useParams();
+  const { closeModal } = useModal();
 
-    const {restaurantId} = useParams()
-    const { closeModal } = useModal();
+  const reviewState = useSelector((state) => state.reviews);
+  const userState = useSelector((state) => state.session);
 
+  const [showMenu, setShowMenu] = useState(false);
 
+  const closeMenu = (e) => {
+    if (!ulRef.current.contains(e.target)) {
+      setShowMenu(false);
+    }
+  };
 
-    const reviewState = useSelector(state => state.reviews)
-    const userState = useSelector(state => state.session)
+  useEffect(() => {
+    dispatch(getReviews(restaurantId));
+  }, [dispatch, closeModal]);
 
-    const [showMenu, setShowMenu] = useState(false);
+  //gets all the reviews .... firstName lastName posted on and review
+  function displayReview() {
+    return reviewState?.Reviews?.map((element) => {
+      let createdAtDate = new Date(element?.createdAt);
+      let currentDate = new Date();
 
-    const closeMenu = (e) => {
-        if (!ulRef.current.contains(e.target)) {
-          setShowMenu(false);
+      let difference = currentDate - createdAtDate;
+      let differenceDays = Math.floor(difference / (24 * 60 * 60 * 1000));
+      let differenceMonths = Math.floor(
+        difference / (1000 * 60 * 60 * 24 * 30)
+      );
+      let differenceHours = Math.floor(difference / (1000 * 60 * 60));
+
+      function clock() {
+        if (differenceHours < 24) {
+          return `${differenceHours} hours ago`;
+        } else if (differenceDays < 30 && differenceDays !== 1) {
+          return `${differenceDays} days ago`;
+        } else if (differenceDays >= 30 && differenceMonths !== 1) {
+          return `${differenceMonths} months ago`;
+        } else if (differenceDays < 30 && differenceDays === 1) {
+          return `${differenceDays} day ago`;
+        } else if (differenceDays >= 30 && differenceMonths === 1) {
+          return `${differenceMonths} month ago`;
         }
+<<<<<<< HEAD
       };
 
 
@@ -141,13 +169,77 @@ const AllReviews = () => {
                         onItemClick={closeMenu}
                         modalComponent={<ReportModal/>}
                     />
+=======
+      }
+
+      return (
+        <div className="line">
+          {userState?.user?.id === element?.User?.id ? (
+            <>
+              <div className="reviewInformation">
+                <div className="profileIcon">
+                  <img
+                    src={userState?.user?.imageUrl}
+                    alt="Profile Icon"
+                    className="icon-image"
+                  />
+>>>>>>> testing-website
                 </div>
-            </div>
-            )
-        })
-    }
 
+                <div className="withoutImage">
+                  <div className="name">
+                    {element?.User?.firstName} {element?.User?.lastName[0]}
+                  </div>
+                  <div className="posted"> {clock()} </div>
+                  <div className="review">{element?.review}</div>
 
+                  <OpenModalButton
+                    buttonText="Update"
+                    onItemClick={closeMenu}
+                    modalComponent={<UpdateModal />}
+                  />
+
+                  <OpenModalButton
+                    buttonText="Delete"
+                    onItemClick={closeMenu}
+                    modalComponent={<DeleteModal />}
+                  />
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="reviewInformation">
+                <div className="profileIcon">
+                  <img
+                    src={element.User.imageUrl}
+                    alt="Profile Icon"
+                    className="icon-image"
+                  />
+                </div>
+
+                <div className="withoutImage">
+                  <div className="name">
+                    {element?.User?.firstName} {element?.User?.lastName[0]}
+                  </div>
+                  <div className="posted"> {clock()} </div>
+                  <div className="review">{element?.review}</div>
+                </div>
+              </div>
+            </>
+          )}
+
+          <div className="reportReview">
+            <OpenModalButton
+              buttonText="Report"
+              onItemClick={closeMenu}
+              modalComponent={<ReportModal />}
+            />
+          </div>
+        </div>
+      );
+    });
+  }
 
     //Checks if the user is logged in and if the user does not have a review
     //returns true if no review false if the user has a review
@@ -194,12 +286,8 @@ const AllReviews = () => {
                 </p>
             </div>
 
-            <div className='withoutColor'>
-                <div> {postReview() } </div>
-                <div> { displayReview() }</div>
-            </div>
-
-        </div>
+        <div> {postReview() } </div>
+        <div> { displayReview() }</div>
         </>
     )
 

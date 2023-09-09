@@ -10,10 +10,11 @@ import {
   clearCurrentSpot,
 } from "../../store/restaurant";
 import MenuItem from "../MenuItems";
-import OpenModalButton from "../OpenModalButton";
+// import OpenModalButton from "../OpenModalButton";
 import "./RestaurantDetails.css";
 import LoadingSpinner from "../LoadingSpinner";
 import AllReviews from "../Reviews/AllReviews";
+import { notImplemented } from "../../Resources/helperFunctions";
 
 const RestaurantDetails = () => {
   const dispatch = useDispatch();
@@ -41,9 +42,11 @@ const RestaurantDetails = () => {
         <p>
           <i class="fa-solid fa-star"></i> {restaurant.avgRating} (
           {restaurant.numRatings} ratings) · {restaurant.cuisine} ·{" "}
-          {restaurant.priceRange} · <a href="#reviews">Read reviews</a> ·{" "}
+          {restaurant.priceRange} · <a href="#link-to-reviews">Read reviews</a>{" "}
+          ·{" "}
           <span>
-            <OpenModalButton buttonText={"More info"} />
+            {/* <OpenModalButton buttonText={"More info"} /> */}
+            <button onClick={notImplemented}>More info</button>
           </span>
         </p>
         <p className="details--est-delivery-time">Est. delivery time here</p>

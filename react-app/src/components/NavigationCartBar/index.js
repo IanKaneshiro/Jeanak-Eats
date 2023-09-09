@@ -1,5 +1,6 @@
 import React from "react";
 import "./NavigationCartBar.css";
+import { notImplemented } from "../../Resources/helperFunctions";
 
 const NavigationCartBar = ({ cartSidebar, setCartSidebar }) => {
   const setCart = () => setCartSidebar(false);
@@ -20,7 +21,9 @@ const NavigationCartBar = ({ cartSidebar, setCartSidebar }) => {
           Once you add items from a restaurant or store, your cart will appear
           here.
         </p>
-        <button>Start shopping</button>
+        <button className="cartsidebar--cart-btn" onClick={notImplemented}>
+          Start shopping
+        </button>
       </div>
       <div
         onClick={setCart}

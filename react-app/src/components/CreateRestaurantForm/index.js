@@ -35,6 +35,7 @@ const CreateRestaurantForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(false);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("address", address);
@@ -52,9 +53,8 @@ const CreateRestaurantForm = () => {
 
     const data = await dispatch(createRestaurant(formData));
     setLoading(false);
-    if (data.errors) {
-      setErrors(data.errors);
-      return;
+    if (data?.errors) {
+      setErrors(data?.errors);
     } else {
       history.push(`/manage/restaurants/${data.id}`);
     }
@@ -77,15 +77,15 @@ const CreateRestaurantForm = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        {errors.name && <p>{errors.name}</p>}
+        {errors.name && <p className="errors">{errors.name}</p>}
         <input
+          required
           placeholder="Address"
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          required
         />
-        {errors.address && <p>{errors.address}</p>}
+        {errors.address && <p className="errors">{errors.address}</p>}
         <input
           placeholder="City"
           type="text"
@@ -93,7 +93,7 @@ const CreateRestaurantForm = () => {
           onChange={(e) => setCity(e.target.value)}
           required
         />
-        {errors.city && <p>{errors.city}</p>}
+        {errors.city && <p className="errors">{errors.city}</p>}
         <select required onChange={(e) => setState(e.target.value)}>
           <option value="">State</option>
           {stateOptions.map((type) => (
@@ -102,7 +102,7 @@ const CreateRestaurantForm = () => {
             </option>
           ))}
         </select>
-        {errors.state && <p>{errors.state}</p>}
+        {errors.state && <p className="errors">{errors.state}</p>}
         <select required onChange={(e) => setCountry(e.target.value)}>
           <option value="">Country</option>
           {countryOptions.map((type) => (
@@ -111,13 +111,13 @@ const CreateRestaurantForm = () => {
             </option>
           ))}
         </select>
-        {errors.country && <p>{errors.country}</p>}
+        {errors.country && <p className="errors">{errors.country}</p>}
         <textarea
           value={description}
           placeholder="Optional: Provide a short sumary of your restaurant"
           onChange={(e) => setDescription(e.target.value)}
         />
-        {errors.description && <p>{errors.description}</p>}
+        {errors.description && <p className="errors">{errors.description}</p>}
         <select required onChange={(e) => setCuisine(e.target.value)}>
           <option value="">Cuisine</option>
           {cuisineOptions.map((type) => (
@@ -126,7 +126,7 @@ const CreateRestaurantForm = () => {
             </option>
           ))}
         </select>
-        {errors.cuisine && <p>{errors.cuisine}</p>}
+        {errors.cuisine && <p className="errors">{errors.cuisine}</p>}
         <select onChange={(e) => setDietary(e.target.value)}>
           <option value="">Dietary (Optional)</option>
           {filterOptionsArr(dietaryOptions, "").map((type) => (
@@ -135,7 +135,7 @@ const CreateRestaurantForm = () => {
             </option>
           ))}
         </select>
-        {errors.dietary && <p>{errors.dietary}</p>}
+        {errors.dietary && <p className="errors">{errors.dietary}</p>}
         <select required onChange={(e) => setPriceRange(e.target.value)}>
           <option value="">Price Range</option>
           {priceOptions.map((type) => (
@@ -144,7 +144,7 @@ const CreateRestaurantForm = () => {
             </option>
           ))}
         </select>
-        {errors.price_range && <p>{errors.price_range}</p>}
+        {errors.price_range && <p className="errors">{errors.price_range}</p>}
         <label htmlFor="image">Image (Optional)</label>
         <input
           id="image"
@@ -152,7 +152,7 @@ const CreateRestaurantForm = () => {
           accept="image/*"
           onChange={(e) => setImageUrl(e.target.files[0])}
         />
-        {errors.image_url && <p>{errors.image_url}</p>}
+        {errors.image_url && <p className="errors">{errors.image_url}</p>}
         <label htmlFor="open">Opens At</label>
         <input
           id="open"
@@ -160,7 +160,7 @@ const CreateRestaurantForm = () => {
           value={opens_at}
           onChange={(e) => setOpensAt(e.target.value)}
         />
-        {errors.opens_at && <p>{errors.opens_at}</p>}
+        {errors.opens_at && <p className="errors">{errors.opens_at}</p>}
         <label htmlFor="close">Closes At</label>
         <input
           required
@@ -169,7 +169,7 @@ const CreateRestaurantForm = () => {
           value={closes_at}
           onChange={(e) => setClosesAt(e.target.value)}
         />
-        {errors.closes_at && <p>{errors.closes_at}</p>}
+        {errors.closes_at && <p className="errors">{errors.closes_at}</p>}
         <button type="submit">Create Restaurant</button>
       </form>
     </div>
