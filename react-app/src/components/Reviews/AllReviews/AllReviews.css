@@ -7,6 +7,20 @@
   border: 1px solid black;
 }
 
+.entireReviewSection{
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.noReviews{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+}
+
 .name {
   font-weight: 510;
 }
@@ -24,6 +38,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid black;
 }
 
 .reviewInformation {
@@ -53,10 +76,14 @@
 
 .text {
   font-family: "Times New Roman", Times, serif;
-  font-size: 60px;
+  font-size: 70px;
 }
 
-@property --rotate {
+.fa-solid.fa-heart{
+  color:red;
+}
+
+/* @property --rotate {
   syntax: "<angle>";
   initial-value: 132deg;
   inherits: false;
@@ -134,7 +161,7 @@
   100% {
     --rotate: 360deg;
   }
-}
+} */
 
 .entireReviewSection {
   margin-top: 5%;

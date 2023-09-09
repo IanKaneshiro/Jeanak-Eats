@@ -16,12 +16,27 @@
     "detail-img   .";
 }
 
-.itemDetailImg {
+.item-detail-img--container {
   grid-area: detail-img;
+}
+
+.itemDetailImg {
+  /* grid-area: detail-img; */
   width: 492px;
   height: 492px;
   object-fit: cover;
   object-position: center;
+}
+
+#item-detail--no-image {
+  grid-area: detail-img;
+  background-color: #eeeeee;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 492px;
+  height: 492px;
 }
 
 .itemDetailName {
