@@ -15,7 +15,10 @@ import MenuItem from "../MenuItems";
 import "./RestaurantDetails.css";
 import LoadingSpinner from "../LoadingSpinner";
 import AllReviews from "../Reviews/AllReviews";
-import { notImplemented } from "../../Resources/helperFunctions";
+import {
+  notImplemented,
+  calculateShowHours,
+} from "../../Resources/helperFunctions";
 
 const RestaurantDetails = () => {
   const dispatch = useDispatch();
@@ -74,7 +77,9 @@ const RestaurantDetails = () => {
             <button onClick={notImplemented}>More info</button>
           </span>
         </p>
-        <p className="details--est-delivery-time">Est. delivery time here</p>
+        <p className="details--hours">
+          {calculateShowHours(restaurant.opensAt, restaurant.closesAt)}
+        </p>
       </div>
       <MenuItem />
       <AllReviews />

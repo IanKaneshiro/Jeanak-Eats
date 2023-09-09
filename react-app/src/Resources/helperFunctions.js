@@ -79,3 +79,22 @@ export const notImplemented = () => {
 export const filterOptionsArr = (arr, val) => {
   return arr.filter((item) => item !== val);
 };
+
+export const calculateShowHours = (opensAt, closesAt) => {
+  const now = new Date();
+  let hours = now.getHours();
+  const minutes = now.getMinutes();
+  if (hours < 10) hours = "0" + hours;
+  const currentTime = `${hours}:${minutes}`;
+  let open = opensAt.split(" ")[0];
+  let close = closesAt.split(" ")[0];
+  console.log(close, open, currentTime);
+
+  if (currentTime >= close || currentTime < open) {
+    return `Closed. Opens at ${formatTime(opensAt)}`;
+  } else if (currentTime >= open || currentTime < close) {
+    return `Open until ${formatTime(closesAt)}`;
+  } else {
+    return `Hours: ${formatTime(opensAt)} - ${formatTime(closesAt)}`;
+  }
+};
