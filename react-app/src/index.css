@@ -24,7 +24,7 @@ li {
 
 button {
   cursor: pointer;
-  border: none;
+  /* border: none; */
 }
 
 .modal-button {

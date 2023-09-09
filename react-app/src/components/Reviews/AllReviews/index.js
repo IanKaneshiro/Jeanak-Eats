@@ -17,7 +17,6 @@ import {useSelector, useDispatch } from 'react-redux'
 
 
 
-
 const AllReviews = () => {
 
     const dispatch = useDispatch()
@@ -173,22 +172,22 @@ const AllReviews = () => {
     function postReview(){
         if (checkUser() === 'true'){
             return (
-                <>
+                <div className='postAction'>
                     <OpenModalButton
                         buttonText='Post' //button on the page not the pop up button
                         onItemClick={closeMenu}
                         modalComponent={<AddModal data={restaurantId}/>}
                     />
-                </>
+                </div>
             )
         }
     }
+
 
     return (
         <>
 
         <div className='entireReviewSection'>
-
             <div className="card">
                 <p className='text'>
                     Customer Reviews
