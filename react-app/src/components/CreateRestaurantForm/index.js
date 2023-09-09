@@ -145,8 +145,9 @@ const CreateRestaurantForm = () => {
           ))}
         </select>
         {errors.price_range && <p className="errors">{errors.price_range}</p>}
-        <label htmlFor="image">Image (Optional)</label>
+        <label htmlFor="image">Image</label>
         <input
+          required
           id="image"
           type="file"
           accept="image/*"
