@@ -68,11 +68,18 @@ const ManageMenuItems = ({ restaurant }) => {
                 <td className="menu-item-table-data">{item.category}</td>
                 <td className="menu-item-table-data">{item.dietary}</td>
                 <td className="menu-item-table-data">
-                  <img
-                    src={item.imageUrl}
-                    alt={item.name}
-                    className="menu-item-image"
-                  />
+                  {item.imageUrl ? (
+                    <img
+                      src={item.imageUrl}
+                      alt={item.name}
+                      className="menu-item-image"
+                    />
+                  ) : (
+                    <i
+                      className="fa-solid fa-bowl-rice fa-2xl"
+                      id="manage-menu--no-image"
+                    ></i>
+                  )}
                 </td>
                 <td className={"menu-item-table-data mit-buttons"}>
                   <OpenModalButton

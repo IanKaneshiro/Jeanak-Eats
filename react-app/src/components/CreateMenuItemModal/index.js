@@ -29,7 +29,7 @@ const CreateMenuItemModal = ({ restaurantId }) => {
 
     const data = await dispatch(createMenuItem(formData, restaurantId));
     if (data?.errors) {
-      setErrors(data.errors);
+      setErrors(data?.errors);
     } else {
       closeModal();
     }

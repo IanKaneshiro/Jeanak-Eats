@@ -50,7 +50,16 @@ const MenuItemDetail = () => {
       </span>
 
       <div className="menuItemTile">
-        <img className="itemDetailImg" src={item.imageUrl} alt={item.id} />
+        <div className="item-detail-img--container">
+          {/* {item.Url ? ( */}
+          <img className="itemDetailImg" src={item.imageUrl} alt={item.id} />
+          {/* ) : (
+            <i
+              className="fa-regular fa-bowl-rice fa-2xl"
+              style={{ color: "ffffff" }}
+            ></i>
+          )} */}
+        </div>
         <h1 className="itemDetailName">{item.name}</h1>
         <h3 className="itemDetailPrice">${floatPrice}</h3>
         <span className="itemDetailDescription">{item.description}</span>

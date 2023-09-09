@@ -8,6 +8,20 @@
   min-height: 450px;
 }
 
+.all-menu-items--container-empty {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 40px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.all-menu-items--container-empty span {
+  padding: 5px;
+}
+
 .menu--sidebar {
   margin-top: 25px;
   font-weight: 540;
@@ -37,12 +51,23 @@
   transition: 0.25s ease-in-out 0s;
 }
 
+/* If there isn't a menu-tile-img, the icon should render */
 .menu-tile-img {
   width: 243px;
   max-height: 161px;
   object-fit: cover;
   object-position: center;
   padding-bottom: 3px;
+}
+
+#menu-tile--no-image {
+  background-color: rgba(221, 221, 221, 0.6);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 243px;
+  height: 161px;
 }
 
 .menu-tile-name {

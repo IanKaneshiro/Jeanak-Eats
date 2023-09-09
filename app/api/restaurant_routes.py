@@ -233,6 +233,8 @@ def create_menu_item(id):
             if "url" not in upload:
                 return {'errors': validation_errors_to_error_messages(upload)}, 400
             url = upload["url"]
+        else:
+            url=None
 
         menu_item = MenuItem(
             restaurant_id=id,
