@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 
@@ -42,4 +43,25 @@
     padding-top: 5px;
     padding-bottom: 5px;
     font-family: 'Times New Roman', Times, serif;
+=======
+.entireFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  gap: 5px;
+  background-color: black;
+  font-family: "Times New Roman", Times, serif;
+  margin-top: 50px;
+}
+.copyRight {
+  color: white;
+}
+.allButtons {
+  display: flex;
+  background-color: none;
+  color: white;
+  justify-content: space-around;
+>>>>>>> 912508aaeecc7021110e0da7588f2d2c65a71471
 }

@@ -27,44 +27,43 @@ function App() {
       <Navigation loading={isLoaded} />
       {isLoaded && (
         <>
-        <Switch>
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
+          <Switch>
+            <Route exact path="/">
+              <LandingPage />
+            </Route>
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
 
-          <ProtectedRoute path="/manage">
-            <ManagerPortal />
-          </ProtectedRoute>
-          {/* <Route path="/restaurants/:restaurantId/menuItems">
+            <ProtectedRoute path="/manage">
+              <ManagerPortal />
+            </ProtectedRoute>
+            {/* <Route path="/restaurants/:restaurantId/menuItems">
             <NewMenuItemForm />
           </Route> */}
-          <Route path="/restaurants/:restaurantId">
-            <RestaurantDetails />
-          </Route>
-          <ProtectedRoute path="/manage">
-            <ManagerPortal />
-          </ProtectedRoute>
-          <Route path="/restaurants/:restaurantId/menuItems">
-            <NewMenuItemForm />
-          </Route>
-          <Route path="/restaurants/:restaurantId">
-            <RestaurantDetails />
-          </Route>
-          <Route path="/menuItems/:menuItemId/update">
-            <UpdateMenuItemForm />
-          </Route>
-          <Route path="/menuItems/:menuItemId">
-            <MenuItemDetail />
-          </Route>
-        </Switch>
-
-          <Footer/>
+            <Route path="/restaurants/:restaurantId">
+              <RestaurantDetails />
+            </Route>
+            <ProtectedRoute path="/manage">
+              <ManagerPortal />
+            </ProtectedRoute>
+            <Route path="/restaurants/:restaurantId/menuItems">
+              <NewMenuItemForm />
+            </Route>
+            <Route path="/restaurants/:restaurantId">
+              <RestaurantDetails />
+            </Route>
+            <Route path="/menuItems/:menuItemId/update">
+              <UpdateMenuItemForm />
+            </Route>
+            <Route path="/menuItems/:menuItemId">
+              <MenuItemDetail />
+            </Route>
+          </Switch>
+          <Footer />
         </>
       )}
     </>

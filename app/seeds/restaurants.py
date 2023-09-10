@@ -74,7 +74,7 @@ def seed_restaurants():
         cuisine="American",
         dietary="",
         price_range="$$$$",
-        opens_at="05:00",
+        opens_at="17:00",
         closes_at="21:00",
         image_url="https://res.cloudinary.com/dmkyocbqi/image/upload/v1694061365/2023-05-30_ebrmui.jpg"
     )
@@ -123,6 +123,66 @@ def seed_restaurants():
         closes_at="21:45",
         image_url="https://res.cloudinary.com/dmkyocbqi/image/upload/v1694061365/20210330_181300_06_zbau9j.jpg"
     )
+    shake_shack = Restaurant(
+        owner_id=1,
+        name="Shake Shack",
+        address="3060 Fillmore Street",
+        city="San Francisco",
+        state="CA",
+        country="USA",
+        description="Our custom 100% Angus beef blend, never frozen, no hormones or antibiotics ever, humanely raised and grazed in the USA",
+        cuisine="American",
+        dietary="",
+        price_range="$$",
+        opens_at="11:00",
+        closes_at="20:30",
+        image_url="https://media.bizj.us/view/img/10781252/centercal-one*1200xx1562-880-0-154.png"
+    )
+    blondies_pizza = Restaurant(
+        owner_id=3,
+        name="Blondie's Pizza",
+        address="865 Market Street",
+        city="San Francisco",
+        state="CA",
+        country="USA",
+        description="Blondie's Pizza!",
+        cuisine="Pizza",
+        dietary="",
+        price_range="$$",
+        opens_at="10:00",
+        closes_at="20:00",
+        image_url="https://s.hdnux.com/photos/46/20/22/10028185/5/rawImage.jpg"
+    )
+    ll_hawaiianbbq = Restaurant(
+        owner_id=2,
+        name="L&L Hawaiian Barbecue",
+        address="312 Kearny Street",
+        city="San Francisco",
+        state="CA",
+        country="USA",
+        description="Hawaiian barbecue!",
+        cuisine="Hawaiian",
+        dietary="",
+        price_range="$",
+        opens_at="09:30",
+        closes_at="19:00",
+        image_url="https://tableagent.s3.amazonaws.com/media/originals/2805_7273.jpg"
+    )
+    enssaro = Restaurant(
+        owner_id=2,
+        name="Enssaro",
+        address="357a Grand Ave",
+        city="Oakland",
+        state="CA",
+        country="USA",
+        description="Ethiopian food",
+        cuisine="Ethiopian",
+        dietary="",
+        price_range="$$",
+        opens_at="10:00",
+        closes_at="22:00",
+        image_url="https://s3-media0.fl.yelpcdn.com/bphoto/h8OrrBlqVtimMJpvFQLmiA/l.jpg"
+    )
 
     db.session.add(mcdonalds)
     db.session.add(burger_king)
@@ -132,6 +192,10 @@ def seed_restaurants():
     db.session.add(salt_and_straw)
     db.session.add(maxes_opera)
     db.session.add(truly_mediterranean)
+    db.session.add(shake_shack)
+    db.session.add(blondies_pizza)
+    db.session.add(ll_hawaiianbbq)
+    db.session.add(enssaro)
     db.session.commit()
 
 

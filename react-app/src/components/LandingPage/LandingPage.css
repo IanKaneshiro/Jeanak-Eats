@@ -2,16 +2,15 @@
   display: flex;
   padding: 0 40px;
   margin-top: 20px;
-  min-height: 450px;
+  min-height: 100vh;
 }
 
 .landing--restaurants {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
+  grid-template-rows: repeat(2, auto) repeat(3, 1fr);
   grid-gap: 20px;
   width: 100%;
-  min-height: 450px;
 }
 
 .landing--filters {

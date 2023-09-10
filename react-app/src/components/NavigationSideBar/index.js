@@ -46,7 +46,7 @@ const NavigationSideBar = ({
                   className="sidebar--menu-items"
                   onClick={notImplemented}
                 >
-                  <i className="fa-solid fa-heart fa-lg"></i>
+                  <i id="heart" className="fa-solid fa-heart fa-lg"></i>
                   <p>Favorites</p>
                 </button>
               </li>

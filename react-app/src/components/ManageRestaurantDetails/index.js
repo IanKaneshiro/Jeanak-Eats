@@ -61,7 +61,8 @@ const ManageRestaurantDetails = () => {
           </p>
           <p>
             {calculateStars(restaurant.avgRating)}
-            {restaurant.avgRating} ({restaurant.numRatings} ratings)
+            {restaurant.avgRating ? restaurant.avgRating.toFixed(1) : ""} (
+            {restaurant.numRatings} ratings)
           </p>
         </div>
       </div>

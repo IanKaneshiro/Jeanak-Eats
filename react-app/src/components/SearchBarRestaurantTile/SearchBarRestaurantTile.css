@@ -17,3 +17,12 @@
   justify-content: space-around;
   flex-direction: column;
 }
+
+.res-closed {
+  filter: brightness(40%);
+}
+
+.sb-res-tile-text {
+  font-size: 14px;
+  color: #9a9a9a;
+}
