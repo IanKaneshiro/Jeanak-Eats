@@ -282,7 +282,7 @@ def seed_menu_items():
         name="SmokeShack",
         description="Angus beef cheeseburger with applewood-smoked bacon, chopped cherry peppers, and ShackSauce on a toasted potato bun (contains sesame, milk, wheat, egg, soy, and gluten)",
         price=11.59,
-        category="Burger",
+        category="Burgers",
         image_url="https://d2luv1saso99wi.cloudfront.net/2023-05_DoubleSmokeshack_Digital-Product-Image_1500x920_lg1684761804.jpeg"
     )
     shakeshack_fries = MenuItem(
