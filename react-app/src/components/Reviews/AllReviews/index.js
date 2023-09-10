@@ -61,10 +61,10 @@ const AllReviews = () => {
         }
 
         else if(differenceMinutes===1){
-          return `${differenceSeconds} minute ago`
+          return `${differenceMinutes} minute ago`
         }
         else if(differenceMinutes>1 && differenceMinutes<60){
-          return `${differenceSeconds} minutes ago`
+          return `${differenceMinutes} minutes ago`
         }
 
         else if (differenceHours === 1){
