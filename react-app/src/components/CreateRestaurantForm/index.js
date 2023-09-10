@@ -49,6 +49,8 @@ const CreateRestaurantForm = () => {
     formData.append("opens_at", opens_at);
     formData.append("closes_at", closes_at);
     formData.append("image_url", image_url);
+
+    if (!image_url) return setErrors({ image_url: "Image required" });
     setLoading(true);
 
     const data = await dispatch(createRestaurant(formData));
@@ -156,6 +158,7 @@ const CreateRestaurantForm = () => {
         {errors.image_url && <p className="errors">{errors.image_url}</p>}
         <label htmlFor="open">Opens At</label>
         <input
+          required
           id="open"
           type="time"
           value={opens_at}
