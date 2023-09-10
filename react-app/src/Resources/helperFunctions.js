@@ -64,6 +64,9 @@ export const calculateStars = (rating) => {
 
 export const formatTime = (time) => {
   time = time.split(":");
+  if (Number(time[0]) === 0) {
+    return `12:${time[1]} AM`;
+  }
   if (time[0] <= 12) {
     if (Number(time[0][0]) === 0) time[0] = time[0].slice(1);
     return `${time[0]}:${time[1]} AM`;
@@ -86,15 +89,18 @@ export const calculateShowHours = (opensAt, closesAt) => {
   const minutes = now.getMinutes();
   if (hours < 10) hours = "0" + hours;
   const currentTime = `${hours}:${minutes}`;
+
   let open = opensAt.split(" ")[0];
   let close = closesAt.split(" ")[0];
-  console.log(close, open, currentTime);
+  console.log(`Open ${open}, close ${close}, curent ${currentTime}`);
 
-  if (currentTime >= close || currentTime < open) {
+  if (close <= "12:00" && currentTime < "12:00" && currentTime < open) {
     return `Closed. Opens at ${formatTime(opensAt)}`;
-  } else if (currentTime >= open || currentTime < close) {
-    return `Open until ${formatTime(closesAt)}`;
+  } else if (currentTime > close && close > "12:00") {
+    return `Closed. Opens at ${formatTime(opensAt)}`;
+  } else if (close <= "12:00") {
+    return `Open until ${formatTime(closesAt)} tomorrow`;
   } else {
-    return `Hours: ${formatTime(opensAt)} - ${formatTime(closesAt)}`;
+    return `Open until ${formatTime(closesAt)}`;
   }
 };
