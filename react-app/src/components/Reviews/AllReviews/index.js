@@ -201,13 +201,13 @@ const AllReviews = () => {
             </>
           )}
 
-          <div className="reportReview">
+          {/* <div className="reportReview">
             <OpenModalButton
               buttonText="Report"
               onItemClick={closeMenu}
               modalComponent={<ReportModal />}
             />
-          </div>
+          </div> */}
         </div>
       );
     });

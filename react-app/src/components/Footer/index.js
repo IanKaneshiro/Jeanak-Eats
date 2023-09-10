@@ -7,11 +7,14 @@ const Footer = () => {
     return (
 
     <div className="entireFooter">
+        <div className="one">The team behind Jeanak Eats</div>
+        <div className="two">Check out our github repositories below</div>
+        <div className="confusion">
         <div className="allButtons">
-            <button className="buttoned" onClick={notImplemented}>Privacy Policy</button>
-            <button className="buttoned" onClick={notImplemented}>Terms</button>
-            <button className="buttoned" onClick={notImplemented}>Pricing</button>
-            <button className="buttoned" onClick={notImplemented}>Do not sell or share my personal information</button>
+            <a className="HelloWorld" href="https://github.com/Kourani">Malak</a>
+            <a className="HelloWorld" href="https://github.com/IanKaneshiro">Ian</a>
+            <a className="HelloWorld" href="https://github.com/jhalton">Jeanette</a>
+        </div>
         </div>
         <div className="copyRight">  © 2023 Jeanak Eats Inc.</div>
     </div>
