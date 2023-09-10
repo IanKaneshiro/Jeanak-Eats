@@ -258,7 +258,7 @@ def seed_menu_items():
         name="ShackBurger",
         description="Angus beef cheeseburger with lettuce, tomato, and ShackSauce on a toasted potato bun (contains sesame, eggs, milk, soy, wheat, and gluten)",
         price=7.19,
-        category="Burger",
+        category="Burgers",
         image_url="https://d2luv1saso99wi.cloudfront.net/2022_Digital-Menu_Burgers_ShackBurger_1500x920_lg1663589553.jpeg"
     )
     golden_state_double = MenuItem(
@@ -266,7 +266,7 @@ def seed_menu_items():
         name="Golden State Double",
         description="Richards Grassfed Beef double cheddar cheeseburger topped with pickles and smoked garlic aioli (contains sesame, milk, wheat, egg, and gluten)",
         price=12.29,
-        category="Burger",
+        category="Burgers",
         image_url="https://d2luv1saso99wi.cloudfront.net/2022_Digital-Menu_Burgers_GoldenStateDouble_1500x920_lg1663590761.jpeg"
     )
     avocado_bacon_burger = MenuItem(
@@ -274,7 +274,7 @@ def seed_menu_items():
         name="Avocado Bacon Burger",
         description="Angus beef cheeseburger topped with freshly sliced avocado, applewood-smoked bacon, and ShackSauce on a toasted potato bun (contains sesame, eggs, milk, soy, wheat, and gluten)",
         price=10.09,
-        category="Burger",
+        category="Burgers",
         image_url="https://d2luv1saso99wi.cloudfront.net/2023-06_SHA_Avocado-Bacon_Digital-Menu_1500x920_Burger_lg1689678265.jpeg"
     )
     smoke_shack = MenuItem(
@@ -455,7 +455,7 @@ def seed_menu_items():
     )
     enssaro_ethiopiannacho = MenuItem(
         restaurant_id=12,
-        name="Ethiopian Nacho",
+        name="Ethiopian Nachos",
         description="Ethiopian-style fried potato chips with house made salsa and Ethiopian hummus.",
         price=14.00,
         category="Appetizers",
@@ -484,6 +484,70 @@ def seed_menu_items():
         price=21.00,
         category="Comfort Food",
         image_url="https://www.wassethiopianrestaurant.com/wp-content/uploads/2021/07/Bozena-Shiro-1080x675.jpg"
+    )
+    joyride_zoeroni_pizza = MenuItem(
+        restaurant_id=13,
+        name="Zoe 'Roni Pepperoni",
+        description="Pepperoni, mozzarella & brick cheese, topped with parmesan and house marinara",
+        price=28.00,
+        category="Pizza",
+        image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/6ab99d93-6ffd-446e-8bc3-7611c9a257d2/W-Zoe+Roni+-+061_Joyride_02102022_paigegreen.jpg?format=1500w"
+    )
+    joyride_meatzza_pizza = MenuItem(
+        restaurant_id=13,
+        name="Meatzza",
+        description="Italian sausage, bacon, pepperoni, mozzarella & brick cheese, topped with parmesan and house marinara",
+        price=31.00,
+        category="Pizza",
+        image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/d4eafa68-6eba-4849-a782-f68628df5e28/W-Meatzza+-+065_Joyride_02102022_paigegreen.jpg?format=1500w"
+    )
+    joyride_eatyourveggies_pizza = MenuItem(
+        restaurant_id=13,
+        name="Eat Your Veggies",
+        description="Brussels sprouts, crimini mushrooms, black olives, dorati tomatoes, red onion, mozzarella & brick cheese,",
+        price=27.00,
+        category="Pizza",
+        image_url="https://131220777.cdn6.editmysite.com/uploads/1/3/1/2/131220777/s186213969590501822_p878_i4_w1000.jpeg?width=2400&optimize=medium"
+    )
+    joyride_sweetbianca_pizza = MenuItem(
+        restaurant_id=13,
+        name="Sweet Bianca",
+        description="Taleggio, fig jam, ricotta, mozzarella & brick cheese",
+        price=27.00,
+        category="Pizza",
+        image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/453b986c-e366-45b9-8345-0949bd56c8d9/W-Sweet+Bianca+-+050_Joyride_02102022_paigegreen.jpg?format=1500w"
+    )
+    joyride_buffalochicken_pizza = MenuItem(
+        restaurant_id=13,
+        name="Buffalo Chicken",
+        description="Fire-braised chicken breast, Frank's Red Hot cayenne pepper sauce, red onion, mozzarella & brick cheese",
+        price=27.00,
+        category="Pizza",
+        image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/0d6e407a-7ee1-4292-9b04-d2a5e701a5d1/1x1+-+W-Buffalo+Chicken+-+_54A6163_Joyride_08092022_paigegreen+1.jpg?format=1500w"
+    )
+    joyride_greengoddess_pizza = MenuItem(
+        restaurant_id=13,
+        name="Green Goddess",
+        description="Arugula, ricotta, sweetie drops, pesto, black olives, red onion, cracked black pepper, mozzarella & brick",
+        price=26.00,
+        category="Pizza",
+        image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/2c055b4a-2cef-4909-a998-57f36b93ef4a/W-Garden+Goddess+-+056_Joyride_02102022_paigegreen.jpg?format=1500w"
+    )
+    joyride_oceanbeach_pizza = MenuItem(
+        restaurant_id=13,
+        name="Ocean Beach",
+        description="Clams, Dorati tomatoes, capers, lemon, chili flakes, topped with parsley, parmesan, and chili flakes",
+        price=25.00,
+        category="Pizza",
+        image_url="https://131220777.cdn6.editmysite.com/uploads/1/3/1/2/131220777/s186213969590501822_p1151_i2_w1000.jpeg?dpr=2.5"
+    )
+    joyride_anchovyumami_pizza = MenuItem(
+        restaurant_id=13,
+        name="Anchovy Umami",
+        description="Anchovies, red onion, jalapenos, crimini mushrooms and topped with parmesan and house marinara.",
+        price=24.00,
+        category="Pizza",
+        image_url="https://131220777.cdn6.editmysite.com/uploads/1/3/1/2/131220777/s186213969590501822_p1152_i1_w2800.jpeg?width=2560&dpr=2.5"
     )
 
     
@@ -546,6 +610,14 @@ def seed_menu_items():
     db.session.add(enssaro_kitforolls)
     db.session.add(enssaro_yebegwot)
     db.session.add(enssaro_bozenashiro)
+    db.session.add(joyride_zoeroni_pizza)
+    db.session.add(joyride_meatzza_pizza)
+    db.session.add(joyride_eatyourveggies_pizza)
+    db.session.add(joyride_sweetbianca_pizza)
+    db.session.add(joyride_buffalochicken_pizza)
+    db.session.add(joyride_greengoddess_pizza)
+    db.session.add(joyride_oceanbeach_pizza)
+    db.session.add(joyride_anchovyumami_pizza)
 
     db.session.commit()
 
