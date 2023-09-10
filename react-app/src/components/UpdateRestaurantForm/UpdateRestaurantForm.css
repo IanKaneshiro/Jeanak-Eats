@@ -2,18 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 400px;
+  width: 500px;
 }
 
 .update--main {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
-.update--main > input,
-select,
-textarea {
+.update--main-fields > input,
+.update--main-fields > textarea,
+.update--main-fields > select {
+  width: 250px;
   border-radius: 10px;
   border: none;
   height: 40px;
@@ -21,9 +22,8 @@ textarea {
   background-color: #eeeeee;
 }
 
-.update--main > textarea {
-  height: 50px;
-  width: 400px;
+.update--main-fields > textarea {
+  height: 120px;
 }
 
 .update--main button {
@@ -41,4 +41,16 @@ textarea {
 
 .create--main button:active {
   background-color: #505050;
+}
+
+.update--main-inner {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+}
+
+.update--main-inner > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
