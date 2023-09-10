@@ -7,16 +7,39 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 80px;
     background-color: black;
+    color:white;
+}
+
+.HelloWorld{
+    background-color: white;
+    font-family: 'Times New Roman', Times, serif;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+  }
+
+.confusion{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.one{
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-family: 'Times New Roman', Times, serif;
 }
-.copyRight{
-    color:white
-}
-.allButtons{
-    display: flex;
-    background-color: none;
-    color:white;
-    justify-content: space-around;
 
+.two{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.copyright{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: 'Times New Roman', Times, serif;
 }
