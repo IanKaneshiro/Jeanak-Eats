@@ -2,19 +2,37 @@
 import "./ReportModal.css";
 
 import { useModal } from "../../../context/Modal"
-import { addReview } from "../../../store/reviews"
+import SubmittedModal from "../SubmittedModal"
+import OpenModalButton from "../../OpenModalButton";
 
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useState, useRef } from "react";
+import { notImplemented } from "../../../Resources/helperFunctions";
 
 
-function ReportModal(data) {
 
-  const dispatch = useDispatch();
-  const history = useHistory()
+function ReportModal() {
+
+  const ulRef = useRef();
+
   const { closeModal } = useModal();
+  const [showMenu, setShowMenu] = useState(false);
 
+  const closeMenu = (e) => {
+    if (!ulRef.current.contains(e.target)) {
+      setShowMenu(false);
+    }
+  };
+
+  function dis(){
+
+    return (
+      <OpenModalButton
+      buttonText="Thank You"
+      onItemClick={closeMenu}
+      modalComponent={<SubmittedModal/>}/>
+    )
+
+  }
 
   return (
 
@@ -53,7 +71,7 @@ function ReportModal(data) {
         </div>
       </div>
 
-      <button className='tellMe' onClick={closeModal}> Submit Report </button>
+      <button className='tellMe' onClick={dis}> Submit Report </button>
     </div>
 
   );
