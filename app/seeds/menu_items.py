@@ -487,8 +487,8 @@ def seed_menu_items():
     )
     joyride_zoeroni_pizza = MenuItem(
         restaurant_id=13,
-        name="Zoe 'Roni",
-        description="PEPPERONI, MOZZARELLA & BRICK CHEESE, TOPPED WITH PARMESAN AND HOUSE MARINARA",
+        name="Zoe 'Roni Pepperoni",
+        description="Pepperoni, mozzarella & brick cheese, topped with parmesan and house marinara",
         price=28.00,
         category="Pizza",
         image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/6ab99d93-6ffd-446e-8bc3-7611c9a257d2/W-Zoe+Roni+-+061_Joyride_02102022_paigegreen.jpg?format=1500w"
@@ -496,7 +496,7 @@ def seed_menu_items():
     joyride_meatzza_pizza = MenuItem(
         restaurant_id=13,
         name="Meatzza",
-        description="ITALIAN SAUSAGE, BACON, PEPPERONI,  MOZZARELLA & BRICK CHEESE, TOPPED WITH PARMESAN AND HOUSE MARINARA",
+        description="Italian sausage, bacon, pepperoni, mozzarella & brick cheese, topped with parmesan and house marinara",
         price=31.00,
         category="Pizza",
         image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/d4eafa68-6eba-4849-a782-f68628df5e28/W-Meatzza+-+065_Joyride_02102022_paigegreen.jpg?format=1500w"
@@ -504,10 +504,50 @@ def seed_menu_items():
     joyride_eatyourveggies_pizza = MenuItem(
         restaurant_id=13,
         name="Eat Your Veggies",
-        description="BRUSSELS SPROUTS, CRIMINI MUSHROOMS, BLACK OLIVES, DORATI TOMATOES, RED ONION, MOZZARELLA & BRICK CHEESE, TOPPED WITH PARMESAN AND FRESH BASIL (VEGETARIAN)",
+        description="Brussels sprouts, crimini mushrooms, black olives, dorati tomatoes, red onion, mozzarella & brick cheese,",
         price=27.00,
         category="Pizza",
         image_url="https://131220777.cdn6.editmysite.com/uploads/1/3/1/2/131220777/s186213969590501822_p878_i4_w1000.jpeg?width=2400&optimize=medium"
+    )
+    joyride_sweetbianca_pizza = MenuItem(
+        restaurant_id=13,
+        name="Sweet Bianca",
+        description="Taleggio, fig jam, ricotta, mozzarella & brick cheese",
+        price=27.00,
+        category="Pizza",
+        image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/453b986c-e366-45b9-8345-0949bd56c8d9/W-Sweet+Bianca+-+050_Joyride_02102022_paigegreen.jpg?format=1500w"
+    )
+    joyride_buffalochicken_pizza = MenuItem(
+        restaurant_id=13,
+        name="Buffalo Chicken",
+        description="Fire-braised chicken breast, Frank's Red Hot cayenne pepper sauce, red onion, mozzarella & brick cheese",
+        price=27.00,
+        category="Pizza",
+        image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/0d6e407a-7ee1-4292-9b04-d2a5e701a5d1/1x1+-+W-Buffalo+Chicken+-+_54A6163_Joyride_08092022_paigegreen+1.jpg?format=1500w"
+    )
+    joyride_greengoddess_pizza = MenuItem(
+        restaurant_id=13,
+        name="Green Goddess",
+        description="Arugula, ricotta, sweetie drops, pesto, black olives, red onion, cracked black pepper, mozzarella & brick",
+        price=26.00,
+        category="Pizza",
+        image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/2c055b4a-2cef-4909-a998-57f36b93ef4a/W-Garden+Goddess+-+056_Joyride_02102022_paigegreen.jpg?format=1500w"
+    )
+    joyride_oceanbeach_pizza = MenuItem(
+        restaurant_id=13,
+        name="Ocean Beach",
+        description="Clams, Dorati tomatoes, capers, lemon, chili flakes, topped with parsley, parmesan, and chili flakes",
+        price=25.00,
+        category="Pizza",
+        image_url="https://131220777.cdn6.editmysite.com/uploads/1/3/1/2/131220777/s186213969590501822_p1151_i2_w1000.jpeg?dpr=2.5"
+    )
+    joyride_anchovyumami_pizza = MenuItem(
+        restaurant_id=13,
+        name="Anchovy Umami",
+        description="Anchovies, red onion, jalapenos, crimini mushrooms and topped with parmesan and house marinara.",
+        price=24.00,
+        category="Pizza",
+        image_url="https://131220777.cdn6.editmysite.com/uploads/1/3/1/2/131220777/s186213969590501822_p1152_i1_w2800.jpeg?width=2560&dpr=2.5"
     )
 
     
@@ -573,6 +613,11 @@ def seed_menu_items():
     db.session.add(joyride_zoeroni_pizza)
     db.session.add(joyride_meatzza_pizza)
     db.session.add(joyride_eatyourveggies_pizza)
+    db.session.add(joyride_sweetbianca_pizza)
+    db.session.add(joyride_buffalochicken_pizza)
+    db.session.add(joyride_greengoddess_pizza)
+    db.session.add(joyride_oceanbeach_pizza)
+    db.session.add(joyride_anchovyumami_pizza)
 
     db.session.commit()
 
