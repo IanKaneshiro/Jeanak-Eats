@@ -183,6 +183,22 @@ def seed_restaurants():
         closes_at="22:00",
         image_url="https://s3-media0.fl.yelpcdn.com/bphoto/h8OrrBlqVtimMJpvFQLmiA/l.jpg"
     )
+    joyride_pizza = Restaurant(
+        owner_id=6,
+        name="Joyride Pizza",
+        address="411 Valencia Street",
+        city="San Francisco",
+        state="CA",
+        country="USA",
+        description="Tasty pizza place",
+        cuisine="Pizza",
+        dietary="",
+        price_range="$$",
+        opens_at="10:00",
+        closes_at="23:00",
+        image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/1628360457897-2RWYI1JJZ5TVKWLJ7ZRN/Joyride+Pizza+Valencia+Front+Door+%26+Window"
+    )
+    
 
     db.session.add(mcdonalds)
     db.session.add(burger_king)
@@ -196,6 +212,7 @@ def seed_restaurants():
     db.session.add(blondies_pizza)
     db.session.add(ll_hawaiianbbq)
     db.session.add(enssaro)
+    db.session.add(joyride_pizza)
     db.session.commit()
 
 
