@@ -10,10 +10,22 @@ def seed_users():
         first_name='Marnie', last_name='Test', email='marnie@aa.io', password='password', phone_number="5555555555", image_url='https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg')
     bobbie = User(
         first_name='Bobbie', last_name='Testing', email='bobbie@aa.io', password='password', phone_number="8888888888", image_url='https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg')
+    gary = User(
+        first_name='Gary', last_name='Oldman', email='gary@aa.io', password='password', phone_number="9888888888", image_url='https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg')
+    bruce = User(
+        first_name='Bruce', last_name='Wayne', email='bruce@aa.io', password='password', phone_number="7888888888", image_url='https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg')
+    david = User(
+        first_name='David', last_name='Rose', email='david@aa.io', password='password', phone_number="6888888888", image_url='https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg')
+    lydia = User(
+        first_name='Lydia', last_name='Deetz', email='lydia@aa.io', password='password', phone_number="5888888888", image_url='https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg')
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(gary)
+    db.session.add(bruce)
+    db.session.add(david)
+    db.session.add(lydia)
     db.session.commit()
 
 

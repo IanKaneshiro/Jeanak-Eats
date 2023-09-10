@@ -258,7 +258,7 @@ def seed_menu_items():
         name="ShackBurger",
         description="Angus beef cheeseburger with lettuce, tomato, and ShackSauce on a toasted potato bun (contains sesame, eggs, milk, soy, wheat, and gluten)",
         price=7.19,
-        category="Burger",
+        category="Burgers",
         image_url="https://d2luv1saso99wi.cloudfront.net/2022_Digital-Menu_Burgers_ShackBurger_1500x920_lg1663589553.jpeg"
     )
     golden_state_double = MenuItem(
@@ -266,7 +266,7 @@ def seed_menu_items():
         name="Golden State Double",
         description="Richards Grassfed Beef double cheddar cheeseburger topped with pickles and smoked garlic aioli (contains sesame, milk, wheat, egg, and gluten)",
         price=12.29,
-        category="Burger",
+        category="Burgers",
         image_url="https://d2luv1saso99wi.cloudfront.net/2022_Digital-Menu_Burgers_GoldenStateDouble_1500x920_lg1663590761.jpeg"
     )
     avocado_bacon_burger = MenuItem(
@@ -274,7 +274,7 @@ def seed_menu_items():
         name="Avocado Bacon Burger",
         description="Angus beef cheeseburger topped with freshly sliced avocado, applewood-smoked bacon, and ShackSauce on a toasted potato bun (contains sesame, eggs, milk, soy, wheat, and gluten)",
         price=10.09,
-        category="Burger",
+        category="Burgers",
         image_url="https://d2luv1saso99wi.cloudfront.net/2023-06_SHA_Avocado-Bacon_Digital-Menu_1500x920_Burger_lg1689678265.jpeg"
     )
     smoke_shack = MenuItem(
@@ -455,7 +455,7 @@ def seed_menu_items():
     )
     enssaro_ethiopiannacho = MenuItem(
         restaurant_id=12,
-        name="Ethiopian Nacho",
+        name="Ethiopian Nachos",
         description="Ethiopian-style fried potato chips with house made salsa and Ethiopian hummus.",
         price=14.00,
         category="Appetizers",
@@ -484,6 +484,30 @@ def seed_menu_items():
         price=21.00,
         category="Comfort Food",
         image_url="https://www.wassethiopianrestaurant.com/wp-content/uploads/2021/07/Bozena-Shiro-1080x675.jpg"
+    )
+    joyride_zoeroni_pizza = MenuItem(
+        restaurant_id=13,
+        name="Zoe 'Roni",
+        description="PEPPERONI, MOZZARELLA & BRICK CHEESE, TOPPED WITH PARMESAN AND HOUSE MARINARA",
+        price=28.00,
+        category="Pizza",
+        image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/6ab99d93-6ffd-446e-8bc3-7611c9a257d2/W-Zoe+Roni+-+061_Joyride_02102022_paigegreen.jpg?format=1500w"
+    )
+    joyride_meatzza_pizza = MenuItem(
+        restaurant_id=13,
+        name="Meatzza",
+        description="ITALIAN SAUSAGE, BACON, PEPPERONI,  MOZZARELLA & BRICK CHEESE, TOPPED WITH PARMESAN AND HOUSE MARINARA",
+        price=31.00,
+        category="Pizza",
+        image_url="https://images.squarespace-cdn.com/content/v1/61099c6efe196b48d9ac54d7/d4eafa68-6eba-4849-a782-f68628df5e28/W-Meatzza+-+065_Joyride_02102022_paigegreen.jpg?format=1500w"
+    )
+    joyride_eatyourveggies_pizza = MenuItem(
+        restaurant_id=13,
+        name="Eat Your Veggies",
+        description="BRUSSELS SPROUTS, CRIMINI MUSHROOMS, BLACK OLIVES, DORATI TOMATOES, RED ONION, MOZZARELLA & BRICK CHEESE, TOPPED WITH PARMESAN AND FRESH BASIL (VEGETARIAN)",
+        price=27.00,
+        category="Pizza",
+        image_url="https://131220777.cdn6.editmysite.com/uploads/1/3/1/2/131220777/s186213969590501822_p878_i4_w1000.jpeg?width=2400&optimize=medium"
     )
 
     
@@ -546,6 +570,9 @@ def seed_menu_items():
     db.session.add(enssaro_kitforolls)
     db.session.add(enssaro_yebegwot)
     db.session.add(enssaro_bozenashiro)
+    db.session.add(joyride_zoeroni_pizza)
+    db.session.add(joyride_meatzza_pizza)
+    db.session.add(joyride_eatyourveggies_pizza)
 
     db.session.commit()
 
