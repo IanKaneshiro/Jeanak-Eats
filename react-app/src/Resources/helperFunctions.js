@@ -1,67 +1,69 @@
+// Returns a start rating from 1-5
 export const calculateStars = (rating) => {
   if (rating < 1) {
     return (
       <>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
       </>
     );
   } else if (rating < 1.4) {
     return (
       <>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
       </>
     );
   } else if (rating < 2.4) {
     return (
       <>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
       </>
     );
   } else if (rating < 3.4) {
     return (
       <>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+        <i className="fa-regular fa-star"></i>
       </>
     );
   } else if (rating < 4.4) {
     return (
       <>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-regular fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-regular fa-star"></i>
       </>
     );
   } else {
     return (
       <>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-solid fa-star"></i>
       </>
     );
   }
 };
 
+// Formats 24 hour time into 12 hour time
 export const formatTime = (time) => {
   time = time.split(":");
   if (Number(time[0]) === 0) {
@@ -75,38 +77,41 @@ export const formatTime = (time) => {
   }
 };
 
+// Pops up a alert
 export const notImplemented = () => {
   alert("Feature coming soon...");
 };
 
+// Filters arrays for select menus
 export const filterOptionsArr = (arr, val) => {
   return arr.filter((item) => item !== val);
 };
 
+// Displays whether the spot is open or closed
 export const calculateShowHours = (opensAt, closesAt) => {
   const now = new Date();
   let hours = now.getHours();
   const minutes = now.getMinutes();
-  if (hours < 10) hours = "0" + hours;
-  const currentTime = `${hours}:${minutes}`;
+  const currentTime = hours * 100 + minutes;
+  const open = parseInt(opensAt.replace(":", ""));
+  const close = parseInt(closesAt.replace(":", ""));
+  const openTime = formatTime(opensAt);
+  const closetime = formatTime(closesAt);
+  // console.log(`open ${open}, close ${close}, current ${currentTime}`);
 
-  let open = opensAt.split(" ")[0];
-  let close = closesAt.split(" ")[0];
-  console.log(`Open ${open}, close ${close}, curent ${currentTime}`);
-
-  if (close <= "12:00" && currentTime < "12:00" && currentTime < open) {
-    return `Closed. Opens at ${formatTime(opensAt)}`;
-  } else if (
-    currentTime < "12:00" &&
-    currentTime < close &&
-    currentTime < open
-  ) {
-    return `Closed. Opens at ${formatTime(opensAt)}`;
-  } else if (currentTime > close && close > "12:00") {
-    return `Closed. Opens at ${formatTime(opensAt)}`;
-  } else if (close <= "12:00") {
-    return `Open until ${formatTime(closesAt)} tomorrow`;
+  if (open <= close) {
+    if (currentTime >= open && currentTime <= close) {
+      return `Open until ${closetime}`;
+    } else if (currentTime > open) {
+      return `Closed. Opens at ${openTime} tomorrow`;
+    } else {
+      return `Closed. Opens at ${openTime}`;
+    }
   } else {
-    return `Open until ${formatTime(closesAt)}`;
+    if (currentTime >= open || currentTime <= close) {
+      return `Open until ${closetime}`;
+    } else {
+      return `Closed. Opens at ${openTime}`;
+    }
   }
 };
