@@ -53,7 +53,6 @@ const MenuItems = () => {
                   <i
                     className="fa-solid fa-bowl-rice fa-2xl"
                     id="menu-tile--no-image"
-                    style={{ color: "#ffffff" }}
                   ></i>
                 )}
                 <span>
