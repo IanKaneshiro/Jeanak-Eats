@@ -96,6 +96,12 @@ export const calculateShowHours = (opensAt, closesAt) => {
 
   if (close <= "12:00" && currentTime < "12:00" && currentTime < open) {
     return `Closed. Opens at ${formatTime(opensAt)}`;
+  } else if (
+    currentTime < "12:00" &&
+    currentTime < close &&
+    currentTime < open
+  ) {
+    return `Closed. Opens at ${formatTime(opensAt)}`;
   } else if (currentTime > close && close > "12:00") {
     return `Closed. Opens at ${formatTime(opensAt)}`;
   } else if (close <= "12:00") {
