@@ -80,7 +80,7 @@ def seed_menu_items():
         description="Try our hearty burrito, filled with your choice of meat, rice, beans, salsa, and more.",
         price=8.99,
         category="Burritos",
-        image_url="https://popmenucloud.com/cdn-cgi/image/width%3D1920%2Cheight%3D1920%2Cfit%3Dscale-dow[…]ality%3D60/pmcnbstq/05af1d98-fb7f-4d8c-af77-f83476646f8c.jpg"
+        image_url="https://t3.ftcdn.net/jpg/02/05/04/02/360_F_205040245_k37GsQhvSg0yhM5zmqf3NWDtACBgCEpm.jpg"
     )
 
     taco_plate = MenuItem(
@@ -89,7 +89,7 @@ def seed_menu_items():
         description="Indulge in our flavorful taco plate, featuring your choice of tacos served with rice and beans.",
         price=10.50,
         category="Tacos",
-        image_url="https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-dow[…]ality%3D60/pmcnbstq/50162eb2-d513-4393-9942-3a80b9f87c83.jpg"
+        image_url="https://amandascookin.com/wp-content/uploads/2019/06/chicken-tacos-680-500x500.jpg"
     )
 
     guacamole = MenuItem(
@@ -175,11 +175,11 @@ def seed_menu_items():
 
     strawberry_cheesecake_ice_cream = MenuItem(
         restaurant_id=6,
-        name="Strawberry Cheesecake Ice Cream",
-        description="Indulge in the creamy goodness of our strawberry cheesecake ice cream, featuring swirls of strawberry and chunks of cheesecake.",
+        name="Pumpkpin Spiced Tiramisu",
+        description="A pumpkin spiced vibe that's richer and more vibrant than anything you've tasted.",
         price=5.50,
         category="Ice Cream Flavors",
-        image_url="https://saltandstraw.com/cdn/shop/files/CO-PROJECTS-SALTSTRAW-AUG23-SCOOP-CHPIE-1200_60c89f72-de68-4b66-b235-0c1b5f30a0f2_1000x1000.png?v=1691157790"
+        image_url="https://saltandstraw.com/cdn/shop/files/CO-PROJ-SALTSTRAW-SEP23-TIRAMISU-SCOOP-023_5591bd99-fa8b-4870-addc-2b4a6312af0d.png?v=1693518379&width=400"
     )
 
     classic_burger = MenuItem(
@@ -253,6 +253,242 @@ def seed_menu_items():
         category="Vegan Specialties",
         image_url="https://minimalistbaker.com/wp-content/uploads/2020/12/Easy-Vegan-Moussaka-SQUARE.jpg"
     )
+    shackburger = MenuItem(
+        restaurant_id=9,
+        name="ShackBurger",
+        description="Angus beef cheeseburger with lettuce, tomato, and ShackSauce on a toasted potato bun (contains sesame, eggs, milk, soy, wheat, and gluten)",
+        price=7.19,
+        category="Burger",
+        image_url="https://d2luv1saso99wi.cloudfront.net/2022_Digital-Menu_Burgers_ShackBurger_1500x920_lg1663589553.jpeg"
+    )
+    golden_state_double = MenuItem(
+        restaurant_id=9,
+        name="Golden State Double",
+        description="Richards Grassfed Beef double cheddar cheeseburger topped with pickles and smoked garlic aioli (contains sesame, milk, wheat, egg, and gluten)",
+        price=12.29,
+        category="Burger",
+        image_url="https://d2luv1saso99wi.cloudfront.net/2022_Digital-Menu_Burgers_GoldenStateDouble_1500x920_lg1663590761.jpeg"
+    )
+    avocado_bacon_burger = MenuItem(
+        restaurant_id=9,
+        name="Avocado Bacon Burger",
+        description="Angus beef cheeseburger topped with freshly sliced avocado, applewood-smoked bacon, and ShackSauce on a toasted potato bun (contains sesame, eggs, milk, soy, wheat, and gluten)",
+        price=10.09,
+        category="Burger",
+        image_url="https://d2luv1saso99wi.cloudfront.net/2023-06_SHA_Avocado-Bacon_Digital-Menu_1500x920_Burger_lg1689678265.jpeg"
+    )
+    smoke_shack = MenuItem(
+        restaurant_id=9,
+        name="SmokeShack",
+        description="Angus beef cheeseburger with applewood-smoked bacon, chopped cherry peppers, and ShackSauce on a toasted potato bun (contains sesame, milk, wheat, egg, soy, and gluten)",
+        price=11.59,
+        category="Burger",
+        image_url="https://d2luv1saso99wi.cloudfront.net/2023-05_DoubleSmokeshack_Digital-Product-Image_1500x920_lg1684761804.jpeg"
+    )
+    shakeshack_fries = MenuItem(
+        restaurant_id=9,
+        name="Fries",
+        description="Crispy crinkle cut fries (contains soy)",
+        price=4.09,
+        category="Sides",
+        image_url="https://d2luv1saso99wi.cloudfront.net/2022_Digital-Menu_CrinkleCutFries_Fries_1500x920_lg1663591933.jpeg"
+    )
+    shakeshack_cheese_fries = MenuItem(
+        restaurant_id=9,
+        name="Cheese Fries",
+        description="Crispy crinkle cuts topped with our cheese sauce (contains soy and milk)",
+        price=5.09,
+        category="Sides",
+        image_url="https://d2luv1saso99wi.cloudfront.net/2022_Digital-Menu_CrinkleCutFries_CheeseFries_1500x920_lg1663591946.jpeg"
+    )
+    shakeshack_blackandwhite_shake = MenuItem(
+        restaurant_id=9,
+        name="Black and White Shake",
+        description="Chocolate fudge sauce hand spun with our house-made vanilla frozen custard (contains milk and egg)",
+        price=5.99,
+        category="Shakes",
+        image_url="https://d2luv1saso99wi.cloudfront.net/2022_Digital-Menu_Shakes_BlackAndWhite_1500x920_lg1689592733.jpeg"
+    )
+    shakeshack_strawberry_shake = MenuItem(
+        restaurant_id=9,
+        name="Strawberry Shake",
+        description="Real strawberry hand spun with our house-made vanilla frozen custard (contains milk and egg)",
+        price=5.99,
+        category="Shakes",
+        image_url="https://d2luv1saso99wi.cloudfront.net/2022_Digital-Menu_Shakes_Strawberry_1500x920_lg1689592721.jpeg"
+    )
+    shakeshack_vanilla_shake = MenuItem(
+        restaurant_id=9,
+        name="Vanilla Shake",
+        description="House-made vanilla frozen custard with real vanilla (contains milk and egg)",
+        price=5.99,
+        category="Shakes",
+        image_url="https://d2luv1saso99wi.cloudfront.net/2022_Digital-Menu_Shakes_Vanilla_1500x920_lg1689592781.jpeg"
+    )
+    shakeshack_chocolate_shake = MenuItem(
+        restaurant_id=9,
+        name="Chocolate Shake",
+        description="House-made chocolate frozen custard (contains milk and egg)",
+        price=5.99,
+        category="Shakes",
+        image_url="https://d2luv1saso99wi.cloudfront.net/2022_Digital-Menu_Shakes_Chocolate_1500x920_lg1689592744.jpeg"
+    )
+    blondies_garlicchicken_pizza = MenuItem(
+        restaurant_id=10,
+        name="Garlic Chicken Pizza",
+        description="Garlic sauce, grilled chicken, red bell pepper, fresh basil and roasted garlic.",
+        price=15.95,
+        category="Pizza",
+        image_url="https://blondiespizza.com/wp-content/uploads/2020/11/WhatsApp-Image-2022-07-01-at-7.39.39-PM.jpeg"
+    )
+    blondies_magicmushroom_pizza = MenuItem(
+        restaurant_id=10,
+        name="Magic Mushroom Pizza",
+        description="Garlic Sauce, Portobello, crimini, shiitake, white button mushrooms , sun-dried tomatoes and black olives.",
+        price=15.95,
+        category="Pizza",
+        image_url="https://blondiespizza.com/wp-content/uploads/2020/11/WhatsApp-Image-2022-07-01-at-7.40.28-PM-1.jpeg"
+    )
+    blondies_cheese_pizza = MenuItem(
+        restaurant_id=10,
+        name="Cheese Pizza",
+        description="Classic Cheese Pizza with Blondies four cheese blend. Mozzarella, cheddar, provolone, parmesan.",
+        price=9.95,
+        category="Pizza",
+        image_url="https://blondiespizza.com/wp-content/uploads/2022/07/WhatsApp-Image-2022-07-27-at-9.00.45-PM.jpeg"
+    )
+    blondies_tomandart_pizza = MenuItem(
+        restaurant_id=10,
+        name="Tom and Art Pizza",
+        description="Pesto sauce, tomato, mushroom, and artichoke hearts.",
+        price=15.95,
+        category="Pizza",
+        image_url="https://blondiespizza.com/wp-content/uploads/2020/11/WhatsApp-Image-2022-07-01-at-7.38.22-PM.jpeg"
+    )
+    blondies_pepperoni_pizza = MenuItem(
+        restaurant_id=10,
+        name="Pepperoni Pizza",
+        description="One hundred percent all beef Pepperoni.",
+        price=12.95,
+        category="Pizza",
+        image_url="https://blondiespizza.com/wp-content/uploads/2020/11/WhatsApp-Image-2022-07-01-at-7.40.13-PM.jpeg"
+    )
+    blondies_sixcheese_pizza = MenuItem(
+        restaurant_id=10,
+        name="Six Cheese Pizza",
+        description="Pesto sauce, tomatoes, roasted garlic, mozzarella, cheddar, provolone, parmesan, feta, and chevre cheese.",
+        price=15.95,
+        category="Pizza",
+        image_url="https://blondiespizza.com/wp-content/uploads/2020/11/WhatsApp-Image-2022-07-01-at-7.39.59-PM.jpeg"
+    )
+    blondies_hawaiian_pizza = MenuItem(
+        restaurant_id=10,
+        name="Hawaiian Pizza",
+        description="Tomato Sauce, Pineapple and Ham.",
+        price=15.95,
+        category="Pizza",
+        image_url="https://blondiespizza.com/wp-content/uploads/2020/11/WhatsApp-Image-2022-07-01-at-7.39.22-PM.jpeg"
+    )
+    blondies_pestochicken_pizza = MenuItem(
+        restaurant_id=10,
+        name="Pesto Chicken Pizza",
+        description="Pesto sauce, mushrooms, onions, tomatoes, green bell pepper and grilled chicken.",
+        price=15.95,
+        category="Pizza",
+        image_url="https://blondiespizza.com/wp-content/uploads/2022/07/WhatsApp-Image-2022-07-01-at-7.40.41-PM-1.jpeg"
+    )
+    llhawaiian_bbqchicken = MenuItem(
+        restaurant_id=11,
+        name="Barbecue Chicken",
+        description="Grilled boneless chicken marinated in our tangy, Hawaii-inspired barbecue sauce.",
+        price=14.60,
+        category="Chicken",
+        image_url="https://images.prismic.io/hawaiianbarbecue/82d3adfc-7637-4775-95d2-7987179d73f1_BBQ_Chicken-optimized.png?auto=compress%2Cformat&fit=max&w=500&h=388&fm=webp"
+    )
+    llhawaiian_bbqbeef_bowl = MenuItem(
+        restaurant_id=11,
+        name="BBQ Beef Bowl",
+        description="L&L's tantalizing barbecue beef served with steamed vegetables on a bed of rice.",
+        price=14.60,
+        category="Beef",
+        image_url="https://images.prismic.io/hawaiianbarbecue/8eca44a9-20a7-450e-b8ca-f9471fb8e334_BBQ_Beef_Bowl-optimized.png?auto=compress%2Cformat&fit=max&w=500&h=388&fm=webp"
+    )
+    llhawaiian_chickenkatsu = MenuItem(
+        restaurant_id=11,
+        name="Chicken Katsu",
+        description="Tender pieces of deep-fried boneless chicken, this best-seller is served with our piquant katsu sauce.",
+        price=13.60,
+        category="Chicken",
+        image_url="https://images.prismic.io/hawaiianbarbecue/91ce129b-21cc-4c8f-b015-2f2eac96e875_Chicken_Katsu-optimized.png?auto=compress%2Cformat&fit=max&w=500&h=388&fm=webp"
+    )
+    llhawaiian_kaluapork = MenuItem(
+        restaurant_id=11,
+        name="Kalua Pork with Cabbage",
+        description="Smoke-flavored, slowly-roasted shredded pork, combined with fresh cabbage.",
+        price=16.80,
+        category="Pork",
+        image_url="https://images.prismic.io/hawaiianbarbecue/02c2abca-f9d9-4b2c-8c3d-e3bd14271b28_Kalua_Pork_and_Cabbage-optimized.png?auto=compress%2Cformat&fit=max&w=500&h=388&fm=webp"
+    )
+    llhawaiian_locomoco = MenuItem(
+        restaurant_id=11,
+        name="Loco Moco",
+        description="Savory hamburger patties over rice, topped with brown gravy and 2 fresh fried eggs.",
+        price=15.80,
+        category="Beef",
+        image_url="https://images.prismic.io/hawaiianbarbecue/8540b0dc-0f63-408c-bfba-eeb26399c374_Loco_Moco-optimized.png?auto=compress%2Cformat&fit=max&w=500&h=388&fm=webp"
+    )
+    llhawaiian_spammusubi = MenuItem(
+        restaurant_id=11,
+        name="Spam Musubi",
+        description="An island classic composed of a slice of grilled SPAM on rice, wrapped in dried seaweed.",
+        price=10.30,
+        category="Specialty",
+        image_url="https://images.prismic.io/hawaiianbarbecue/39e43164-e9ed-46b0-868c-7c0262f14501_Musubi_Options-optimized.png?auto=compress%2Cformat&fit=max&w=500&h=388&fm=webp"
+    )
+    llhawaiian_spamsaimin = MenuItem(
+        restaurant_id=11,
+        name="Spam Saimin",
+        description="Noodle soup unique to Hawaii, served with SPAM and fresh green onion.",
+        price=11.30,
+        category="Specialty",
+        image_url="https://images.prismic.io/hawaiianbarbecue/82732013-21b5-4ceb-9847-0de84f25645a_SPAM_Saimin-optimized.png?auto=compress%2Cformat&fit=max&w=500&h=388&fm=webp"
+    )
+    enssaro_ethiopiannacho = MenuItem(
+        restaurant_id=12,
+        name="Ethiopian Nacho",
+        description="Ethiopian-style fried potato chips with house made salsa and Ethiopian hummus.",
+        price=14.00,
+        category="Appetizers",
+        image_url="https://images.squarespace-cdn.com/content/v1/5de846a28fe9df1841137623/1581808112058-2Y35HVPQKDSPLL1O9UC4/84618654_3739770249374219_6917953159956529152_n.jpg?format=750w"
+    )
+    enssaro_kitforolls = MenuItem(
+        restaurant_id=12,
+        name="Kitfo Rolls",
+        description="Warm, minced, rare beef tartare rolled with our house-made Injera wrap.",
+        price=10.00,
+        category="Appetizers",
+        image_url="https://www.196flavors.com/wp-content/uploads/2021/04/kitfo-1fp.jpg"
+    )
+    enssaro_yebegwot = MenuItem(
+        restaurant_id=12,
+        name="Ye Beg Wot",
+        description="Lamb slowly simmered with berbere and a combination of spices.",
+        price=19.00,
+        category="Comfort Food",
+        image_url="https://theethiopianfood.com/wp-content/uploads/2022/12/YeBeg-Wot-Ethiopian-Lamb-Stew-500x375.jpg"
+    )
+    enssaro_bozenashiro = MenuItem(
+        restaurant_id=12,
+        name="Bozena Shiro",
+        description="A rich and savory stew of Shiro simmered with minced beef, and a combination of Ethiopian spices.",
+        price=21.00,
+        category="Comfort Food",
+        image_url="https://www.wassethiopianrestaurant.com/wp-content/uploads/2021/07/Bozena-Shiro-1080x675.jpg"
+    )
+
+    
+    
+
     db.session.add(mcchicken)
     db.session.add(big_mac)
     db.session.add(fries)
@@ -281,6 +517,35 @@ def seed_menu_items():
     db.session.add(falafel_wrap)
     db.session.add(baklava)
     db.session.add(vegan_moussaka)
+    db.session.add(shackburger)
+    db.session.add(golden_state_double)
+    db.session.add(avocado_bacon_burger)
+    db.session.add(smoke_shack)
+    db.session.add(shakeshack_fries)
+    db.session.add(shakeshack_cheese_fries)
+    db.session.add(shakeshack_blackandwhite_shake)
+    db.session.add(shakeshack_strawberry_shake)
+    db.session.add(shakeshack_vanilla_shake)
+    db.session.add(shakeshack_chocolate_shake)
+    db.session.add(blondies_garlicchicken_pizza)
+    db.session.add(blondies_magicmushroom_pizza)
+    db.session.add(blondies_cheese_pizza)
+    db.session.add(blondies_tomandart_pizza)
+    db.session.add(blondies_pepperoni_pizza)
+    db.session.add(blondies_sixcheese_pizza)
+    db.session.add(blondies_hawaiian_pizza)
+    db.session.add(blondies_pestochicken_pizza)
+    db.session.add(llhawaiian_bbqchicken)
+    db.session.add(llhawaiian_bbqbeef_bowl)
+    db.session.add(llhawaiian_chickenkatsu)
+    db.session.add(llhawaiian_kaluapork)
+    db.session.add(llhawaiian_locomoco)
+    db.session.add(llhawaiian_spammusubi)
+    db.session.add(llhawaiian_spamsaimin)
+    db.session.add(enssaro_ethiopiannacho)
+    db.session.add(enssaro_kitforolls)
+    db.session.add(enssaro_yebegwot)
+    db.session.add(enssaro_bozenashiro)
 
     db.session.commit()
 

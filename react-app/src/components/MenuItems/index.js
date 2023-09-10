@@ -48,18 +48,11 @@ const MenuItems = () => {
                     className="menu-tile-img"
                     src={item.imageUrl}
                     alt={item.name}
-                    onError={
-                      <i
-                        className="fa-solid fa-bowl-rice fa-2xl"
-                        id="menu-tile--no-image"
-                      ></i>
-                    }
                   />
                 ) : (
                   <i
                     className="fa-solid fa-bowl-rice fa-2xl"
                     id="menu-tile--no-image"
-                    style={{ color: "#ffffff" }}
                   ></i>
                 )}
                 <span>
