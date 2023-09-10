@@ -8,10 +8,10 @@
 .landing--restaurants {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
   grid-gap: 20px;
   width: 100%;
-  min-height: 450px;
+  min-height: fit-content;
+  margin-bottom: 30px;
 }
 
 .landing--filters {

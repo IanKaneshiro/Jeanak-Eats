@@ -12,10 +12,12 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 0 40px;
   margin-top: 20px;
   margin-bottom: 30px;
+  height: 450px;
 }
 
 .all-menu-items--container-empty span {
