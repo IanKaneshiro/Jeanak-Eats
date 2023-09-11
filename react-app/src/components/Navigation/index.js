@@ -104,7 +104,7 @@ function Navigation({ loading }) {
           <ul className="navbar--cuisine-main">
             {cuisineUrls.map((img) => {
               return (
-                <button key={img} onClick={notImplemented}>
+                <button key={img.name} onClick={notImplemented}>
                   <img src={img.url} alt={img.url} />
                   <p>{img.name}</p>
                 </button>

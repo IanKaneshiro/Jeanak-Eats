@@ -9,7 +9,7 @@ const SearchBarRestaurantTile = ({ handleClose, restaurant }) => {
     <Link onClick={handleClose} to={`/restaurants/${restaurant.id}`}>
       <div className="sb-res-tile-main">
         <img
-          className={hours[0] === "C" && "res-closed"}
+          className={hours[0] === "C" ? "res-closed" : ""}
           src={restaurant.imageUrl}
           alt={restaurant.id}
         />

@@ -41,6 +41,7 @@ const SearchBar = ({ setSearch, query, setQuery }) => {
           {!render.length && query ? <h1>No matching restaurants</h1> : ""}
           {render.map((res) => (
             <SearchBarRestaurantTile
+              key={res.id}
               handleClose={handleClose}
               restaurant={res}
             />
