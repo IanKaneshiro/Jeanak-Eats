@@ -18,7 +18,7 @@ const RestaurantTile = ({ restaurant }) => {
       onClick={() => history.push(`/restaurants/${restaurant.id}`)}
     >
       <img
-        className={statusHours[0] === "C" && "tile-close"}
+        className={statusHours[0] === "C" ? "tile-close" : ""}
         src={restaurant.imageUrl}
         alt={restaurant.name}
       />

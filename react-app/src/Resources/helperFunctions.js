@@ -97,7 +97,6 @@ export const calculateShowHours = (opensAt, closesAt) => {
   const close = parseInt(closesAt.replace(":", ""));
   const openTime = formatTime(opensAt);
   const closetime = formatTime(closesAt);
-  // console.log(`open ${open}, close ${close}, current ${currentTime}`);
 
   if (open <= close) {
     if (currentTime >= open && currentTime <= close) {
