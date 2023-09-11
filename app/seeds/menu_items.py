@@ -173,13 +173,29 @@ def seed_menu_items():
         image_url="https://saltandstraw.com/cdn/shop/products/salt-and-straw_chocolate-gooey-brownie_540x.jpg?v=1580424622"
     )
 
-    strawberry_cheesecake_ice_cream = MenuItem(
+    pumpkin_spiced_tiramisu = MenuItem(
         restaurant_id=6,
-        name="Pumpkpin Spiced Tiramisu",
+        name="Pumpkin Spiced Tiramisu",
         description="A pumpkin spiced vibe that's richer and more vibrant than anything you've tasted.",
         price=5.50,
         category="Ice Cream Flavors",
         image_url="https://saltandstraw.com/cdn/shop/files/CO-PROJ-SALTSTRAW-SEP23-TIRAMISU-SCOOP-023_5591bd99-fa8b-4870-addc-2b4a6312af0d.png?v=1693518379&width=400"
+    )
+    strawberry_honey_balsamic = MenuItem(
+        restaurant_id=6,
+        name="Strawberry Honey Balsamic w/ Black Pepper",
+        description="A strawberry triple threat. We steal a trick from the Italians, using balsamic and citrusy cubeb black pepper to help coax out the fruit's acidity and brightness.",
+        price=5.50,
+        category="Ice Cream Flavors",
+        image_url="https://saltandstraw.com/cdn/shop/files/StrawberryBalsamic-Scoop.webp?v=1674669489&width=300"
+    )
+    arbequina_olive_oil = MenuItem(
+        restaurant_id=6,
+        name="Arbequina Olive Oil",
+        description="A simple combination thanks to incredible Oregon olive oil. We love enhancing its tropical, grassy flavors and rich, buttery texture in ice cream. Made with Durant Olive Mill’s Arbequina Extra-Virgin Olive Oil",
+        price=5.50,
+        category="Ice Cream Flavors",
+        image_url="https://saltandstraw.com/cdn/shop/files/salt-and-straw_arbequina-olive-oil_135859db-6aa1-4d40-8963-1c7ececbf180.webp?v=1674669468&width=300"
     )
 
     classic_burger = MenuItem(
@@ -572,7 +588,9 @@ def seed_menu_items():
     db.session.add(honey_lavender_ice_cream)
     db.session.add(cookie_dough_scoop)
     db.session.add(chocolate_sundae)
-    db.session.add(strawberry_cheesecake_ice_cream)
+    db.session.add(pumpkin_spiced_tiramisu)
+    db.session.add(strawberry_honey_balsamic)
+    db.session.add(arbequina_olive_oil)
     db.session.add(classic_burger)
     db.session.add(chicken_caesar_salad)
     db.session.add(new_york_cheesecake)
