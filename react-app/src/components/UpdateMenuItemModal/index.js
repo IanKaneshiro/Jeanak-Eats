@@ -17,7 +17,6 @@ const UpdateMenuItemModal = ({ item }) => {
   const [image_url, setImageUrl] = useState("");
 
   const [errors, setErrors] = useState({});
-  console.log("UPDATE ERRORS", errors);
   //Gets the currentMenuItem to render the form's present data
   useEffect(() => {
     dispatch(getOneMenuItem(item.id));
