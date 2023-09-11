@@ -14,7 +14,6 @@ const ManagerPortalHome = () => {
     return acc;
   }, 0);
 
-  console.log("avereage scores ----->", avgRatingScore);
   return (
     <div className="manager-home--container">
       <h1>Welcome to your manager portal!</h1>
