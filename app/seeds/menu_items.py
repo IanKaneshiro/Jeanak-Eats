@@ -45,16 +45,16 @@ def seed_menu_items():
         description="Our flame-grilled Whopper sandwich features a quarter-pound of savory flame-grilled beef, topped with juicy tomatoes, fresh lettuce, creamy mayonnaise, ketchup, crunchy pickles, and sliced white onions on a soft sesame seed bun.",
         price=4.79,
         category="Burgers",
-        image_url=" https://cdn.sanity.io/images/czqk28jt/prod_bk_us/84743a96a55cb36ef603c512d5b97c9141c40a33-1333x1333.png?w=150&q=80&fit=max&auto=format"
+        image_url="https://assets-global.website-files.com/631b4b4e277091ef01450237/6398f26cb77dc209f3628aeb_Whopper.png"
     )
 
-    chicken_fries = MenuItem(
+    chicken_nuggets = MenuItem(
         restaurant_id=2,
-        name="Chicken Fries",
-        description="Enjoy our crispy and flavorful chicken fries, perfect as a snack or side.",
+        name="Chicken Nuggets",
+        description="Enjoy our crispy and flavorful chicken nuggets, perfect as a snack or entree.",
         price=2.49,
         category="Chicken",
-        image_url="https://cdn.sanity.io/images/czqk28jt/prod_bk_us/8c615844ecb447c71310a14c2d449d56ff213b33-1333x1333.png?w=150&q=80&fit=max&auto=format"
+        image_url="https://burgerking.com.my/upload/image/Product/21/Nuggets%206pcs.png"
     )
 
     onion_rings = MenuItem(
@@ -63,7 +63,7 @@ def seed_menu_items():
         description="Satisfy your craving for something crispy with our delicious onion rings.",
         price=2.29,
         category="Sides",
-        image_url="https://cdn.sanity.io/images/czqk28jt/prod_bk_us/2f1f1c87c082b18cee83d286921162a24dc869bd-1333x1333.png?w=150&q=80&fit=max&auto=format"
+        image_url="https://bk-latam-prod.s3.amazonaws.com/sites/burgerking.bs/files/HERO_0002_Onion_Rings.png"
     )
 
     soft_serve_ice_cream = MenuItem(
@@ -72,7 +72,7 @@ def seed_menu_items():
         description="Indulge in the sweet delight of our soft serve ice cream, available in vanilla and chocolate.",
         price=1.00,
         category="Desserts",
-        image_url=" https://cdn.sanity.io/images/czqk28jt/prod_bk_us/4498579d52cbd5d5b381bfda0f914a585c0da77a-1333x1333.png?w=150&q=80&fit=max&auto=format"
+        image_url=" https://pbs.twimg.com/media/BNTwwwiCMAADQ0H.jpg"
     )
     burrito = MenuItem(
         restaurant_id=4,
@@ -558,7 +558,7 @@ def seed_menu_items():
     db.session.add(fries)
     db.session.add(apple_pie)
     db.session.add(whopper)
-    db.session.add(chicken_fries)
+    db.session.add(chicken_nuggets)
     db.session.add(onion_rings)
     db.session.add(soft_serve_ice_cream)
     db.session.add(burrito)
