@@ -7,10 +7,14 @@ import "./ManagerPortalHome.css";
 const ManagerPortalHome = () => {
   const restaurant = useSelector(usersRestaurants);
   const numRestaurants = restaurant.length;
-  const avgRatingScore =
-    restaurant.reduce((acc, res) => {
+  const avgRatingScore = restaurant.reduce((acc, res) => {
+    if (res.avgRating) {
       return acc + res.avgRating;
-    }, 0) / restaurant.length;
+    }
+    return acc;
+  }, 0);
+
+  console.log("avereage scores ----->", avgRatingScore);
   return (
     <div className="manager-home--container">
       <h1>Welcome to your manager portal!</h1>
@@ -22,7 +26,9 @@ const ManagerPortalHome = () => {
           </h3>
           <h4>
             with an average rating of{" "}
-            {avgRatingScore ? avgRatingScore.toFixed(1) : 0}
+            {avgRatingScore > 0
+              ? (avgRatingScore / numRestaurants).toFixed(1)
+              : 0}
           </h4>
         </>
       ) : (
