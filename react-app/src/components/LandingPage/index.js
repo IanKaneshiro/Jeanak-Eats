@@ -4,6 +4,7 @@ import { allRestaurants, getAllRestaurants } from "../../store/restaurant";
 import RestaurantTile from "../RestaurantTile";
 import LoadingSpinner from "../LoadingSpinner";
 import { notImplemented } from "../../Resources/helperFunctions";
+
 import "./LandingPage.css";
 
 const LandingPage = () => {
@@ -12,6 +13,12 @@ const LandingPage = () => {
   const [openSort, setOpenSort] = useState(true);
   const [openPrice, setOpenPrice] = useState(true);
   const [openDietary, setOpenDietary] = useState(true);
+  const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
+  const [sortedRestaurants, setSortedRestaurants] =
+    useState(filteredRestaurants);
+  const [priceFilter, setPriceFilter] = useState("");
+
+  console.log("LANDING FILTERED PRICE", filteredRestaurants);
 
   const toggleSort = () => {
     setOpenSort(!openSort);
@@ -22,6 +29,17 @@ const LandingPage = () => {
   const toggleDietary = () => {
     setOpenDietary(!openDietary);
   };
+
+  //--------------------Functions for filter-------------------------------
+  const filterByPrice = (priceFilter) => {
+    const filtered = restaurants.filter(
+      (restaurant) => restaurant.priceRange === priceFilter
+    );
+    setFilteredRestaurants(filtered);
+  };
+
+  //-----------------------------------------------------------------------
+
   useEffect(() => {
     dispatch(getAllRestaurants());
   }, [dispatch]);
@@ -107,10 +125,11 @@ const LandingPage = () => {
             }
           >
             <div className="landing--filters-price-btns">
-              <button onClick={notImplemented}>$</button>
-              <button onClick={notImplemented}>$$</button>
-              <button onClick={notImplemented}>$$$</button>
-              <button onClick={notImplemented}>$$$$</button>
+              <button onClick={() => filterByPrice()}>x</button>
+              <button onClick={() => filterByPrice("$")}>$</button>
+              <button onClick={() => filterByPrice("$$")}>$$</button>
+              <button onClick={() => filterByPrice("$$$")}>$$$</button>
+              <button onClick={() => filterByPrice("$$$$")}>$$$$</button>
             </div>
           </div>
         </div>
@@ -145,7 +164,7 @@ const LandingPage = () => {
         </div>
       </section>
       <section className="landing--restaurants">
-        {restaurants.map((restaurant) => (
+        {filteredRestaurants.map((restaurant) => (
           <RestaurantTile restaurant={restaurant} key={restaurant.id} />
         ))}
       </section>
