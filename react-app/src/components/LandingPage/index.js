@@ -13,12 +13,11 @@ const LandingPage = () => {
   const [openSort, setOpenSort] = useState(true);
   const [openPrice, setOpenPrice] = useState(true);
   const [openDietary, setOpenDietary] = useState(true);
-  const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
-  const [sortedRestaurants, setSortedRestaurants] =
-    useState(filteredRestaurants);
-  const [priceFilter, setPriceFilter] = useState("");
+  const [sortedRestaurants, setSortedRestaurants] = useState([...restaurants]);
+  const [filteredRestaurants, setFilteredRestaurants] =
+    useState(sortedRestaurants);
 
-  console.log("LANDING FILTERED PRICE", filteredRestaurants);
+  console.log("LANDING SORTED RESTAURANTS", sortedRestaurants);
 
   const toggleSort = () => {
     setOpenSort(!openSort);
@@ -32,17 +31,39 @@ const LandingPage = () => {
 
   //--------------------Functions for filter-------------------------------
   const filterByPrice = (priceFilter) => {
-    const filtered = restaurants.filter(
+    const filtered = sortedRestaurants.filter(
       (restaurant) => restaurant.priceRange === priceFilter
     );
     setFilteredRestaurants(filtered);
+  };
+
+  const sortByPreference = (preference) => {
+    if (preference === "popular") {
+      //weighted by numRatings
+      const mostPopular = restaurants.sort(
+        (a, b) => b.numRatings - a.numRatings
+      );
+      setSortedRestaurants([...mostPopular]);
+      setFilteredRestaurants([...sortedRestaurants]);
+    } else if (preference === "ratings") {
+      //weighted by avereage ratings/stars
+      const highestRated = restaurants.sort(
+        (a, b) => b.avgRating - a.avgRating
+      );
+      setSortedRestaurants([...highestRated]);
+      setFilteredRestaurants([...sortedRestaurants]);
+    } else {
+      //default returns normal order (by restaurant id)
+      setSortedRestaurants([...restaurants]);
+      setFilteredRestaurants([...sortedRestaurants]);
+    }
   };
 
   //-----------------------------------------------------------------------
 
   useEffect(() => {
     dispatch(getAllRestaurants());
-  }, [dispatch]);
+  }, [dispatch, filteredRestaurants]);
 
   if (!restaurants) return <LoadingSpinner />;
 
@@ -73,12 +94,13 @@ const LandingPage = () => {
                 value=""
                 name="sort"
                 defaultChecked
+                onChange={() => sortByPreference("default")}
               />
               <label htmlFor="default">Picked for you (default)</label>
             </div>
             <div className="landing--sort">
               <input
-                onChange={notImplemented}
+                onChange={() => sortByPreference("popular")}
                 id="popular"
                 type="radio"
                 value="popular"
@@ -88,7 +110,7 @@ const LandingPage = () => {
             </div>
             <div className="landing--sort">
               <input
-                onChange={notImplemented}
+                onChange={() => sortByPreference("ratings")}
                 id="rating"
                 type="radio"
                 value="rating"
@@ -96,7 +118,7 @@ const LandingPage = () => {
               />
               <label htmlFor="rating">Rating</label>
             </div>
-            <div className="landing--sort">
+            {/* <div className="landing--sort">
               <input
                 onChange={notImplemented}
                 id="delivery"
@@ -105,7 +127,7 @@ const LandingPage = () => {
                 name="sort"
               />
               <label htmlFor="delivery">Delivery time</label>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="landing--filters-price-main">
@@ -125,7 +147,6 @@ const LandingPage = () => {
             }
           >
             <div className="landing--filters-price-btns">
-              <button onClick={() => filterByPrice()}>x</button>
               <button onClick={() => filterByPrice("$")}>$</button>
               <button onClick={() => filterByPrice("$$")}>$$</button>
               <button onClick={() => filterByPrice("$$$")}>$$$</button>
