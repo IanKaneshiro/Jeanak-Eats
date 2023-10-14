@@ -1,15 +1,12 @@
 
 
 //-------------------------CONSTANTS------------------------------------
-const GET_ALL = '/shoppingCart/ALL'
+
 const ADD_ITEM = '/shoppingCart/ADD'
 const DELETE_ITEM= '/shoppingCart/DELETE'
 
 //-------------------------ACTIONS--------------------------------------
-const GetAll = all => ({
-    type: GET_ALL,
-    all
-})
+
 
 const AddItem = one => ({
     type: ADD_ITEM,
