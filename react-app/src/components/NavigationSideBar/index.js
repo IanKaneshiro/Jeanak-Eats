@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./NavigationSideBar.css";
-import { notImplemented } from "../../Resources/helperFunctions";
 
 const NavigationSideBar = ({
   sidebar,
@@ -32,72 +31,13 @@ const NavigationSideBar = ({
                   </div>
                 </div>
               </li>
-              <li>
-                <button
-                  className="sidebar--menu-items"
-                  onClick={notImplemented}
-                >
-                  <i className="fa-solid fa-bag-shopping fa-lg"></i>
-                  <p>Orders</p>
-                </button>
-              </li>
-              <li>
-                <button
-                  className="sidebar--menu-items"
-                  onClick={notImplemented}
-                >
-                  <i id="heart" className="fa-solid fa-heart fa-lg"></i>
-                  <p>Favorites</p>
-                </button>
-              </li>
-              <li>
-                <button
-                  className="sidebar--menu-items"
-                  onClick={notImplemented}
-                >
-                  <i className="fa-solid fa-wallet fa-lg"></i>
-                  <p>Wallet</p>
-                </button>
-              </li>
-              <li>
-                <button
-                  className="sidebar--menu-items"
-                  onClick={notImplemented}
-                >
-                  <i className="fa-solid fa-briefcase fa-lg"></i>
-                  <p>Meal Plan</p>
-                </button>
-              </li>
-              <li>
-                <button
-                  className="sidebar--menu-items"
-                  onClick={notImplemented}
-                >
-                  <i className="fa-solid fa-circle-info fa-lg"></i>
-                  <p>Help</p>
-                </button>
-              </li>
-              <li>
-                <button
-                  className="sidebar--menu-items"
-                  onClick={notImplemented}
-                >
-                  <i className="fa-solid fa-globe fa-lg"></i>
-                  <p>Uber One</p>
-                </button>
-              </li>
-              <li>
-                <button
-                  className="sidebar--menu-items"
-                  onClick={notImplemented}
-                >
-                  <i className="fa-solid fa-gift fa-lg"></i>
-                  <p>Invite Friends</p>
-                </button>
-              </li>
-              <li>
+              <li className="sidebar--signout-container">
                 <button onClick={handleLogout} className="sidebar--signout-btn">
-                  Sign out
+                  Sign Out{" "}
+                  <i
+                    className="fa-solid fa-arrow-right-from-bracket fa-sm"
+                    style={{ color: "#8d8d8d" }}
+                  ></i>
                 </button>
               </li>
             </>
