@@ -54,7 +54,7 @@ const MenuItemDetail = () => {
 
   const payload = {
     id:menuItemId,
-    image: item.image,
+    image: item.imageUrl,
     name: item.name,
     amount: quantity,
     price: floatPriceTotal,

@@ -21,9 +21,9 @@ function cartItems(){
     return (
       <div className="cartInformation">
         <div className="cartName"> {element.name} </div>
-        <div className="cartAmount"> {element.amount} </div>
+        <button className="cartAmount"> {element.amount} </button>
         <div className="cartPrice"> ${element.price} </div>
-        <img src={element.image} alt='Image'/>
+        <img className='cartImage' src={element.image} alt='Image'/>
       </div>
     )
   })
@@ -56,14 +56,22 @@ console.log(Object.values(totalCost()), 'HERE')
         {cartElements.length > 0 ?
 
           <div className="entireCart">
-            { totalCost() && Object.values(totalCost()).length > 0 ? <div>Items: {totalCost().quantity}</div> : null}
+            { totalCost() && Object.values(totalCost()).length > 0 ?
+              <div className="topLineCart">
+                <div>{totalCost().quantity} items</div>
+                <div> Subtotal: ${totalCost().total} </div>
+              </div>
+            : null}
 
             {cartItems()}
 
 
             {totalCost() && Object.values(totalCost()).length > 0 ?
             <div className="cartButtons">
-              <div>Total ${totalCost().total}</div>
+              <div className="subtotalCart">
+                <div>Subtotal</div>
+                <div>${totalCost().total}</div>
+              </div>
               <button> Go to checkout </button>
               <button onClick = { ()=>{ history.push('/') } } >Add Items</button>
             </div> : null }
