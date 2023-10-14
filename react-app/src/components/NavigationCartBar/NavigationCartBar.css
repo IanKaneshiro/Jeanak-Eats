@@ -60,3 +60,32 @@
   background-color: rgba(0, 0, 0, 0.6);
   transition: 0.5s ease;
 }
+
+.cartInformation{
+  display: flex;
+  flex-direction: row;
+}
+
+.cartName{
+  padding: 10px;
+}
+
+.cartAmount{
+  padding: 10px;
+}
+
+.cartPrice{
+  padding: 10px;
+  font-weight: bold;
+}
+
+.cartButtons{
+  display: flex;
+  flex-direction: column;
+}
+
+.entireCart{
+  display: flex;
+  flex-direction: column;
+  
+}

@@ -12,7 +12,8 @@ import { getAllRestaurants } from "../../store/restaurant";
 import LoadingSpinner from "../LoadingSpinner";
 import { notImplemented } from "../../Resources/helperFunctions";
 
-import AddTo from "../../components/ShoppingCart/AddTo"
+import * as cartActions from '../../store/shoppingCart'
+
 
 const MenuItemDetail = () => {
   const dispatch = useDispatch();
@@ -51,15 +52,13 @@ const MenuItemDetail = () => {
       ? (item.price * parseInt(quantity)).toFixed(2)
       : "";
 
-
   const payload = {
     id:menuItemId,
+    image: item.image,
     name: item.name,
     amount: quantity,
     price: floatPriceTotal,
   }
-
-
 
   return (
     <div className="menu-item-detail--container">
@@ -101,12 +100,10 @@ const MenuItemDetail = () => {
           </select>
         </span>
 
-        <button className="add-to-order-button" onClick={notImplemented}>
+        <button className="add-to-order-button" onClick={()=>{dispatch(cartActions.addOne(payload))}}>
           Add {quantity} to order · ${floatPriceTotal}
         </button>
       </div>
-
-      <AddTo payload = {payload}/>
 
     </div>
   );

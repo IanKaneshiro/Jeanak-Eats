@@ -93,7 +93,7 @@ function Navigation({ loading }) {
           />
         </div>
         <button onClick={showCartSidebar} className="navbar--shopping-btn">
-          <i className="fa-solid fa-cart-shopping"></i> 0 carts
+          <i className="fa-solid fa-cart-shopping"></i> Cart
         </button>
       </div>
       {search && (
