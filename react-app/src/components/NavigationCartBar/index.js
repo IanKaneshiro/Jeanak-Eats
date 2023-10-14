@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./NavigationCartBar.css";
 import { notImplemented } from "../../Resources/helperFunctions";
 
@@ -10,16 +10,45 @@ const NavigationCartBar = ({ cartSidebar, setCartSidebar }) => {
 
   const history = useHistory()
 
+
   const cartState = useSelector((state)=>state.cart)
   console.log(cartState,'cartSTATE')
 
   const cartElements = Object.values(cartState)
 
+  const [quantity, setQuantity] = useState('')
 
+
+function amountItem(itemId){
+    if(cartState?.[itemId]){
+      return(
+        <span>
+        {" "}
+        <select
+          className="item-quantity-select"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+        >
+          <option className="quantity-option">1</option>
+          <option className="quantity-option">2</option>
+          <option className="quantity-option">3</option>
+          <option className="quantity-option">4</option>
+          <option className="quantity-option">5</option>
+          <option className="quantity-option">6</option>
+          <option className="quantity-option">7</option>
+          <option className="quantity-option">8</option>
+          <option className="quantity-option">9</option>
+          <option className="quantity-option">10</option>
+        </select>
+      </span>
+      )
+
+    }
+}
 function cartItems(){
   return cartElements?.map(element =>{
     return (
-      <div className="cartInformation">
+      <div className="cartInformation" key={element.id}>
         <div className="cartName"> {element.name} </div>
         <button className="cartAmount"> {element.amount} </button>
         <div className="cartPrice"> ${element.price} </div>
@@ -67,13 +96,18 @@ console.log(Object.values(totalCost()), 'HERE')
 
 
             {totalCost() && Object.values(totalCost()).length > 0 ?
-            <div className="cartButtons">
+            <div className="cartHelp">
+
               <div className="subtotalCart">
                 <div>Subtotal</div>
                 <div>${totalCost().total}</div>
               </div>
-              <button> Go to checkout </button>
-              <button onClick = { ()=>{ history.push('/') } } >Add Items</button>
+
+              <div className="cartButtons">
+                <button className="checkoutButton"> Go to checkout </button>
+                <button className='addItemsButton' onClick = { ()=>{ history.push('/') } } >Add Items</button>
+              </div>
+
             </div> : null }
           </div>
        :
