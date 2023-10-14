@@ -22,7 +22,6 @@ def restaurants():
 
     if filter_price:
         filters.append(Restaurant.price_range == filter_price)
-    print("ROUTE FILTER PRICE", filter_price)
     if len(filters):
         filter_restaurants = Restaurant.query.filter(*filters).all()
         return {"Restaurants": [restaurant.to_dict_by_avg_rating() for restaurant in filter_restaurants]}

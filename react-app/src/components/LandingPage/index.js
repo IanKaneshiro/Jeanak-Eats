@@ -17,8 +17,9 @@ const LandingPage = () => {
   const [openSort, setOpenSort] = useState(true);
   const [openPrice, setOpenPrice] = useState(true);
   // const [openDietary, setOpenDietary] = useState(true);
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const [sorted, setSorted] = useState(false);
+
+  let restaurantsCopy = [...restaurants];
+  const [preference, setPreference] = useState("default");
 
   const toggleSort = () => {
     setOpenSort(!openSort);
@@ -27,9 +28,6 @@ const LandingPage = () => {
     setOpenPrice(!openPrice);
   };
 
-  const toggleFilter = () => {
-    setSorted((sorted) => !sorted);
-  };
   // const toggleDietary = () => {
   //   setOpenDietary(!openDietary);
   // };
@@ -41,38 +39,10 @@ const LandingPage = () => {
     dispatch(queryForRestaurants({ price_range: priceFilter }));
   };
 
-  //------------> Having an issue where it does not render on initial load, and filtered will override with
-  //              default order of all restaurants
-  const sortByPreference = (preference) => {
-    if (preference === "default") {
-      //returns default order
-
-      setFilteredRestaurants(restaurants);
-      setSorted(false);
-    } else if (preference === "popular") {
-      //weighted by numRatings
-      const mostPopular = restaurants.toSorted(
-        (a, b) => b.numRatings - a.numRatings
-      );
-
-      setFilteredRestaurants(mostPopular);
-      setSorted(true);
-    } else if (preference === "ratings") {
-      //WEIGHTED by average ratings/stars
-      const highestRated = restaurants.toSorted(
-        (a, b) => b.avgRating - a.avgRating
-      );
-
-      setFilteredRestaurants(highestRated);
-      setSorted(true);
-    }
-  };
-
   //-----------------------------------------------------------------------
 
   useEffect(() => {
     dispatch(getAllRestaurants());
-    setSorted(false);
   }, [dispatch]);
 
   if (!restaurants) return <LoadingSpinner />;
@@ -104,13 +74,13 @@ const LandingPage = () => {
                 value=""
                 name="sort"
                 defaultChecked
-                onClick={() => sortByPreference("default")}
+                onClick={() => setPreference("default")}
               />
               <label htmlFor="default">Picked for you (default)</label>
             </div>
             <div className="landing--sort">
               <input
-                onClick={() => sortByPreference("popular")}
+                onClick={() => setPreference("popular")}
                 id="popular"
                 type="radio"
                 value="popular"
@@ -120,7 +90,7 @@ const LandingPage = () => {
             </div>
             <div className="landing--sort">
               <input
-                onClick={() => sortByPreference("ratings")}
+                onClick={() => setPreference("ratings")}
                 id="rating"
                 type="radio"
                 value="rating"
@@ -249,9 +219,21 @@ const LandingPage = () => {
         </div> */}
       </section>
       <section className="landing--restaurants">
-        {restaurants.map((restaurant) => (
-          <RestaurantTile restaurant={restaurant} key={restaurant.id} />
-        ))}
+        {preference !== "default"
+          ? preference === "popular"
+            ? restaurantsCopy
+                .sort((a, b) => b.numRatings - a.numRatings)
+                .map((restaurant) => (
+                  <RestaurantTile restaurant={restaurant} key={restaurant.id} />
+                ))
+            : restaurantsCopy
+                .sort((a, b) => b.avgRating - a.avgRating)
+                .map((restaurant) => (
+                  <RestaurantTile restaurant={restaurant} key={restaurant.id} />
+                ))
+          : restaurantsCopy.map((restaurant) => (
+              <RestaurantTile restaurant={restaurant} key={restaurant.id} />
+            ))}
       </section>
     </main>
   );
