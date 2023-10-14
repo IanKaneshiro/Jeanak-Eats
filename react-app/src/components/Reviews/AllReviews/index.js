@@ -93,45 +93,45 @@ const AllReviews = () => {
         if(element.rating === 1){
           return(
             <>
-              <i class="fa-solid fa-heart"></i>
+              <i className="fa-solid fa-star"></i>
             </>
           )
         }
         if(element.rating === 2){
           return(
             <>
-              <i class="fa-solid fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
             </>
           )
         }
         if(element.rating === 3){
           return(
             <>
-              <i class="fa-solid fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
             </>
           )
         }
         if(element.rating === 4){
           return(
             <>
-              <i class="fa-solid fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
             </>
           )
         }
         if(element.rating === 5){
           return(
             <>
-              <i class="fa-solid fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-star"></i>
+              <i className ="fa-solid fa-star"></i>
+              <i className ="fa-solid fa-star"></i>
             </>
           )
         }
@@ -216,8 +216,6 @@ const AllReviews = () => {
   //Checks if the user is logged in and if the user does not have a review
   //returns true if no review false if the user has a review
 
-  console.log(userState?.user?.id,'ddddddddddddddddddd')
-  console.log(restaurantState?.ownerId,'hhhhhhhhhhhhhhhhhh')
   function checkUser() {
     let userNoReview = "Null";
 
