@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   useParams,
@@ -11,22 +11,22 @@ import {
   clearCurrentSpot,
 } from "../../store/restaurant";
 import MenuItem from "../MenuItems";
-// import OpenModalButton from "../OpenModalButton";
 import "./RestaurantDetails.css";
 import LoadingSpinner from "../LoadingSpinner";
 import AllReviews from "../Reviews/AllReviews";
-import {
-  notImplemented,
-  calculateShowHours,
-} from "../../Resources/helperFunctions";
-
+import { calculateShowHours } from "../../Resources/helperFunctions";
 const RestaurantDetails = () => {
   const dispatch = useDispatch();
   const restaurant = useSelector(currentRestaurant);
   const sessionUser = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.Reviews);
+  const reviewSectionRef = useRef();
   const { restaurantId } = useParams();
   const history = useHistory();
+
+  const scrollToSection = () => {
+    reviewSectionRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   const calculateAvgRating = (reviews) => {
     const avg =
@@ -69,20 +69,17 @@ const RestaurantDetails = () => {
           {reviews?.length} ratings) · {restaurant.cuisine} ·{" "}
           {restaurant.priceRange} ·{" "}
           <span>
-            <button onClick={notImplemented}>Read reviews</button>
+            <button onClick={scrollToSection}>Read reviews</button>
           </span>{" "}
-          ·{" "}
-          <span>
-            {/* <OpenModalButton buttonText={"More info"} /> */}
-            <button onClick={notImplemented}>More info</button>
-          </span>
         </p>
         <p className="details--hours">
           {calculateShowHours(restaurant.opensAt, restaurant.closesAt)}
         </p>
       </div>
       <MenuItem />
-      <AllReviews />
+      <div ref={reviewSectionRef}>
+        <AllReviews />
+      </div>
     </div>
   );
 };
