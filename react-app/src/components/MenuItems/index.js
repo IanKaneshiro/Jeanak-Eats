@@ -7,15 +7,13 @@ import {
   clearAllMenuItems,
 } from "../../store/menuItems";
 import { useParams, useHistory } from "react-router-dom";
-import MenuItemDetailSidebar from "../MenuItemDetailSidebar";
-import { currentRestaurant, getRestaurantById } from "../../store/restaurant";
+import { getRestaurantById } from "../../store/restaurant";
 import LoadingSpinner from "../LoadingSpinner";
 
 const MenuItems = () => {
   const dispatch = useDispatch();
   const { restaurantId } = useParams();
   const menu = useSelector(allMenuItems);
-  const restaurant = useSelector(currentRestaurant);
   const history = useHistory();
 
   useEffect(() => {
@@ -32,9 +30,6 @@ const MenuItems = () => {
   if (menu.length) {
     return (
       <div className="all-menu-items--container">
-        <div className="menu--sidebar">
-          <MenuItemDetailSidebar restaurant={restaurant} />
-        </div>
         <div className="menu--tiles">
           <ul className="menu-ul">
             {menu.map((item) => (
