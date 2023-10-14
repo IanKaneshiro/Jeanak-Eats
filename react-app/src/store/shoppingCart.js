@@ -39,6 +39,7 @@ const CartReducer = (state={}, action) => {
         case ADD_ITEM:
             let addedState = {...state}
             addedState[action.one.id] = action.one
+            return addedState
 
         case DELETE_ITEM:
             let gone = {...state}

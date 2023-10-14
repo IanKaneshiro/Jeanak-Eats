@@ -53,6 +53,7 @@ const MenuItemDetail = () => {
 
 
   const payload = {
+    id:menuItemId,
     name: item.name,
     amount: quantity,
     price: floatPriceTotal,
@@ -106,7 +107,7 @@ const MenuItemDetail = () => {
       </div>
 
       <AddTo payload = {payload}/>
-      
+
     </div>
   );
 };
