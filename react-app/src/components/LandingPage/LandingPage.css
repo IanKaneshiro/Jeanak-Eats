@@ -52,9 +52,20 @@
 }
 
 .landing--filters-price-btns {
+  /* margin-top: 10px;
+  display: flex;
+  gap: 10px; */
+
   margin-top: 10px;
   display: flex;
+  flex-direction: column;
   gap: 10px;
+}
+
+.landing--price-filter {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .landing--filters-price-btns > button {
