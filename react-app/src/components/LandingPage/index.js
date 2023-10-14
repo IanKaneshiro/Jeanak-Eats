@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allRestaurants, getAllRestaurants } from "../../store/restaurant";
+import {
+  allRestaurants,
+  getAllRestaurants,
+  queryForRestaurants,
+} from "../../store/restaurant";
 import RestaurantTile from "../RestaurantTile";
 import LoadingSpinner from "../LoadingSpinner";
-import { notImplemented } from "../../Resources/helperFunctions";
+// import { notImplemented } from "../../Resources/helperFunctions";
 
 import "./LandingPage.css";
 
@@ -12,12 +16,12 @@ const LandingPage = () => {
   const restaurants = useSelector(allRestaurants);
   const [openSort, setOpenSort] = useState(true);
   const [openPrice, setOpenPrice] = useState(true);
-  const [openDietary, setOpenDietary] = useState(true);
-  const [sortedRestaurants, setSortedRestaurants] = useState([...restaurants]);
-  const [filteredRestaurants, setFilteredRestaurants] =
-    useState(sortedRestaurants);
-
-  console.log("LANDING SORTED RESTAURANTS", sortedRestaurants);
+  // const [openDietary, setOpenDietary] = useState(true);
+  const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
+  const [sorted, setSorted] = useState(false);
+  const [filters, setFilters] = useState({
+    price_range: "default",
+  });
 
   const toggleSort = () => {
     setOpenSort(!openSort);
@@ -25,45 +29,72 @@ const LandingPage = () => {
   const togglePrice = () => {
     setOpenPrice(!openPrice);
   };
-  const toggleDietary = () => {
-    setOpenDietary(!openDietary);
+
+  const toggleFilter = () => {
+    setSorted((sorted) => !sorted);
   };
+  // const toggleDietary = () => {
+  //   setOpenDietary(!openDietary);
+  // };
 
   //--------------------Functions for filter-------------------------------
+  //------------> Having an issue where it just returns the intial restaurants, unfiltered even though
+  //              filtered is the an array of the correctly filtered items.
+  // const filterByPrice = (priceFilter) => {
+  //   if (priceFilter === "default") {
+  //     setFilteredRestaurants(filteredRestaurants);
+  //   }
+  //   const filtered = filteredRestaurants.filter(
+  //     (restaurant) => restaurant.priceRange === priceFilter
+  //   );
+  //   console.log("LANDING FILTERED", filtered);
+  //   setFilteredRestaurants(filtered);
+  //   console.log("LANDING FILTERED PRICE", filteredRestaurants);
+  // };
   const filterByPrice = (priceFilter) => {
-    const filtered = sortedRestaurants.filter(
-      (restaurant) => restaurant.priceRange === priceFilter
-    );
-    setFilteredRestaurants(filtered);
+    setFilters({ price_range: priceFilter });
+    dispatch(queryForRestaurants(filters));
   };
 
+  //------------> Having an issue where it does not render on initial load, and filtered will override with
+  //              default order of all restaurants
   const sortByPreference = (preference) => {
-    if (preference === "popular") {
+    if (preference === "default") {
+      //returns default order
+
+      setFilteredRestaurants(restaurants);
+      toggleFilter();
+    } else if (preference === "popular") {
       //weighted by numRatings
       const mostPopular = restaurants.sort(
         (a, b) => b.numRatings - a.numRatings
       );
-      setSortedRestaurants([...mostPopular]);
-      setFilteredRestaurants([...sortedRestaurants]);
+
+      setFilteredRestaurants(mostPopular);
+      toggleFilter();
     } else if (preference === "ratings") {
-      //weighted by avereage ratings/stars
+      //weighted by average ratings/stars
       const highestRated = restaurants.sort(
         (a, b) => b.avgRating - a.avgRating
       );
-      setSortedRestaurants([...highestRated]);
-      setFilteredRestaurants([...sortedRestaurants]);
-    } else {
-      //default returns normal order (by restaurant id)
-      setSortedRestaurants([...restaurants]);
-      setFilteredRestaurants([...sortedRestaurants]);
+
+      setFilteredRestaurants(highestRated);
+      toggleFilter();
     }
+    console.log(
+      "SORTED RESTAURANTS",
+      restaurants.map((restaurant) => restaurant.name)
+    );
   };
 
   //-----------------------------------------------------------------------
 
   useEffect(() => {
     dispatch(getAllRestaurants());
-  }, [dispatch, filteredRestaurants]);
+    setFilteredRestaurants(restaurants);
+
+    setSorted(false);
+  }, [dispatch, filteredRestaurants, filters, sorted]);
 
   if (!restaurants) return <LoadingSpinner />;
 
@@ -94,13 +125,13 @@ const LandingPage = () => {
                 value=""
                 name="sort"
                 defaultChecked
-                onChange={() => sortByPreference("default")}
+                onClick={() => sortByPreference("default")}
               />
               <label htmlFor="default">Picked for you (default)</label>
             </div>
             <div className="landing--sort">
               <input
-                onChange={() => sortByPreference("popular")}
+                onClick={() => sortByPreference("popular")}
                 id="popular"
                 type="radio"
                 value="popular"
@@ -110,7 +141,7 @@ const LandingPage = () => {
             </div>
             <div className="landing--sort">
               <input
-                onChange={() => sortByPreference("ratings")}
+                onClick={() => sortByPreference("ratings")}
                 id="rating"
                 type="radio"
                 value="rating"
@@ -147,14 +178,68 @@ const LandingPage = () => {
             }
           >
             <div className="landing--filters-price-btns">
-              <button onClick={() => filterByPrice("$")}>$</button>
+              {/* <button onClick={() => filterByPrice("$")}>$</button>
               <button onClick={() => filterByPrice("$$")}>$$</button>
               <button onClick={() => filterByPrice("$$$")}>$$$</button>
-              <button onClick={() => filterByPrice("$$$$")}>$$$$</button>
+              <button onClick={() => filterByPrice("$$$$")}>$$$$</button> */}
+              <div className="landing--price-filter">
+                <input
+                  onChange={() => filterByPrice("default")}
+                  id="$price"
+                  type="radio"
+                  value=""
+                  name="filter"
+                  defaultChecked
+                />
+                <label htmlFor="delivery">Any (default)</label>
+              </div>
+
+              <div className="landing--price-filter">
+                <input
+                  onChange={() => filterByPrice("$")}
+                  id="$price"
+                  type="radio"
+                  value="$"
+                  name="filter"
+                />
+                <label htmlFor="delivery">$</label>
+              </div>
+
+              <div className="landing--price-filter">
+                <input
+                  onChange={() => filterByPrice("$$")}
+                  id="$$price"
+                  type="radio"
+                  value="$$"
+                  name="filter"
+                />
+                <label htmlFor="delivery">$$</label>
+              </div>
+              <div className="landing--price-filter">
+                <input
+                  onChange={() => filterByPrice("$$$")}
+                  id="$$$price"
+                  type="radio"
+                  value="$$$"
+                  name="filter"
+                />
+                <label htmlFor="delivery">$$$</label>
+              </div>
+
+              <div className="landing--price-filter">
+                <input
+                  onChange={() => filterByPrice("$$$$")}
+                  id="$$$$price"
+                  type="radio"
+                  value="$$$$"
+                  name="filter"
+                />
+                <label htmlFor="delivery">$$$$</label>
+              </div>
             </div>
           </div>
         </div>
-        <div className="landing--filters-dietary-main">
+        {/* <div className="landing--filters-dietary-main">
           <div onClick={toggleDietary} className="landing--filters-header">
             <h3>Dietary</h3>
             {openDietary ? (
@@ -182,7 +267,7 @@ const LandingPage = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
       <section className="landing--restaurants">
         {filteredRestaurants.map((restaurant) => (
