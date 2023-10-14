@@ -12,6 +12,8 @@ import { getAllRestaurants } from "../../store/restaurant";
 import LoadingSpinner from "../LoadingSpinner";
 import { notImplemented } from "../../Resources/helperFunctions";
 
+import AddTo from "../../components/ShoppingCart/AddTo"
+
 const MenuItemDetail = () => {
   const dispatch = useDispatch();
   const { menuItemId } = useParams();
@@ -48,6 +50,15 @@ const MenuItemDetail = () => {
     item.price !== undefined
       ? (item.price * parseInt(quantity)).toFixed(2)
       : "";
+
+
+  const payload = {
+    name: item.name,
+    amount: quantity,
+    price: floatPriceTotal,
+  }
+
+
 
   return (
     <div className="menu-item-detail--container">
@@ -93,6 +104,9 @@ const MenuItemDetail = () => {
           Add {quantity} to order · ${floatPriceTotal}
         </button>
       </div>
+
+      <AddTo payload = {payload}/>
+      
     </div>
   );
 };
