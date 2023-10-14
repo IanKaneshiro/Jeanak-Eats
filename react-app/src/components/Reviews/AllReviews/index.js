@@ -25,8 +25,6 @@ const AllReviews = () => {
   const userState = useSelector((state) => state.session);
   const restaurantState = useSelector((state) => state?.restaurants?.currentRestaurant)
 
-  console.log(restaurantState, 'resssssssssssssssssssssss')
-
   const [showMenu, setShowMenu] = useState(false);
 
   const closeMenu = (e) => {

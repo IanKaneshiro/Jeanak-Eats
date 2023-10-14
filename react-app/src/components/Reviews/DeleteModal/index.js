@@ -31,12 +31,10 @@ function DeleteModal() {
     return reviewId
   }
 
-  console.log(findReview(), 'find review please by id')
-
   const click = async() =>{
       const toDelete = await dispatch(ReviewActions.deleteReview(findReview()))
       closeModal()
-      return 
+      return
   }
 
   return (
