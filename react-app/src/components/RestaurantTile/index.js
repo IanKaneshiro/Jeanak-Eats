@@ -23,11 +23,7 @@ const RestaurantTile = ({ restaurant }) => {
         alt={restaurant.name}
       />
       <h3>{restaurant.name}</h3>
-      <p className="restaurant-tile--delivery-info">
-        {statusHours[0] === "O"
-          ? "Delivery time feature coming soon..."
-          : statusHours}
-      </p>
+      <p className="restaurant-tile--delivery-info">{statusHours}</p>
       {restaurant.avgRating && (
         <p>
           {restaurant.avgRating.toFixed(1)}{" "}
