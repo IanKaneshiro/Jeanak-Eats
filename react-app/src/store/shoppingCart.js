@@ -3,6 +3,7 @@
 //-------------------------CONSTANTS------------------------------------
 
 const ADD_ITEM = '/shoppingCart/ADD'
+const UPDATE_ITEM = '/shoppingCart/UPDATE'
 const DELETE_ITEM= '/shoppingCart/DELETE'
 
 //-------------------------ACTIONS--------------------------------------
@@ -10,6 +11,11 @@ const DELETE_ITEM= '/shoppingCart/DELETE'
 
 const addItem = one => ({
     type: ADD_ITEM,
+    one
+})
+
+const updateItem = one =>({
+    type: UPDATE_ITEM,
     one
 })
 
@@ -27,6 +33,11 @@ export const addOne = (payload) => async dispatch => {
     return
 }
 
+export const updateOne = (payload) => async dispatch => {
+    dispatch(updateItem(payload))
+    return
+}
+
 export const deleteOne = (menuItemId) => async dispatch => {
     dispatch(deleteItem(menuItemId))
     return
@@ -40,6 +51,11 @@ const CartReducer = (state={}, action) => {
             let addedState = {...state}
             addedState[action.one.id] = action.one
             return addedState
+
+        case UPDATE_ITEM:
+            let updated = {...state}
+            updated[action.one.id] = action.one
+            return updated
 
         case DELETE_ITEM:
             let gone = {...state}

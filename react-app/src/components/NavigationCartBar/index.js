@@ -45,6 +45,8 @@ function amountItem(itemId){
 
     }
 }
+
+
 function cartItems(){
   return cartElements?.map(element =>{
     return (
