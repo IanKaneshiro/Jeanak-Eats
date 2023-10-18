@@ -2,13 +2,16 @@ import React, {useState} from "react";
 import "./NavigationCartBar.css";
 import { notImplemented } from "../../Resources/helperFunctions";
 
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
+
+import * as cartActions from "./../../store/shoppingCart"
 
 const NavigationCartBar = ({ cartSidebar, setCartSidebar }) => {
   const setCart = () => setCartSidebar(false);
 
   const history = useHistory()
+  const dispatch = useDispatch()
 
 
   const cartState = useSelector((state)=>state.cart)
@@ -16,18 +19,21 @@ const NavigationCartBar = ({ cartSidebar, setCartSidebar }) => {
 
   const cartElements = Object.values(cartState)
 
-  const [quantity, setQuantity] = useState('')
 
 
 function amountItem(itemId){
+
+
     if(cartState?.[itemId]){
+
+      const payload = cartState?.[itemId]
+
       return(
         <span>
         {" "}
         <select
           className="item-quantity-select"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
+          onClick={()=>{cartActions.updateOne(payload)}}
         >
           <option className="quantity-option">1</option>
           <option className="quantity-option">2</option>
@@ -52,8 +58,8 @@ function cartItems(){
     return (
       <div className="cartInformation" key={element.id}>
         <div className="cartName"> {element.name} </div>
-        <button className="cartAmount"> {element.amount} </button>
-        <div className="cartPrice"> ${element.price} </div>
+        <button className="cartAmount"> {amountItem(element.id)} </button>
+        <div className="cartPrice"> ${element.price * parseInt(element.amount).toFixed(2)} </div>
         <img className='cartImage' src={element.image} alt='Image'/>
       </div>
     )

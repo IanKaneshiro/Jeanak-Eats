@@ -54,10 +54,10 @@ const MenuItemDetail = () => {
 
   const payload = {
     id:menuItemId,
-    image: item.imageUrl,
-    name: item.name,
+    image: item?.imageUrl,
+    name: item?.name,
     amount: quantity,
-    price: floatPriceTotal,
+    price: item?.price,
   }
 
   return (
