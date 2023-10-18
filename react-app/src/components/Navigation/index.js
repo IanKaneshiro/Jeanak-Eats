@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Link, useRouteMatch, useHistory } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import NavigationSideBar from "../NavigationSideBar";
@@ -7,9 +7,7 @@ import NavigationCartBar from "../NavigationCartBar";
 import OpenModalButton from "../OpenModalButton";
 import AddressModal from "../AddressModal";
 import SearchBar from "../SearchBar";
-import { cuisineUrls } from "../../Resources/imageUrlArrays";
 import "./Navigation.css";
-import { notImplemented } from "../../Resources/helperFunctions";
 
 function Navigation({ loading }) {
   const dispatch = useDispatch();
@@ -22,7 +20,6 @@ function Navigation({ loading }) {
 
   const showSidebar = () => setSidebar(!sidebar);
   const showCartSidebar = () => setCartSidebar(!cartSidebar);
-  const manageCheck = useRouteMatch({ path: "/", strict: true, exact: true });
 
   const history = useHistory();
 
@@ -98,20 +95,6 @@ function Navigation({ loading }) {
       </div>
       {search && (
         <SearchBar setSearch={setSearch} query={query} setQuery={setQuery} />
-      )}
-      {manageCheck && (
-        <div className="navbar--cuisine-container">
-          <ul className="navbar--cuisine-main">
-            {cuisineUrls.map((img) => {
-              return (
-                <button key={img.name} onClick={notImplemented}>
-                  <img src={img.url} alt={img.url} />
-                  <p>{img.name}</p>
-                </button>
-              );
-            })}
-          </ul>
-        </div>
       )}
       <NavigationSideBar
         sidebar={sidebar}
