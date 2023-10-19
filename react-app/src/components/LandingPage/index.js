@@ -17,11 +17,8 @@ const LandingPage = () => {
   const [openSort, setOpenSort] = useState(true);
   const [openPrice, setOpenPrice] = useState(true);
   // const [openDietary, setOpenDietary] = useState(true);
-  const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [sorted, setSorted] = useState(false);
-  const [filters, setFilters] = useState({
-    price_range: "default",
-  });
 
   const toggleSort = () => {
     setOpenSort(!openSort);
@@ -38,22 +35,10 @@ const LandingPage = () => {
   // };
 
   //--------------------Functions for filter-------------------------------
-  //------------> Having an issue where it just returns the intial restaurants, unfiltered even though
-  //              filtered is the an array of the correctly filtered items.
-  // const filterByPrice = (priceFilter) => {
-  //   if (priceFilter === "default") {
-  //     setFilteredRestaurants(filteredRestaurants);
-  //   }
-  //   const filtered = filteredRestaurants.filter(
-  //     (restaurant) => restaurant.priceRange === priceFilter
-  //   );
-  //   console.log("LANDING FILTERED", filtered);
-  //   setFilteredRestaurants(filtered);
-  //   console.log("LANDING FILTERED PRICE", filteredRestaurants);
-  // };
+
   const filterByPrice = (priceFilter) => {
-    setFilters({ price_range: priceFilter });
-    dispatch(queryForRestaurants(filters));
+    // setFilters({ price_range: priceFilter });
+    dispatch(queryForRestaurants({ price_range: priceFilter }));
   };
 
   //------------> Having an issue where it does not render on initial load, and filtered will override with
@@ -63,38 +48,32 @@ const LandingPage = () => {
       //returns default order
 
       setFilteredRestaurants(restaurants);
-      toggleFilter();
+      setSorted(false);
     } else if (preference === "popular") {
       //weighted by numRatings
-      const mostPopular = restaurants.sort(
+      const mostPopular = restaurants.toSorted(
         (a, b) => b.numRatings - a.numRatings
       );
 
       setFilteredRestaurants(mostPopular);
-      toggleFilter();
+      setSorted(true);
     } else if (preference === "ratings") {
-      //weighted by average ratings/stars
-      const highestRated = restaurants.sort(
+      //WEIGHTED by average ratings/stars
+      const highestRated = restaurants.toSorted(
         (a, b) => b.avgRating - a.avgRating
       );
 
       setFilteredRestaurants(highestRated);
-      toggleFilter();
+      setSorted(true);
     }
-    console.log(
-      "SORTED RESTAURANTS",
-      restaurants.map((restaurant) => restaurant.name)
-    );
   };
 
   //-----------------------------------------------------------------------
 
   useEffect(() => {
     dispatch(getAllRestaurants());
-    setFilteredRestaurants(restaurants);
-
     setSorted(false);
-  }, [dispatch, filteredRestaurants, filters, sorted]);
+  }, [dispatch]);
 
   if (!restaurants) return <LoadingSpinner />;
 
@@ -184,7 +163,7 @@ const LandingPage = () => {
               <button onClick={() => filterByPrice("$$$$")}>$$$$</button> */}
               <div className="landing--price-filter">
                 <input
-                  onChange={() => filterByPrice("default")}
+                  onChange={() => filterByPrice("")}
                   id="$price"
                   type="radio"
                   value=""
@@ -270,7 +249,7 @@ const LandingPage = () => {
         </div> */}
       </section>
       <section className="landing--restaurants">
-        {filteredRestaurants.map((restaurant) => (
+        {restaurants.map((restaurant) => (
           <RestaurantTile restaurant={restaurant} key={restaurant.id} />
         ))}
       </section>
