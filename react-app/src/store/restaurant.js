@@ -56,6 +56,25 @@ export const getAllRestaurants = () => async (dispatch) => {
   }
 };
 
+// Query for restaurants
+export const queryForRestaurants = (query) => async (dispatch) => {
+  //Sets up a query string to append to the url
+  let queryStr = "?";
+  for (const [key, val] of Object.entries(query))
+    if (val) {
+      queryStr += `${key}=${val}&`;
+    }
+
+  const response = await fetch(`/api/restaurants${queryStr}`);
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(loadRestaurants(data));
+    return data;
+  } else {
+    return response;
+  }
+};
+
 // Get all current users restaurants
 export const getUsersRestaurants = () => async (dispatch) => {
   const response = await fetch("/api/users/me/restaurants");

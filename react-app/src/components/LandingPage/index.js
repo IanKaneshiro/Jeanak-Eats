@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allRestaurants, getAllRestaurants } from "../../store/restaurant";
+import {
+  allRestaurants,
+  getAllRestaurants,
+  queryForRestaurants,
+} from "../../store/restaurant";
 import RestaurantTile from "../RestaurantTile";
 import LoadingSpinner from "../LoadingSpinner";
-import { notImplemented } from "../../Resources/helperFunctions";
+// import { notImplemented } from "../../Resources/helperFunctions";
+
 import "./LandingPage.css";
 
 const LandingPage = () => {
@@ -11,7 +16,10 @@ const LandingPage = () => {
   const restaurants = useSelector(allRestaurants);
   const [openSort, setOpenSort] = useState(true);
   const [openPrice, setOpenPrice] = useState(true);
-  const [openDietary, setOpenDietary] = useState(true);
+  // const [openDietary, setOpenDietary] = useState(true);
+
+  let restaurantsCopy = [...restaurants];
+  const [preference, setPreference] = useState("default");
 
   const toggleSort = () => {
     setOpenSort(!openSort);
@@ -19,9 +27,20 @@ const LandingPage = () => {
   const togglePrice = () => {
     setOpenPrice(!openPrice);
   };
-  const toggleDietary = () => {
-    setOpenDietary(!openDietary);
+
+  // const toggleDietary = () => {
+  //   setOpenDietary(!openDietary);
+  // };
+
+  //--------------------Functions for filter-------------------------------
+
+  const filterByPrice = (priceFilter) => {
+    // setFilters({ price_range: priceFilter });
+    dispatch(queryForRestaurants({ price_range: priceFilter }));
   };
+
+  //-----------------------------------------------------------------------
+
   useEffect(() => {
     dispatch(getAllRestaurants());
   }, [dispatch]);
@@ -55,12 +74,13 @@ const LandingPage = () => {
                 value=""
                 name="sort"
                 defaultChecked
+                onClick={() => setPreference("default")}
               />
               <label htmlFor="default">Picked for you (default)</label>
             </div>
             <div className="landing--sort">
               <input
-                onChange={notImplemented}
+                onClick={() => setPreference("popular")}
                 id="popular"
                 type="radio"
                 value="popular"
@@ -70,7 +90,7 @@ const LandingPage = () => {
             </div>
             <div className="landing--sort">
               <input
-                onChange={notImplemented}
+                onClick={() => setPreference("ratings")}
                 id="rating"
                 type="radio"
                 value="rating"
@@ -78,7 +98,7 @@ const LandingPage = () => {
               />
               <label htmlFor="rating">Rating</label>
             </div>
-            <div className="landing--sort">
+            {/* <div className="landing--sort">
               <input
                 onChange={notImplemented}
                 id="delivery"
@@ -87,7 +107,7 @@ const LandingPage = () => {
                 name="sort"
               />
               <label htmlFor="delivery">Delivery time</label>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="landing--filters-price-main">
@@ -107,14 +127,68 @@ const LandingPage = () => {
             }
           >
             <div className="landing--filters-price-btns">
-              <button onClick={notImplemented}>$</button>
-              <button onClick={notImplemented}>$$</button>
-              <button onClick={notImplemented}>$$$</button>
-              <button onClick={notImplemented}>$$$$</button>
+              {/* <button onClick={() => filterByPrice("$")}>$</button>
+              <button onClick={() => filterByPrice("$$")}>$$</button>
+              <button onClick={() => filterByPrice("$$$")}>$$$</button>
+              <button onClick={() => filterByPrice("$$$$")}>$$$$</button> */}
+              <div className="landing--price-filter">
+                <input
+                  onChange={() => filterByPrice("")}
+                  id="$price"
+                  type="radio"
+                  value=""
+                  name="filter"
+                  defaultChecked
+                />
+                <label htmlFor="delivery">Any (default)</label>
+              </div>
+
+              <div className="landing--price-filter">
+                <input
+                  onChange={() => filterByPrice("$")}
+                  id="$price"
+                  type="radio"
+                  value="$"
+                  name="filter"
+                />
+                <label htmlFor="delivery">$</label>
+              </div>
+
+              <div className="landing--price-filter">
+                <input
+                  onChange={() => filterByPrice("$$")}
+                  id="$$price"
+                  type="radio"
+                  value="$$"
+                  name="filter"
+                />
+                <label htmlFor="delivery">$$</label>
+              </div>
+              <div className="landing--price-filter">
+                <input
+                  onChange={() => filterByPrice("$$$")}
+                  id="$$$price"
+                  type="radio"
+                  value="$$$"
+                  name="filter"
+                />
+                <label htmlFor="delivery">$$$</label>
+              </div>
+
+              <div className="landing--price-filter">
+                <input
+                  onChange={() => filterByPrice("$$$$")}
+                  id="$$$$price"
+                  type="radio"
+                  value="$$$$"
+                  name="filter"
+                />
+                <label htmlFor="delivery">$$$$</label>
+              </div>
             </div>
           </div>
         </div>
-        <div className="landing--filters-dietary-main">
+        {/* <div className="landing--filters-dietary-main">
           <div onClick={toggleDietary} className="landing--filters-header">
             <h3>Dietary</h3>
             {openDietary ? (
@@ -142,12 +216,24 @@ const LandingPage = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
       <section className="landing--restaurants">
-        {restaurants.map((restaurant) => (
-          <RestaurantTile restaurant={restaurant} key={restaurant.id} />
-        ))}
+        {preference !== "default"
+          ? preference === "popular"
+            ? restaurantsCopy
+                .sort((a, b) => b.numRatings - a.numRatings)
+                .map((restaurant) => (
+                  <RestaurantTile restaurant={restaurant} key={restaurant.id} />
+                ))
+            : restaurantsCopy
+                .sort((a, b) => b.avgRating - a.avgRating)
+                .map((restaurant) => (
+                  <RestaurantTile restaurant={restaurant} key={restaurant.id} />
+                ))
+          : restaurantsCopy.map((restaurant) => (
+              <RestaurantTile restaurant={restaurant} key={restaurant.id} />
+            ))}
       </section>
     </main>
   );
