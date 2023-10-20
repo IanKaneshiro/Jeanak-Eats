@@ -59,7 +59,7 @@ const CartReducer = (state={}, action) => {
 
         case DELETE_ITEM:
             let gone = {...state}
-            delete gone[action.remove.id]
+            delete gone[action.remove]
             return gone
 
         default:

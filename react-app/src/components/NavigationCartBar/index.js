@@ -23,18 +23,30 @@ const NavigationCartBar = ({ cartSidebar, setCartSidebar }) => {
 
 function amountItem(itemId){
 
-
     if(cartState?.[itemId]){
-
-      const payload = cartState?.[itemId]
 
       return(
         <span>
         {" "}
         <select
           className="item-quantity-select"
-          onClick={()=>{cartActions.updateOne(payload)}}
+          value = {cartState?.[itemId].amount}
+          onChange={ (e) => {
+
+            const payload = {
+            id:cartState?.[itemId].id,
+            image:cartState?.[itemId].image,
+            name:cartState?.[itemId].name,
+            amount:e.target.value,
+            price:cartState?.[itemId].price
+          };
+
+          if(payload.amount === 'remove') {dispatch(cartActions.deleteOne(itemId))}
+          else if(payload.amount !== 'remove'){dispatch(cartActions.updateOne(payload)) }}}
+
+          
         >
+          <option className="quantity-option">remove</option>
           <option className="quantity-option">1</option>
           <option className="quantity-option">2</option>
           <option className="quantity-option">3</option>
@@ -52,32 +64,40 @@ function amountItem(itemId){
     }
 }
 
-
 function cartItems(){
   return cartElements?.map(element =>{
     return (
       <div className="cartInformation" key={element.id}>
         <div className="cartName"> {element.name} </div>
         <button className="cartAmount"> {amountItem(element.id)} </button>
-        <div className="cartPrice"> ${element.price * parseInt(element.amount).toFixed(2)} </div>
+        <div className="cartPrice"> ${ (element.price * parseInt(element.amount)).toFixed(2)} </div>
         <img className='cartImage' src={element.image} alt='Image'/>
       </div>
     )
   })
 }
 
+
+//const returns object extra that has total key = total price of item and amount key = # of item
 function totalCost(){
+
   let extra = {total:0, quantity:0}
   let cartItemsArray = cartItems()
+
+  console.log(cartElements, 'elements')
   if ( cartItemsArray.every(element => element !== undefined))
   {
     cartElements?.forEach(element=>{
-      extra.total = extra.total + parseFloat(element?.price)
-      extra.quantity = extra.quantity + parseInt(element?.amount)
+      extra.quantity = parseInt(parseInt(extra.quantity) + parseInt(element?.amount))
+      extra.total = parseFloat(extra.total) + (parseFloat(element?.price) * parseInt(element.amount))
     })
     return extra
   }
   return
+}
+
+function fixingToFixed(price){
+  return price.toFixed(2)
 }
 
 console.log(Object.values(totalCost()), 'HERE')
@@ -96,7 +116,7 @@ console.log(Object.values(totalCost()), 'HERE')
             { totalCost() && Object.values(totalCost()).length > 0 ?
               <div className="topLineCart">
                 <div>{totalCost().quantity} items</div>
-                <div> Subtotal: ${totalCost().total} </div>
+                <div> Subtotal: ${fixingToFixed(totalCost().total)} </div>
               </div>
             : null}
 
@@ -108,7 +128,7 @@ console.log(Object.values(totalCost()), 'HERE')
 
               <div className="subtotalCart">
                 <div>Subtotal</div>
-                <div>${totalCost().total}</div>
+                <div>${fixingToFixed(totalCost().total)}</div>
               </div>
 
               <div className="cartButtons">
@@ -141,6 +161,7 @@ console.log(Object.values(totalCost()), 'HERE')
       ></div>
     </>
   );
+
 };
 
 export default NavigationCartBar;
