@@ -1,6 +1,5 @@
-import React, {useState} from "react";
+import React from "react";
 import "./NavigationCartBar.css";
-import { notImplemented } from "../../Resources/helperFunctions";
 
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
@@ -13,13 +12,8 @@ const NavigationCartBar = ({ cartSidebar, setCartSidebar }) => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-
   const cartState = useSelector((state)=>state.cart)
-  console.log(cartState,'cartSTATE')
-
   const cartElements = Object.values(cartState)
-
-
 
 function amountItem(itemId){
 
@@ -44,7 +38,7 @@ function amountItem(itemId){
           if(payload.amount === 'remove') {dispatch(cartActions.deleteOne(itemId))}
           else if(payload.amount !== 'remove'){dispatch(cartActions.updateOne(payload)) }}}
 
-          
+
         >
           <option className="quantity-option">remove</option>
           <option className="quantity-option">1</option>
@@ -77,7 +71,6 @@ function cartItems(){
   })
 }
 
-
 //const returns object extra that has total key = total price of item and amount key = # of item
 function totalCost(){
 
@@ -99,9 +92,6 @@ function totalCost(){
 function fixingToFixed(price){
   return price.toFixed(2)
 }
-
-console.log(Object.values(totalCost()), 'HERE')
-
 
   return (
     <>
@@ -132,8 +122,8 @@ console.log(Object.values(totalCost()), 'HERE')
               </div>
 
               <div className="cartButtons">
-                <button className="checkoutButton"> Go to checkout </button>
-                <button className='addItemsButton' onClick = { ()=>{ history.push('/') } } >Add Items</button>
+                <button className="checkoutButton" onClick={ ()=>{history.push('/purchase'); setCart()} }> Go to checkout </button>
+                <button className='addItemsButton' onClick = { ()=>{ history.push('/'); setCart() } } >Add Items</button>
               </div>
 
             </div> : null }
@@ -150,7 +140,7 @@ console.log(Object.values(totalCost()), 'HERE')
           Once you add items from a restaurant or store, your cart will appear
           here.
         </p>
-        <button className="cartsidebar--cart-btn" onClick={notImplemented}>
+        <button className="cartsidebar--cart-btn" onClick={ ()=>{ history.push('/'); setCart() } }>
           Start shopping
         </button>
       </>}

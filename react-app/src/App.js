@@ -12,6 +12,7 @@ import ManagerPortal from "./components/ManagerPortal";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import RestaurantDetails from "./components/RestaurantDetails";
 import Footer from "./components/Footer";
+import CartPurchase from "./components/CartPurchase";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ function App() {
             </Route>
             <Route path="/signup">
               <SignupFormPage />
+            </Route>
+            <Route path="/purchase">
+              <CartPurchase/>
             </Route>
             <ProtectedRoute path="/manage">
               <ManagerPortal />

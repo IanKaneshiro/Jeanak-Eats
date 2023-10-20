@@ -98,7 +98,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
 }
 
 
@@ -117,19 +116,17 @@
   font-size: larger;
 }
 
-.entireCart{
+/* .entireCart{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-}
+} */
 
 .topLineCart{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 2px solid lightgrey;
-  margin-top: 20px;
 }
 
 .subtotalCart{
