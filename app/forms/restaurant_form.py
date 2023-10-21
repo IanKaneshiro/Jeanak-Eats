@@ -13,7 +13,7 @@ def price_range(form, field):
 
 class RestaurantForm(FlaskForm):
     name = StringField('name', validators=[
-                       DataRequired(), Length(min=2, max=100)])
+                       DataRequired(), Length(min=2, max=25)])
     address = StringField('address', validators=[DataRequired()])
     city = StringField('city', validators=[DataRequired()])
     state = StringField('state', validators=[DataRequired()])
