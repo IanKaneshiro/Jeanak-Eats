@@ -136,3 +136,12 @@
   justify-content: space-between;
   font-weight: bold;
 }
+
+.item-quantity-select-Cart{
+  border-radius: 10px;
+  border: none;
+  height: 40px;
+  padding: 10px;
+  background-color: #eeeeee;
+  cursor: pointer;
+}
