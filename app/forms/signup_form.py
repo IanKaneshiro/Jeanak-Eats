@@ -20,6 +20,13 @@ def phone_number_exists(form, field):
         raise ValidationError('Phone number already in use.')
 
 
+def valid_phone_number(form, field):
+    # validates phone number
+    phone_number = field.data
+    if len(phone_number) < 10 or len(phone_number) > 12:
+        raise ValidationError('Invalid phone number')
+
+
 class SignUpForm(FlaskForm):
 
     first_name = StringField('first_name', validators=[DataRequired()])
@@ -27,7 +34,7 @@ class SignUpForm(FlaskForm):
     email = StringField('email', validators=[
                         DataRequired(), Email(), user_exists])
     phone_number = StringField(
-        'phone', validators=[DataRequired(), phone_number_exists])
+        'phone', validators=[DataRequired(), phone_number_exists, valid_phone_number])
     address = StringField('address')
     city = StringField('city')
     state = StringField('state')

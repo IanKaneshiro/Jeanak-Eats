@@ -117,7 +117,9 @@ function SignupFormPage() {
         <input
           required
           placeholder="Phone Number"
-          type="text"
+          type="tel"
+          inputmode="numeric"
+          pattern="[0-9]*"
           value={phone_number}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />

@@ -5,6 +5,10 @@
   gap: 5px;
 }
 
+.restaurant-tile--main > h3 {
+  line-break: anywhere;
+}
+
 .restaurant-tile--main > img {
   width: 100%;
   height: 100px;
