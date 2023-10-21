@@ -116,11 +116,12 @@
   font-size: larger;
 }
 
-/* .entireCart{
+.entireCart{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-} */
+  overflow-y: auto;
+}
 
 .topLineCart{
   display: flex;

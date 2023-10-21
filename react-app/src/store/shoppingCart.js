@@ -5,6 +5,7 @@
 const ADD_ITEM = '/shoppingCart/ADD'
 const UPDATE_ITEM = '/shoppingCart/UPDATE'
 const DELETE_ITEM= '/shoppingCart/DELETE'
+const DELETE_ALL='/shoppingCart/DELETE_ALL'
 
 //-------------------------ACTIONS--------------------------------------
 
@@ -22,6 +23,11 @@ const updateItem = one =>({
 const deleteItem = remove => ({
     type: DELETE_ITEM,
     remove
+})
+
+const deleteAllItems = all => ({
+    type:DELETE_ALL,
+    all
 })
 
 
@@ -43,6 +49,13 @@ export const deleteOne = (menuItemId) => async dispatch => {
     return
 }
 
+export const deleteAll = () => async dispatch => {
+    dispatch(deleteAllItems())
+    return
+}
+
+
+
 //---------------------------------------REDUCER-----------------------------------
 const CartReducer = (state={}, action) => {
     switch (action.type) {
@@ -61,6 +74,9 @@ const CartReducer = (state={}, action) => {
             let gone = {...state}
             delete gone[action.remove]
             return gone
+
+        case DELETE_ALL:
+            return {}
 
         default:
             return state;
