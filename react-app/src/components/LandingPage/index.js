@@ -7,7 +7,6 @@ import {
 } from "../../store/restaurant";
 import RestaurantTile from "../RestaurantTile";
 import LoadingSpinner from "../LoadingSpinner";
-// import { notImplemented } from "../../Resources/helperFunctions";
 
 import "./LandingPage.css";
 
@@ -27,10 +26,6 @@ const LandingPage = () => {
   const togglePrice = () => {
     setOpenPrice(!openPrice);
   };
-
-  // const toggleDietary = () => {
-  //   setOpenDietary(!openDietary);
-  // };
 
   //--------------------Functions for filter-------------------------------
 
@@ -98,16 +93,6 @@ const LandingPage = () => {
               />
               <label htmlFor="rating">Rating</label>
             </div>
-            {/* <div className="landing--sort">
-              <input
-                onChange={notImplemented}
-                id="delivery"
-                type="radio"
-                value="time"
-                name="sort"
-              />
-              <label htmlFor="delivery">Delivery time</label>
-            </div> */}
           </div>
         </div>
         <div className="landing--filters-price-main">
@@ -127,10 +112,6 @@ const LandingPage = () => {
             }
           >
             <div className="landing--filters-price-btns">
-              {/* <button onClick={() => filterByPrice("$")}>$</button>
-              <button onClick={() => filterByPrice("$$")}>$$</button>
-              <button onClick={() => filterByPrice("$$$")}>$$$</button>
-              <button onClick={() => filterByPrice("$$$$")}>$$$$</button> */}
               <div className="landing--price-filter">
                 <input
                   onChange={() => filterByPrice("")}
@@ -188,35 +169,6 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-        {/* <div className="landing--filters-dietary-main">
-          <div onClick={toggleDietary} className="landing--filters-header">
-            <h3>Dietary</h3>
-            {openDietary ? (
-              <i className="fa-solid fa-caret-up fa-lg"></i>
-            ) : (
-              <i className="fa-solid fa-caret-down fa-lg"></i>
-            )}
-          </div>
-          <div
-            className={
-              openDietary
-                ? "landing--filters-dietary"
-                : "landing--filters-dietary landing-close"
-            }
-          >
-            <div className="landing--filters-dietary-btns">
-              <button onClick={notImplemented}>
-                <i className="fa-solid fa-leaf fa-xs"></i> Vegetarian
-              </button>
-              <button onClick={notImplemented}>
-                <i id="heart" className="fa-solid fa-heart fa-xs"></i> Vegan
-              </button>
-              <button onClick={notImplemented}>
-                <i className="fa-brands fa-pagelines fa-sm"></i> Gluten-free
-              </button>
-            </div>
-          </div>
-        </div> */}
       </section>
       <section className="landing--restaurants">
         {preference !== "default"
