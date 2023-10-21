@@ -77,7 +77,6 @@ function totalCost(){
   let extra = {total:0, quantity:0}
   let cartItemsArray = cartItems()
 
-  console.log(cartElements, 'elements')
   if ( cartItemsArray.every(element => element !== undefined))
   {
     cartElements?.forEach(element=>{
