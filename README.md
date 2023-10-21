@@ -29,12 +29,16 @@ Checkout the [Wiki](https://github.com/IanKaneshiro/Jeanak-Eats/wiki#welcome-to-
 
 ### Home Page
 
-![Screenshot of the homepage of Jeanak Eats](https://res.cloudinary.com/dmkyocbqi/image/upload/v1697071922/Screenshot_2023-10-11_175026_hryhtt.jpg)
+![Screenshot of the homepage of Jeanak Eats](https://res.cloudinary.com/dmkyocbqi/image/upload/v1697909711/Screenshot_2023-10-21_103245_klk5gh.png)
 
 ### Restaurant Details Page
 
-![Screenshot of the homepage of Jeanak Eats](https://res.cloudinary.com/dmkyocbqi/image/upload/v1697149071/Screenshot_2023-10-12_151712_gzljep.png)
+![Screenshot of the restaurant detail page of Jeanak Eats](https://res.cloudinary.com/dmkyocbqi/image/upload/v1697909869/Screenshot_2023-10-21_103724_djdrkh.png)
 
 ## Manage Restaurant Page
 
-![Screenshot of the homepage of Jeanak Eats](https://res.cloudinary.com/dmkyocbqi/image/upload/v1697149072/Screenshot_2023-10-12_151634_jyk1pg.png)
+![Screenshot of the restaurant manage page of Jeanak Eats](https://res.cloudinary.com/dmkyocbqi/image/upload/v1697910006/Screenshot_2023-10-21_103952_jq23z9.png)
+
+## Cart
+
+![Screenshot of cart feature](https://res.cloudinary.com/dmkyocbqi/image/upload/v1697909929/Screenshot_2023-10-21_103831_mrbrgf.png)
