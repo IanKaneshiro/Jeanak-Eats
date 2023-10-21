@@ -23,7 +23,7 @@ function amountItem(itemId){
         <span>
         {" "}
         <select
-          className="item-quantity-select"
+          className="item-quantity-select-Cart"
           value = {cartState?.[itemId].amount}
           onChange={ (e) => {
 
