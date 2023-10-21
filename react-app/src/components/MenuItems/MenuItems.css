@@ -79,8 +79,10 @@
 /* ----------------------------------------------------- */
 
 .menu-tile-name {
+  overflow-wrap: break-word;
   margin: 0;
   padding-bottom: 3px;
+  max-width: 243px;
 }
 
 /* Delete Menu Item Modal */

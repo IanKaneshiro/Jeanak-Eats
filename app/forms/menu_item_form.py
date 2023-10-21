@@ -15,8 +15,8 @@ def max_characters(form, field):
     #Checks for number of characters
     val = field.data
 
-    if len(val) > 100:
-        raise ValidationError("Name cannot be more than 100 characters")
+    if len(val) > 50:
+        raise ValidationError("Name cannot be more than 50 characters")
 
 
 class MenuItemForm(FlaskForm):
