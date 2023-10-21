@@ -32,7 +32,6 @@ function AddModal(data) {
     const createReview = await dispatch(addReview(data.data, payload));
 
     if(createReview){
-      console.log(createReview)
       if(createReview.errors){
         back = createReview.errors
         setBack(back.errors)
@@ -41,9 +40,6 @@ function AddModal(data) {
       //   back = createReview.message
       //   setBack(back)
       // }
-
-      console.log(createReview.errors)
-
     }
     else{
       closeModal()

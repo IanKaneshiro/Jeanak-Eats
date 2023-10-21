@@ -62,7 +62,7 @@ function UpdateModal() {
       review:review,
       rating:rating
     }
-    console.log(payload,'payload')
+    
     const allReviews = await dispatch(reviewActions.changeReview(reviewId(), payload));
     if (allReviews) {
       back = allReviews.errors
@@ -72,9 +72,6 @@ function UpdateModal() {
     }
   };
 
-  console.log(reviewId(), 'reviewId update')
-
-  console.log(back, 'errorssssssssssss')
 
   return (
     <>
