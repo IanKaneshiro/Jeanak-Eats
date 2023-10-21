@@ -104,7 +104,7 @@ function fixingToFixed(price){
           <div className="entireCart">
             { totalCost() && Object.values(totalCost()).length > 0 ?
               <div className="topLineCart">
-                <div>{totalCost().quantity === 1 ? `${totalCost().quantity} item` : `${totalCost().quantity} items`} </div>
+                <div>{totalCost().quantity} items</div>
                 <div> Subtotal: ${fixingToFixed(totalCost().total)} </div>
               </div>
             : null}
