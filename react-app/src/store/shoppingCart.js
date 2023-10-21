@@ -1,82 +1,82 @@
 
 
 //-------------------------CONSTANTS------------------------------------
-const GET_ALL = '/shoppingCart/ALL'
+
 const ADD_ITEM = '/shoppingCart/ADD'
+const UPDATE_ITEM = '/shoppingCart/UPDATE'
 const DELETE_ITEM= '/shoppingCart/DELETE'
+const DELETE_ALL='/shoppingCart/DELETE_ALL'
 
 //-------------------------ACTIONS--------------------------------------
-const GetAll = all => ({
-    type: GET_ALL,
-    all
-})
 
-const AddItem = one => ({
+
+const addItem = one => ({
     type: ADD_ITEM,
     one
 })
 
-const DeleteItem = remove => ({
+const updateItem = one =>({
+    type: UPDATE_ITEM,
+    one
+})
+
+const deleteItem = remove => ({
     type: DELETE_ITEM,
     remove
+})
+
+const deleteAllItems = all => ({
+    type:DELETE_ALL,
+    all
 })
 
 
 //------------------------------THUNKS---------------------------------------------
 
-export const addOne = (menuItemId) => async dispatch => {
-    const response = await fetch(`/api/restaurants/menuItems/${menuItemId}`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
-    })
 
-    if(response.ok){
-        const addedItem = await response.json()
-        dispatch(AddItem(addedItem))
-    }
-    else {
-        return await response.json()
-    }
+export const addOne = (payload) => async dispatch => {
+    dispatch(addItem(payload))
+    return
+}
 
+export const updateOne = (payload) => async dispatch => {
+    dispatch(updateItem(payload))
+    return
 }
 
 export const deleteOne = (menuItemId) => async dispatch => {
-
-    const response = await fetch(`/api/menuItems/${menuItemId}`, {
-        method:'DELETE'
-    })
-
-    if(response.ok){
-        const deleted = await response.json()
-        dispatch(DeleteItem(menuItemId))
-        return deleted
-    }
-    else {
-        return await response.json()
-    }
+    dispatch(deleteItem(menuItemId))
+    return
 }
 
+export const deleteAll = () => async dispatch => {
+    dispatch(deleteAllItems())
+    return
+}
+
+
+
 //---------------------------------------REDUCER-----------------------------------
-const shoppingCartReducer = (state={}, action) => {
+const CartReducer = (state={}, action) => {
     switch (action.type) {
-        case GET_ALL:
-            return {
-                ...state,
-                ...action.all
-            }
 
         case ADD_ITEM:
-            return {
-                ...state,
-                ...action.one
-            }
+            let addedState = {...state}
+            addedState[action.one.id] = action.one
+            return addedState
+
+        case UPDATE_ITEM:
+            let updated = {...state}
+            updated[action.one.id] = action.one
+            return updated
 
         case DELETE_ITEM:
-            return {
-                ...state,
-                ...action.remove
-            }
+            let gone = {...state}
+            delete gone[action.remove]
+            return gone
+
+        case DELETE_ALL:
+            return {}
 
         default:
             return state;
@@ -84,4 +84,4 @@ const shoppingCartReducer = (state={}, action) => {
     }
 }
 
-export default shoppingCartReducer
+export default CartReducer
